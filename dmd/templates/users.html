@@ -21,7 +21,7 @@
                 	{% for partner in partners %}
                     <tr class="odd gradeX">
                         <td>{{ partner.username }}</td>
-                        <td>{{ partner }}</td>
+                        <td>{{ partner.user.get_full_name }}</td>
                         <td>{{ partner.organization }}</td>
                     </tr>
                     {% empty %}
