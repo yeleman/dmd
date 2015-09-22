@@ -1,0 +1,13 @@
+{% if with_label %}<label for="filter_period{{ period_suffix }}">Période</label>{% endif %}
+<select id="filter_period{{ period_suffix }}">
+    {% for itemid, item in periods %}
+        {% if item.imonth == 12 or forloop.first %}
+        <optgroup label=" {{ item.year }} ">
+        {% endif %}
+    <option value="{{ itemid }}" {% if selected_period.strid = itemid %} selected="selected"{% endif %}>{{ item }}</option>
+        {% if item.imonth == 1 or forloop.last %}
+        </optgroup>
+        {% endif %}
+    {% endfor %}
+    </optgroup>
+</select>
