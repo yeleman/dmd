@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+    <object pk="malaria_severe_confirmed_deceased_hgr_per_100000" model="dmd.indicator">
+        <field type="CharField" name="origin">dhis</field>
+        <field type="CharField" name="number">50</field>
+        <field type="CharField" name="name">Palu grave confirmé décédé HGR pour 100 000 personnes</field>
+        <field type="CharField" name="name_en">Malaria severe confirmed deceased in HGR per 100 000 persons</field>
+        <field type="CharField" name="dhis_id">nNdnNMcD6VV</field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1"><None></None></field>
+        <field type="CharField" name="tech_area2"><None></None></field>
+        <field type="CharField" name="itype">per_hundred_thousand</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}/100 000</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="malaria_severe_confirmed_deceased_per_100000" model="dmd.indicator">
+        <field type="CharField" name="origin">dhis</field>
+        <field type="CharField" name="number">52</field>
+        <field type="CharField" name="name">Paludisme grave confirmé décédé pour 100 000 personnes</field>
+        <field type="CharField" name="name_en">Malaria severe confirmed deceased per 100 000 persons</field>
+        <field type="CharField" name="dhis_id">MFwFaf7GbU7</field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1"><None></None></field>
+        <field type="CharField" name="tech_area2"><None></None></field>
+        <field type="CharField" name="itype">per_hundred_thousand</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}/100 000</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="nb_bednet_distributed_mass_campaigns" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">05</field>
+        <field type="CharField" name="name">Nombre de MILDA distribuées lors des campagnes de distribution de masse</field>
+        <field type="CharField" name="name_en">Number of long-lasting insecticide-treated nets distributed during mass distribution campaigns</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">process</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">itn/llin</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+    </object>
+    <object pk="nb_chw_trained_refreshed_malaria_care_zone_sante" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">25</field>
+        <field type="CharField" name="name">Nombre de relais communautaires formés/recyclés dans la PEC du paludisme dans les ZS</field>
+        <field type="CharField" name="name_en">Number of community health workers trained or retrained in malaria community case management in health zones</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">community_case_management</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+    </object>
+    <object pk="nb_hc_no_ipt_stockout" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">08a</field>
+        <field type="CharField" name="name">Nombre de centres  de santé ne reportant aucune rupture de stock de médicaments IPT (SP) recommandés à l'échelle nationale à tout moment au cours de la période de reporting dans les centres de santé cibles</field>
+        <field type="CharField" name="name_en">Number of health centers that report no stockouts of national recommended intermittent preventive treatment in pregnancy with sulfadoxine-pyrimethamine at any time during the reporting period in the health centers target X</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">process</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">iptp</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="nb_hc_no_recommended_bednet_stockout" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">04a</field>
+        <field type="CharField" name="name">Nombre de centres de santé ne reportant aucune rupture de stock de MILDs recommandées à l'échelle nationale, à tout moment au cours de la période de reporting dans les centres de santé cibles</field>
+        <field type="CharField" name="name_en">Number of health centers that report no stockouts of national recommended long-lasting insecticide-treated nets at any time during the reporting period in the health centers target X</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">process</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">psm</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="nb_healthcareprovider_supervised_last_quarter" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">29a</field>
+        <field type="CharField" name="name">Nombre des prestataires de Soins de Santé supervisés par trimestre</field>
+        <field type="CharField" name="name_en">Number of health care providers supervised per trimester</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">sme</field>
+        <field type="CharField" name="tech_area2">supervision</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="nb_healthfacility_no_asaq1-5_stockout_last_period" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">27a</field>
+        <field type="CharField" name="name">Nombre de Formations sanitaires ne reportant aucune rupture d' ASAQ 1-5  ans à l'échelle nationale, à n'importe quel moment au cours de la période de reporting</field>
+        <field type="CharField" name="name_en">Number of health facility reporting no ASAQ 1-5 stockout at national level, within the last reporting period</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">community_case_management</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="nb_healthfacility_no_malaria_input_stockout_last_period" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">26a</field>
+        <field type="CharField" name="name">Nombre de Formations sanitaires ne reportant aucune rupture de stock des intrants antipaludiques recommandés à l'échelle nationale, à n'importe quel moment au cours de la période de reporting</field>
+        <field type="CharField" name="name_en">Number of health facility reporting no recommended malaria medecine stockout at national level, within the last reporting period</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">community_case_management</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="nb_healthworker_trained_refreshed_on_malaria_care_zone_sante" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">24</field>
+        <field type="CharField" name="name">Nombre de personnel de santé formé/recyclé sur la PEC du paludisme dans les ZS</field>
+        <field type="CharField" name="name_en">Number of health personnel trained or retrained in malaria case management in the health zones</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">capacity_building</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+    </object>
+    <object pk="nb_labtechnician_refreshed_microscopy_rdt" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">16</field>
+        <field type="CharField" name="name">Nombre de techniciens de laboratoire recyclés sur la microscopie et les TDR</field>
+        <field type="CharField" name="name_en">Number of laboratory technicians retrained in microscopy or rapid diagnostic testing</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">diagnosis</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+    </object>
+    <object pk="nb_pw_confirmed_malaria_cases_bs_rdt" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">20</field>
+        <field type="CharField" name="name">Nombre des femmes enceintes confirmees paludisme (sur base de tests rapides ou microscopie)</field>
+        <field type="CharField" name="name_en">Number of pregnant women who are confirmed with malaria by rapid diagnostic test or microscopy</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">diagnosis</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="prosani"></object><object pk="unicef"></object><object pk="who"></object></field>
+    </object>
+    <object pk="nb_zonesante_received_provice_supervision_last_quarter" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">35a</field>
+        <field type="CharField" name="name">Nombre de ZS ayant reçu au moins une visite de supervision du niveau provincial dans un trimestre</field>
+        <field type="CharField" name="name_en"><None></None></field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">sme</field>
+        <field type="CharField" name="tech_area2">supervision</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
+    </object>
+    <object pk="nb_zonesante_received_provice_supervision_per_month" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">36</field>
+        <field type="CharField" name="name">Nombre des zones de santé ayant recu au moins une visite de supervision du niveau provincial au cours du mois</field>
+        <field type="CharField" name="name_en">Number of health facilities that have received at least one supervision visit from the provincial level during the month</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">sme</field>
+        <field type="CharField" name="tech_area2">supervision</field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="psi"></object></field>
+    </object>
+    <object pk="pc_bednet_sleep_previous_night" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">10</field>
+        <field type="CharField" name="name">Pourcentage de personnes ayant dormi sous une MILD la nuit précédente</field>
+        <field type="CharField" name="name_en">Percentage of people who slept under a long-lasting insecticide-treated net last night</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">effect</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">itn/llin</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object></field>
+    </object>
+    <object pk="pc_childrencaretaker_ableto_recognize_2malariadangersigns_feverish_u5" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">28</field>
+        <field type="CharField" name="name">Pourcentage de mères/gardiens d’enfants qui sont capables de reconnaître au moins deux signes de danger du paludisme chez un enfant fébrile de moins de 5 ans</field>
+        <field type="CharField" name="name_en">Percentage of mothers and caregivers who can recognize at least two warning signs of malaria in febrile children under age 5 years</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">bcc</field>
+        <field type="CharField" name="tech_area2">knowledge</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+    </object>
+    <object pk="pc_childrencaretaker_recognized_2malariadangersigns_u5_then_healthcenter" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">38</field>
+        <field type="CharField" name="name">Pourcentage des mères/gardiens d'enfants qui ont reconnues au moins deux signes de danger du paludisme chez un enfant de moins de 5 ans et qui ont conduit l'enfant au centre de santé</field>
+        <field type="CharField" name="name_en">Percentage of mothers/child care taker recogizing at least 2 danger signs of malaria at an under 5 and took the child to a health center</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">bcc</field>
+        <field type="CharField" name="tech_area2">knowledge</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="prosani"></object><object pk="msh"></object></field>
+    </object>
+    <object pk="pc_chw_trained_malaria_care_aire_sante" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">31</field>
+        <field type="CharField" name="name">Proportion des relais communautaire forme dans la lutte contre le paludisme par AS</field>
+        <field type="CharField" name="name_en">Proportion of community volunteers in a village trained to prevent malaria</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">bcc</field>
+        <field type="CharField" name="tech_area2">knowledge</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object></field>
+    </object>
+    <object pk="pc_dps_reveived_central_supervision_last_quarter" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">37</field>
+        <field type="CharField" name="name">Pourcentage de DPS ayant reçu au moins une visite de supervision du niveau central au cours du dernier semestre</field>
+        <field type="CharField" name="name_en">Percentage of DPS receiving at least one supervision from central level within last semester</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">sme</field>
+        <field type="CharField" name="tech_area2">supervision</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
+    </object>
+    <object pk="pc_firstline_malaria_treatments_u5_treated_fever_last_weeks" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">21</field>
+        <field type="CharField" name="name">Pourcentage de traitements antipaludiques de première intention parmi les enfants de moins de cinq ans fiévreux depuis les deux dernières semaines qui ont reçu un traitement antipaludique</field>
+        <field type="CharField" name="name_en">Percentage of first-line antimalarial treatment among febrile children under age 5 years after 2 weeks of receiving antimalarial treatment</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">treatment</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_hc_no_ipt_stockout" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">08b</field>
+        <field type="CharField" name="name">Pourcentage de centres de santé ne reportant aucune rupture de stock de médicaments IPT (SP) recommandés à l'échelle nationale à tout moment au cours de la période de reporting dans les centres de santé cibles</field>
+        <field type="CharField" name="name_en">Percentage of health centers that report no stockouts of national recommended intermittent preventive treatment in pregnancy with sulfadoxine-pyrimethamine at any time during the reporting period in the health centers target X</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">process</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">iptp</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="pc_hc_no_recommended_bednet_stockout" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">04b</field>
+        <field type="CharField" name="name">Pourcentage de centres de santé ne reportant aucune rupture de stock de MILDs recommandées à l'échelle nationale, à tout moment au cours de la période de reporting dans les centres de santé cibles</field>
+        <field type="CharField" name="name_en">Percentage of health centers that report no stockouts of national recommended long-lasting insecticide-treated nets at any time during the reporting period in the health centers target X</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">process</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">psm</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="pc_healthcareprovider_supervised_last_quarter" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">29b</field>
+        <field type="CharField" name="name">Pourcentage des prestataires de Soins de Santé supervisés par trimestre</field>
+        <field type="CharField" name="name_en">Percentage of health care providers supervised per trimester</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">sme</field>
+        <field type="CharField" name="tech_area2">supervision</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="pc_healthfacility_no_asaq1-5_stockout_last_period" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">27b</field>
+        <field type="CharField" name="name">Pourcentage de Formations sanitaires ne reportant aucune rupture d' ASAQ 1-5 ans à l'échelle nationale, à n'importe quel moment au cours de la période de reporting</field>
+        <field type="CharField" name="name_en">Percentage of health facility reporting no ASAQ 1-5 stockout at national level, within the last reporting period</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">community_case_management</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="pc_healthfacility_no_malaria_input_stockout_last_period" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">26b</field>
+        <field type="CharField" name="name">Pourcentage de Formations sanitaires ne reportant aucune rupture de stock des intrants antipaludiques recommandés à l'échelle nationale, à n'importe quel moment au cours de la période de reporting</field>
+        <field type="CharField" name="name_en">Percentage of health facility reporting no recommended malaria medecine stockout at national level, within the last reporting period</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">community_case_management</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="pc_healthfacility_with_uptodate_nationalmalariacarebook" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">34</field>
+        <field type="CharField" name="name">Proportion de structures sanitaires qui dispose d'une copie de la toute dernière version des directives nationales de PEC du paludisme</field>
+        <field type="CharField" name="name_en">Proportion of health facilities with a copy of National Treatment Guidelines for Malaria</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">hss</field>
+        <field type="CharField" name="tech_area2">enable_environment</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="pc_irs_coverage" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">09</field>
+        <field type="CharField" name="name">Pourcentage de la population des zones cibles couverte par la PID</field>
+        <field type="CharField" name="name_en">Percentage of the population in the target areas covered by indoor residual spraying</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">process</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">irs</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_menages_avec_1mild_pour_deux" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">01</field>
+        <field type="CharField" name="name">Pourcentage des ménages possédant au moins 1 MILD  pour 2 personnes présentes dans le ménage la nuit précédente</field>
+        <field type="CharField" name="name_en">Percentage of households with at least 1 long-lasting insecticide-treated net for every 2 people who stayed in the household last night</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">effect</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">itn/llin</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object><object pk="eds"></object></field>
+    </object>
+    <object pk="pc_person_recognize_cause_symptoms_preventivemeasures_malaria" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">30</field>
+        <field type="CharField" name="name">Pourcentage des personnes qui reconnaissent la cause, les symptomes ou les mesures preventives en lien avec le paludisme</field>
+        <field type="CharField" name="name_en">Percentage of people who know the cause, symptoms, or preventive measures related to malaria</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">bcc</field>
+        <field type="CharField" name="tech_area2">knowledge</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object></field>
+    </object>
+    <object pk="pc_pnlp_staff_trained" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">33</field>
+        <field type="CharField" name="name">Pourcentage de personnel PNLP formé</field>
+        <field type="CharField" name="name_en">Percentage of trained PNLP personnel</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">hss</field>
+        <field type="CharField" name="tech_area2">capacity_building</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
+    </object>
+    <object pk="pc_population_bednet_access_househould" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">11</field>
+        <field type="CharField" name="name">Pourcentage de la populationn ayant accès à la MILDA dans leurs ménages</field>
+        <field type="CharField" name="name_en">Percentage of population with access to bednet within household</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">effect</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">itn/llin</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="pc_population_read_heard_malaria_message_last_30d" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">32</field>
+        <field type="CharField" name="name">Pourcentage de la population cible ayant entendu ou lu au moins un message sur le paludisme dans les 30 jours précédant l’enquête</field>
+        <field type="CharField" name="name_en">Number of people who have heard messages on the prevention and treatement of malaria</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">bcc</field>
+        <field type="CharField" name="tech_area2">knowledge</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="cchange"></object></field>
+    </object>
+    <object pk="pc_positive_diagnostic_tests" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">15</field>
+        <field type="CharField" name="name">Proportion de tests de diagnostic du paludisme positifs</field>
+        <field type="CharField" name="name_en">Proportion of positive malaria tests</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">diagnosis</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_pw_bednet_sleep" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">03</field>
+        <field type="CharField" name="name">Femmes enceintes qui dorment sous une MILDA</field>
+        <field type="CharField" name="name_en">Percentage of pregnant women who slept under a long-lasting insecticide-treated net</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">effect</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">itn/llin</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="pmi"></object></field>
+    </object>
+    <object pk="pc_pw_received_2ipt_during_ancv" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">07</field>
+        <field type="CharField" name="name">Proportion des femmes enceintes ayant bénéficié d’au moins deux doses de TPI au cours des CPN</field>
+        <field type="CharField" name="name_en">Percentage of pregnant women who took two or more doses of intermittent preventive treatment in pregnancy duirng antenatal care</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">process</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">iptp</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="prosani"></object><object pk="unicef"></object><object pk="who"></object><object pk="eds"></object></field>
+    </object>
+    <object pk="pc_pw_received_3ipt_last_pregnancy" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">06</field>
+        <field type="CharField" name="name">Pourcentage de femmes enceintes ayant reçu au moins trois doses de TPI pendant leur dernière grossesse</field>
+        <field type="CharField" name="name_en">Percentage of pregnant women who received at least three doses of intermittent preventive treatment in pregnancy during their last pregnancy</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">effect</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">iptp</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="unicef"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_severe_confirmed_malaria_cases_within_confirmed" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">13</field>
+        <field type="CharField" name="name">Proportion de cas de paludisme grave confirmés par rapport à tous les cas de paludisme confirmés</field>
+        <field type="CharField" name="name_en">Proportion of severe malaria cases confirmed in relation to all confirmed malaria cases</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">diagnosis</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_severe_malaria_inpatient_treated" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">23</field>
+        <field type="CharField" name="name">Proportion de personnes hospitalisées pour paludisme grave ayant reçu un traitement correct dans les établissements de soins</field>
+        <field type="CharField" name="name_en">Proportion of people hospitalized for severe malaria who received the correct treatment in health facilities</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">treatment</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_simple_confirmed_malaria_cases_treated" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">14</field>
+        <field type="CharField" name="name">Pourcentage de cas de paludisme simple confirmés qui ont reçu un traitement antipaludique approprié, conformément à la politique nationale</field>
+        <field type="CharField" name="name_en">Percentage of confirmed cases of uncomplicated malaria when the patient received appropriate antimalarial treatment in accordance with national policy</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">treatment</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_suspected_malaria_cases_tested_bs_rdt" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">17</field>
+        <field type="CharField" name="name">Pourcentage de tous les cas suspects de paludisme ayant beneficié d'un test parasitologique (GE ou TDR)</field>
+        <field type="CharField" name="name_en">Percentage of all suspected malaria cases that received a parasitological test (microscopy or rapid diagnostic test)</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">diagnosis</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_u5_act_treated_malaria_cases_community_centers" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">22</field>
+        <field type="CharField" name="name">Proportion des cas de paludisme traités avec les CTA conformément aux directives nationales chez les enfants de moins de cinq ans au niveau des sites de soins communautaires</field>
+        <field type="CharField" name="name_en">Proportion of malaria cases at the community level among children under age 5 years treated with artemisinin combination therapy according to national guidelines</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">treatment</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="unicef"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_u5_bednet_sleep" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">02</field>
+        <field type="CharField" name="name">Pourcentage d’enfants de moins de cinq ans qui dorment sous une MILDA</field>
+        <field type="CharField" name="name_en">Percentage of children under age 5 who slept under a long-lasting insecticide-treated net</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category">effect</field>
+        <field type="CharField" name="tech_area1">pvc</field>
+        <field type="CharField" name="tech_area2">itn/llin</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="unicef"></object><object pk="pmi"></object></field>
+    </object>
+    <object pk="pc_u5_fever_last_2weeks" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">18</field>
+        <field type="CharField" name="name">Proportion d'enfants de moins de cinq ans qui on enregistres de fievre/malaria durant ces deux dernieres semaines</field>
+        <field type="CharField" name="name_en">Proportion of children under age 5 years old who are registered with fever or malaria during the last 2 weeks</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">diagnosis</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object><object pk="eds"></object></field>
+    </object>
+    <object pk="pc_u5_fever_last_weeks_bs" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">12</field>
+        <field type="CharField" name="name">Pourcentage d’enfants de moins de cinq ans avec une fièvre au cours des dernières semaines qui ont subi un prélèvement au doigt ou au talon pour le diagnostic du paludisme</field>
+        <field type="CharField" name="name_en">Percentage of children under age 5 years with fever who have been tested (finger or heel prick) for malaria in the past weeks</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">diagnosis</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="unicef"></object><object pk="who"></object><object pk="eds"></object></field>
+    </object>
+    <object pk="pc_u5_suspected_malaria_cases_outpatient" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">19</field>
+        <field type="CharField" name="name">Proportion de paludisme suspecte en consultation externe chez les enfants de moins de 5 ans</field>
+        <field type="CharField" name="name_en">Proportion of suspected malaria outpatients among children under 5 years old</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">cm</field>
+        <field type="CharField" name="tech_area2">diagnosis</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object><object pk="who"></object></field>
+    </object>
+    <object pk="pc_zonesante_received_provice_supervision_last_quarter" model="dmd.indicator">
+        <field type="CharField" name="origin">manual</field>
+        <field type="CharField" name="number">35b</field>
+        <field type="CharField" name="name">Pourcentage de ZS ayant reçu au moins une visite de supervision du niveau provincial dans un trimestre</field>
+        <field type="CharField" name="name_en">Number of health zones that received at least one supervision visit at the provincial level in the last quarter</field>
+        <field type="CharField" name="dhis_id"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1">sme</field>
+        <field type="CharField" name="tech_area2">supervision</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
+    </object>
+    <object pk="u5_suspected_malaria_tested" model="dmd.indicator">
+        <field type="CharField" name="origin">dhis</field>
+        <field type="CharField" name="number">51</field>
+        <field type="CharField" name="name">Paludisme suspect de moins 5 ans ayant passé un test diagnostic</field>
+        <field type="CharField" name="name_en">Under 5 malaria suspected tested per 100 000 persons</field>
+        <field type="CharField" name="dhis_id">I1SdlMvVbae</field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1"><None></None></field>
+        <field type="CharField" name="tech_area2"><None></None></field>
+        <field type="CharField" name="itype">per_hundred_thousand</field>
+        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="value_format">{value}/100 000</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+    </object>
+</django-objects>

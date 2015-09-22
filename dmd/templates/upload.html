@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Envoi de données{% endblock %}
+
+{% block content %}
+<div class="alert alert-info">
+<p>Les données doivent être transmises en utilisant le <a class="btn btn-default" href="{% static "collecte-indicateurs-dmd.xls" %}"><i class="fa fa-file-excel-o"></i> masque de saisie standard</a>.</p>
+<p>Il concerne un ou plusieurs indicateurs pour <strong>une localité et un mois en particulier</strong>.</p>
+</div>
+<div class="row">
+    <div class="col-md-12">
+    	<div class="panel panel-default">
+    		<div class="panel-heading">Choisir le fichier Excel pour la transmission</div>
+    		<div class="panel-body">
+
+    			<form enctype="multipart/form-data" role="form" method="POST">
+    			{% csrf_token %}
+
+				{{ form.as_p }}
+
+			    <button type="submit" class="btn btn-default btn-primary">Soumettre les données</button>
+			</form>
+
+		    </div>
+		</div>
+    </div>
+</div>
+{% endblock %}
+

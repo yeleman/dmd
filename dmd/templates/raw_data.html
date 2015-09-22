@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Tous les indicateurs{% endblock %}
+
+{% block content %}
+<form role="form" id="report_entity_filter" method="GET">
+	{% csrf_token %}
+	<div class="form-group inline-entity-container">
+		<label for="entity_filter_division_provinciale_sante">R.D.C</label>
+		{% include "parts/entity_filter_select.html" with root=root lineage=lineage children=children %}
+		{% include "parts/period_filter_select.html" with periods=periods selected_period=period %}
+	</div>
+    <button type="submit" class="btn btn-default btn-primary btn-xs">sélectionner</button>
+</form>
+<div class="row">
+    <div class="col-md-12">   	
+    	<div class="panel panel-default">
+    		<div class="panel-heading">Indicateurs disponibles pour : {{ entity }}</div>
+    		<div class="panel-body">
+    			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Indicateur</th>
+                        <th>Valeur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	{% for record in records %}
+                    <tr class="{% cycle 'odd' 'even' %} gradeX">
+                    	<td>{{ record.indicator.number }}</td>
+                        <td>{{ record.indicator }}</td>
+                        <td class="center">{{ record.human }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="2">Aucune donnée pour ce couple entité/période</td></tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+		    </div>
+		</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block onJQready %}
+entities_browser = getEntitiesBrowser({
+    parentID: 'report_entity_filter',
+    baseURL: '/api/entities/getchildren',
+    root: "{{ root.uuid }}",
+    lineage: [{% for s in lineage %}"{{ s }}",{% endfor %}],
+    lineage_data: [{% for d in lineage_data %}"{{ d}}",{% endfor %}],
+    auto_launch: true,
+    add_default_option: true,
+    default_option: {value: '-1', label: "AUCUN"}
+});
+
+var blank_uuid = "{{ blank_uuid }}";
+$('form').on('submit', function (e) {
+	e.preventDefault();
+	var ass = $('select[data-level="aire_sante"]');
+	console.log(ass);
+	var zss = $('select[data-level="zone_sante"]');
+	var dpss = $('select[data-level="division_provinciale_sante"]');
+	var none = '-1';
+	var sel = '{{ root.uuid }}';
+
+	var period_str = $('select#filter_period').val();
+
+	if (ass.val() && ass.val() != none) {
+		sel = ass.val();
+	} else if (zss.val() && zss.val() != none) {
+		sel = zss.val();
+	} else if (dpss.val() && dpss.val() != none) {
+		sel = dpss.val();
+	}
+
+	window.location = "{% url 'raw_data' blank_uuid '0000-00' %}".replace("{{ blank_uuid }}", sel).replace('0000-00', period_str);
+});
+{% endblock %}

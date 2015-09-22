@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Envoi de données{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+    	<div class="panel panel-default">
+    		<div class="panel-heading">Choisir l'Aire de Santé concernée</div>
+    		<div class="panel-body">
+    			<div class="alert"><p class="alert alert-warning">
+    				L'aire de santé spécifiée ({{ name }}) n'a pas pu être retrouvée. Merci de sélectionner la bonne aire dans la liste
+    			</p></div>
+    			<form role="form" method="POST">
+    			{% csrf_token %}
+
+				{{ form.as_p }}
+
+			    <button type="submit" class="btn btn-default btn-primary">Soumettre les données</button>
+			</form>
+
+		    </div>
+		</div>
+    </div>
+</div>
+
+
+
+{% endblock %}

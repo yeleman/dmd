@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+    <object pk="1" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="2" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="3" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="4" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="5" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="6" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="7" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="8" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="9" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="10" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="11" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="12" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="13" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="14" model="dmd.monthperiod">
+        <field type="CharField" name="year">2014</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="15" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="16" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="17" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="18" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="19" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="20" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="21" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="22" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="23" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="24" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="25" model="dmd.monthperiod">
+        <field type="CharField" name="year">2015</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="26" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="27" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="28" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="29" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="30" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="31" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="32" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="33" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="34" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="35" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="36" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="37" model="dmd.monthperiod">
+        <field type="CharField" name="year">2016</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="38" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="39" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="40" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="41" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="42" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="43" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="44" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="45" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="46" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="47" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="48" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="49" model="dmd.monthperiod">
+        <field type="CharField" name="year">2017</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="50" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="51" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="52" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="53" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="54" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="55" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="56" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="57" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="58" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="59" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="60" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="61" model="dmd.monthperiod">
+        <field type="CharField" name="year">2018</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="62" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="63" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="64" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="65" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="66" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="67" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="68" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="69" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="70" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="71" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="72" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="73" model="dmd.monthperiod">
+        <field type="CharField" name="year">2019</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="74" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="75" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="76" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="77" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="78" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="79" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="80" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="81" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="82" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="83" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="84" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="85" model="dmd.monthperiod">
+        <field type="CharField" name="year">2020</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="86" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="87" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="88" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="89" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="90" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="91" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="92" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="93" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="94" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="95" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="96" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="97" model="dmd.monthperiod">
+        <field type="CharField" name="year">2021</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="98" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="99" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="100" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="101" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="102" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="103" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="104" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="105" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="106" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="107" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="108" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="109" model="dmd.monthperiod">
+        <field type="CharField" name="year">2022</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="110" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="111" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="112" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="113" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="114" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="115" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="116" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="117" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="118" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="119" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="120" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+    <object pk="121" model="dmd.monthperiod">
+        <field type="CharField" name="year">2023</field>
+        <field type="CharField" name="month">12</field>
+    </object>
+    <object pk="122" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">01</field>
+    </object>
+    <object pk="123" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">02</field>
+    </object>
+    <object pk="124" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">03</field>
+    </object>
+    <object pk="125" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">04</field>
+    </object>
+    <object pk="126" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">05</field>
+    </object>
+    <object pk="127" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">06</field>
+    </object>
+    <object pk="128" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">07</field>
+    </object>
+    <object pk="129" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">08</field>
+    </object>
+    <object pk="130" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">09</field>
+    </object>
+    <object pk="131" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">10</field>
+    </object>
+    <object pk="132" model="dmd.monthperiod">
+        <field type="CharField" name="year">2024</field>
+        <field type="CharField" name="month">11</field>
+    </object>
+</django-objects>

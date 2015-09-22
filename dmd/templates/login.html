@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Identification{% endblock %}
+
+{% block content %}
+
+{% include "parts/page_title.html" with title="Identification nécessaire" %}
+
+<p><strong>DMD</strong> est un outil du <strong>PNLP/R.D.C</strong> ; Son accès y est restreint.</p>
+<p>Si vous faites partie du SIS, merci de nous contacter pour obtenir vos identifiants.</p>
+<p>Si vous êtes un partenaire dans la lutte contre le paludisme et que vous souhaitez accèder aux données, contactez votre point-focal pour faire une demande d'accès.</p>
+
+<div class="row">
+<div class="col-lg-8">
+<div class="panel panel-default">
+	<div class="panel-heading">Identification</div>
+	<div class="panel-body">
+		{% if form.errors %}
+			<p class="alert alert-danger">Votre nom d'utilisateur et mot de passe ne correspondent pas.<br />S'il vous plaît essayez de nouveau.</p>
+		{% endif %}
+		<form role="form" method="POST">
+		    {% csrf_token %}
+		    <fieldset>
+		    	<div class="form-group">
+		        	<input type="text" name="{{ form.username.name }}"
+		               placeholder="{{ form.username.label }}"
+		               class="form-control"
+		               autofocus="autofocus">
+		        </div>
+		        <div class="form-group">
+		        	<input type="password" name="{{ form.password.name }}"
+		        	   class="form-control"
+		               placeholder="{{ form.password.label }}">
+		        </div>
+		        <div class="form-group">
+		        	<button type="submit" class="btn btn-default">S'identifier</button>
+		        </div>
+		    </fieldset>
+		    <p class="alert alert-warning">En cas de perte de votre identifiant ou mot de passe, contactez xxx au <strong>yyyy</strong>.</p>
+		</form>
+	</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+

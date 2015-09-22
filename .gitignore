@@ -55,3 +55,14 @@ docs/_build/
 
 # PyBuilder
 target/
+
+*.sqlite3
+test_indicators.py
+test_script.py
+test_units.py
+units.json
+units
+static
+dmd/management/commands/import-dhis-data.py
+settings_local.py
+dmd/fixtures/Entity.xml

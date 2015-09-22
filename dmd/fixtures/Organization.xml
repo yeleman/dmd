@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+    <object pk="3" model="dmd.organization">
+        <field type="SlugField" name="slug">pnlp</field>
+        <field type="CharField" name="name">PNLP</field>
+    </object>
+    <object pk="4" model="dmd.organization">
+        <field type="SlugField" name="slug">koica</field>
+        <field type="CharField" name="name">KOICA</field>
+    </object>
+    <object pk="5" model="dmd.organization">
+        <field type="SlugField" name="slug">cag</field>
+        <field type="CharField" name="name">CAG</field>
+    </object>
+    <object pk="6" model="dmd.organization">
+        <field type="SlugField" name="slug">sanru</field>
+        <field type="CharField" name="name">SANRU</field>
+    </object>
+    <object pk="7" model="dmd.organization">
+        <field type="SlugField" name="slug">prosani</field>
+        <field type="CharField" name="name">PROSANI</field>
+    </object>
+    <object pk="8" model="dmd.organization">
+        <field type="SlugField" name="slug">cchange</field>
+        <field type="CharField" name="name">C-CHANGE</field>
+    </object>
+    <object pk="9" model="dmd.organization">
+        <field type="SlugField" name="slug">msh</field>
+        <field type="CharField" name="name">MSH</field>
+    </object>
+    <object pk="10" model="dmd.organization">
+        <field type="SlugField" name="slug">unicef</field>
+        <field type="CharField" name="name">UNICEF</field>
+    </object>
+    <object pk="11" model="dmd.organization">
+        <field type="SlugField" name="slug">bm</field>
+        <field type="CharField" name="name">BM</field>
+    </object>
+    <object pk="12" model="dmd.organization">
+        <field type="SlugField" name="slug">who</field>
+        <field type="CharField" name="name">WHO</field>
+    </object>
+    <object pk="13" model="dmd.organization">
+        <field type="SlugField" name="slug">chai</field>
+        <field type="CharField" name="name">CHAI</field>
+    </object>
+    <object pk="14" model="dmd.organization">
+        <field type="SlugField" name="slug">dfid</field>
+        <field type="CharField" name="name">DFID</field>
+    </object>
+    <object pk="15" model="dmd.organization">
+        <field type="SlugField" name="slug">pmi</field>
+        <field type="CharField" name="name">PMI</field>
+    </object>
+    <object pk="16" model="dmd.organization">
+        <field type="SlugField" name="slug">siaps</field>
+        <field type="CharField" name="name">SIAPS</field>
+    </object>
+    <object pk="17" model="dmd.organization">
+        <field type="SlugField" name="slug">psi</field>
+        <field type="CharField" name="name">PSI</field>
+    </object>
+    <object pk="18" model="dmd.organization">
+        <field type="SlugField" name="slug">eds</field>
+        <field type="CharField" name="name">EDS</field>
+    </object>
+</django-objects>

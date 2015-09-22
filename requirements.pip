@@ -1,0 +1,6 @@
+pyOpenSSL==0.15.1
+ndg-httpsclient==0.4.0
+pyasn1==0.1.8
+Django==1.8.4
+ipython==4.0.0
+requests==2.7.0
