@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^' + uprefix + 'login/$', 'django.contrib.auth.views.login',
         {'template_name': 'login.html'}, name='login'),
     url(r'^' + uprefix + 'logout/$', 'django.contrib.auth.views.logout',
-        {'next_page': '/'}, name='logout'),
+        {'next_page': uprefix + '/'}, name='logout'),
 
     # Entities API
     url(r'^' + uprefix + 'api/entities/getchildren/'
