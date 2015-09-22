@@ -4,3 +4,7 @@ pyasn1==0.1.8
 Django==1.8.4
 ipython==4.0.0
 requests==2.7.0
+django-mptt==0.7.4
+path.py==8.1
+xlrd==0.9.4
+py3compat==0.2
