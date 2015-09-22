@@ -44,9 +44,12 @@
 {% endblock %}
 
 {% block onJQready %}
+var baseURL = '{% url 'api_entities_get_children' blank_uuid %}'.split("/");
+baseURL.pop();
+baseURL = baseURL.join("/");
 entities_browser = getEntitiesBrowser({
     parentID: 'report_entity_filter',
-    baseURL: '/api/entities/getchildren',
+    baseURL: baseURL,
     root: "{{ root.uuid }}",
     lineage: [{% for s in lineage %}"{{ s }}",{% endfor %}],
     lineage_data: [{% for d in lineage_data %}"{{ d}}",{% endfor %}],

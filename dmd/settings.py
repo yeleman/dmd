@@ -164,6 +164,7 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+SUB_PATH = None
 
 DHIS_BASE_URL = 'https://snisrdc.com'
 DHIS_USER = 'Guest'
