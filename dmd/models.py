@@ -157,6 +157,13 @@ class Partner(models.Model):
     def username(self):
         return self.user.username
 
+    @classmethod
+    def get_or_none(cls, username):
+        try:
+            return cls.objects.get(user__username=username)
+        except cls.DoesNotExist:
+            return None
+
 
 class MonthPeriod(models.Model):
 
@@ -398,6 +405,7 @@ class Indicator(models.Model):
 
     RAW_FMT = '{value}'
     PERCENT_FMT = '{value}%'
+    PROPORTION_FMT = '{numerator}/{denominator}'
     PER_THOUSAND_FMT = '{value}/1 000'
     PER_TEN_THOUSAND_FMT = '{value}/10 000'
     PER_HUNDRED_THOUSAND_FMT = '{value}/100 000'
@@ -407,6 +415,7 @@ class Indicator(models.Model):
         PER_THOUSAND_FMT: "x/1000",
         PER_TEN_THOUSAND_FMT: "x/10 000",
         PER_HUNDRED_THOUSAND_FMT: "x/100 000",
+        PROPORTION_FMT: "a/b",
     }
 
     MANUAL = 'manual'
@@ -425,9 +434,14 @@ class Indicator(models.Model):
     name = models.CharField(max_length=512)
     name_en = models.CharField(max_length=512, blank=True, null=True)
 
+    dhis_indicator_id = models.CharField(max_length=64, null=True, blank=True)
     dhis_numerator_id = models.CharField(max_length=64, null=True, blank=True)
+    dhis_numerator_formula = models.CharField(
+        max_length=512, null=True, blank=True)
     dhis_denominator_id = models.CharField(max_length=64,
                                            null=True, blank=True)
+    dhis_denominator_formula = models.CharField(
+        max_length=512, null=True, blank=True)
 
     category = models.CharField(max_length=64, choices=CATEGORIES.items(),
                                 null=True, blank=True)
@@ -474,8 +488,10 @@ class Indicator(models.Model):
     def format_number(self, value):
         return self.number_format.format(value)
 
-    def format_value(self, value):
-        return self.value_format.format(value=value)
+    def format_value(self, value, numerator, denominator):
+        return self.value_format.format(value=value,
+                                        numerator=numerator,
+                                        denominator=denominator)
 
     @property
     def verbose_tech_area1(self):
@@ -487,7 +503,8 @@ class Indicator(models.Model):
 
     @classmethod
     def get_all_dhis(cls):
-        return cls.objects.filter(origin=cls.DHIS)
+        return cls.objects.filter(origin=cls.DHIS) \
+            .exclude(dhis_denominator_id__isnull=True)
 
 
 class DataRecord(models.Model):
@@ -536,7 +553,9 @@ class DataRecord(models.Model):
         return self.indicator.format_number(self.value)
 
     def human(self):
-        return self.indicator.format_value(self.value)
+        return self.indicator.format_value(value=self.value,
+                                           numerator=self.numerator,
+                                           denominator=self.denominator)
 
     def __str__(self):
         return "{i}@{p}".format(i=self.indicator, p=self.period)

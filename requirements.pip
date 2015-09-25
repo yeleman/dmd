@@ -8,3 +8,4 @@ django-mptt==0.7.4
 path.py==8.1
 xlrd==0.9.4
 py3compat==0.2
+nltk==3.0.5
