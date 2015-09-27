@@ -136,7 +136,7 @@ class Partner(models.Model):
         ordering = ['user__last_name', 'user__first_name']
 
     user = models.OneToOneField(User)
-    organization = models.ForeignKey(Organization, null=True, blank=True)
+    organization = models.ForeignKey(Organization)
 
     can_upload = models.BooleanField(default=False)
     upload_location = models.ForeignKey(Entity, null=True, blank=True)
@@ -148,7 +148,17 @@ class Partner(models.Model):
                                      org=str(self.organization))
 
     def __str__(self):
-        return self.user.__str__()
+        username = self.username
+        first_name = self.user.first_name.capitalize()
+        last_name = self.user.last_name.upper()
+        if first_name and last_name:
+            return "{f} {l}".format(f=first_name, l=last_name)
+        elif first_name:
+            return first_name
+        elif last_name:
+            return last_name
+        else:
+            return username
 
     def __unicode__(self):
         return self.__str__()
@@ -393,9 +403,17 @@ class Indicator(models.Model):
         PER_HUNDRED_THOUSAND: "Pour 100 000",
     }
 
-    INTEGER_FORMAT = "{:0f}"
-    FLOAT_2DEC_FORMAT = "{:0.2f}"
-    FLOAT_1DEC_FORMAT = "{:0.1f}"
+    TYPES_COEFFICIENT = {
+        NUMBER: 1,
+        PERCENTAGE: 100,
+        PER_THOUSAND: 1000,
+        PER_TEN_THOUSAND: 10000,
+        PER_HUNDRED_THOUSAND: 100000,
+    }
+
+    INTEGER_FORMAT = "{:.0f}"
+    FLOAT_2DEC_FORMAT = "{:.2f}"
+    FLOAT_1DEC_FORMAT = "{:.1f}"
 
     NUMBER_FORMATS = {
         INTEGER_FORMAT: "Entier",
@@ -489,7 +507,18 @@ class Indicator(models.Model):
         return self.number_format.format(value)
 
     def format_value(self, value, numerator, denominator):
-        return self.value_format.format(value=value,
+        if self.itype == self.PROPORTION:
+            fval = numerator / denominator
+        else:
+            coef = self.TYPES_COEFFICIENT.get(self.itype)
+            if coef is None:
+                print(self.itype)
+            fval = (numerator * coef) / denominator
+
+        fval = self.format_number(fval)
+        numerator = self.format_number(numerator)
+        denominator = self.format_number(denominator)
+        return self.value_format.format(value=fval,
                                         numerator=numerator,
                                         denominator=denominator)
 

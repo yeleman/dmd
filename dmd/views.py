@@ -8,18 +8,22 @@ import logging
 import tempfile
 import json
 import os
+import copy
 
 from py3compat import text_type
 from django.http import JsonResponse, HttpResponse, Http404
 from django.utils.translation import ugettext as _
 from django import forms
+from django.db import transaction
+from django.forms.models import model_to_dict, fields_for_model
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from dmd.models import Entity, DataRecord, Partner, MonthPeriod
+from dmd.models import Entity, DataRecord, Partner, MonthPeriod, User
 from dmd.xls_import import (read_xls, ExcelValueMissing,
                             ExcelValueError, IncorrectExcelFile)
+from dmd.utils import random_password
 
 logger = logging.getLogger(__name__)
 
@@ -273,6 +277,187 @@ def users_list(request, *args, **kwargs):
 
     return render(request,
                   kwargs.get('template_name', 'users.html'),
+                  context)
+
+
+class PartnerForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        instance = kwargs.get('instance')
+        _fields = ('username', 'first_name', 'last_name', 'email',)
+        kwargs['initial'] = model_to_dict(instance.user, _fields) \
+            if instance is not None else None
+        super(PartnerForm, self).__init__(*args, **kwargs)
+
+        pfields = copy.copy(self.fields)
+        self.fields = fields_for_model(User, _fields)
+        for k, v in pfields.items():
+            self.fields.update({k: v})
+
+        if instance:
+            self.fields['username'].widget.attrs['readonly'] = True
+
+    def clean_username(self):
+        cu = self.cleaned_data.get('username')
+        if self.instance:
+            return cu
+        if User.objects.filter(username=cu).count():
+            raise forms.ValidationError(
+                _("Username `{username}` is already taken")
+                .format(username=cu),
+                code='invalid',
+                params={'username': cu})
+        return cu
+
+    class Meta:
+        model = Partner
+        exclude = ('user',)
+
+
+@login_required
+def user_add(request, *args, **kwargs):
+    context = {'page': 'users'}
+
+    if request.method == 'POST':
+        form = PartnerForm(request.POST, instance=None)
+        if form.is_valid():
+            with transaction.atomic():
+                user = User.objects.create(
+                    username=form.cleaned_data.get('username'),
+                    first_name=form.cleaned_data.get('first_name'),
+                    last_name=form.cleaned_data.get('last_name'),
+                    email=form.cleaned_data.get('email'))
+                passwd = random_password(True)
+                user.set_password(passwd)
+                user.save()
+
+                partner = Partner.objects.create(
+                    user=user,
+                    organization=form.cleaned_data.get('organization'),
+                    can_upload=form.cleaned_data.get('can_upload'),
+                    upload_location=form.cleaned_data.get('upload_location')
+                    )
+
+            messages.success(request,
+                             _("New User account “{}” created with login `{}` "
+                               "and password `{}`")
+                             .format(partner, partner.username, passwd))
+            return redirect('users')
+        else:
+            # django form validation errors
+            logger.debug("django form errors")
+            pass
+    else:
+        form = PartnerForm()
+
+    context.update({'form': form})
+    return render(request,
+                  kwargs.get('template_name', 'user_add.html'),
+                  context)
+
+
+@login_required
+def user_edit(request, username, *args, **kwargs):
+    context = {'page': 'users'}
+    partner = Partner.get_or_none(username)
+
+    if request.method == 'POST':
+        form = PartnerForm(request.POST, instance=partner)
+        if form.is_valid():
+            with transaction.atomic():
+                partner.user.first_name = form.cleaned_data.get('first_name')
+                partner.user.last_name = form.cleaned_data.get('last_name')
+                partner.user.email = form.cleaned_data.get('email')
+                partner.user.save()
+
+                partner.organization = form.cleaned_data.get('organization')
+                partner.can_upload = form.cleaned_data.get('can_upload')
+                partner.upload_location = \
+                    form.cleaned_data.get('upload_location')
+                partner.save()
+
+            messages.success(request,
+                             _("User account “{}” has been updated.")
+                             .format(partner))
+            return redirect('users')
+        else:
+            # django form validation errors
+            logger.debug("django form errors")
+            pass
+    else:
+        form = PartnerForm(instance=partner)
+
+    context.update({
+        'form': form,
+        'partner': partner})
+
+    return render(request,
+                  kwargs.get('template_name', 'user_edit.html'),
+                  context)
+
+
+@login_required
+def user_passwd_reset(request, username, *args, **kwargs):
+    partner = Partner.get_or_none(username)
+    passwd = random_password(True)
+    partner.user.set_password(passwd)
+    partner.user.save()
+    messages.success(request,
+                     _("Password for User account “{}” (login `{}`) "
+                       "has been reseted to `{}`")
+                     .format(partner, partner.username, passwd))
+    return redirect('users')
+
+
+class ChangePasswordForm(forms.Form):
+
+    old_password = forms.CharField(max_length=255, widget=forms.PasswordInput)
+    new_password = forms.CharField(max_length=255, widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        self.partner = kwargs.pop('partner')
+        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+
+    def clean_old_password(self):
+        op = self.cleaned_data.get('old_password')
+        if not self.partner.user.check_password(op):
+            raise forms.ValidationError(
+                _("Old password for `{partner}` is invalid")
+                .format(partner=self.partner),
+                code='invalid',
+                params={'partner': self.partner})
+        return op
+
+
+@login_required
+def user_change_password(request, *args, **kwargs):
+    context = {'page': 'users'}
+    partner = request.user.partner
+
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST, partner=partner)
+        if form.is_valid():
+            with transaction.atomic():
+                partner.user.set_password(
+                    form.cleaned_data.get('new_password'))
+                partner.user.save()
+
+            messages.success(request,
+                             _("Your password has been updated."))
+            return redirect('users')
+        else:
+            # django form validation errors
+            logger.debug("django form errors")
+            pass
+    else:
+        form = ChangePasswordForm(partner=partner)
+
+    context.update({
+        'form': form,
+        'partner': partner})
+
+    return render(request,
+                  kwargs.get('template_name', 'user_change_password.html'),
                   context)
 
 

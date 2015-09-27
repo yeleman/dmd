@@ -102,6 +102,7 @@ class Command(BaseCommand):
             'skipRounding': True,
         }
 
+        logger.info(drc)
         if update or self.no_record_at(entity=drc, period=period):
             self.handle_record(get_dhis(path=upath, params=params),
                                entity=drc, period=period)

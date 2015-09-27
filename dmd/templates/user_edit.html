@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+
+{% block title %}Modification de compte utilisateur{% endblock %}
+
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'user_passwd_reset' partner.username %}"><i class="fa fa-key"></i> Réinitialiser le mot de passe</a></p>
+<div class="row">
+    <div class="col-md-12">   	
+    	<div class="panel panel-default">
+    		<div class="panel-heading">Renseignez les informations du compte</div>
+    		<div class="panel-body">
+    		<form action="" method="POST">
+    		{% csrf_token %}
+    		{{ form|as_bootstrap }}
+    		<button class="btn btn-primary" action="submit">Mettre à jour le compte</button>
+    		</form>
+		    </div>
+		</div>
+    </div>
+</div>
+{% endblock %}

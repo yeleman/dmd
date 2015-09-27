@@ -13,9 +13,9 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">proportion</field>
-        <field type="CharField" name="number_format">{:0f}</field>
-        <field type="CharField" name="value_format">{numerator}/{denominator}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_children_suspected_tested" model="dmd.indicator">
@@ -31,9 +31,9 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">proportion</field>
-        <field type="CharField" name="number_format">{:0f}</field>
-        <field type="CharField" name="value_format">{numerator}/{denominator}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_children_suspected_tested_community" model="dmd.indicator">
@@ -49,9 +49,9 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">proportion</field>
-        <field type="CharField" name="number_format">{:0f}</field>
-        <field type="CharField" name="value_format">{numerator}/{denominator}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_severe_confirmed_deceased_hgr_per_100000" model="dmd.indicator">
@@ -68,7 +68,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_hundred_thousand</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -86,7 +86,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_thousand</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/1 000</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -104,7 +104,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_hundred_thousand</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -122,7 +122,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_thousand</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/1 000</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -139,9 +139,9 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">proportion</field>
-        <field type="CharField" name="number_format">{:0f}</field>
-        <field type="CharField" name="value_format">{numerator}/{denominator}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_suspected_tested" model="dmd.indicator">
@@ -157,9 +157,9 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">proportion</field>
-        <field type="CharField" name="number_format">{:0f}</field>
-        <field type="CharField" name="value_format">{numerator}/{denominator}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="nb_bednet_distributed_mass_campaigns" model="dmd.indicator">
@@ -176,7 +176,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
     </object>
@@ -194,7 +194,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">community_case_management</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
     </object>
@@ -212,7 +212,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">iptp</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -230,7 +230,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">psm</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -248,7 +248,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -266,7 +266,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">community_case_management</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -284,7 +284,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">community_case_management</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -302,7 +302,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">capacity_building</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
@@ -320,7 +320,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
     </object>
@@ -338,7 +338,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="prosani"></object><object pk="unicef"></object><object pk="who"></object></field>
     </object>
@@ -356,7 +356,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
     </object>
@@ -374,7 +374,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="psi"></object></field>
     </object>
@@ -392,7 +392,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object></field>
     </object>
@@ -410,7 +410,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
@@ -428,7 +428,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="prosani"></object><object pk="msh"></object></field>
     </object>
@@ -446,7 +446,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object></field>
     </object>
@@ -464,7 +464,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
     </object>
@@ -482,7 +482,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">treatment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object><object pk="who"></object></field>
     </object>
@@ -500,7 +500,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">iptp</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -518,7 +518,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">psm</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -536,7 +536,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -554,7 +554,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">community_case_management</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -572,7 +572,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">community_case_management</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -590,7 +590,7 @@
         <field type="CharField" name="tech_area1">hss</field>
         <field type="CharField" name="tech_area2">enable_environment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -608,7 +608,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">irs</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
     </object>
@@ -626,7 +626,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object><object pk="eds"></object></field>
     </object>
@@ -644,7 +644,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object></field>
     </object>
@@ -662,7 +662,7 @@
         <field type="CharField" name="tech_area1">hss</field>
         <field type="CharField" name="tech_area2">capacity_building</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
     </object>
@@ -680,7 +680,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -698,7 +698,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="cchange"></object></field>
     </object>
@@ -716,7 +716,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="who"></object></field>
     </object>
@@ -734,7 +734,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="pmi"></object></field>
     </object>
@@ -752,7 +752,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">iptp</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="prosani"></object><object pk="unicef"></object><object pk="who"></object><object pk="eds"></object></field>
     </object>
@@ -770,7 +770,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">iptp</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="unicef"></object><object pk="who"></object></field>
     </object>
@@ -788,7 +788,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
     </object>
@@ -806,7 +806,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">treatment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
     </object>
@@ -824,7 +824,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">treatment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
     </object>
@@ -842,7 +842,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object><object pk="who"></object></field>
     </object>
@@ -860,7 +860,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">treatment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="unicef"></object><object pk="who"></object></field>
     </object>
@@ -878,7 +878,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="unicef"></object><object pk="pmi"></object></field>
     </object>
@@ -896,7 +896,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object><object pk="eds"></object></field>
     </object>
@@ -914,7 +914,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="unicef"></object><object pk="who"></object><object pk="eds"></object></field>
     </object>
@@ -932,7 +932,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object><object pk="who"></object></field>
     </object>
@@ -950,7 +950,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
     </object>
@@ -967,8 +967,8 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">percent</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
@@ -985,9 +985,9 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">proportion</field>
-        <field type="CharField" name="number_format">{:0f}</field>
-        <field type="CharField" name="value_format">{numerator}/{denominator}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pw_anc_receiving_sp3" model="dmd.indicator">
@@ -1003,9 +1003,9 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">proportion</field>
-        <field type="CharField" name="number_format">{:0f}</field>
-        <field type="CharField" name="value_format">{numerator}/{denominator}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="simple_confirmed_treated" model="dmd.indicator">
@@ -1021,9 +1021,9 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">proportion</field>
-        <field type="CharField" name="number_format">{:0f}</field>
-        <field type="CharField" name="value_format">{numerator}/{denominator}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="smc_children_receiving_bednet" model="dmd.indicator">
@@ -1039,9 +1039,9 @@
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
-        <field type="CharField" name="itype">proportion</field>
-        <field type="CharField" name="number_format">{:0f}</field>
-        <field type="CharField" name="value_format">{numerator}/{denominator}</field>
+        <field type="CharField" name="itype">percentage</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}%</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="u5_suspected_malaria_tested" model="dmd.indicator">
@@ -1058,7 +1058,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_hundred_thousand</field>
-        <field type="CharField" name="number_format">{:0f}</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
     </object>

@@ -31,18 +31,39 @@ urlpatterns = [
         'dmd.views.get_entity_detail',
         name='api_entity_detail'),
 
+    # home
     url(r'^' + uprefix + '/?$', 'dmd.views.home', name='home'),
+
+    # visitor profile
+    url(r'^' + uprefix + 'change_password/$',
+        'dmd.views.user_change_password', name='user_change_password'),
+
+    # upload
     url(r'^' + uprefix + 'upload/step2/?$', 'dmd.views.upload_step2',
         name='upload_step2'),
     url(r'^' + uprefix + 'upload/?$', 'dmd.views.upload', name='upload'),
+
+    # raw data
     url(r'^' + uprefix + 'raw_data/(?P<entity_uuid>[a-z\-0-9]{36})'
         r'/(?P<period_str>[0-9]{4}\-[0-9]{2})/?$',
         'dmd.views.raw_data', name='raw_data'),
     url(r'^' + uprefix + 'raw_data/(?P<entity_uuid>[a-z\-0-9]{36})/?$',
         'dmd.views.raw_data', name='raw_data'),
     url(r'^' + uprefix + 'raw_data/?$', 'dmd.views.raw_data', name='raw_data'),
+
+    # export
     url(r'^' + uprefix + 'export/?$', 'dmd.views.data_export', name='export'),
+
+    # analysis
     url(r'^' + uprefix + 'analysis/?$', 'dmd.views.analysis', name='analysis'),
+
+    # users
+    url(r'^' + uprefix + 'users/add/?$',
+        'dmd.views.user_add', name='user_add'),
+    url(r'^' + uprefix + 'users/(?P<username>[a-zA-Z0-9\-\_]+)/reset?$',
+        'dmd.views.user_passwd_reset', name='user_passwd_reset'),
+    url(r'^' + uprefix + 'users/(?P<username>[a-zA-Z0-9\-\_]+)/?$',
+        'dmd.views.user_edit', name='user_edit'),
     url(r'^' + uprefix + 'users/?$', 'dmd.views.users_list', name='users'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

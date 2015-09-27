@@ -433,3 +433,7 @@ font-size: 19px;
 	display: inline;
 	vertical-align: center;
 }
+
+table.clickable-rows tbody tr:hover {
+	cursor: pointer;
+}
