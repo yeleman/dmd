@@ -19,8 +19,9 @@ from django.forms.models import model_to_dict, fields_for_model
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
-from dmd.models import Entity, DataRecord, Partner, MonthPeriod, User
+from dmd.models import Entity, DataRecord, Partner, MonthPeriod, User, Metadata
 from dmd.xls_import import (read_xls, ExcelValueMissing,
                             ExcelValueError, IncorrectExcelFile)
 from dmd.utils import random_password
@@ -29,6 +30,14 @@ logger = logging.getLogger(__name__)
 
 STEP2_KEY = 'needs_entity_step2'
 XLS_DATA_KEY = 'xls_data'
+
+
+def lineage_data_for(entity):
+    if entity is None:
+        return []
+    lad = entity.lineage_data
+    return [lad.get(ts, "") if ts != entity.etype else entity.uuid
+            for ts in Entity.lineage()]
 
 
 def home(request, *args, **kwargs):
@@ -210,13 +219,6 @@ def raw_data(request, entity_uuid=None, period_str=None, *args, **kwargs):
         raise Http404(request,
                       _("Unable to match entity `{}`").format(entity_uuid))
 
-    def lineage_data_for(entity):
-        if entity is None:
-            return []
-        lad = entity.lineage_data
-        return [lad.get(ts, "") if ts != entity.etype else entity.uuid
-                for ts in Entity.lineage()]
-
     context.update({
         'blank_uuid': "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         'root': root,
@@ -255,6 +257,12 @@ def raw_data(request, entity_uuid=None, period_str=None, *args, **kwargs):
 @login_required
 def data_export(request, *args, **kwargs):
     context = {'page': 'export'}
+
+    export = Metadata.get_or_none('nb_records')
+    context.update({
+        'nb_records': int(export.value),
+        'export_date': export.updated_on,
+    })
 
     return render(request,
                   kwargs.get('template_name', 'export.html'),

@@ -14,6 +14,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from mptt.models import MPTTModel, TreeForeignKey
+from py3compat import text_type
 
 from dmd.utils import lookup_entity_at
 
@@ -57,6 +58,10 @@ class Entity(MPTTModel):
     etype = models.CharField(max_length=64, choices=TYPES.items())
     parent = TreeForeignKey('self', null=True, blank=True,
                             related_name='children', db_index=True)
+
+    @property
+    def uuids(self):
+        return text_type(self.uuid)
 
     @classmethod
     def get_root(cls):
@@ -117,6 +122,21 @@ class Entity(MPTTModel):
     @property
     def lineage_data(self):
         return {e.etype: e.uuid for e in self.get_ancestors()}
+
+    def get_ancestor_of(self, etype):
+        for ancestor in self.get_ancestors(include_self=True):
+            if ancestor.etype == etype:
+                return ancestor
+        return None
+
+    def get_dps(self):
+        return self.get_ancestor_of(self.PROVINCE)
+
+    def get_zs(self):
+        return self.get_ancestor_of(self.ZONE)
+
+    def get_as(self):
+        return self.get_ancestor_of(self.AIRE)
 
 
 class Organization(models.Model):
@@ -206,7 +226,8 @@ class MonthPeriod(models.Model):
 
     @property
     def name(self):
-        return "{y}-{m}".format(y=self.year, m=self.month)
+        return self.start_on.strftime("%B %Y").decode('utf-8')
+        # return "{y}-{m}".format(y=self.year, m=self.month)
 
     @property
     def start_on(self):
@@ -506,16 +527,18 @@ class Indicator(models.Model):
     def format_number(self, value):
         return self.number_format.format(value)
 
-    def format_value(self, value, numerator, denominator):
+    def compute_value(self, numerator, denominator):
         if self.itype == self.PROPORTION:
-            fval = numerator / denominator
+            return numerator / denominator
         else:
             coef = self.TYPES_COEFFICIENT.get(self.itype)
             if coef is None:
                 print(self.itype)
-            fval = (numerator * coef) / denominator
+            return (numerator * coef) / denominator
 
-        fval = self.format_number(fval)
+    def format_value(self, value, numerator, denominator):
+        fval = self.format_number(
+            self.compute_value(numerator, denominator))
         numerator = self.format_number(numerator)
         denominator = self.format_number(denominator)
         return self.value_format.format(value=fval,
@@ -575,7 +598,8 @@ class DataRecord(models.Model):
 
     @property
     def value(self):
-        return self.numerator / self.denominator
+        return self.indicator.compute_value(self.numerator,
+                                            self.denominator)
 
     @property
     def formatted(self):
@@ -655,3 +679,38 @@ class DataRecord(models.Model):
                 'previous': old_values})
 
         return data
+
+
+class Metadata(models.Model):
+
+    key = models.CharField(max_length=128, primary_key=True)
+    value = models.CharField(max_length=512)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.key
+
+    @classmethod
+    def get_or_none(cls, key):
+        try:
+            return cls.objects.get(key=key)
+        except cls.DoesNotExist:
+            return None
+
+    @classmethod
+    def nb_records(cls):
+        try:
+            return int(cls.objects.get(key='nb_records'))
+        except cls.DoesNotExist:
+            return None
+
+    @classmethod
+    def update(cls, key, value):
+        qs = cls.objects.filter(key=key)
+        if not qs.count():
+            return cls.objects.create(key=key, value=text_type(value))
+        else:
+            inst = qs.get()
+            inst.value = text_type(value)
+            inst.save()
+            return inst

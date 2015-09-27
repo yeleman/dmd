@@ -164,6 +164,9 @@ LOGIN_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+EXPORT_PATH = os.path.join(BASE_DIR, 'exports', 'dmd_records_all.xls')
+
 STATIC_URL = '/static/'
 SUB_PATH = None
 
