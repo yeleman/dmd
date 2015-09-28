@@ -18,7 +18,8 @@ from django.db import transaction
 from django.forms.models import model_to_dict, fields_for_model
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from django.views.static import serve
 
@@ -282,6 +283,7 @@ def analysis(request, *args, **kwargs):
 
 
 @login_required
+@user_passes_test(lambda u: u.is_staff)
 def users_list(request, *args, **kwargs):
     context = {'page': 'users',
                'partners': Partner.objects.all()}
@@ -367,7 +369,7 @@ def user_add(request, *args, **kwargs):
                   context)
 
 
-@login_required
+@staff_member_required
 def user_edit(request, username, *args, **kwargs):
     context = {'page': 'users'}
     partner = Partner.get_or_none(username)
@@ -407,7 +409,7 @@ def user_edit(request, username, *args, **kwargs):
                   context)
 
 
-@login_required
+@staff_member_required
 def user_passwd_reset(request, username, *args, **kwargs):
     partner = Partner.get_or_none(username)
     passwd = random_password(True)
