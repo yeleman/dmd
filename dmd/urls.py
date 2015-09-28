@@ -52,7 +52,7 @@ urlpatterns = [
     url(r'^' + uprefix + 'raw_data/?$', 'dmd.views.raw_data', name='raw_data'),
 
     # export
-    url(r'^exported/(?P<fpath>.*)/?$',
+    url(r'^' + uprefix + 'exported/(?P<fpath>.*)/?$',
         'dmd.views.serve_exported_files', name='exported_files'),
     url(r'^' + uprefix + 'export/?$', 'dmd.views.data_export', name='export'),
 
