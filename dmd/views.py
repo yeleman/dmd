@@ -500,6 +500,6 @@ def serve_exported_files(request, fpath=None):
     response = HttpResponse()
     response['Content-Type'] = ''
     response['X-Accel-Redirect'] = "{protected_url}/{fpath}".format(
-        protected_url=settings.FILES_REPOSITORY_URL_PATH,
+        protected_url=settings.EXPORT_REPOSITORY_URL_PATH,
         fpath=fpath)
     return response
