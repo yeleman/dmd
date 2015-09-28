@@ -260,11 +260,12 @@ def data_export(request, *args, **kwargs):
     context = {'page': 'export'}
 
     export = Metadata.get_or_none('nb_records')
-    context.update({
-        'nb_records': int(export.value),
-        'export_date': export.updated_on,
-        'export_fname': settings.ALL_EXPORT_FNAME,
-    })
+    if export is not None:
+        context.update({
+            'nb_records': int(export.value),
+            'export_date': export.updated_on,
+            'export_fname': settings.ALL_EXPORT_FNAME,
+        })
 
     return render(request,
                   kwargs.get('template_name', 'export.html'),
