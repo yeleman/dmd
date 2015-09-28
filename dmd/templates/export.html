@@ -29,7 +29,7 @@
     				</tr>
     			</thead>
     		</table>
-    		<p><a class="btn btn-primary" href="">Télécharger l'export du {{ export_date }} ({{ nb_records }} enregistrements)</a>
+    		<p><a class="btn btn-primary" href="{% url 'exported_files' export_fname %}">Télécharger l'export du {{ export_date }} ({{ nb_records }} enregistrements)</a>
 		    </div>
 		</div>
     </div>

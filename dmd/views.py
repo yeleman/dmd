@@ -20,6 +20,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.views.static import serve
 
 from dmd.models import Entity, DataRecord, Partner, MonthPeriod, User, Metadata
 from dmd.xls_import import (read_xls, ExcelValueMissing,
@@ -262,6 +263,7 @@ def data_export(request, *args, **kwargs):
     context.update({
         'nb_records': int(export.value),
         'export_date': export.updated_on,
+        'export_fname': settings.ALL_EXPORT_FNAME,
     })
 
     return render(request,
@@ -487,3 +489,16 @@ def get_entity_children(request, parent_uuid=None):
         [Entity.get_or_none(e.uuid).to_dict()
          for e in Entity.get_or_none(parent_uuid).get_children()]),
         content_type='application/json')
+
+
+@login_required
+def serve_exported_files(request, fpath=None):
+    if settings.SERVE_EXPORTED_FILES:
+        return serve(request, fpath, settings.EXPORT_REPOSITORY, True)
+
+    response = HttpResponse()
+    response['Content-Type'] = ''
+    response['X-Accel-Redirect'] = "{protected_url}/{fpath}".format(
+        protected_url=settings.FILES_REPOSITORY_URL_PATH,
+        fpath=fpath)
+    return response

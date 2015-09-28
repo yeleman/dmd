@@ -64,3 +64,4 @@ units
 static
 settings_local.py
 dmd/fixtures/Entity.xml
+dmd_records_all.xls

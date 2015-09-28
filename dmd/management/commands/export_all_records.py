@@ -82,9 +82,9 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
         logger.info("Exporting all DataRecord to: {}"
-                    .format(settings.EXPORT_PATH))
+                    .format(settings.ALL_EXPORT_PATH))
         qs = get_records()
         nb_records = qs.count()
-        get_xls_for(qs, save_to=settings.EXPORT_PATH)
+        get_xls_for(qs, save_to=settings.ALL_EXPORT_PATH)
 
         Metadata.update('nb_records', nb_records)

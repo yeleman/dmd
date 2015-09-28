@@ -165,7 +165,11 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-EXPORT_PATH = os.path.join(BASE_DIR, 'exports', 'dmd_records_all.xls')
+SERVE_EXPORTED_FILES = True
+EXPORT_REPOSITORY_URL_PATH = '/exported'
+EXPORT_REPOSITORY = os.path.join(BASE_DIR, 'exports')
+ALL_EXPORT_FNAME = 'dmd_records_all.xls'
+ALL_EXPORT_PATH = os.path.join(EXPORT_REPOSITORY, ALL_EXPORT_FNAME)
 
 STATIC_URL = '/static/'
 SUB_PATH = None
