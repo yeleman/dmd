@@ -82,3 +82,21 @@ def random_password(dumb=False):
     postfix = random.randint(0, 9)
     password += str(postfix)
     return password
+
+
+def import_path(name, failsafe=False):
+    """ import a callable from full module.callable name """
+    def _imp(name):
+        modname, __, attr = name.rpartition('.')
+        if not modname:
+            # single module name
+            return __import__(attr)
+        m = __import__(modname, fromlist=[str(attr)])
+        return getattr(m, attr)
+    try:
+        return _imp(name)
+    except (ImportError, AttributeError) as exp:
+        # logger.debug("Failed to import {}: {}".format(name, exp))
+        if failsafe:
+            return None
+        raise exp

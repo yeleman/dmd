@@ -26,7 +26,8 @@ from django.views.static import serve
 from dmd.models import Entity, DataRecord, Partner, MonthPeriod, User, Metadata
 from dmd.xls_import import (read_xls, ExcelValueMissing,
                             ExcelValueError, IncorrectExcelFile)
-from dmd.utils import random_password
+from dmd.utils import random_password, import_path
+from dmd.analysis import SECTIONS
 
 logger = logging.getLogger(__name__)
 
@@ -210,27 +211,26 @@ def upload_step2(request, template_name='upload_step2.html'):
     return render(request, template_name, context)
 
 
-@login_required
-def raw_data(request, entity_uuid=None, period_str=None, *args, **kwargs):
-    context = {'page': 'raw_data'}
+def process_entity_filter(request, entity_uuid=None):
 
-    # handling entity
     root = Entity.objects.get(level=0)
     entity = Entity.get_or_none(entity_uuid) if entity_uuid else root
+
     if entity is None:
         raise Http404(request,
                       _("Unable to match entity `{}`").format(entity_uuid))
 
-    context.update({
+    return {
         'blank_uuid': "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         'root': root,
         'entity': entity,
         'lineage_data': lineage_data_for(entity),
         'lineage': Entity.lineage,
         'children': root.get_children(),
-    })
+    }
 
-    # handling period
+
+def process_period_filter(request, period_str=None, name='period'):
     if period_str:
         period = MonthPeriod.get_or_none(period_str)
         if period is None:
@@ -239,15 +239,28 @@ def raw_data(request, entity_uuid=None, period_str=None, *args, **kwargs):
                           .format(period_str))
     else:
         period = MonthPeriod.current().previous()
-    context.update({
+
+    return {
         'periods': sorted([p.to_tuple() for p in MonthPeriod.all_till_now()],
                           reverse=True),
-        'period': period,
-    })
+        name: period,
+    }
+
+
+@login_required
+def raw_data(request, entity_uuid=None, period_str=None, *args, **kwargs):
+    context = {'page': 'raw_data'}
+
+    # handling entity
+    context.update(process_entity_filter(request, entity_uuid))
+
+    # handling period
+    context.update(process_period_filter(request, period_str))
 
     context.update({
         'records': DataRecord.objects
-                             .filter(entity=entity, period=period)
+                             .filter(entity=context['entity'],
+                                     period=context['period'])
                              .order_by('indicator__number')
     })
 
@@ -274,11 +287,38 @@ def data_export(request, *args, **kwargs):
 
 
 @login_required
-def analysis(request, *args, **kwargs):
-    context = {'page': 'analysis'}
+def analysis(request, section_id='1',
+             entity_uuid=None, perioda_str=None, periodb_str=None,
+             *args, **kwargs):
+    context = {'page': 'analysis_section1'}
+
+    if section_id not in SECTIONS:
+        raise Http404(_("Unknown section ID `{}`").format(section_id))
+
+    section = import_path('dmd.analysis.section{}'.format(section_id))
+
+    # handling entity
+    context.update(process_entity_filter(request, entity_uuid))
+
+    # handling periods
+    context.update(process_period_filter(request, perioda_str, 'perioda'))
+    context.update(process_period_filter(request, periodb_str, 'periodb'))
+    if context['perioda'] > context['periodb']:
+        context['perioda'], context['periodb'] = \
+            context['periodb'], context['perioda']
+    periods = MonthPeriod.all_from(context['perioda'], context['periodb'])
+    context.update({'selected_periods': periods})
+
+    context.update({
+        'section': section_id,
+        'section_name': SECTIONS.get(section_id),
+        'elements': section.build_context(periods=periods,
+                                          entity=context['entity'])
+    })
 
     return render(request,
-                  kwargs.get('template_name', 'analysis.html'),
+                  kwargs.get('template_name',
+                             'analysis_section{}.html'.format(section_id)),
                   context)
 
 

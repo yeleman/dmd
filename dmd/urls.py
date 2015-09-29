@@ -57,6 +57,14 @@ urlpatterns = [
     url(r'^' + uprefix + 'export/?$', 'dmd.views.data_export', name='export'),
 
     # analysis
+    url(r'^' + uprefix + 'analysis/section(?P<section_id>[0-9]+)'
+        r'/(?P<entity_uuid>[a-z\-0-9]{36})'
+        r'/(?P<perioda_str>[0-9]{4}\-[0-9]{2})'
+        r'/(?P<periodb_str>[0-9]{4}\-[0-9]{2})'
+        r'/?$',
+        'dmd.views.analysis', name='analysis'),
+    url(r'^' + uprefix + 'analysis/section(?P<section_id>[0-9]+)/?$',
+        'dmd.views.analysis', name='analysis'),
     url(r'^' + uprefix + 'analysis/?$', 'dmd.views.analysis', name='analysis'),
 
     # users

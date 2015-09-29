@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Section {{ section }} : {{ section_name }}{% endblock %}
+
+{% block content %}
+<form role="form" id="report_entity_filter" method="GET">
+	{% csrf_token %}
+	<div class="form-group inline-entity-container">
+		<label for="entity_filter_division_provinciale_sante">R.D.C</label>
+		{% include "parts/entity_filter_select.html" with root=root lineage=lineage children=children %}
+		<label for="filter_perioda">De</label>
+		{% include "parts/period_filter_select.html" with periods=periods selected_period=perioda period_suffix="a" %}
+		<label for="filter_periodb">À</label>
+		{% include "parts/period_filter_select.html" with periods=periods selected_period=periodb period_suffix="b" %}
+	</div>
+    <button type="submit" class="btn btn-default btn-primary btn-xs">sélectionner</button>
+</form>
+{% block section_main %}
+<div class="row">
+    <div class="col-md-12">
+    	{% block indicator_loop %}
+    	{% for indic_slug, trd in elements.items %}
+    	<div class="panel panel-default">
+    		<div class="panel-heading">{{ trd.indicator.number }} : {{ trd.indicator.name }}</div>
+    		<div class="panel-body"><div id="graph-{{ indic_slug }}"></div></div>
+		</div>
+		{% endfor %}
+		{% endblock %}
+    </div>
+</div>
+{% endblock %}
+{% endblock %}
+
+{% block onJQready %}
+var baseURL = '{% url 'api_entities_get_children' blank_uuid %}'.split("/");
+baseURL.pop();
+baseURL = baseURL.join("/");
+entities_browser = getEntitiesBrowser({
+    parentID: 'report_entity_filter',
+    baseURL: baseURL,
+    root: "{{ root.uuid }}",
+    lineage: [{% for s in lineage %}"{{ s }}",{% endfor %}],
+    lineage_data: [{% for d in lineage_data %}"{{ d}}",{% endfor %}],
+    auto_launch: true,
+    add_default_option: true,
+    default_option: {value: '-1', label: "AUCUN"}
+});
+
+var blank_uuid = "{{ blank_uuid }}";
+$('form').on('submit', function (e) {
+	e.preventDefault();
+	var ass = $('select[data-level="aire_sante"]');
+	console.log(ass);
+	var zss = $('select[data-level="zone_sante"]');
+	var dpss = $('select[data-level="division_provinciale_sante"]');
+	var none = '-1';
+	var sel = '{{ root.uuid }}';
+
+	var perioda_str = $('select#filter_perioda').val();
+	var periodb_str = $('select#filter_periodb').val();
+
+	if (ass.val() && ass.val() != none) {
+		sel = ass.val();
+	} else if (zss.val() && zss.val() != none) {
+		sel = zss.val();
+	} else if (dpss.val() && dpss.val() != none) {
+		sel = dpss.val();
+	}
+
+	window.location = "{% url 'analysis' section blank_uuid '0000-00' '1111-11' %}".replace("{{ blank_uuid }}", sel).replace('0000-00', perioda_str).replace('1111-11', periodb_str);
+});
+
+{% block indicator_script_loop %}
+{% for indic_slug, trd in elements.items %}
+	$('#graph-{{ indic_slug}}').highcharts({
+        chart: { type: 'line' },
+        title: null,
+        xAxis: { categories: [{% for period in trd.periods %}"{{ period.1.name }}",{% endfor %}] },
+        plotOptions: {
+            line: { dataLabels: { enabled: true }, enableMouseTracking: true },
+            {% if trd.indicator.is_percent %}
+            series: { dataLabels: { color: 'black', enabled: true,
+            						formatter: function () {
+	            						return Highcharts.numberFormat(this.y) + '%';
+	            					}
+    				}
+	        },
+	        {% endif %}
+        },
+        yAxis: { title: null, min:0, {% if trd.indicator.is_percent %}max: 100,{% endif %} },
+        series: [{
+            name: "{{ trd.indicator.name }}",
+            data: [{% for point in trd.points %}{% if point = None %}null{% else %}{{ point.value|stringformat:".2f" }}{% endif %},{% endfor %}],
+        }],
+        exporting: { enabled: true, },
+	    credits: { enabled: false, }
+    });
+{% endfor %}
+{% endblock %}
+
+{% block indicator_script %}
+{% endblock %}
+
+{% endblock %}

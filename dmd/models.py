@@ -558,6 +558,10 @@ class Indicator(models.Model):
         return cls.objects.filter(origin=cls.DHIS) \
             .exclude(dhis_denominator_id__isnull=True)
 
+    @property
+    def is_percent(self):
+        return self.itype == self.PERCENTAGE
+
 
 class DataRecord(models.Model):
 
