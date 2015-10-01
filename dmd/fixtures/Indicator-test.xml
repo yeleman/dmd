@@ -6,9 +6,9 @@
         <field type="CharField" name="name">Paludisme simple confirme enfant traite communaute proportion</field>
         <field type="CharField" name="name_en">Malaria children simple confirmed treated community proportion</field>
         <field type="CharField" name="dhis_indicator_id">MtxNsr4Wh6z</field>
-        <field type="CharField" name="dhis_numerator_id">vkxTHlSyeZs</field>
+        <field type="CharField" name="dhis_numerator_id">KFYebZ0H8JH</field>
         <field type="CharField" name="dhis_numerator_formula">#{yUa2VNeVlsH.kQyQUV6TweT}</field>
-        <field type="CharField" name="dhis_denominator_id">OengsDeMgfW</field>
+        <field type="CharField" name="dhis_denominator_id">D1nzBsPh9ed</field>
         <field type="CharField" name="dhis_denominator_formula">#{mb3uRjwETpF.kQyQUV6TweT}</field>
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
@@ -24,9 +24,9 @@
         <field type="CharField" name="name">Paludisme suspect enfant testé proportion</field>
         <field type="CharField" name="name_en">Children Malaria suspected tested proportion</field>
         <field type="CharField" name="dhis_indicator_id">eRArGLqGmPi</field>
-        <field type="CharField" name="dhis_numerator_id">MXONh0IXRkN</field>
+        <field type="CharField" name="dhis_numerator_id">pm4nGhtDSVI</field>
         <field type="CharField" name="dhis_numerator_formula">#{vKSGLvGFW36.c6Vcc1gEs8R}+#{vKSGLvGFW36.sw9YcaDlVGG}+#{s9CR5R6WiV2.c6Vcc1gEs8R}+#{s9CR5R6WiV2.sw9YcaDlVGG}+#{tkqSmwtExI4.kQyQUV6TweT}</field>
-        <field type="CharField" name="dhis_denominator_id">jlkRm066d3i</field>
+        <field type="CharField" name="dhis_denominator_id">wXHOukcJAAe</field>
         <field type="CharField" name="dhis_denominator_formula">#{vLN9HID1Xc8.c6Vcc1gEs8R}+#{vLN9HID1Xc8.sw9YcaDlVGG}+#{sJMM9sNCp5X.kQyQUV6TweT}</field>
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
@@ -42,9 +42,9 @@
         <field type="CharField" name="name">Paludisme suspect enfant testé communaute proportion</field>
         <field type="CharField" name="name_en">Malaria children suspected tested community proportion</field>
         <field type="CharField" name="dhis_indicator_id">foHtfczJPRZ</field>
-        <field type="CharField" name="dhis_numerator_id">lq1PyYjV8RS</field>
+        <field type="CharField" name="dhis_numerator_id">CX4TU62CvLo</field>
         <field type="CharField" name="dhis_numerator_formula">#{tkqSmwtExI4.kQyQUV6TweT}</field>
-        <field type="CharField" name="dhis_denominator_id">jImNfj4ovfB</field>
+        <field type="CharField" name="dhis_denominator_id">ogLMFXzAaHH</field>
         <field type="CharField" name="dhis_denominator_formula">#{sJMM9sNCp5X.kQyQUV6TweT}</field>
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
@@ -60,10 +60,10 @@
         <field type="CharField" name="name">Palu grave confirmé décédé HGR pour 100,000 personnes</field>
         <field type="CharField" name="name_en">Malaria severe confirmed deceased in HGR per 100,000 persons</field>
         <field type="CharField" name="dhis_indicator_id">nNdnNMcD6VV</field>
-        <field type="CharField" name="dhis_numerator_id">rVKFqEXA6sV</field>
-        <field type="CharField" name="dhis_numerator_formula">#{ugs0O8ASTxp.c6Vcc1gEs8R}+#{ugs0O8ASTxp.sw9YcaDlVGG}+#{ugs0O8ASTxp.R9ddZgAPS9K}+#{ugs0O8ASTxp.PINN036bZHB}</field>
-        <field type="CharField" name="dhis_denominator_id">rVr8pi2mP6S</field>
-        <field type="CharField" name="dhis_denominator_formula">#{rVr8pi2mP6S}</field>
+        <field type="CharField" name="dhis_numerator_id"></field>
+        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
+        <field type="CharField" name="dhis_denominator_id"><None></None></field>
+        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
@@ -78,7 +78,7 @@
         <field type="CharField" name="name">Paludisme grave confirmé décédé pour 1,000 personnes</field>
         <field type="CharField" name="name_en">Malaria severe confirmed deceased per 1 000 persons</field>
         <field type="CharField" name="dhis_indicator_id">OJ3nEMPN8rS</field>
-        <field type="CharField" name="dhis_numerator_id">zNgzWVrIuDM</field>
+        <field type="CharField" name="dhis_numerator_id">NAmfHk5r7NO</field>
         <field type="CharField" name="dhis_numerator_formula">#{k8w3aoYQYIw.c6Vcc1gEs8R}+#{k8w3aoYQYIw.sw9YcaDlVGG}+#{k8w3aoYQYIw.R9ddZgAPS9K}+#{k8w3aoYQYIw.PINN036bZHB}</field>
         <field type="CharField" name="dhis_denominator_id">rVr8pi2mP6S</field>
         <field type="CharField" name="dhis_denominator_formula">#{rVr8pi2mP6S}</field>
@@ -96,9 +96,9 @@
         <field type="CharField" name="name">Paludisme grave confirmé décédé pour 100,000 personnes</field>
         <field type="CharField" name="name_en">Malaria severe confirmed deceased per 100,000 persons</field>
         <field type="CharField" name="dhis_indicator_id">MFwFaf7GbU7</field>
-        <field type="CharField" name="dhis_numerator_id">y8Cl0zDcZvW</field>
+        <field type="CharField" name="dhis_numerator_id">BGwogRyseGE</field>
         <field type="CharField" name="dhis_numerator_formula">#{k8w3aoYQYIw.c6Vcc1gEs8R}+#{k8w3aoYQYIw.sw9YcaDlVGG}+#{k8w3aoYQYIw.R9ddZgAPS9K}+#{k8w3aoYQYIw.PINN036bZHB}</field>
-        <field type="CharField" name="dhis_denominator_id">qlQzXeLxN0i</field>
+        <field type="CharField" name="dhis_denominator_id">TnLksfOBwqf</field>
         <field type="CharField" name="dhis_denominator_formula">#{rVr8pi2mP6S.LwOoctR1TvG}</field>
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
@@ -114,7 +114,7 @@
         <field type="CharField" name="name">Paludisme simple confirmé pour 1,000 personnes</field>
         <field type="CharField" name="name_en">Malaria severe confirmed per 1 000 persons</field>
         <field type="CharField" name="dhis_indicator_id">Y9TdDdi72uY</field>
-        <field type="CharField" name="dhis_numerator_id">nrrPUFJOMY2</field>
+        <field type="CharField" name="dhis_numerator_id">VwgwURadwF3</field>
         <field type="CharField" name="dhis_numerator_formula">#{hRoa1eyh2Ym.c6Vcc1gEs8R}+#{hRoa1eyh2Ym.sw9YcaDlVGG}+#{hRoa1eyh2Ym.R9ddZgAPS9K}+#{hRoa1eyh2Ym.PINN036bZHB}+#{mb3uRjwETpF.kQyQUV6TweT}</field>
         <field type="CharField" name="dhis_denominator_id">rVr8pi2mP6S</field>
         <field type="CharField" name="dhis_denominator_formula">#{rVr8pi2mP6S}</field>
@@ -132,9 +132,9 @@
         <field type="CharField" name="name">Paludisme simple confirme enfant traite proportion</field>
         <field type="CharField" name="name_en">Children Malaria Simple Confirmed Treated proportion</field>
         <field type="CharField" name="dhis_indicator_id">VRfDSnUcTuT</field>
-        <field type="CharField" name="dhis_numerator_id">NlAmdIO3JYP</field>
+        <field type="CharField" name="dhis_numerator_id">danBtCm2KWg</field>
         <field type="CharField" name="dhis_numerator_formula">#{hRoa1eyh2Ym.c6Vcc1gEs8R}+#{hRoa1eyh2Ym.sw9YcaDlVGG}+#{mb3uRjwETpF.kQyQUV6TweT}</field>
-        <field type="CharField" name="dhis_denominator_id">FykPDCTnYVO</field>
+        <field type="CharField" name="dhis_denominator_id">MCy9MnBURxZ</field>
         <field type="CharField" name="dhis_denominator_formula">#{hRoa1eyh2Ym.c6Vcc1gEs8R}+#{hRoa1eyh2Ym.sw9YcaDlVGG}+#{mb3uRjwETpF.kQyQUV6TweT}</field>
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
@@ -150,9 +150,9 @@
         <field type="CharField" name="name">Paludisme suspect testé proportion</field>
         <field type="CharField" name="name_en">Malaria suspected tested proportion</field>
         <field type="CharField" name="dhis_indicator_id">aZnVMRr2mMy</field>
-        <field type="CharField" name="dhis_numerator_id">qOFi3nYKhgN</field>
+        <field type="CharField" name="dhis_numerator_id">d7OXToU0tQ9</field>
         <field type="CharField" name="dhis_numerator_formula">(#{vKSGLvGFW36.c6Vcc1gEs8R}+#{vKSGLvGFW36.sw9YcaDlVGG}+#{vKSGLvGFW36.R9ddZgAPS9K}+#{vKSGLvGFW36.PINN036bZHB})+(#{s9CR5R6WiV2.c6Vcc1gEs8R}+#{s9CR5R6WiV2.sw9YcaDlVGG}+#{s9CR5R6WiV2.R9ddZgAPS9K}+#{s9CR5R6WiV2.PINN036bZHB})+#{tkqSmwtExI4}</field>
-        <field type="CharField" name="dhis_denominator_id">auj8wk8mCrL</field>
+        <field type="CharField" name="dhis_denominator_id">SA3VNBiR85c</field>
         <field type="CharField" name="dhis_denominator_formula">#{vLN9HID1Xc8.c6Vcc1gEs8R}+#{vLN9HID1Xc8.sw9YcaDlVGG}+#{vLN9HID1Xc8.R9ddZgAPS9K}+#{vLN9HID1Xc8.PINN036bZHB}+#{sJMM9sNCp5X}</field>
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
@@ -1014,9 +1014,9 @@
         <field type="CharField" name="name">Paludisme simple confirme traite proportion</field>
         <field type="CharField" name="name_en">Simple confirmed treated malaria proportion</field>
         <field type="CharField" name="dhis_indicator_id">IJnXGGxNo4u</field>
-        <field type="CharField" name="dhis_numerator_id">VexvHooItpp</field>
+        <field type="CharField" name="dhis_numerator_id">cQJEnpk0d3o</field>
         <field type="CharField" name="dhis_numerator_formula">#{EmN24I6TAfI.c6Vcc1gEs8R}+#{EmN24I6TAfI.sw9YcaDlVGG}+#{EmN24I6TAfI.R9ddZgAPS9K}+#{EmN24I6TAfI.PINN036bZHB}+#{yUa2VNeVlsH.kQyQUV6TweT}</field>
-        <field type="CharField" name="dhis_denominator_id">mx7eWKqVe5t</field>
+        <field type="CharField" name="dhis_denominator_id">RHgvlryy1oE</field>
         <field type="CharField" name="dhis_denominator_formula">#{hRoa1eyh2Ym.c6Vcc1gEs8R}+#{hRoa1eyh2Ym.sw9YcaDlVGG}+#{hRoa1eyh2Ym.R9ddZgAPS9K}+#{hRoa1eyh2Ym.PINN036bZHB}+#{mb3uRjwETpF.kQyQUV6TweT}</field>
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
@@ -1032,7 +1032,7 @@
         <field type="CharField" name="name">Enfant CPS ayant reçu MIILD proportion</field>
         <field type="CharField" name="name_en">SMC Children receiving bednet proportion</field>
         <field type="CharField" name="dhis_indicator_id">DKCaYzepYlN</field>
-        <field type="CharField" name="dhis_numerator_id">QksfHHq8OBJ</field>
+        <field type="CharField" name="dhis_numerator_id">ZtcqwGjxtUB</field>
         <field type="CharField" name="dhis_numerator_formula">#{OTl0KHyNjKC.kQyQUV6TweT}</field>
         <field type="CharField" name="dhis_denominator_id">xJtxOvxmLHk</field>
         <field type="CharField" name="dhis_denominator_formula">#{xJtxOvxmLHk}</field>
@@ -1050,10 +1050,10 @@
         <field type="CharField" name="name">Paludisme suspect de moins 5 ans ayant passé un test diagnostic</field>
         <field type="CharField" name="name_en">Under 5 malaria suspected tested per 100,000 persons</field>
         <field type="CharField" name="dhis_indicator_id">I1SdlMvVbae</field>
-        <field type="CharField" name="dhis_numerator_id">TkUavj53bcz</field>
-        <field type="CharField" name="dhis_numerator_formula">#{vKSGLvGFW36.c6Vcc1gEs8R}+#{vKSGLvGFW36.sw9YcaDlVGG}+#{s9CR5R6WiV2.c6Vcc1gEs8R}+#{s9CR5R6WiV2.sw9YcaDlVGG}+#{tkqSmwtExI4}</field>
-        <field type="CharField" name="dhis_denominator_id">w24ivlmi5Jg</field>
-        <field type="CharField" name="dhis_denominator_formula">#{vLN9HID1Xc8.c6Vcc1gEs8R}+#{vLN9HID1Xc8.sw9YcaDlVGG}+#{sJMM9sNCp5X}</field>
+        <field type="CharField" name="dhis_numerator_id"></field>
+        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
+        <field type="CharField" name="dhis_denominator_id"><None></None></field>
+        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
         <field type="CharField" name="category"><None></None></field>
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
