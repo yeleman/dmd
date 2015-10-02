@@ -87,7 +87,7 @@ $('form').on('submit', function (e) {
 	        },
 	        {% endif %}
         },
-        yAxis: { title: null, min:0, {% if trd.indicator.is_percent %}max: 100,{% endif %} },
+        yAxis: { title: null, min:0 },
         series: [{
             name: "{{ trd.indicator.name }}",
             data: [{% for point in trd.points %}{% if point = None %}null{% else %}{{ point.value|stringformat:".2f" }}{% endif %},{% endfor %}],
