@@ -169,7 +169,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 SERVE_EXPORTED_FILES = True
 EXPORT_REPOSITORY_URL_PATH = '/protected'
 EXPORT_REPOSITORY = os.path.join(BASE_DIR, 'exports')
-ALL_EXPORT_FNAME = 'dmd_records_all.xls'
+ALL_EXPORT_FNAME = 'dmd_records_all.csv'
 ALL_EXPORT_PATH = os.path.join(EXPORT_REPOSITORY, ALL_EXPORT_FNAME)
 
 STATIC_URL = '/static/'
