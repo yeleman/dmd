@@ -12,6 +12,7 @@ from collections import OrderedDict
 
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from mptt.models import MPTTModel, TreeForeignKey
 from py3compat import text_type
@@ -156,10 +157,13 @@ class Partner(models.Model):
         ordering = ['user__last_name', 'user__first_name']
 
     user = models.OneToOneField(User)
-    organization = models.ForeignKey(Organization)
+    organization = models.ForeignKey(Organization,
+                                     verbose_name=_("Organization"))
 
-    can_upload = models.BooleanField(default=False)
-    upload_location = models.ForeignKey(Entity, null=True, blank=True)
+    can_upload = models.BooleanField(default=False,
+                                     verbose_name=_("Can Upload?"))
+    upload_location = models.ForeignKey(Entity, null=True, blank=True,
+                                        verbose_name=_("Upload location"))
 
     def with_org(self):
         if not self.organization:

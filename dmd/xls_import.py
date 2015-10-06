@@ -63,26 +63,27 @@ def read_xls_metadata(filepath, ws=None):
     for field, value in meta.items():
         meta.update({field: value})
         if not value and not field == 'as':
-            raise ExcelValueMissing(_("Field `{}` is blank yet mandatory")
+            raise ExcelValueMissing(_("Field `{field}` is blank yet mandatory")
                                     .format(field))
 
     # retrieve period
     try:
         meta['year'] = int(float(meta['year']))
     except:
-        raise ExcelValueError(_("Year value `{}` is not valid")
+        raise ExcelValueError(_("Year value `{year}` is not valid")
                               .format(meta['year']))
 
     try:
         meta['month'] = int(meta['month'].split('-')[0].strip())
     except:
-        raise ExcelValueError(_("Month value `{}` is not valid")
+        raise ExcelValueError(_("Month value `{month}` is not valid")
                               .format(meta['month']))
 
     try:
         meta['period'] = MonthPeriod.get_or_create(meta['year'], meta['month'])
     except ValueError:
-        raise ExcelValueError(_("Year/Month tuple `{}-{}` is not valid")
+        raise ExcelValueError(_("Year/Month tuple `{year}-{month}` "
+                                "is not valid")
                               .format(meta['year'], meta['month']))
 
     def find_location(meta):
@@ -94,7 +95,7 @@ def read_xls_metadata(filepath, ws=None):
             meta['dps_entity'] = Entity.find_with_type(Entity.PROVINCE,
                                                        meta['dps'])
             if meta['dps_entity'] is None:
-                raise ExcelValueError(_("Unable to match DPS `{}`")
+                raise ExcelValueError(_("Unable to match DPS `{dps}`")
                                       .format(meta['dps']))
         else:
             # no DPS, we're looking for RDC
@@ -104,7 +105,7 @@ def read_xls_metadata(filepath, ws=None):
             meta['zs_entity'] = Entity.find_with_type(Entity.ZONE, meta['zs'],
                                                       meta['dps_entity'])
             if meta['zs'] is None:
-                raise ExcelValueError(_("Unable to match ZS `{}`")
+                raise ExcelValueError(_("Unable to match ZS `{zs}`")
                                       .format(meta['zs']))
         else:
             return meta['dps_entity']
@@ -171,7 +172,7 @@ def read_xls_data(filepath, ws=None, meta=None):
             denum = float(denum)
         except:
             raise ExcelValueError(_("Incorrect numerator or denominator value "
-                                    "`{} / {}` for: {}")
+                                    "`{num} / {denom}` for: {indic}")
                                   .format(num, denum, indic.name))
 
         data.update({indic.slug: {'numerator': num, 'denominator': denum}})

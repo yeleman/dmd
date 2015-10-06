@@ -13,6 +13,7 @@ import copy
 from py3compat import text_type
 from django.http import JsonResponse, HttpResponse, Http404
 from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy
 from django import forms
 from django.db import transaction
 from django.forms.models import model_to_dict, fields_for_model
@@ -61,7 +62,7 @@ def handle_uploaded_file(f):
 
 
 class ExcelUploadForm(forms.Form):
-    data_file = forms.FileField(label="Fichier du rapport")
+    data_file = forms.FileField(label=ugettext_lazy("Report File"))
 
 
 def create_records_from(request, xls_data, filepath=None):
@@ -80,9 +81,9 @@ def create_records_from(request, xls_data, filepath=None):
         if nb_created or nb_updated:
             message = _("Congratulations! Your data has been recorded.")
             if nb_created:
-                message += _("\n{nb_created} records were created.")
+                message += "\n" + _("{nb_created} records were created.")
             if nb_updated:
-                message += _("\n{nb_updated} records were updated.")
+                message += "\n" + _("{nb_updated} records were updated.")
             messages.success(request, message.format(nb_created=nb_created,
                                                      nb_updated=nb_updated))
         else:
@@ -139,7 +140,7 @@ def upload(request, template_name='upload.html'):
 
 
 class ASChooserForm(forms.Form):
-    entity = forms.ChoiceField(label="Aire de Santé", choices=[])
+    entity = forms.ChoiceField(label=Entity.AIRE, choices=[])
 
     def __init__(self, *args, **kwargs):
         children = kwargs.pop('children')
@@ -218,7 +219,8 @@ def process_entity_filter(request, entity_uuid=None):
 
     if entity is None:
         raise Http404(request,
-                      _("Unable to match entity `{}`").format(entity_uuid))
+                      _("Unable to match entity `{uuid}`")
+                      .format(uuid=entity_uuid))
 
     return {
         'blank_uuid': "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -235,8 +237,8 @@ def process_period_filter(request, period_str=None, name='period'):
         period = MonthPeriod.get_or_none(period_str)
         if period is None:
             raise Http404(request,
-                          _("Unable to match period with `{}`")
-                          .format(period_str))
+                          _("Unable to match period with `{period}`")
+                          .format(period=period_str))
     else:
         period = MonthPeriod.current().previous()
 
@@ -293,7 +295,7 @@ def analysis(request, section_id='1',
     context = {'page': 'analysis_section1'}
 
     if section_id not in SECTIONS:
-        raise Http404(_("Unknown section ID `{}`").format(section_id))
+        raise Http404(_("Unknown section ID `{sid}`").format(sid=section_id))
 
     section = import_path('dmd.analysis.section{}'.format(section_id))
 
@@ -392,9 +394,10 @@ def user_add(request, *args, **kwargs):
                     )
 
             messages.success(request,
-                             _("New User account “{}” created with login `{}` "
-                               "and password `{}`")
-                             .format(partner, partner.username, passwd))
+                             _("New User account “{name}” created with "
+                               "login `{username}` and password `{password}`")
+                             .format(name=partner, username=partner.username,
+                                     password=passwd))
             return redirect('users')
         else:
             # django form validation errors
@@ -430,8 +433,8 @@ def user_edit(request, username, *args, **kwargs):
                 partner.save()
 
             messages.success(request,
-                             _("User account “{}” has been updated.")
-                             .format(partner))
+                             _("User account “{name}” has been updated.")
+                             .format(name=partner))
             return redirect('users')
         else:
             # django form validation errors
@@ -456,16 +459,19 @@ def user_passwd_reset(request, username, *args, **kwargs):
     partner.user.set_password(passwd)
     partner.user.save()
     messages.success(request,
-                     _("Password for User account “{}” (login `{}`) "
-                       "has been reseted to `{}`")
-                     .format(partner, partner.username, passwd))
+                     _("Password for User account “{name}” "
+                       "(login `{username}`) has been reseted to `{password}`")
+                     .format(name=partner, username=partner.username,
+                             password=passwd))
     return redirect('users')
 
 
 class ChangePasswordForm(forms.Form):
 
-    old_password = forms.CharField(max_length=255, widget=forms.PasswordInput)
-    new_password = forms.CharField(max_length=255, widget=forms.PasswordInput)
+    old_password = forms.CharField(max_length=255, widget=forms.PasswordInput,
+                                   label=ugettext_lazy("Old Password"))
+    new_password = forms.CharField(max_length=255, widget=forms.PasswordInput,
+                                   label=ugettext_lazy("New Password"))
 
     def __init__(self, *args, **kwargs):
         self.partner = kwargs.pop('partner')
