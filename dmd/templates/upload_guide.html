@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap_tags %}
+
+{% block title %}Guide d'envoi des données{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'upload' %}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Retour à l'envoi des données</a></p>
+<div class="row">
+    <div class="col-md-12">
+    	<div class="panel panel-default">
+    		<div class="panel-heading">Masque de saisie PNLP</div>
+    		<div class="panel-body">
+    			<p>Téléchargez ci-dessous le masque de saisie pré-rempli pour votre DPS :</p>
+    			<ul style="-moz-column-count: 2; -webkit-column-count: 2; column-count: 2;">
+    				{% for dps in provinces %}
+    				<li><a href="{% url 'upload_guide_download' dps.uuid %}">{{ dps.std_name }}</a></li>
+    				{% endfor %}
+    			</ul>
+		    </div>
+		</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+    	<div class="panel panel-default">
+    		<div class="panel-heading">Transmission des données</div>
+    		<div class="panel-body">
+    		<p>L'envoi des données dans la base de données PNLP se fait à l'aide d'un masque de saisie Excel.</p>
+    		<ul>
+	    		<li>Ce masque de saisie est unique et permet de saisir l'ensemble des indicateurs (hors DHIS).<br />Pour des raisons de commidités, il est disponible sous la forme d'un fichier par DPS.</li>
+	    		<li>Le masque de saisie comprend une ligne pour les données concernant la DPS elle-même puis une ligne pour chaque ZS.</li>
+	    		<li>Il n'est pas nécessaire de remplir tous les champs. Seuls ceux remplis seront pris en compte. Lors de l'envoi, un récapitulatif permettra de vérifier que les données transmises ont été prises enregistrées.</li>
+	    		<li>Les cellules <span style="background-color: black; color: white;"> noires </span> indiquent qu'aucune donnée n'est attendue à ce niveau pour cet indicateur.</li>
+	    	</ul>
+    		
+    		<h3>Période</h3>
+    		<ul>
+	    		<li>Ce masque doit être utilisé et transmis chaque fois que vous obtennez les données d'un indicateur s'y trouvant. Ce peut être chaque mois pour les données de routine ou occasionnellement pour les données d'enquêtes.</li>
+	    		<li>Les cellules <span style="background-color: yellow;"> jaune </span> permettent de définir la période qui s'applique aux données (l'année et le mois).<br />Ce champ jaune a pour seul but de simplifier la saisie en recopiant cette période dans les lignes suivantes.</li>
+	    		<li><strong>La période est indispensable</strong>. Chaque ligne doit donc contenir une période valide.<br />Pour les enquêtes de longue durée, la période est celle de la collecte des informations.</li>
+	    		<li>Vous pouvez bien sûr envoyer des données pour des périodes différentes au sein d'un même fichier.</li>
+	    		<li>Pour saisir un même indicateur sur une même localité (ZS, DPS) mais pour deux périodes différentes, il faut dupliquer la ligne concernée et modifier la période. <em>cf. Modifications ci-dessous</em>.</li>
+    		</ul>
+
+    		<h3>Modification</h3>
+    		<ul>
+    			<li>Pour limiter les erreurs, le fichier est <em>verrouillé</em>. Vous pouvez le déverrouiller avec le mot de passe <code>PNLP</code>.</li>
+    			<li>Ne <strong>modifez pas</strong> les noms du DPS ou des ZS dans le fichier. Cela empêcherai l'envoi de fonctionner.</li>
+
+    		</ul>
+		    </div>
+		</div>
+    </div>
+</div>
+
+{% endblock %}
+

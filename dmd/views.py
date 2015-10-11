@@ -20,13 +20,13 @@ from django.forms.models import model_to_dict, fields_for_model
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from django.views.static import serve
 
 from dmd.models import Entity, DataRecord, Partner, MonthPeriod, User, Metadata
-from dmd.xls_import import (read_xls, ExcelValueMissing,
-                            ExcelValueError, IncorrectExcelFile)
+from dmd.xlsx.xlimport import (read_xls, ExcelValueMissing,
+                               ExcelValueError, IncorrectExcelFile)
+from dmd.xlsx.xlexport import dataentry_fname_for, generate_dataentry_for
 from dmd.utils import random_password, import_path
 from dmd.analysis import SECTIONS
 
@@ -54,7 +54,7 @@ def home(request, *args, **kwargs):
 
 def handle_uploaded_file(f):
     """ stores temporary file as a real file for form upload """
-    tfile = tempfile.NamedTemporaryFile(delete=False)
+    tfile = tempfile.NamedTemporaryFile(delete=False, suffix='.xlsx')
     for chunk in f.chunks():
         tfile.write(chunk)
     tfile.close()
@@ -118,13 +118,6 @@ def upload(request, template_name='upload.html'):
                     messages.error(
                         request, _("Unexpected Error while reading XLS file"))
                 return redirect('upload')
-
-            # entity couldn't be found. store xls data in session
-            # and offer a choice of entities to choose from
-            if xls_data['meta'].get('entity') is None:
-                request.session[XLS_DATA_KEY] = xls_data
-                logger.debug("Redirecting to step2")
-                return redirect('upload_step2')
 
             if create_records_from(request, xls_data, filepath):
                 return redirect('upload')
@@ -209,6 +202,61 @@ def upload_step2(request, template_name='upload_step2.html'):
         form = ASChooserForm(children=children)
 
     context.update({'form': form})
+    return render(request, template_name, context)
+
+
+def upload_guide(request, *args, **kwargs):
+    context = {'page': 'upload'}
+
+    context.update({
+        'provinces': Entity.get_root().get_children(),
+    })
+    return render(request,
+                  kwargs.get('template_name', 'upload_guide.html'),
+                  context)
+
+
+def upload_guide_download(request, uuid, *args, **kwargs):
+
+    dps = Entity.get_or_none(uuid)
+    if dps is None:
+        return Http404(_("No Entity to match `{}`").format(uuid))
+
+    file_name = dataentry_fname_for(dps)
+    file_content = generate_dataentry_for(dps).getvalue()
+
+    response = HttpResponse(file_content,
+                            content_type='application/'
+                                         'vnd.openxmlformats-officedocument'
+                                         '.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename="%s"' % file_name
+    response['Content-Length'] = len(file_content)
+
+    return response
+
+
+class ValidationForm(forms.Form):
+    pass
+
+
+@login_required
+@user_passes_test(lambda u: u.partner.can_validate)
+def validation(request, template_name='validation.html'):
+
+    context = {'page': 'validation'}
+
+    if request.method == 'POST':
+        form = ValidationForm(request.POST, request.FILES)
+        if form.is_valid():
+            pass
+        else:
+            # django form validation errors
+            pass
+    else:
+        form = ValidationForm()
+
+    context.update({'form': form})
+
     return render(request, template_name, context)
 
 
@@ -390,7 +438,10 @@ def user_add(request, *args, **kwargs):
                     user=user,
                     organization=form.cleaned_data.get('organization'),
                     can_upload=form.cleaned_data.get('can_upload'),
-                    upload_location=form.cleaned_data.get('upload_location')
+                    upload_location=form.cleaned_data.get('upload_location'),
+                    can_validate=form.cleaned_data.get('can_validate'),
+                    validation_location=form.cleaned_data.get(
+                        'validation_location')
                     )
 
             messages.success(request,
@@ -412,7 +463,7 @@ def user_add(request, *args, **kwargs):
                   context)
 
 
-@staff_member_required
+@user_passes_test(lambda u: u.is_staff)
 def user_edit(request, username, *args, **kwargs):
     context = {'page': 'users'}
     partner = Partner.get_or_none(username)
@@ -430,6 +481,9 @@ def user_edit(request, username, *args, **kwargs):
                 partner.can_upload = form.cleaned_data.get('can_upload')
                 partner.upload_location = \
                     form.cleaned_data.get('upload_location')
+                partner.can_validate = form.cleaned_data.get('can_validate')
+                partner.validation_location = \
+                    form.cleaned_data.get('validation_location')
                 partner.save()
 
             messages.success(request,
@@ -452,7 +506,7 @@ def user_edit(request, username, *args, **kwargs):
                   context)
 
 
-@staff_member_required
+@user_passes_test(lambda u: u.is_staff)
 def user_passwd_reset(request, username, *args, **kwargs):
     partner = Partner.get_or_none(username)
     passwd = random_password(True)

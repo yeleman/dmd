@@ -6,11 +6,12 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import logging
 import uuid
+import re
 import datetime
 import calendar
 from collections import OrderedDict
 
-from django.db import models
+from django.db import models, transaction
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
@@ -31,11 +32,11 @@ class Entity(MPTTModel):
     CENTRE = 'centre_sante'
 
     TYPES = OrderedDict([
-        (PAYS, "Pays"),
-        (PROVINCE, "Division Provinciale de la Santé"),
-        (ZONE, "Zone de santé"),
-        (AIRE, "Aire de Santé"),
-        # (CENTRE, "Centre de Santé"),
+        (PAYS, _("Country")),
+        (PROVINCE, _("Division Provinciale de la Santé")),
+        (ZONE, _("Zone de santé")),
+        (AIRE, _("Aire de Santé")),
+        # (CENTRE, _("Centre de Santé")),
     ])
 
     class MPTTMeta:
@@ -86,6 +87,13 @@ class Entity(MPTTModel):
             return None
 
     @classmethod
+    def find_by_stdname(cls, std_name, parent):
+        try:
+            return {e.std_name: e for e in parent.get_children()}.get(std_name)
+        except:
+            return None
+
+    @classmethod
     def lookup_at(cls, parent, name):
         return lookup_entity_at(parent, name)
 
@@ -103,6 +111,19 @@ class Entity(MPTTModel):
 
     def __unicode__(self):
         return self.__str__()
+
+    @property
+    def std_name(self):
+        cua = lambda value: re.sub(r'\s?Aire\s(de\s?)Sant[eé]', '',
+                                   value, re.I)
+
+        cuz = lambda value: re.sub(r'\s?Zone\s(de\s?)Sant[eé]', '',
+                                   value, re.I)
+
+        cud = lambda value: re.sub(r'\s?DPS', '',
+                                   value, re.I)
+
+        return cud(cuz(cua(self.name))).upper()
 
     def fields(self):
         return ['uuid', 'code', 'name', 'short_name', 'display_name',
@@ -150,6 +171,13 @@ class Organization(models.Model):
     def __unicode__(self):
         return self.__str__()
 
+    @classmethod
+    def get_or_none(cls, slug):
+        try:
+            return cls.objects.get(slug=slug)
+        except cls.DoesNotExist:
+            return None
+
 
 class Partner(models.Model):
 
@@ -158,12 +186,20 @@ class Partner(models.Model):
 
     user = models.OneToOneField(User)
     organization = models.ForeignKey(Organization,
-                                     verbose_name=_("Organization"))
+                                     verbose_name=_("Organization"),
+                                     related_name='partners')
 
     can_upload = models.BooleanField(default=False,
                                      verbose_name=_("Can Upload?"))
     upload_location = models.ForeignKey(Entity, null=True, blank=True,
-                                        verbose_name=_("Upload location"))
+                                        verbose_name=_("Upload location"),
+                                        related_name='upload_partners')
+
+    can_validate = models.BooleanField(default=False,
+                                       verbose_name=_("Can Validate?"))
+    validation_location = models.ForeignKey(
+        Entity, null=True, blank=True, verbose_name=_("Validation location"),
+        related_name='validation_partners')
 
     def with_org(self):
         if not self.organization:
@@ -197,6 +233,10 @@ class Partner(models.Model):
             return cls.objects.get(user__username=username)
         except cls.DoesNotExist:
             return None
+
+    @classmethod
+    def validation_bot(cls):
+        return cls.objects.get(user__username='validation_bot')
 
 
 class MonthPeriod(models.Model):
@@ -371,11 +411,11 @@ class Indicator(models.Model):
     HSS = 'hss'
 
     TECH_AREAS_1 = {
-        PVC: "Prevention Vector Control",
-        CM: "Case Management",
-        BCC: "Behavioral Chance Communication",
-        SME: "Surveillance and M&E",
-        HSS: "Health System Strengthening",
+        PVC: _("Prevention Vector Control"),
+        CM: _("Case Management"),
+        BCC: _("Behavioral Chance Communication"),
+        SME: _("Surveillance and M&E"),
+        HSS: _("Health System Strengthening"),
     }
 
     ITN = 'itn/llin'
@@ -391,25 +431,25 @@ class Indicator(models.Model):
     ENVIRONMENT = 'enable_environment'
 
     TECH_AREAS_2 = {
-        ITN: "ITN/LLIN",
-        PSM: "PSM",
-        IPTP: "IPTp",
-        IRS: "IRS",
-        DIAGNOSIS: "Diagnosis",
-        TREATMENT: "Treatment",
-        CAPACITY_BUILDING: "Capacity building",
-        COMM_CASE_MGMT: "Community Case Management",
-        KNOWLEDGE: "Knowledge",
-        SUPERVISION: "Supervision",
-        ENVIRONMENT: "Enable environment",
+        ITN: _("ITN/LLIN"),
+        PSM: _("PSM"),
+        IPTP: _("IPTp"),
+        IRS: _("IRS"),
+        DIAGNOSIS: _("Diagnosis"),
+        TREATMENT: _("Treatment"),
+        CAPACITY_BUILDING: _("Capacity building"),
+        COMM_CASE_MGMT: _("Community Case Management"),
+        KNOWLEDGE: _("Knowledge"),
+        SUPERVISION: _("Supervision"),
+        ENVIRONMENT: _("Enable environment"),
     }
 
     EFFECT = 'effect'
     PROCESS = 'process'
 
     CATEGORIES = {
-        EFFECT: "Effet",
-        PROCESS: "Processus"
+        EFFECT: _("Effect"),
+        PROCESS: _("Process")
     }
 
     NUMBER = 'number'
@@ -420,12 +460,12 @@ class Indicator(models.Model):
     PROPORTION = 'proportion'
 
     TYPES = {
-        NUMBER: "Nombre",
-        PERCENTAGE: "Pourcentage",
-        PROPORTION: "Proportion",
-        PER_THOUSAND: "Pour 1000",
-        PER_TEN_THOUSAND: "Pour 10 000",
-        PER_HUNDRED_THOUSAND: "Pour 100 000",
+        NUMBER: _("Number"),
+        PERCENTAGE: _("Percentage"),
+        PROPORTION: _("Proportion"),
+        PER_THOUSAND: _("Per 1,000"),
+        PER_TEN_THOUSAND: _("Per 10,000"),
+        PER_HUNDRED_THOUSAND: _("Per 100,000"),
     }
 
     TYPES_COEFFICIENT = {
@@ -441,9 +481,9 @@ class Indicator(models.Model):
     FLOAT_1DEC_FORMAT = "{:.1f}"
 
     NUMBER_FORMATS = {
-        INTEGER_FORMAT: "Entier",
-        FLOAT_1DEC_FORMAT: "Réel une décimale",
-        FLOAT_2DEC_FORMAT: "Réel deux décimales",
+        INTEGER_FORMAT: _("Integer"),
+        FLOAT_1DEC_FORMAT: _("Float, precision 1"),
+        FLOAT_2DEC_FORMAT: _("Float, precision 2"),
     }
 
     RAW_FMT = '{value}'
@@ -464,8 +504,16 @@ class Indicator(models.Model):
     MANUAL = 'manual'
     DHIS = 'dhis'
     ORIGINS = {
-        MANUAL: "Manuelle",
-        DHIS: "DHIS",
+        MANUAL: _("Manual"),
+        DHIS: _("DHIS"),
+    }
+
+    SURVEY = 'survey'
+    ROUTINE = 'routine'
+
+    COLLECTION_TYPES = {
+        SURVEY: _("Survey"),
+        ROUTINE: _("Routine"),
     }
 
     class Meta:
@@ -499,7 +547,28 @@ class Indicator(models.Model):
                                      choices=NUMBER_FORMATS.items())
     value_format = models.CharField(max_length=64,
                                     choices=VALUE_FORMATS.items())
-    organizations = models.ManyToManyField('Organization', blank=True)
+    organizations = models.ManyToManyField('Organization', blank=True,
+                                           related_name='indicators')
+
+    collection_type = models.CharField(max_length=64,
+                                       choices=COLLECTION_TYPES.items())
+    # mostly DPS for Survey, ZS for Routine
+    collection_level = models.CharField(max_length=64,
+                                        choices=Entity.TYPES.items())
+    collection_period = models.PositiveIntegerField(
+        help_text=_("In months"))
+
+    # mostly PNLP, default 45d
+    transmission_organizations = models.ManyToManyField(
+        'Organization', blank=True, related_name='transmission_indicators')
+    transmission_delay = models.PositiveIntegerField(
+        blank=True, null=True, help_text=_("In days"))
+
+    # mostly PNLP, default 10d
+    validation_organizations = models.ManyToManyField(
+        'Organization', blank=True, related_name='validation_indicators')
+    validation_delay = models.PositiveIntegerField(
+        blank=True, null=True, help_text=_("In days"))
 
     def __str__(self):
         return self.name
@@ -562,9 +631,32 @@ class Indicator(models.Model):
         return cls.objects.filter(origin=cls.DHIS) \
             .exclude(dhis_denominator_id__isnull=True)
 
+    @classmethod
+    def get_all_manual(cls):
+        return cls.objects.filter(origin=cls.MANUAL)
+
+    @classmethod
+    def get_all_surveys(cls):
+        return cls.objects.filter(collection_type=cls.SURVEY)
+
+    @classmethod
+    def get_all_routine(cls, with_dhis=True):
+        qs = cls.objects.filter(collection_type=cls.ROUTINE)
+        if with_dhis:
+            return qs
+        return qs.filter(dhis_denominator_id__isnull=True)
+
     @property
     def is_percent(self):
         return self.itype == self.PERCENTAGE
+
+    @property
+    def is_number(self):
+        return self.itype == self.NUMBER
+
+    @property
+    def verbose_collection_type(self):
+        return self.COLLECTION_TYPES.get(self.collection_type)
 
 
 class DataRecord(models.Model):
@@ -577,6 +669,19 @@ class DataRecord(models.Model):
         UPLOAD: "Directe",
         DHIS: "DHIS",
         AGGREGATION: "Aggregation",
+    }
+
+    NOT_VALIDATED = 'not_validated'
+    VALIDATED = 'validated'
+    AUTO_VALIDATED = 'auto_validated'
+    REJECTED = 'rejected'
+    MODIFIED = 'modified'
+    VALIDATION_STATUSES = {
+        NOT_VALIDATED: _("Not Validated"),
+        VALIDATED: ("Validated"),
+        AUTO_VALIDATED: ("Auto Validated"),
+        REJECTED: ("Rejected"),
+        MODIFIED: ("Modified"),
     }
 
     class Meta:
@@ -598,7 +703,46 @@ class DataRecord(models.Model):
     updated_by = models.ForeignKey(Partner, null=True, blank=True,
                                    related_name='records_updated')
 
+    validation_status = models.CharField(
+        max_length=128,
+        choices=VALIDATION_STATUSES.items())
+    validated_on = models.DateTimeField(null=True, blank=True)
+    validated_by = models.ForeignKey(Partner, null=True, blank=True,
+                                     related_name='records_validated')
+
     sources = models.ManyToManyField('self', blank=True)
+
+    @property
+    def validated(self):
+        return self.validation_status in [
+            self.VALIDATED, self.AUTO_VALIDATED, self.MODIFIED]
+
+    def validate(self, on, by):
+        self.record_validation(status=self.VALIDATED, on=on, by=by)
+
+    def reject(self, on, by):
+        self.record_validation(status=self.REJECTED, on=on, by=by)
+
+    def auto_validate(self, on):
+        self.record_validation(status=self.AUTO_VALIDATED, on=on,
+                               by=Partner.validation_bot())
+
+    def edit(self, on, by, numerator, denominator):
+        with transaction.atomic():
+            self.numerator = numerator
+            self.denominator = denominator
+            self.record_update(by)
+            self.record_validation(status=self.MODIFIED, on=on, by=by)
+
+    def record_validation(self, status, on, by):
+        self.validation_status = status
+        self.validated_on = on
+        self.validated_by = by
+        self.save()
+
+    @property
+    def auto_validated(self):
+        return self.validated_by == Partner.validation_bot()
 
     @property
     def aggregate(self):
@@ -639,19 +783,17 @@ class DataRecord(models.Model):
 
     @classmethod
     def batch_create(cls, data, partner):
-        if not isinstance(data['meta']['period'], MonthPeriod):
-            raise ValueError("Incorrect period")
-        if not isinstance(data['meta']['entity'], Entity):
-            raise ValueError("Incorrect entity")
 
-        for slug, dp in data.items():
-            if slug == 'meta':
-                continue
+        for ident, dp in data.items():
+
+            slug = dp['slug']
+            period = dp['period']
+            entity = dp['entity']
 
             indic = Indicator.get_or_none(slug)
             dr = cls.get_or_none(indicator=indic,
-                                 period=data['meta']['period'],
-                                 entity=data['meta']['entity'])
+                                 period=period,
+                                 entity=entity)
 
             num = dp['numerator']
             denum = dp['denominator']
@@ -671,8 +813,8 @@ class DataRecord(models.Model):
 
                 dr = cls.objects.create(
                     indicator=indic,
-                    period=data['meta']['period'],
-                    entity=data['meta']['entity'],
+                    period=period,
+                    entity=entity,
                     numerator=num,
                     denominator=denum,
                     source=cls.UPLOAD,
@@ -681,7 +823,7 @@ class DataRecord(models.Model):
                 # new data are identical to datarecord
                 continue
 
-            data[slug].update({
+            data[ident].update({
                 'action': action,
                 'id': dr.id,
                 'previous': old_values})

@@ -437,3 +437,7 @@ font-size: 19px;
 table.clickable-rows tbody tr:hover {
 	cursor: pointer;
 }
+
+#id_data_file {
+	height: auto;
+}

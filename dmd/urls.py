@@ -41,7 +41,16 @@ urlpatterns = [
     # upload
     url(r'^' + uprefix + 'upload/step2/?$', 'dmd.views.upload_step2',
         name='upload_step2'),
+    url(r'^' + uprefix + 'upload/guide/?$', 'dmd.views.upload_guide',
+        name='upload_guide'),
+    url(r'^' + uprefix + 'upload/guide/(?P<uuid>[A-Za-z0-9\_\-]{36})/?$',
+        'dmd.views.upload_guide_download',
+        name='upload_guide_download'),
     url(r'^' + uprefix + 'upload/?$', 'dmd.views.upload', name='upload'),
+
+    # validation
+    url(r'^' + uprefix + 'validation/?$', 'dmd.views.validation',
+        name='validation'),
 
     # raw data
     url(r'^' + uprefix + 'raw_data/(?P<entity_uuid>[a-z\-0-9]{36})'

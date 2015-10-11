@@ -16,7 +16,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_children_suspected_tested" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -34,7 +41,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_children_suspected_tested_community" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -52,7 +66,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_severe_confirmed_deceased_hgr_per_100000" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -70,7 +91,14 @@
         <field type="CharField" name="itype">per_hundred_thousand</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_severe_confirmed_deceased_per_1000" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -88,7 +116,14 @@
         <field type="CharField" name="itype">per_thousand</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/1 000</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_severe_confirmed_deceased_per_100000" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -106,7 +141,14 @@
         <field type="CharField" name="itype">per_hundred_thousand</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_severe_confirmed_per_1000" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -124,7 +166,14 @@
         <field type="CharField" name="itype">per_thousand</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/1 000</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_simple_confirmed_treated_children" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -142,7 +191,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="malaria_suspected_tested" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -160,7 +216,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="nb_bednet_distributed_mass_campaigns" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -178,7 +241,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="nb_chw_trained_refreshed_malaria_care_zone_sante" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -196,7 +266,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="nb_hc_no_ipt_stockout" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -214,7 +291,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="nb_hc_no_recommended_bednet_stockout" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -232,13 +316,20 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="nb_healthcareprovider_supervised_last_quarter" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
         <field type="CharField" name="number">29a</field>
-        <field type="CharField" name="name">Nombre des prestataires de Soins de Santé supervisés par trimestre</field>
-        <field type="CharField" name="name_en">Number of health care providers supervised per trimester</field>
+        <field type="CharField" name="name">Nombre des prestataires de Soins de Santé supervisés par mois</field>
+        <field type="CharField" name="name_en">Number of health care providers supervised per month</field>
         <field type="CharField" name="dhis_indicator_id"><None></None></field>
         <field type="CharField" name="dhis_numerator_id"><None></None></field>
         <field type="CharField" name="dhis_numerator_formula"><None></None></field>
@@ -250,7 +341,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="nb_healthfacility_no_asaq1-5_stockout_last_period" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -268,7 +366,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="nb_healthfacility_no_malaria_input_stockout_last_period" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -286,7 +391,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="nb_healthworker_trained_refreshed_on_malaria_care_zone_sante" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -304,7 +416,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="nb_labtechnician_refreshed_microscopy_rdt" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -322,7 +441,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="nb_pw_confirmed_malaria_cases_bs_rdt" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -340,7 +466,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="prosani"></object><object pk="unicef"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="nb_zonesante_received_provice_supervision_last_quarter" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -358,13 +491,20 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="nb_zonesante_received_provice_supervision_per_month" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
         <field type="CharField" name="number">36</field>
-        <field type="CharField" name="name">Nombre des zones de santé ayant recu au moins une visite de supervision du niveau provincial au cours du mois</field>
-        <field type="CharField" name="name_en">Number of health facilities that have received at least one supervision visit from the provincial level during the month</field>
+        <field type="CharField" name="name">Nombre des zones de santé ayant recu au moins une visite de supervision du niveau provincial au cours du trimestre</field>
+        <field type="CharField" name="name_en">Number of health facilities that have received at least one supervision visit from the provincial level during the quarter</field>
         <field type="CharField" name="dhis_indicator_id"><None></None></field>
         <field type="CharField" name="dhis_numerator_id"><None></None></field>
         <field type="CharField" name="dhis_numerator_formula"><None></None></field>
@@ -376,7 +516,14 @@
         <field type="CharField" name="itype">number</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="psi"></object></field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">3</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="psi"></object><object pk="sanru"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_bednet_sleep_previous_night" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -394,7 +541,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_childrencaretaker_ableto_recognize_2malariadangersigns_feverish_u5" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -412,7 +566,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_childrencaretaker_recognized_2malariadangersigns_u5_then_healthcenter" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -430,7 +591,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="prosani"></object><object pk="msh"></object></field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">3</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="msh"></object><object pk="pnlp"></object><object pk="prosani"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_chw_trained_malaria_care_aire_sante" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -448,7 +616,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_dps_reveived_central_supervision_last_quarter" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -466,7 +641,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">3</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_firstline_malaria_treatments_u5_treated_fever_last_weeks" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -484,7 +666,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_hc_no_ipt_stockout" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -502,7 +691,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_hc_no_recommended_bednet_stockout" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -520,13 +716,20 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_healthcareprovider_supervised_last_quarter" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
         <field type="CharField" name="number">29b</field>
-        <field type="CharField" name="name">Pourcentage des prestataires de Soins de Santé supervisés par trimestre</field>
-        <field type="CharField" name="name_en">Percentage of health care providers supervised per trimester</field>
+        <field type="CharField" name="name">Pourcentage des prestataires de Soins de Santé supervisés par mois</field>
+        <field type="CharField" name="name_en">Percentage of health care providers supervised per mois</field>
         <field type="CharField" name="dhis_indicator_id"><None></None></field>
         <field type="CharField" name="dhis_numerator_id"><None></None></field>
         <field type="CharField" name="dhis_numerator_formula"><None></None></field>
@@ -538,7 +741,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_healthfacility_no_asaq1-5_stockout_last_period" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -556,7 +766,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_healthfacility_no_malaria_input_stockout_last_period" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -574,7 +791,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_healthfacility_with_uptodate_nationalmalariacarebook" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -592,7 +816,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_irs_coverage" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -610,7 +841,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">3</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_menages_avec_1mild_pour_deux" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -628,7 +866,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object><object pk="eds"></object></field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object><object pk="unicef"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_person_recognize_cause_symptoms_preventivemeasures_malaria" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -646,7 +891,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_pnlp_staff_trained" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -664,7 +916,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_population_bednet_access_househould" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -682,7 +941,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_population_read_heard_malaria_message_last_30d" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -700,7 +966,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="cchange"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_positive_diagnostic_tests" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -718,7 +991,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_pw_bednet_sleep" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -736,7 +1016,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="pmi"></object></field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pmi"></object><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_pw_received_2ipt_during_ancv" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -754,7 +1041,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="prosani"></object><object pk="unicef"></object><object pk="who"></object><object pk="eds"></object></field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object><object pk="pnlp"></object><object pk="prosani"></object><object pk="sanru"></object><object pk="unicef"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_pw_received_3ipt_last_pregnancy" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -772,7 +1066,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="unicef"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_severe_confirmed_malaria_cases_within_confirmed" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -790,7 +1091,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_severe_malaria_inpatient_treated" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -808,7 +1116,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_simple_confirmed_malaria_cases_treated" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -826,7 +1141,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_suspected_malaria_cases_tested_bs_rdt" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -844,7 +1166,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_u5_act_treated_malaria_cases_community_centers" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -862,7 +1191,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="unicef"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_u5_bednet_sleep" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -880,7 +1216,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="unicef"></object><object pk="pmi"></object></field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pmi"></object><object pk="pnlp"></object><object pk="unicef"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_u5_fever_last_2weeks" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -898,7 +1241,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object><object pk="eds"></object></field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object><object pk="unicef"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_u5_fever_last_weeks_bs" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -916,7 +1266,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="unicef"></object><object pk="who"></object><object pk="eds"></object></field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object><object pk="pnlp"></object><object pk="unicef"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pc_u5_suspected_malaria_cases_outpatient" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -934,7 +1291,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay">45</field>
+        <field type="PositiveIntegerField" name="validation_delay">10</field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object><object pk="who"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
     </object>
     <object pk="pc_zonesante_received_provice_supervision_last_quarter" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -952,7 +1316,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">survey</field>
+        <field type="CharField" name="collection_level">division_provinciale_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pw_anc_received_sp2" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -970,7 +1341,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pw_anc_receiving_bednet" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -988,7 +1366,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="pw_anc_receiving_sp3" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -1006,7 +1391,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="simple_confirmed_treated" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -1024,7 +1416,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="smc_children_receiving_bednet" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -1042,7 +1441,14 @@
         <field type="CharField" name="itype">percentage</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="u5_suspected_malaria_tested" model="dmd.indicator">
         <field type="CharField" name="origin">dhis</field>
@@ -1060,6 +1466,13 @@
         <field type="CharField" name="itype">per_hundred_thousand</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
 </django-objects>

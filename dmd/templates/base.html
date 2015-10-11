@@ -38,6 +38,8 @@
                         <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out fa-fw"></i> Déconnexion</a>
                         </li>
                     </ul>
+                    {% else %}
+                    <li><a href="{% url 'login' %}"><i class="fa fa-sign-in fa-fw"></i> Connexion</a>
                    	{% endif %}
                 </li>
             </ul>
@@ -53,6 +55,11 @@
                     <li><a {% if page = 'upload' %}class="active-menu" {%endif %}href="{% url 'upload' %}">
                         <i class="fa fa-edit"></i> Envoi données</a>
                     </li>
+                    {% if user.partner.can_validate %}
+                    <li><a {% if page = 'validation' %}class="active-menu" {%endif %}href="{% url 'validation' %}">
+                        <i class="fa fa-check"></i> Validation</a>
+                    </li>
+                    {% endif %}
                     <li><a {% if page = 'raw_data' %}class="active-menu" {%endif %}href="{% url 'raw_data' %}">
                     	<i class="fa fa-table"></i> Données brutes</a>
                     </li>
