@@ -34,7 +34,11 @@ urlpatterns = [
     # home
     url(r'^' + uprefix + '/?$', 'dmd.views.home', name='home'),
 
-    # visitor profile
+    # partner public profile
+    url(r'^' + uprefix + '~(?P<username>[a-zA-Z0-9\@\.\+\-\_]{1,30})/?$',
+        'dmd.views.user_profile', name='user_profile'),
+
+    # partner's own password change
     url(r'^' + uprefix + 'change_password/$',
         'dmd.views.user_change_password', name='user_change_password'),
 

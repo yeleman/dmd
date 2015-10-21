@@ -52,6 +52,21 @@ def home(request, *args, **kwargs):
                   context)
 
 
+def user_profile(request, username, *args, **kwargs):
+    context = {'page': 'profile'}
+
+    partner = Partner.get_or_none(username)
+    if partner is None:
+        raise Http404(_("Unable to find Partner with username `{username}`")
+                      .format(username=username))
+
+    context.update({'partner': partner})
+
+    return render(request,
+                  kwargs.get('template_name', 'public_profile.html'),
+                  context)
+
+
 def handle_uploaded_file(f):
     """ stores temporary file as a real file for form upload """
     tfile = tempfile.NamedTemporaryFile(delete=False, suffix='.xlsx')
