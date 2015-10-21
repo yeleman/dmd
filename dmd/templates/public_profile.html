@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ partner }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">   	
+    	<div class="panel panel-default">
+    		<div class="panel-heading">Fiche personnelle</div>
+    		<div class="panel-body">
+				<dl>
+					<dt>Organisation</dt>
+					<dd>{{ partner.organization }}</dd>
+					<dt>Transmission données</dt>
+					{% if partner.can_upload %}
+					<dd>Oui, jusqu'à {{ partner.upload_location }}</dd>
+					{% else %}
+					<dd>Non</dd>
+					{% endif %}
+					<dt>Validation données</dt>
+					{% if partner.can_validate %}
+					<dd>Oui, jusqu'à {{ partner.validation_location }}</dd>
+					{% else %}
+					<dd>Non</dd>
+					{% endif %}
+					<dt>Gestionnaire du site</dt>
+					<dd>{% if partner.user.is_staff %}Oui{% else %}Non{% endif %}</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Activités</div>
+    		<div class="panel-body">
+    			<dl>
+					<dt>Nombre de données transmises</dt>
+					<dd>{{ partner.records_created.count }}</dd>
+					<dt>Nombre de données mises à jour</dt>
+					<dd>{{ partner.records_updated.count }}</dd>
+					<dt>Nombre de données validées</dt>
+					<dd>{{ partner.records_validated.count }}</dd>
+				</dl>
+    		</div>
+		</div>
+    </div>
+</div>
+{% endblock %}
