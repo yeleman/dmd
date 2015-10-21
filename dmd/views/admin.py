@@ -15,7 +15,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 
-from dmd.models import Partner, User
+from dmd.models import Partner, User, Entity
 from dmd.utils import random_password
 
 logger = logging.getLogger(__name__)
@@ -36,7 +36,7 @@ class PartnerForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         instance = kwargs.get('instance')
-        _fields = ('username', 'first_name', 'last_name', 'email',)
+        _fields = ('first_name', 'last_name', 'username', 'email',)
         kwargs['initial'] = model_to_dict(instance.user, _fields) \
             if instance is not None else None
         super(PartnerForm, self).__init__(*args, **kwargs)
@@ -45,6 +45,11 @@ class PartnerForm(forms.ModelForm):
         self.fields = fields_for_model(User, _fields)
         for k, v in pfields.items():
             self.fields.update({k: v})
+
+        # limit and better display entities
+        choices = [e.to_treed_tuple() for e in Entity.clean_tree(Entity.ZONE)]
+        self.fields['upload_location'].choices = choices
+        self.fields['validation_location'].choices = choices
 
         if instance:
             self.fields['username'].widget.attrs['readonly'] = True

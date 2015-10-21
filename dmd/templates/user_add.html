@@ -19,3 +19,26 @@
     </div>
 </div>
 {% endblock %}
+
+{% block onJQready %}
+function generateUsername() {
+	var first_name = $('#id_first_name').val().toLowerCase().trim();
+	var last_name = $('#id_last_name').val().toLowerCase().trim();
+	if (first_name && last_name)
+		return first_name[0] + last_name;
+	else if (first_name)
+		return first_name;
+	else if (last_name)
+		return last_name;
+	return null;
+}
+
+function autoUpdateUsername() {
+	var username = generateUsername();
+	if (!username)
+		return;
+	$('#id_username').val(username);
+}
+$('#id_first_name').on('change', autoUpdateUsername);
+$('#id_last_name').on('change', autoUpdateUsername);
+{% endblock %}

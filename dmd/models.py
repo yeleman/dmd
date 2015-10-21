@@ -107,10 +107,10 @@ class Entity(MPTTModel):
             return None
 
     def __str__(self):
-        return self.name
+        return self.__unicode__().encode('utf-8')
 
     def __unicode__(self):
-        return self.__str__()
+        return self.name
 
     @property
     def std_name(self):
@@ -137,6 +137,13 @@ class Entity(MPTTModel):
     def to_tuple(self):
         return (self.uuid, self)
 
+    def to_treed_tuple(self):
+        if self.level > 0:
+            prefix = ''.join(['-' for _ in range(self.level * 3)]) + ' '
+        else:
+            prefix = ''
+        return self.uuid, "{prefix}{name}".format(prefix=prefix, name=self)
+
     @classmethod
     def lineage(cls):
         return cls.TYPES.keys()[1:]
@@ -159,6 +166,29 @@ class Entity(MPTTModel):
 
     def get_as(self):
         return self.get_ancestor_of(self.AIRE)
+
+    @classmethod
+    def clean_tree(cls, until):
+        ''' ordered list of entity and children up to a type '''
+        lineage = cls.TYPES.keys()
+        break_on = lineage.index(until) + 1
+
+        def loop_on(entity, break_on, descendants, level):
+            if level == break_on:
+                return
+
+            for child in entity.get_children():
+                if child.etype != lineage[level]:
+                    continue
+                descendants.append(child)
+                loop_on(child, break_on, descendants, child.level + 1)
+
+        descendants = []
+        current = cls.get_root()
+        descendants.append(current)
+        loop_on(current, break_on, descendants, current.level + 1)
+
+        return descendants
 
 
 class Organization(models.Model):

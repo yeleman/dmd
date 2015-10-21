@@ -4,6 +4,10 @@ License: Commons Attribution 3.0
 http://creativecommons.org/licenses/by/3.0/
 ------------------------------------------------*/
 
+body #id_upload_location, 
+body #id_validate_location {
+	 font-family: monospace;
+}
 
 /*----------------------------------------------
     COMMON  STYLES    
