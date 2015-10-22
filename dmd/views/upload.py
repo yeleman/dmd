@@ -120,7 +120,7 @@ def upload_guide_download(request, uuid, *args, **kwargs):
 
     dps = Entity.get_or_none(uuid)
     if dps is None:
-        return Http404(_("No Entity to match `{}`").format(uuid))
+        return Http404(_("No Entity to match `{uuid}`").format(uuid=uuid))
 
     file_name = dataentry_fname_for(dps)
     file_content = generate_dataentry_for(dps).getvalue()

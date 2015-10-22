@@ -1,0 +1,47 @@
+<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+	<tr>
+		<th colspan="2">{{ record.indicator }}</th>
+		<th>{{ record.period }}</th>
+		<th>{{ record.entity }}</th>
+	</tr>
+	<tr>
+		<th>Numérateur</th>
+		<td>{{ record.numerator }}</td>
+		<th>Dénominateur</th>
+		<td>{{ record.denominator }}</td>
+	</tr>
+	<tr>
+		<th>Valeur</th>
+		<td>{{ record.value }}</td>
+		<th>Valeur aff.</th>
+		<td>{{ record.human }}</td>
+	</tr>
+	<tr>
+		<th>Source</th>
+		<td>{{ record.source_verbose }}</td>
+		<td colspan="2">Transmis le {{ record.created_on }} par {{ record.created_by }}</td>
+	</tr>
+	<tr>
+		<th>Modification</th>
+		{% if record.updated_by %}
+		<td colspan="3">Modifié le {{ record.updated_on }} par {{ record.updated_by }}</td>
+		{% else %}
+		<td colspan="3">Non modifié</td>
+		{% endif %}
+	</tr>
+	<tr>
+		<th>Validation</th>
+		<td{% if not record.validated_by %} colspan="3"{% endif %}>{{ record.validation_status_verbose }}</td>
+		{% if record.validated_by %}
+		<td colspan="2">Validé le {{ record.validated_on }} par {{ record.validated_by }}</td>
+		{% endif %}
+	</tr>
+	{% if record.aggregate %}
+	<tr>
+		<th>Sources</th>
+		<td>{{ record.sources.count }}</td>
+		<td colspan="2">{% for source in record.sources.all %}<a href="{% url 'raw_data_record' source.id %}">{{ source.id }}</a> {% endfor %}
+		</td>
+	<tr>
+	{% endif %}
+</table>

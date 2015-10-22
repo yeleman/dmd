@@ -90,7 +90,19 @@ $('form').on('submit', function (e) {
         yAxis: { title: null, min:0 },
         series: [{
             name: "{{ trd.indicator.name }}",
-            data: [{% for point in trd.points %}{% if point = None %}null{% else %}{{ point.value|stringformat:".2f" }}{% endif %},{% endfor %}],
+            data: [
+            	{% for point in trd.points %}
+            		{
+            			y: {% if point = None %}null{% else %}{{ point.value|stringformat:".2f" }}{% endif %},
+            			{% if point %}
+            			rid: '{{ point.id }}',
+            			events: {
+            				click: function (e) { window.location = "{% url 'raw_data_record' point.id %}"; }
+            			},
+            			{% endif %}
+            		},
+        		{% endfor %}
+        	],
         }],
         exporting: { enabled: true, },
 	    credits: { enabled: false, }

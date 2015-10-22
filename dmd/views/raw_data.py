@@ -6,6 +6,8 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import logging
 
+from django.http import Http404
+from django.utils.translation import ugettext as _
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -36,6 +38,22 @@ def raw_data(request, entity_uuid=None, period_str=None, *args, **kwargs):
 
     return render(request,
                   kwargs.get('template_name', 'raw_data.html'),
+                  context)
+
+
+@login_required
+def raw_data_record(request, record_id, *args, **kwargs):
+    context = {'page': 'raw_data'}
+
+    dr = DataRecord.get_by_id(record_id)
+    if dr is None:
+        raise Http404(_("Unable to find DataRecord with ID `{id}`")
+                      .format(id=record_id))
+
+    context.update({'record': dr})
+
+    return render(request,
+                  kwargs.get('template_name', 'raw_data_record.html'),
                   context)
 
 

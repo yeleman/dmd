@@ -743,6 +743,14 @@ class DataRecord(models.Model):
     sources = models.ManyToManyField('self', blank=True)
 
     @property
+    def source_verbose(self):
+        return self.SOURCES.get(self.source)
+
+    @property
+    def validation_status_verbose(self):
+        return self.VALIDATION_STATUSES.get(self.validation_status)
+
+    @property
     def validated(self):
         return self.validation_status in [
             self.VALIDATED, self.AUTO_VALIDATED, self.MODIFIED]
@@ -808,6 +816,13 @@ class DataRecord(models.Model):
         try:
             return cls.objects.get(indicator=indicator,
                                    period=period, entity=entity)
+        except cls.DoesNotExist:
+            return None
+
+    @classmethod
+    def get_by_id(cls, drid):
+        try:
+            return cls.objects.get(id=drid)
         except cls.DoesNotExist:
             return None
 

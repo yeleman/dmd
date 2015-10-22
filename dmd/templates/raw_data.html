@@ -23,6 +23,7 @@
                         <th>#</th>
                         <th>Indicateur</th>
                         <th>Valeur</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,7 @@
                     	<td>{{ record.indicator.number }}</td>
                         <td>{{ record.indicator }}</td>
                         <td class="center">{{ record.human }}</td>
+                        <td class="center"><a href="{% url 'raw_data_record' record.id %}"><i class="fa fa-info"> </i></a></td>
                     </tr>
                     {% empty %}
                     <tr><td colspan="3">Aucune donnée pour ce couple entité/période</td></tr>

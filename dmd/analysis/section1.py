@@ -19,6 +19,7 @@ def data_point_for(indicator, entity, period):
         return None
 
     return {
+        'id': dr.id,
         'numerator': dr.numerator,
         'denominator': dr.denominator,
         'value': dr.value,

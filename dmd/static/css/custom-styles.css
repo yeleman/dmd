@@ -9,6 +9,10 @@ body #id_validate_location {
 	 font-family: monospace;
 }
 
+td.center {
+	text-align: center;
+}
+
 /*----------------------------------------------
     COMMON  STYLES    
 ------------------------------------------------*/

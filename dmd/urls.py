@@ -56,6 +56,13 @@ urlpatterns = [
         name='validation'),
 
     # raw data
+    url(r'^' + uprefix + 'raw_data/record/(?P<record_id>[0-9]+)/?$',
+        'dmd.views.raw_data.raw_data_record', name='raw_data_record'),
+    url(r'^' + uprefix + 'raw_data/record/(?P<record_id>[0-9]+)/noframe/?$',
+        'dmd.views.raw_data.raw_data_record',
+        {'template_name': 'raw_data_record_noframe.html'},
+        name='raw_data_record_noframe'),
+
     url(r'^' + uprefix + 'raw_data/(?P<entity_uuid>[a-z\-0-9]{36})'
         r'/(?P<period_str>[0-9]{4}\-[0-9]{2})/?$',
         'dmd.views.raw_data.raw_data', name='raw_data'),
