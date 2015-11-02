@@ -243,7 +243,7 @@
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="collection_period">36</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
@@ -268,7 +268,7 @@
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="collection_period">3</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
@@ -343,7 +343,7 @@
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
@@ -418,7 +418,7 @@
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="collection_period">3</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
@@ -443,7 +443,7 @@
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">zone_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="collection_period">3</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
@@ -493,7 +493,7 @@
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="collection_period">3</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
@@ -543,7 +543,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="collection_period">36</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object></field>
@@ -568,7 +568,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
@@ -593,7 +593,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">3</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="msh"></object><object pk="pnlp"></object><object pk="prosani"></object></field>
@@ -618,7 +618,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="unicef"></object></field>
@@ -643,7 +643,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">3</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
@@ -668,7 +668,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object><object pk="who"></object></field>
@@ -743,7 +743,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
@@ -818,7 +818,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="collection_period">4</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
@@ -843,7 +843,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">3</field>
+        <field type="PositiveIntegerField" name="collection_period">6</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
@@ -868,7 +868,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="collection_period">36</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object><object pk="unicef"></object></field>
@@ -893,7 +893,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="sanru"></object></field>
@@ -918,7 +918,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
@@ -968,7 +968,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="cchange"></object></field>
@@ -1068,7 +1068,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="collection_period">36</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object><object pk="unicef"></object><object pk="who"></object></field>
@@ -1118,7 +1118,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
@@ -1143,7 +1143,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">zone_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="who"></object></field>
@@ -1243,7 +1243,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">6</field>
+        <field type="PositiveIntegerField" name="collection_period">12</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object><object pk="unicef"></object></field>
@@ -1268,7 +1268,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">24</field>
+        <field type="PositiveIntegerField" name="collection_period">36</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="eds"></object><object pk="pnlp"></object><object pk="unicef"></object><object pk="who"></object></field>
@@ -1318,7 +1318,7 @@
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">2</field>
+        <field type="PositiveIntegerField" name="collection_period">3</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
