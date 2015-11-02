@@ -9,6 +9,17 @@
 <p>Les données doivent être transmises en utilisant le <strong>masque de saisie standard</strong>.</p>
 <p>Pour plus d'informations sur l'envoi des données, veuillez consulter le <a class="btn btn-default" href="{% url 'upload_guide' %}"><i class="fa fa-book"></i> Guide d'envoi des données</a>.</p>
 </div>
+{% if xls_data %}
+<div class="alert alert-{{ xls_data.feedback.level }}">
+<p>{{ xls_data.feedback.text|linebreaksbr }}</p>
+<ul>
+	{% for error in xls_data.errors %}
+	<li><strong title="{{ error.slug }}">{{ error.column|default:"Ligne " }}{{ error.row }}</strong> : {{ error.text }}{% if error.indicator %} <i class="hand fa fa-info" title="{{ error.indicator }}"></i>{% endif %}</li>
+	{% endfor %}
+</ul>
+<p>Corrigez votre fichier et renvoyez le pour enregistrer ces données.</p>
+</div>
+{% endif %}
 <div class="row">
     <div class="col-md-12">
     	<div class="panel panel-default">

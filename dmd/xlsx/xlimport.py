@@ -6,6 +6,7 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import logging
 
+from django.utils import timezone
 from django.utils.translation import ugettext as _
 from openpyxl.utils.exceptions import InvalidFileException
 from openpyxl import load_workbook
@@ -28,11 +29,19 @@ class IncorrectExcelFile(ValueError):
     pass
 
 
-def read_xls(filepath):
+class UploadPermissionDenied(ValueError):
+    pass
+
+
+def read_xls(filepath, partner):
+
+    if not partner.can_upload:
+        raise UploadPermissionDenied(_("{user} is not allowed to submit data")
+                                     .format(user=partner))
+
     try:
-        wb = load_workbook(filepath)
+        wb = load_workbook(filepath, data_only=True)
     except InvalidFileException:
-        raise
         raise IncorrectExcelFile(_("Not a proper XLSX Template."))
 
     ws = wb.active
@@ -41,7 +50,22 @@ def read_xls(filepath):
     cd = lambda row, column: ws.cell(row=row, column=column).value
 
     # data holder
-    data = {}
+    data = {
+        'errors': [],
+    }
+
+    # record now's time to compare with delays
+    submited_on = timezone.now()
+
+    def add_error(row, column=None, indicator=None, error=None, text=None):
+        data['errors'].append({
+            'row': row,
+            'column': column,
+            'indicator': Indicator.get_or_none(indicator.slug)
+            if indicator else None,
+            'slug': error,
+            'text': text,
+        })
 
     # retrieve and store default year/month
     default_year_addr = "=$C$4"
@@ -58,11 +82,17 @@ def read_xls(filepath):
 
     for row in range(5, nb_rows + 1):
 
+        row_has_data = sum([1 for x in ws.rows[row - 1][4:] if x.value])
+        if not row_has_data:
+            continue
+
         rdc = Entity.get_root()
+
         dps = Entity.find_by_stdname(cd(row, 1), parent=rdc)
         if dps is None:
             logger.warning("No DPS for row #{}".format(row))
             continue  # no DPS, no data
+
         zs = Entity.find_by_stdname(cd(row, 2), parent=dps)
         if zs is None:
             if cd(row, 2).lower().strip() != "-":
@@ -72,6 +102,14 @@ def read_xls(filepath):
                 entity = dps
         else:
             entity = zs
+
+        # check upload location authorization
+        if partner.upload_location not in entity.get_ancestors():
+            add_error(row, error='permission_denied',
+                      text=_("You can't submit data for "
+                             "that location ({entity})")
+                      .format(entity=entity))
+            continue
 
         # retrieve period
         year_str = cd(row, 3)
@@ -94,12 +132,16 @@ def read_xls(filepath):
 
         if year is None or month is None:
             logger.warning("No year or month for row #{}".format(row))
+            add_error(row, error='incorrect_period',
+                      text=_("Missing year or month"))
             continue
 
         try:
             period = MonthPeriod.get_or_create(year, month)
         except ValueError as e:
             logger.warning("Unable to retrieve period: {}".format(e))
+            add_error(row, error='incorrect_period',
+                      text=_("Unable to retrieve period"))
             continue
 
         for idx, cell in enumerate(ws.rows[2][4:]):
@@ -111,6 +153,8 @@ def read_xls(filepath):
             try:
                 number = cell.value.split('-')[0].strip()
             except:
+                # the header doesn't respect the format
+                # better fail everything
                 raise IncorrectExcelFile(_("Not a proper XLSX Template."))
 
             num = cd(row, column)
@@ -125,10 +169,33 @@ def read_xls(filepath):
             # not an expected number
             if indicator is None:
                 logger.warning("No indicator found at col #{}".format(column))
+                add_error(row, column=cell.column,
+                          error='incorrect_indicator',
+                          text=_("Unable to match an Indicator"))
+                continue
+
+            # check submission period for that Indicator
+            if not indicator.can_submit_on(on=submited_on, period=period):
+                logger.warning("{on} is not a valid submission time "
+                               "for {ind} {period}"
+                               .format(on=submited_on, ind=indicator,
+                                       period=period))
+                add_error(row, column=cell.column,
+                          indicator=indicator,
+                          error='outside_submussion_delay',
+                          text=_("{on} is outside submission period "
+                                 "for Indicator #{ind} at {period}")
+                          .format(on=submited_on.strftime('%d-%m-%Y'),
+                                  ind=indicator.number,
+                                  period=period))
                 continue
 
             if not indicator.is_number and denom is None:
                 logger.warning("No denominator for indic #{}".format(number))
+                add_error(row, column=cell.column,
+                          error='missing_denominator',
+                          text=_("Missing denominator on "
+                                 "non-number Indicator"))
                 continue
             elif indicator.is_number:
                 denom = 1
@@ -137,10 +204,13 @@ def read_xls(filepath):
                 num = float(num)
                 denom = float(denom)
             except:
-                raise ExcelValueError(
-                    _("Incorrect numerator or denominator value "
-                      "`{num} / {denom}` for: {indic}")
-                    .format(num=num, denom=denom, indic=indicator.name))
+                add_error(row, column=cell.column,
+                          error='incorrect_value',
+                          indicator=indicator,
+                          text=_("Incorrect value for numerator "
+                                 "or denominator `{num} / {denom}`")
+                                .format(num=num, denom=denom))
+                continue
 
             ident = "{period}_{slug}".format(period=period.strid,
                                              slug=indicator.slug)

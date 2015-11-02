@@ -9,6 +9,7 @@ import tempfile
 import os
 
 from py3compat import text_type
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, Http404
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy
@@ -19,7 +20,8 @@ from django.contrib.auth.decorators import login_required
 
 from dmd.models import Entity, DataRecord
 from dmd.xlsx.xlimport import (read_xls, ExcelValueMissing,
-                               ExcelValueError, IncorrectExcelFile)
+                               ExcelValueError, IncorrectExcelFile,
+                               UploadPermissionDenied)
 from dmd.xlsx.xlexport import dataentry_fname_for, generate_dataentry_for
 
 logger = logging.getLogger(__name__)
@@ -39,34 +41,58 @@ class ExcelUploadForm(forms.Form):
 
 
 def create_records_from(request, xls_data, filepath=None):
-    redir = False
+    nb_errors = nb_updated = nb_created = 0
     try:
         payload = DataRecord.batch_create(xls_data,
                                           request.user.partner)
     except Exception as e:
+        payload = xls_data
+        level = 'danger'
         logger.exception(e)
-        messages.error(request, text_type(e))
+        message = _("Unable to record data: {exp}").format(exp=repr(e))
+        nb_errors = 1
     else:
+        nb_errors = len(payload['errors'])
         nb_created = sum([1 for v in payload.values()
-                          if v.get('action') == 'created'])
+                          if isinstance(v, dict)
+                          and v.get('action') == 'created'])
         nb_updated = sum([1 for v in payload.values()
-                          if v.get('action') == 'updated'])
+                          if isinstance(v, dict)
+                          and v.get('action') == 'updated'])
+
         if nb_created or nb_updated:
             message = _("Congratulations! Your data has been recorded.")
             if nb_created:
                 message += "\n" + _("{nb_created} records were created.")
             if nb_updated:
                 message += "\n" + _("{nb_updated} records were updated.")
-            messages.success(request, message.format(nb_created=nb_created,
-                                                     nb_updated=nb_updated))
+            if nb_errors:
+                message += "\n" + _("{nb_errors} errors "
+                                    "were found in your file.")
+                level = 'warning'
+            else:
+                level = 'success'
+        elif not nb_errors:
+            message = _("Thank You for submitting! "
+                        "No new data to record though.")
+            level = 'info'
         else:
-            messages.info(request, _("Thank You for submitting! "
-                                     "No new data to record though."))
-        redir = True
+            message = _("Outch! Your file contains {nb_errors} errors!")
+            level = 'danger'
     finally:
         if filepath is not None:
             os.unlink(filepath)
-    return redir
+    payload['feedback'] = {
+        'nb_errors': nb_errors,
+        'nb_updated': nb_updated,
+        'nb_created': nb_created,
+        'text': message.format(nb_errors=nb_errors,
+                               nb_updated=nb_updated,
+                               nb_created=nb_created),
+        'level': level,
+        'redirect': level in ('success', 'info'),
+    }
+    return payload
 
 
 @login_required
@@ -75,25 +101,39 @@ def upload(request, template_name='upload.html'):
     context = {'page': 'upload'}
 
     if request.method == 'POST':
+
+        # ensure can_upload
+        if not request.user.partner.can_upload:
+            raise PermissionDenied(_("You are not allowed to submit data."))
+
         form = ExcelUploadForm(request.POST, request.FILES)
         if form.is_valid():
             filepath = handle_uploaded_file(request.FILES['data_file'])
 
             try:
-                xls_data = read_xls(filepath)
+                xls_data = read_xls(filepath, request.user.partner)
             except Exception as e:
                 logger.exception(e)
                 if isinstance(e, (IncorrectExcelFile,
                                   ExcelValueMissing,
-                                  ExcelValueError)):
+                                  ExcelValueError,
+                                  UploadPermissionDenied)):
                     messages.error(request, text_type(e))
                 else:
                     messages.error(
                         request, _("Unexpected Error while reading XLS file"))
+
                 return redirect('upload')
 
-            if create_records_from(request, xls_data, filepath):
-                return redirect('upload')
+            # sucessfuly read the XLS file
+            xls_data = create_records_from(request, xls_data, filepath)
+            if xls_data['feedback']['redirect']:
+                # send message with appropriate level and redirect
+                getattr(messages, xls_data['feedback']['level'])(
+                    request, xls_data['feedback']['text'])
+                return redirect('home')
+
+            context.update({'xls_data': xls_data})
         else:
             # django form validation errors
             pass

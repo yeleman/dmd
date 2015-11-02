@@ -13,6 +13,10 @@ td.center {
 	text-align: center;
 }
 
+.hand:hover {
+	cursor: pointer;
+}
+
 /*----------------------------------------------
     COMMON  STYLES    
 ------------------------------------------------*/

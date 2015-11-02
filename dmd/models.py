@@ -606,6 +606,24 @@ class Indicator(models.Model):
     def __unicode__(self):
         return self.__str__()
 
+    def transmission_deadline(self, period):
+        if self.transmission_delay:
+            return period.end_on + datetime.timedelta(
+                days=self.transmission_delay)
+        elif self.collection_period:
+            nb_weeks = self.collection_period * 4
+            return period.end_on + datetime.timedelta(
+                weeks=nb_weeks)
+        return None
+
+    def can_submit_on(self, on, period):
+        if on < period.end_on:
+            return False
+        deadline = self.transmission_deadline(period)
+        if deadline:
+            return on < deadline
+        return True
+
     @classmethod
     def get_or_none(cls, slug):
         try:
@@ -829,49 +847,56 @@ class DataRecord(models.Model):
     @classmethod
     def batch_create(cls, data, partner):
 
-        for ident, dp in data.items():
+        # make sure we can rollback if something goes wrong
+        with transaction.atomic():
 
-            slug = dp['slug']
-            period = dp['period']
-            entity = dp['entity']
+            for ident, dp in data.items():
 
-            indic = Indicator.get_or_none(slug)
-            dr = cls.get_or_none(indicator=indic,
-                                 period=period,
-                                 entity=entity)
+                # skip errors
+                if ident == 'errors':
+                    continue
 
-            num = dp['numerator']
-            denum = dp['denominator']
+                slug = dp['slug']
+                period = dp['period']
+                entity = dp['entity']
 
-            if dr and (dr.numerator != num or dr.denominator != denum):
-                old_values = {'numerator': dr.numerator,
-                              'denominator': dr.denominator}
-                action = 'updated'
+                indic = Indicator.get_or_none(slug)
+                dr = cls.get_or_none(indicator=indic,
+                                     period=period,
+                                     entity=entity)
 
-                dr.numerator = num
-                dr.denominator = denum
-                dr.record_update(partner)
+                num = dp['numerator']
+                denum = dp['denominator']
 
-            elif dr is None:
-                old_values = None
-                action = 'created'
+                if dr and (dr.numerator != num or dr.denominator != denum):
+                    old_values = {'numerator': dr.numerator,
+                                  'denominator': dr.denominator}
+                    action = 'updated'
 
-                dr = cls.objects.create(
-                    indicator=indic,
-                    period=period,
-                    entity=entity,
-                    numerator=num,
-                    denominator=denum,
-                    source=cls.UPLOAD,
-                    created_by=partner)
-            else:
-                # new data are identical to datarecord
-                continue
+                    dr.numerator = num
+                    dr.denominator = denum
+                    dr.record_update(partner)
 
-            data[ident].update({
-                'action': action,
-                'id': dr.id,
-                'previous': old_values})
+                elif dr is None:
+                    old_values = None
+                    action = 'created'
+
+                    dr = cls.objects.create(
+                        indicator=indic,
+                        period=period,
+                        entity=entity,
+                        numerator=num,
+                        denominator=denum,
+                        source=cls.UPLOAD,
+                        created_by=partner)
+                else:
+                    # new data are identical to datarecord
+                    continue
+
+                data[ident].update({
+                    'action': action,
+                    'id': dr.id,
+                    'previous': old_values})
 
         return data
 
