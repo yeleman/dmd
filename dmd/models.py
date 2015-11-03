@@ -855,7 +855,7 @@ class DataRecord(models.Model):
             return None
 
     @classmethod
-    def batch_create(cls, data, partner):
+    def batch_create(cls, data, partner, auto_validate=False):
 
         # make sure we can rollback if something goes wrong
         with transaction.atomic():
@@ -899,6 +899,9 @@ class DataRecord(models.Model):
                         denominator=denum,
                         source=cls.UPLOAD,
                         created_by=partner)
+
+                    if auto_validate:
+                        dr.auto_validate(on=timezone.now())
                 else:
                     # new data are identical to datarecord
                     continue

@@ -6,6 +6,7 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import logging
 import copy
+from pprint import pprint as pp
 
 from django.core.management.base import BaseCommand
 from optparse import make_option
@@ -67,9 +68,9 @@ class Command(BaseCommand):
                 'numerator': numerator,
                 'denominator': denominator}})
 
-        d = DataRecord.batch_create(data, dhisbot)
+        d = DataRecord.batch_create(data, dhisbot, auto_validate=True)
         if self.debug:
-            from pprint import pprint as pp ; pp(d)
+            pp(d)
         return d
 
     def no_record_at(self, entity, period):
