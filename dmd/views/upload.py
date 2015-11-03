@@ -18,7 +18,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from dmd.models import Entity, DataRecord
+from dmd.models.Entities import Entity
+from dmd.models.DataRecords import DataRecord
 from dmd.xlsx.xlimport import (read_xls, ExcelValueMissing,
                                ExcelValueError, IncorrectExcelFile,
                                UploadPermissionDenied)

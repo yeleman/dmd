@@ -17,7 +17,8 @@ from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.styles.fills import FILL_SOLID
 
 from dmd.xlsx import column_to_letter
-from dmd.models import Entity, Indicator
+from dmd.models.Entities import Entity
+from dmd.models.Indicators import Indicator
 
 logger = logging.getLogger(__name__)
 

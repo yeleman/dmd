@@ -7,7 +7,8 @@ from __future__ import (unicode_literals, absolute_import,
 import logging
 from collections import OrderedDict
 
-from dmd.models import Indicator, DataRecord
+from dmd.models.Indicators import Indicator
+from dmd.models.DataRecords import DataRecord
 
 logger = logging.getLogger(__name__)
 

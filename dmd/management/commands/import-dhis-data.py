@@ -12,7 +12,11 @@ from django.core.management.base import BaseCommand
 from optparse import make_option
 
 from dmd.dhis_tools import get_dhis
-from dmd.models import Entity, MonthPeriod, Indicator, DataRecord, Partner
+from dmd.models.Entities import Entity
+from dmd.models.Periods import MonthPeriod
+from dmd.models.Indicators import Indicator
+from dmd.models.DataRecords import DataRecord
+from dmd.models.Partners import Partner
 
 DEBUG = True
 logger = logging.getLogger(__name__)

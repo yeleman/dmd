@@ -11,7 +11,9 @@ from django.utils.translation import ugettext as _
 from openpyxl.utils.exceptions import InvalidFileException
 from openpyxl import load_workbook
 
-from dmd.models import MonthPeriod, Entity, Indicator
+from dmd.models.Periods import MonthPeriod
+from dmd.models.Entities import Entity
+from dmd.models.Indicators import Indicator
 from dmd.xlsx import letter_to_column
 
 logger = logging.getLogger(__name__)

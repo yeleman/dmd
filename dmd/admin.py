@@ -8,8 +8,11 @@ from __future__ import (unicode_literals, absolute_import,
 from django.contrib import admin
 from django.contrib.sessions.models import Session
 
-from dmd.models import (Entity, DataRecord, Indicator, MonthPeriod,
-                        Organization, Partner)
+from dmd.models.Entities import Entity
+from dmd.models.DataRecords import DataRecord
+from dmd.models.Indicators import Indicator
+from dmd.models.Periods import MonthPeriod
+from dmd.models.Partners import Organization, Partner
 
 admin.site.register(Entity)
 admin.site.register(DataRecord)

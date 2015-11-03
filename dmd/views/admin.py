@@ -15,7 +15,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 
-from dmd.models import Partner, User, Entity
+from dmd.models.Partners import Partner, User
+from dmd.models.Entities import Entity
 from dmd.utils import random_password
 
 logger = logging.getLogger(__name__)

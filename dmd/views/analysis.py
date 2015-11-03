@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-from dmd.models import MonthPeriod
+from dmd.models.Periods import MonthPeriod
 from dmd.utils import import_path
 from dmd.analysis import SECTIONS
 from dmd.views.common import process_period_filter, process_entity_filter

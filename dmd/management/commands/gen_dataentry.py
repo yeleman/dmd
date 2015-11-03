@@ -9,7 +9,7 @@ import logging
 from django.core.management.base import BaseCommand
 from optparse import make_option
 
-from dmd.models import Entity
+from dmd.models.Entities import Entity
 from dmd.xlsx.xlexport import generate_dataentry_for
 
 

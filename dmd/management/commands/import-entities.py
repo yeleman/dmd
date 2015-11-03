@@ -12,7 +12,7 @@ from django.core.management.base import BaseCommand
 from optparse import make_option
 from path import Path as p
 
-from dmd.models import Entity
+from dmd.models.Entities import Entity
 
 
 logger = logging.getLogger(__name__)

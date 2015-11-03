@@ -12,7 +12,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-from dmd.models import DataRecord, Metadata
+from dmd.models import Metadata
+from dmd.models.DataRecords import DataRecord
 
 from dmd.views.common import process_period_filter, process_entity_filter
 

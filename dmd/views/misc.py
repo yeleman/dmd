@@ -17,7 +17,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.views.static import serve
 
-from dmd.models import Partner
+from dmd.models.Partners import Partner
 
 logger = logging.getLogger(__name__)
 

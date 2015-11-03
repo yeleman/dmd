@@ -9,7 +9,7 @@ import json
 
 from django.http import JsonResponse, HttpResponse
 
-from dmd.models import Entity
+from dmd.models.Entities import Entity
 
 logger = logging.getLogger(__name__)
 

@@ -9,7 +9,8 @@ import logging
 from django.http import Http404
 from django.utils.translation import ugettext as _
 
-from dmd.models import Entity, MonthPeriod
+from dmd.models.Entities import Entity
+from dmd.models.Periods import MonthPeriod
 
 logger = logging.getLogger(__name__)
 
