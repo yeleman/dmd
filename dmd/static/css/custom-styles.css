@@ -17,6 +17,10 @@ td.center {
 	cursor: pointer;
 }
 
+.entity_filter {
+	text-transform: uppercase;
+}
+
 /*----------------------------------------------
     COMMON  STYLES    
 ------------------------------------------------*/

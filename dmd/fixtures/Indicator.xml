@@ -275,131 +275,6 @@
         <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
         <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
-    <object pk="nb_hc_no_ipt_stockout" model="dmd.indicator">
-        <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">08a</field>
-        <field type="CharField" name="name">Nombre de centres  de santé ne reportant aucune rupture de stock de médicaments IPT (SP) recommandés à l'échelle nationale à tout moment au cours de la période de reporting dans les centres de santé cibles</field>
-        <field type="CharField" name="name_en">Number of health centers that report no stockouts of national recommended intermittent preventive treatment in pregnancy with sulfadoxine-pyrimethamine at any time during the reporting period in the health centers target X</field>
-        <field type="CharField" name="dhis_indicator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
-        <field type="CharField" name="dhis_denominator_id"><None></None></field>
-        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
-        <field type="CharField" name="category">process</field>
-        <field type="CharField" name="tech_area1">pvc</field>
-        <field type="CharField" name="tech_area2">iptp</field>
-        <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
-        <field type="CharField" name="value_format">{value}</field>
-        <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">zone_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">1</field>
-        <field type="PositiveIntegerField" name="transmission_delay">45</field>
-        <field type="PositiveIntegerField" name="validation_delay">10</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
-        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-    </object>
-    <object pk="nb_hc_no_recommended_bednet_stockout" model="dmd.indicator">
-        <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">04a</field>
-        <field type="CharField" name="name">Nombre de centres de santé ne reportant aucune rupture de stock de MILDs recommandées à l'échelle nationale, à tout moment au cours de la période de reporting dans les centres de santé cibles</field>
-        <field type="CharField" name="name_en">Number of health centers that report no stockouts of national recommended long-lasting insecticide-treated nets at any time during the reporting period in the health centers target X</field>
-        <field type="CharField" name="dhis_indicator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
-        <field type="CharField" name="dhis_denominator_id"><None></None></field>
-        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
-        <field type="CharField" name="category">process</field>
-        <field type="CharField" name="tech_area1">pvc</field>
-        <field type="CharField" name="tech_area2">psm</field>
-        <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
-        <field type="CharField" name="value_format">{value}</field>
-        <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">zone_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">1</field>
-        <field type="PositiveIntegerField" name="transmission_delay">45</field>
-        <field type="PositiveIntegerField" name="validation_delay">10</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
-        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-    </object>
-    <object pk="nb_healthcareprovider_supervised_last_quarter" model="dmd.indicator">
-        <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">29a</field>
-        <field type="CharField" name="name">Nombre des prestataires de Soins de Santé supervisés par mois</field>
-        <field type="CharField" name="name_en">Number of health care providers supervised per month</field>
-        <field type="CharField" name="dhis_indicator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
-        <field type="CharField" name="dhis_denominator_id"><None></None></field>
-        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
-        <field type="CharField" name="category"><None></None></field>
-        <field type="CharField" name="tech_area1">sme</field>
-        <field type="CharField" name="tech_area2">supervision</field>
-        <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
-        <field type="CharField" name="value_format">{value}</field>
-        <field type="CharField" name="collection_type">survey</field>
-        <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">1</field>
-        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
-        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
-        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
-    </object>
-    <object pk="nb_healthfacility_no_asaq1-5_stockout_last_period" model="dmd.indicator">
-        <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">27a</field>
-        <field type="CharField" name="name">Nombre de Formations sanitaires ne reportant aucune rupture d' ASAQ 1-5  ans à l'échelle nationale, à n'importe quel moment au cours de la période de reporting</field>
-        <field type="CharField" name="name_en">Number of health facility reporting no ASAQ 1-5 stockout at national level, within the last reporting period</field>
-        <field type="CharField" name="dhis_indicator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
-        <field type="CharField" name="dhis_denominator_id"><None></None></field>
-        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
-        <field type="CharField" name="category"><None></None></field>
-        <field type="CharField" name="tech_area1">cm</field>
-        <field type="CharField" name="tech_area2">community_case_management</field>
-        <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
-        <field type="CharField" name="value_format">{value}</field>
-        <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">zone_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">1</field>
-        <field type="PositiveIntegerField" name="transmission_delay">45</field>
-        <field type="PositiveIntegerField" name="validation_delay">10</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
-        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-    </object>
-    <object pk="nb_healthfacility_no_malaria_input_stockout_last_period" model="dmd.indicator">
-        <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">26a</field>
-        <field type="CharField" name="name">Nombre de Formations sanitaires ne reportant aucune rupture de stock des intrants antipaludiques recommandés à l'échelle nationale, à n'importe quel moment au cours de la période de reporting</field>
-        <field type="CharField" name="name_en">Number of health facility reporting no recommended malaria medecine stockout at national level, within the last reporting period</field>
-        <field type="CharField" name="dhis_indicator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
-        <field type="CharField" name="dhis_denominator_id"><None></None></field>
-        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
-        <field type="CharField" name="category"><None></None></field>
-        <field type="CharField" name="tech_area1">cm</field>
-        <field type="CharField" name="tech_area2">community_case_management</field>
-        <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
-        <field type="CharField" name="value_format">{value}</field>
-        <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">zone_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">1</field>
-        <field type="PositiveIntegerField" name="transmission_delay">45</field>
-        <field type="PositiveIntegerField" name="validation_delay">10</field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
-        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-    </object>
     <object pk="nb_healthworker_trained_refreshed_on_malaria_care_zone_sante" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
         <field type="CharField" name="number">24</field>
@@ -474,31 +349,6 @@
         <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="prosani"></object><object pk="unicef"></object><object pk="who"></object></field>
         <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
         <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-    </object>
-    <object pk="nb_zonesante_received_provice_supervision_last_quarter" model="dmd.indicator">
-        <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">35a</field>
-        <field type="CharField" name="name">Nombre de ZS ayant reçu au moins une visite de supervision du niveau provincial dans un trimestre</field>
-        <field type="CharField" name="name_en"><None></None></field>
-        <field type="CharField" name="dhis_indicator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_id"><None></None></field>
-        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
-        <field type="CharField" name="dhis_denominator_id"><None></None></field>
-        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
-        <field type="CharField" name="category"><None></None></field>
-        <field type="CharField" name="tech_area1">sme</field>
-        <field type="CharField" name="tech_area2">supervision</field>
-        <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
-        <field type="CharField" name="value_format">{value}</field>
-        <field type="CharField" name="collection_type">survey</field>
-        <field type="CharField" name="collection_level">division_provinciale_sante</field>
-        <field type="PositiveIntegerField" name="collection_period">3</field>
-        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
-        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
-        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"><object pk="pnlp"></object><object pk="sanru"></object></field>
-        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
-        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
     <object pk="nb_zonesante_received_provice_supervision_per_month" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
@@ -677,7 +527,7 @@
     </object>
     <object pk="pc_hc_no_ipt_stockout" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">08b</field>
+        <field type="CharField" name="number">08</field>
         <field type="CharField" name="name">Pourcentage de centres de santé ne reportant aucune rupture de stock de médicaments IPT (SP) recommandés à l'échelle nationale à tout moment au cours de la période de reporting dans les centres de santé cibles</field>
         <field type="CharField" name="name_en">Percentage of health centers that report no stockouts of national recommended intermittent preventive treatment in pregnancy with sulfadoxine-pyrimethamine at any time during the reporting period in the health centers target X</field>
         <field type="CharField" name="dhis_indicator_id"><None></None></field>
@@ -702,7 +552,7 @@
     </object>
     <object pk="pc_hc_no_recommended_bednet_stockout" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">04b</field>
+        <field type="CharField" name="number">04</field>
         <field type="CharField" name="name">Pourcentage de centres de santé ne reportant aucune rupture de stock de MILDs recommandées à l'échelle nationale, à tout moment au cours de la période de reporting dans les centres de santé cibles</field>
         <field type="CharField" name="name_en">Percentage of health centers that report no stockouts of national recommended long-lasting insecticide-treated nets at any time during the reporting period in the health centers target X</field>
         <field type="CharField" name="dhis_indicator_id"><None></None></field>
@@ -727,7 +577,7 @@
     </object>
     <object pk="pc_healthcareprovider_supervised_last_quarter" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">29b</field>
+        <field type="CharField" name="number">29</field>
         <field type="CharField" name="name">Pourcentage des prestataires de Soins de Santé supervisés par mois</field>
         <field type="CharField" name="name_en">Percentage of health care providers supervised per mois</field>
         <field type="CharField" name="dhis_indicator_id"><None></None></field>
@@ -752,7 +602,7 @@
     </object>
     <object pk="pc_healthfacility_no_asaq1-5_stockout_last_period" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">27b</field>
+        <field type="CharField" name="number">27</field>
         <field type="CharField" name="name">Pourcentage de Formations sanitaires ne reportant aucune rupture d' ASAQ 1-5 ans à l'échelle nationale, à n'importe quel moment au cours de la période de reporting</field>
         <field type="CharField" name="name_en">Percentage of health facility reporting no ASAQ 1-5 stockout at national level, within the last reporting period</field>
         <field type="CharField" name="dhis_indicator_id"><None></None></field>
@@ -777,7 +627,7 @@
     </object>
     <object pk="pc_healthfacility_no_malaria_input_stockout_last_period" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">26b</field>
+        <field type="CharField" name="number">26</field>
         <field type="CharField" name="name">Pourcentage de Formations sanitaires ne reportant aucune rupture de stock des intrants antipaludiques recommandés à l'échelle nationale, à n'importe quel moment au cours de la période de reporting</field>
         <field type="CharField" name="name_en">Percentage of health facility reporting no recommended malaria medecine stockout at national level, within the last reporting period</field>
         <field type="CharField" name="dhis_indicator_id"><None></None></field>
@@ -1302,7 +1152,7 @@
     </object>
     <object pk="pc_zonesante_received_provice_supervision_last_quarter" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
-        <field type="CharField" name="number">35b</field>
+        <field type="CharField" name="number">35</field>
         <field type="CharField" name="name">Pourcentage de ZS ayant reçu au moins une visite de supervision du niveau provincial dans un trimestre</field>
         <field type="CharField" name="name_en">Number of health zones that received at least one supervision visit at the provincial level in the last quarter</field>
         <field type="CharField" name="dhis_indicator_id"><None></None></field>
