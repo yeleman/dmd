@@ -5,6 +5,7 @@
 from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import logging
+import json
 import uuid
 import re
 import datetime
@@ -60,6 +61,15 @@ class Entity(MPTTModel):
     etype = models.CharField(max_length=64, choices=TYPES.items())
     parent = TreeForeignKey('self', null=True, blank=True,
                             related_name='children', db_index=True)
+
+    # GIS
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    geometry = models.TextField(blank=True, null=True)
+
+    @property
+    def geojson(self):
+        return json.loads(self.geometry)
 
     @property
     def uuids(self):
