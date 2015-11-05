@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load dmd %}
 {% load staticfiles %}
 {% load bootstrap_tags %}
 
@@ -6,7 +7,7 @@
 
 {% block content %}
 <div class="alert alert-info">
-<p>Les données suivantes sont en attete de validation. Pour chaque données, vous devez choisir l'un des trois état suivants :</p>
+<p>Les données suivantes sont en attete de validation. Pour chaque données, vous devez choisir l'un des quatre état suivants :</p>
 <ul>
 	<li><strong>Validée</strong> : la donnée est acceptée telle quelle.</li>
 	<li><strong>Refusée</strong> : la donnée est refusée.</li>
@@ -21,10 +22,46 @@
     		<div class="panel-heading">Données en attente de validation</div>
     		<div class="panel-body">
 
-    			<form enctype="multipart/form-data" role="form" method="POST">
+    			{% if nb_total != records.count %}<p class="alert alert-warning"><strong>Note :</strong> vous avez trop de données à valider. Trouvez ci-dessous {{ records.count }} sur un total de {{ nb_total }}.</p>{% endif %}
+
+    			<div class="form-inline">
+	    			<p><label for="change_all">Changer tous :</label>
+	    			<select name="change_all" class="form-control">
+	    				{% for status, name in form.STATUSES.items %}
+	    				{% if status != form.EDIT %}
+	    					<option value="{{ status }}">{{ name }}</option>
+	    				{% endif %}
+	    				{% endfor %}
+	    			</select></p>
+	    		</div>
+
+    			<form class="form-inline" method="POST">
     			{% csrf_token %}
 
-				{{ form|as_bootstrap }}
+    			<table class="table table-hover table-condensed">
+    			<thead>
+    				<tr><th>Période</th><th>Localité</th><th>Indicateur</th><th>Action</th></tr>
+    			</thead>
+    			{% for dr in records %}
+    			<tr id="status_{{ dr.id }}" data-record="{{ dr.id }}">
+    				<td>{{ dr.period.strid }}</td>
+    				<td>{{ dr.entity }}</td>
+    				<td>{{ dr.indicator }}</td>
+    				<td>{% get_prefix_key form "status" dr.id %}</td>
+    			</tr>
+    			<tr class="edit-row" id="edit_{{ dr.id }}" data-record="{{ dr.id }}" style="display: none;">
+    				<td colspan="2"></td>
+					<td colspan="2">
+					<p>{% get_prefix_key form "numerator" dr.id "label_tag" %}
+					{% get_prefix_key form "numerator" dr.id "errors" %}
+					{% get_prefix_key form "numerator" dr.id %}</p>
+					<p>{% get_prefix_key form "denominator" dr.id "label_tag" %}
+					{% get_prefix_key form "denominator" dr.id "errors" %}
+					{% get_prefix_key form "denominator" dr.id %}</p>
+					</td>
+    			</tr>
+    			{% endfor %}
+    			</table>
 
 			    <button type="submit" class="btn btn-default btn-primary">Soumettre les données</button>
 			</form>
@@ -35,3 +72,47 @@
 </div>
 {% endblock %}
 
+{% block onJQready %}
+function drid_from_row(row) {
+	return row.data('record');
+}
+
+function row_from_id(drid) {
+	return $('#status_' + drid);
+}
+
+function edit_row_from_id(drid) {
+	return $('#edit_' + drid);
+}
+
+// open rows in edit-mode (post submission with dj errors)
+$('.edit-row').each(function (idx, elem) {
+	var drid = drid_from_row($(this));
+	var status_row = row_from_id(drid);
+	var selected = status_row.find("select[id^='id_status']").val();
+	if (selected != 'edit') {
+		$(this).hide();
+	} else {
+		$(this).show();
+	}
+});
+
+$('select').on('change', function (e) {
+	console.log("changed");
+	var selected = $(this).val();
+	console.log(selected);
+	var record = $(this).parent().parent().data('record');
+	console.log(record);
+	var next_row = $('#edit_' + record);
+	console.log(next_row);
+	if (selected == 'edit') {
+		next_row.show();
+	} else {
+		next_row.hide();
+	}
+});
+
+$('select[name="change_all"]').on('change', function (e) {
+	$('select').val($(this).val());
+});
+{% endblock %}
