@@ -41,6 +41,8 @@ class DataRecord(models.Model):
         MODIFIED: ("Modified"),
     }
 
+    VALIDATED_STATUSES = [VALIDATED, AUTO_VALIDATED, MODIFIED]
+
     class Meta:
         app_label = 'dmd'
         unique_together = (('indicator', 'period', 'entity'),)
@@ -87,8 +89,7 @@ class DataRecord(models.Model):
 
     @property
     def validated(self):
-        return self.validation_status in [
-            self.VALIDATED, self.AUTO_VALIDATED, self.MODIFIED]
+        return self.validation_status in self.VALIDATED_STATUSES
 
     @property
     def auto_validated(self):
@@ -108,10 +109,13 @@ class DataRecord(models.Model):
         return self.indicator.format_number(self.value)
 
     @classmethod
-    def get_or_none(cls, indicator, period, entity):
+    def get_or_none(cls, indicator, period, entity, only_validated=False):
+        qs = cls.objects.filter(indicator=indicator,
+                                period=period, entity=entity)
+        if only_validated:
+            qs = qs.filter(validation_status__in=cls.VALIDATED_STATUSES)
         try:
-            return cls.objects.get(indicator=indicator,
-                                   period=period, entity=entity)
+            return qs.get()
         except cls.DoesNotExist:
             return None
 

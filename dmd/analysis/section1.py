@@ -15,7 +15,8 @@ logger = logging.getLogger(__name__)
 
 def data_point_for(indicator, entity, period):
     dr = DataRecord.get_or_none(indicator=indicator,
-                                period=period, entity=entity)
+                                period=period, entity=entity,
+                                only_validated=True)
     if dr is None:
         return None
 
