@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: dmd\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-16 14:57+0000\n"
-"PO-Revision-Date: 2015-11-16 14:58-0000\n"
+"PO-Revision-Date: 2015-11-16 15:03-0000\n"
 "Last-Translator: reg <rgaudin@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -189,7 +189,7 @@ msgstr "Peut valider des données ?"
 
 #: dmd/models/Partners.py:58
 msgid "Validation location"
-msgstr "Localité d'envoi des données"
+msgstr "Localité de validation des données"
 
 #: dmd/views/admin.py:64
 #, python-brace-format
