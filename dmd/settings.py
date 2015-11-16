@@ -167,6 +167,8 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'), )
+
 SERVE_EXPORTED_FILES = True
 EXPORT_REPOSITORY_URL_PATH = '/protected'
 EXPORT_REPOSITORY = os.path.join(BASE_DIR, 'exports')

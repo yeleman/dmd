@@ -6,8 +6,8 @@ ipython==4.0.0
 requests==2.7.0
 django-mptt==0.7.4
 path.py==8.1
-xlrd==0.9.4
 py3compat==0.2
 nltk==3.0.5
 django-forms-bootstrap==3.0.1
-xlwt==1.0.0
+openpyxl==2.2.6
+unicodecsv==0.14.1
