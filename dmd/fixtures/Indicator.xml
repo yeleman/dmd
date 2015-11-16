@@ -17,7 +17,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -42,7 +42,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -67,7 +67,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -92,7 +92,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -117,7 +117,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/1 000</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -142,7 +142,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -167,7 +167,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/1 000</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -192,7 +192,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -217,7 +217,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -450,7 +450,7 @@
         <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
         <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
-    <object pk="pc_chw_trained_malaria_care_aire_sante" model="dmd.indicator">
+    <object pk="pc_chw_trained_malaria_care_zone_sante" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
         <field type="CharField" name="number">31</field>
         <field type="CharField" name="name">Proportion des relais communautaire forme dans la lutte contre le paludisme par AS</field>
@@ -1192,7 +1192,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -1217,7 +1217,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -1242,7 +1242,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -1267,7 +1267,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -1292,7 +1292,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
@@ -1317,7 +1317,7 @@
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
         <field type="CharField" name="collection_type">routine</field>
-        <field type="CharField" name="collection_level">aire_sante</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
         <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
         <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
