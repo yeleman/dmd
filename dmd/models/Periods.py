@@ -29,10 +29,10 @@ class MonthPeriod(models.Model):
     month = models.CharField(max_length=2, choices=MONTHS.items())
 
     def __str__(self):
-        return self.name
+        return self.__unicode__().encode('utf-8')
 
     def __unicode__(self):
-        return self.__str__()
+        return self.name
 
     def to_tuple(self):
         return (self.strid, self)

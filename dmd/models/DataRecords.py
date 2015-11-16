@@ -63,7 +63,8 @@ class DataRecord(models.Model):
 
     validation_status = models.CharField(
         max_length=128,
-        choices=VALIDATION_STATUSES.items())
+        choices=VALIDATION_STATUSES.items(),
+        default=NOT_VALIDATED)
     validated_on = models.DateTimeField(null=True, blank=True)
     validated_by = models.ForeignKey('Partner', null=True, blank=True,
                                      related_name='records_validated')
@@ -71,10 +72,10 @@ class DataRecord(models.Model):
     sources = models.ManyToManyField('self', blank=True)
 
     def __str__(self):
-        return "{i}@{p}".format(i=self.indicator, p=self.period)
+        return self.__unicode__().encode('utf-8')
 
     def __unicode__(self):
-        return self.__str__()
+        return "{i}@{p}".format(i=self.indicator, p=self.period)
 
     @property
     def source_verbose(self):
@@ -227,3 +228,14 @@ class DataRecord(models.Model):
             'formatted': self.formatted,
             'human': self.human,
         }
+
+    @property
+    def validation_deadline(self):
+        return self.indicator.validation_deadline(self.period, self.created_on)
+
+    def validation_period_is_over(self, on=None):
+        if on is None:
+            on = timezone.now()
+        val_dl = self.validation_deadline
+
+        return on > val_dl if val_dl is not None else False

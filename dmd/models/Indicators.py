@@ -186,10 +186,10 @@ class Indicator(models.Model):
         blank=True, null=True, help_text=_("In days"))
 
     def __str__(self):
-        return self.name
+        return self.__unicode__().encode('utf-8')
 
     def __unicode__(self):
-        return self.__str__()
+        return self.name
 
     @property
     def is_percent(self):
@@ -269,6 +269,16 @@ class Indicator(models.Model):
         if deadline:
             return on < deadline
         return True
+
+    def validation_deadline(self, period, created_on):
+        if self.validation_delay:
+            return created_on + datetime.timedelta(
+                days=self.validation_delay)
+        elif self.collection_period:
+            nb_weeks = self.collection_period * 4
+            return period.end_on + datetime.timedelta(
+                weeks=nb_weeks)
+        return None
 
     def format_number(self, value):
         return self.number_format.format(value)

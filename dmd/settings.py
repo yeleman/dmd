@@ -47,6 +47,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'formatter': 'default',
+            'encoding': 'utf-8',
             'filename': os.path.join(BASE_DIR, 'debug.log'),
         },
     },

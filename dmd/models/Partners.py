@@ -87,7 +87,7 @@ class Partner(models.Model):
 
     @classmethod
     def validation_bot(cls):
-        return cls.objects.get(user__username='validation_bot')
+        return cls.objects.get(user__username='validationbot')
 
     def with_org(self):
         if not self.organization:
