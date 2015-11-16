@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dmd\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-06 15:18+0000\n"
-"PO-Revision-Date: 2015-10-06 16:19+0100\n"
+"POT-Creation-Date: 2015-11-16 14:57+0000\n"
+"PO-Revision-Date: 2015-11-16 14:58-0000\n"
 "Last-Translator: reg <rgaudin@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -19,80 +19,184 @@ msgstr ""
 "X-Generator: Poedit 1.6.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: dmd/models.py:161
+#: dmd/models/DataRecords.py:37
+msgid "Not Validated"
+msgstr "Non validé"
+
+#: dmd/models/Entities.py:38
+msgid "Country"
+msgstr "Pays"
+
+#: dmd/models/Entities.py:39
+msgid "Division Provinciale de la Santé"
+msgstr "Division Provinciale de la Santé"
+
+#: dmd/models/Entities.py:40
+msgid "Zone de santé"
+msgstr "Zone de santé"
+
+#: dmd/models/Entities.py:41
+msgid "Aire de Santé"
+msgstr "Aire de Santé"
+
+#: dmd/models/Indicators.py:32
+msgid "Prevention Vector Control"
+msgstr "Prevention Vector Control"
+
+#: dmd/models/Indicators.py:33
+msgid "Case Management"
+msgstr "Case Management"
+
+#: dmd/models/Indicators.py:34
+msgid "Behavioral Chance Communication"
+msgstr "Behavioral Chance Communication"
+
+#: dmd/models/Indicators.py:35
+msgid "Surveillance and M&E"
+msgstr "Surveillance and M&E"
+
+#: dmd/models/Indicators.py:36
+msgid "Health System Strengthening"
+msgstr "Health System Strengthening"
+
+#: dmd/models/Indicators.py:52
+msgid "ITN/LLIN"
+msgstr "ITN/LLIN"
+
+#: dmd/models/Indicators.py:53
+msgid "PSM"
+msgstr "PSM"
+
+#: dmd/models/Indicators.py:54
+msgid "IPTp"
+msgstr "IPTp"
+
+#: dmd/models/Indicators.py:55
+msgid "IRS"
+msgstr "IRS"
+
+#: dmd/models/Indicators.py:56
+msgid "Diagnosis"
+msgstr "Diagnosis"
+
+#: dmd/models/Indicators.py:57
+msgid "Treatment"
+msgstr "Treatment"
+
+#: dmd/models/Indicators.py:58
+msgid "Capacity building"
+msgstr "Capacity building"
+
+#: dmd/models/Indicators.py:59
+msgid "Community Case Management"
+msgstr "Community Case Management"
+
+#: dmd/models/Indicators.py:60
+msgid "Knowledge"
+msgstr "Knowledge"
+
+#: dmd/models/Indicators.py:61
+msgid "Supervision"
+msgstr "Supervision"
+
+#: dmd/models/Indicators.py:62
+msgid "Enable environment"
+msgstr "Enable environment"
+
+#: dmd/models/Indicators.py:69
+msgid "Effect"
+msgstr "Effect"
+
+#: dmd/models/Indicators.py:70
+msgid "Process"
+msgstr "Process"
+
+#: dmd/models/Indicators.py:81
+msgid "Number"
+msgstr "Nombre"
+
+#: dmd/models/Indicators.py:82
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#: dmd/models/Indicators.py:83
+msgid "Proportion"
+msgstr "Proportion"
+
+#: dmd/models/Indicators.py:84
+msgid "Per 1,000"
+msgstr "Pour 1 000"
+
+#: dmd/models/Indicators.py:85
+msgid "Per 10,000"
+msgstr "Pour 10 000"
+
+#: dmd/models/Indicators.py:86
+msgid "Per 100,000"
+msgstr "Pour 100 000"
+
+#: dmd/models/Indicators.py:102
+msgid "Integer"
+msgstr "Entier"
+
+#: dmd/models/Indicators.py:103
+msgid "Float, precision 1"
+msgstr "Réel, une décimale"
+
+#: dmd/models/Indicators.py:104
+msgid "Float, precision 2"
+msgstr "Réel, deux décimales"
+
+#: dmd/models/Indicators.py:125
+msgid "Manual"
+msgstr "Manuelle"
+
+#: dmd/models/Indicators.py:126
+msgid "DHIS"
+msgstr "DHIS"
+
+#: dmd/models/Indicators.py:133
+msgid "Survey"
+msgstr "Enquête"
+
+#: dmd/models/Indicators.py:134
+msgid "Routine"
+msgstr "Routine"
+
+#: dmd/models/Indicators.py:174
+msgid "In months"
+msgstr "En mois"
+
+#: dmd/models/Indicators.py:180 dmd/models/Indicators.py:186
+msgid "In days"
+msgstr "En jours"
+
+#: dmd/models/Partners.py:46
 msgid "Organization"
 msgstr "Organisation"
 
-#: dmd/models.py:164
+#: dmd/models/Partners.py:50
 msgid "Can Upload?"
 msgstr "Peut transmettre des données ?"
 
-#: dmd/models.py:166
+#: dmd/models/Partners.py:52
 msgid "Upload location"
 msgstr "Localité d'envoi des données"
 
-#: dmd/views.py:65
-msgid "Report File"
-msgstr "Fichier de rapport"
+#: dmd/models/Partners.py:56
+msgid "Can Validate?"
+msgstr "Peut valider des données ?"
 
-#: dmd/views.py:82
-msgid "Congratulations! Your data has been recorded."
-msgstr "Félicitations ! Vos données ont été enregistrées."
+#: dmd/models/Partners.py:58
+msgid "Validation location"
+msgstr "Localité d'envoi des données"
 
-#: dmd/views.py:84
-#, python-brace-format
-msgid "{nb_created} records were created."
-msgstr "{nb_created} enregistrements créés."
-
-#: dmd/views.py:86
-#, python-brace-format
-msgid "{nb_updated} records were updated."
-msgstr "{nb_updated} enregistrements mis à jour."
-
-#: dmd/views.py:90
-msgid "Thank You for submitting! No new data to record though."
-msgstr ""
-"Merci d'avoir transmis vos données ! Aucune nouvelle donnée enregistrée "
-"cependant."
-
-#: dmd/views.py:119
-msgid "Unexpected Error while reading XLS file"
-msgstr "Erreur inattendue lors de l'analyse du masque de saisie Excel"
-
-#: dmd/views.py:159
-#, python-brace-format
-msgid "Invalid Entity `{uuid}`"
-msgstr "Entité invalide `{uuid}`"
-
-#: dmd/views.py:170
-msgid "You have no active session. Please upload your file"
-msgstr "Vous n'avez pas de session en cours. Merci de ré-envoyer votre fichier"
-
-#: dmd/views.py:176 dmd/views.py:197
-msgid "You session is invalid. Please upload your file"
-msgstr "Votre session est invalide. Merci de ré-envoyer votre fichier"
-
-#: dmd/views.py:222
-#, python-brace-format
-msgid "Unable to match entity `{uuid}`"
-msgstr "Impossible de trouver l'entité correspondant à `{uuid}`"
-
-#: dmd/views.py:240
-#, python-brace-format
-msgid "Unable to match period with `{period}`"
-msgstr "Impossible de trouver la période correspondant à `{period}`"
-
-#: dmd/views.py:298
-#, python-brace-format
-msgid "Unknown section ID `{sid}`"
-msgstr "ID de section `{sid}` inconnu"
-
-#: dmd/views.py:361
+#: dmd/views/admin.py:64
 #, python-brace-format
 msgid "Username `{username}` is already taken"
 msgstr "L'identifiant `{username}` est déjà utilisé"
 
-#: dmd/views.py:397
+#: dmd/views/admin.py:103
 #, python-brace-format
 msgid ""
 "New User account “{name}” created with login `{username}` and password "
@@ -101,12 +205,12 @@ msgstr ""
 "Nouveau compte utilisateur «{name}» créé avec l'identifiant `{username}` et "
 "le mot de passe `{password}`"
 
-#: dmd/views.py:436
+#: dmd/views/admin.py:145
 #, python-brace-format
 msgid "User account “{name}” has been updated."
 msgstr "Le compte utilisateur «{name}» a été mis à jour."
 
-#: dmd/views.py:462
+#: dmd/views/admin.py:171
 #, python-brace-format
 msgid ""
 "Password for User account “{name}” (login `{username}`) has been reseted to "
@@ -115,58 +219,192 @@ msgstr ""
 "Le mot de passe du compte «{name}» (identifiant `{username}`) a été changé "
 "pour `{password}`"
 
-#: dmd/views.py:472
+#: dmd/views/analysis.py:29
+#, python-brace-format
+msgid "Unknown section ID `{sid}`"
+msgstr "ID de section `{sid}` inconnu"
+
+#: dmd/views/common.py:31
+#, python-brace-format
+msgid "Unable to match period with `{period}`"
+msgstr "Impossible de trouver la période correspondant à `{period}`"
+
+#: dmd/views/common.py:50
+#, python-brace-format
+msgid "Unable to match entity `{uuid}`"
+msgstr "Impossible de trouver l'entité correspondant à `{uuid}`"
+
+#: dmd/views/misc.py:38
+#, python-brace-format
+msgid "Unable to find Partner with username `{username}`"
+msgstr "Impossible de trouver le Partenaire avec l'identifiant `{username}`"
+
+#: dmd/views/misc.py:51
 msgid "Old Password"
 msgstr "Ancien mot de passe"
 
-#: dmd/views.py:474
+#: dmd/views/misc.py:53
 msgid "New Password"
 msgstr "Nouveau mot de passe"
 
-#: dmd/views.py:484
+#: dmd/views/misc.py:63
 #, python-brace-format
 msgid "Old password for `{partner}` is invalid"
 msgstr "L'ancien mot de passe pour `{partner}` est invalide"
 
-#: dmd/views.py:505
+#: dmd/views/misc.py:84
 msgid "Your password has been updated."
 msgstr "Votre mot de passe a été mis à jour."
 
-#: dmd/xls_import.py:34
-msgid "Not a proper XLS Template."
+#: dmd/views/raw_data.py:51
+#, python-brace-format
+msgid "Unable to find DataRecord with ID `{id}`"
+msgstr "Impossible de trouver la données avec l'ID `{id}`"
+
+#: dmd/views/upload.py:41
+msgid "Report File"
+msgstr "Fichier de rapport"
+
+#: dmd/views/upload.py:53
+#, python-brace-format
+msgid "Unable to record data: {exp}"
+msgstr "Impossible d'enregistrer les données : {exp}"
+
+#: dmd/views/upload.py:65
+msgid "Congratulations! Your data has been recorded."
+msgstr "Félicitations ! Vos données ont été enregistrées."
+
+#: dmd/views/upload.py:67
+#, python-brace-format
+msgid "{nb_created} records were created."
+msgstr "{nb_created} enregistrements créés."
+
+#: dmd/views/upload.py:69
+#, python-brace-format
+msgid "{nb_updated} records were updated."
+msgstr "{nb_updated} enregistrements mis à jour."
+
+#: dmd/views/upload.py:71
+#, python-brace-format
+msgid "{nb_errors} errors were found in your file."
+msgstr "{nb_errors} erreurs ont été trouvées dans votre fichier."
+
+#: dmd/views/upload.py:77
+msgid "Thank You for submitting! No new data to record though."
+msgstr ""
+"Merci d'avoir transmis vos données ! Aucune nouvelle donnée enregistrée "
+"cependant."
+
+#: dmd/views/upload.py:81
+#, python-brace-format
+msgid "Outch! Your file contains {nb_errors} errors!"
+msgstr "Aïe ! Votre fichier contient {nb_errors} erreurs !"
+
+#: dmd/views/upload.py:108
+msgid "You are not allowed to submit data."
+msgstr "Vous n'êtes pas autorisé à transmettre des données."
+
+#: dmd/views/upload.py:125
+msgid "Unexpected Error while reading XLS file"
+msgstr "Erreur inattendue lors de l'analyse du masque de saisie Excel"
+
+#: dmd/views/upload.py:164
+#, python-brace-format
+msgid "No Entity to match `{uuid}`"
+msgstr "Impossible de trouver la localité correspondant à `{uuid}`"
+
+#: dmd/views/validation.py:34
+msgid "Wait"
+msgstr "Ne rien faire"
+
+#: dmd/views/validation.py:37
+msgid "Edit"
+msgstr "Modifier"
+
+#: dmd/views/validation.py:62
+msgid "Numerator"
+msgstr "Numérateur"
+
+#: dmd/views/validation.py:68
+msgid "Denominator"
+msgstr "Dénominateur"
+
+#: dmd/views/validation.py:142
+#, python-brace-format
+msgid ""
+"Thank You for your validations. {w} data were left untouched, {u} were "
+"updated, {v} validated and {r} rejected."
+msgstr ""
+"Merci pour vos validations. {w} données ont été laissés telles quelles, {u} "
+"ont été mises à jour, {v} ont été validées et {r} ont été rejetées."
+
+#: dmd/xlsx/xlimport.py:41
+#, python-brace-format
+msgid "{user} is not allowed to submit data"
+msgstr "{user} n'est pas autorisé à transmettre des données"
+
+#: dmd/xlsx/xlimport.py:47 dmd/xlsx/xlimport.py:162
+msgid "Not a proper XLSX Template."
 msgstr "Ce fichier n'est pas un masque de saisie Excel valide"
 
-#: dmd/xls_import.py:66
+#: dmd/xlsx/xlimport.py:111
 #, python-brace-format
-msgid "Field `{field}` is blank yet mandatory"
-msgstr "Le champ requis `{field}` est vide"
+msgid "You can't submit data for that location ({entity})"
+msgstr ""
+"Vous ne pouvez pas transmettre de données pour cette localité ({entity})"
 
-#: dmd/xls_import.py:73
+#: dmd/xlsx/xlimport.py:138
 #, python-brace-format
-msgid "Year value `{year}` is not valid"
-msgstr "`{year}` n'est pas une valeur d'année correcte"
+msgid "Missing year or month at row {row}"
+msgstr "Année ou mois manquant pour la ligne {row}"
 
-#: dmd/xls_import.py:79
+#: dmd/xlsx/xlimport.py:147
 #, python-brace-format
-msgid "Month value `{month}` is not valid"
-msgstr "`{month}` n'est pas une valeur de mois correcte"
+#| msgid "Unable to match period with `{period}`"
+msgid "Unable to retrieve period for {y}/{m}"
+msgstr "Impossible de trouver la période pour {m}/{y}"
 
-#: dmd/xls_import.py:85
+#: dmd/xlsx/xlimport.py:178
 #, python-brace-format
-msgid "Year/Month tuple `{year}-{month}` is not valid"
-msgstr "Le couple Année/Mois `{year}-{month}` est invalide."
+msgid "Unable to match an Indicator at col {col}"
+msgstr "Aucun indicateur trouvé pour la colonne {col}"
 
-#: dmd/xls_import.py:98
+#: dmd/xlsx/xlimport.py:191
 #, python-brace-format
-msgid "Unable to match DPS `{dps}`"
-msgstr "Impossible de trouver la DPS `{dps}`"
+msgid "{on} is outside submission period for Indicator #{ind} at {period}"
+msgstr ""
+"{on} est hors de la période de transmission pour l'Indicateur #{ind} {period}"
 
-#: dmd/xls_import.py:108
-#, python-brace-format
-msgid "Unable to match ZS `{zs}`"
-msgstr "Impossible de trouver la ZS `{zs}`"
+#: dmd/xlsx/xlimport.py:202
+msgid "Missing denominator on non-number Indicator"
+msgstr "Dénominateur manquant pour Indicateur non-nombre"
 
-#: dmd/xls_import.py:174
+#: dmd/xlsx/xlimport.py:215
 #, python-brace-format
-msgid "Incorrect numerator or denominator value `{num} / {denom}` for: {indic}"
-msgstr "Numérateur ou dénominateur incorrect `{num} / {denom}` pour : {indic}"
+msgid "Incorrect value for numerator or denominator `{num} / {denom}`"
+msgstr "Numérateur ou dénominateur incorrect `{num} / {denom}`"
+
+#~ msgid "Invalid Entity `{uuid}`"
+#~ msgstr "Entité invalide `{uuid}`"
+
+#~ msgid "You have no active session. Please upload your file"
+#~ msgstr ""
+#~ "Vous n'avez pas de session en cours. Merci de ré-envoyer votre fichier"
+
+#~ msgid "You session is invalid. Please upload your file"
+#~ msgstr "Votre session est invalide. Merci de ré-envoyer votre fichier"
+
+#~ msgid "Field `{field}` is blank yet mandatory"
+#~ msgstr "Le champ requis `{field}` est vide"
+
+#~ msgid "Year value `{year}` is not valid"
+#~ msgstr "`{year}` n'est pas une valeur d'année correcte"
+
+#~ msgid "Month value `{month}` is not valid"
+#~ msgstr "`{month}` n'est pas une valeur de mois correcte"
+
+#~ msgid "Year/Month tuple `{year}-{month}` is not valid"
+#~ msgstr "Le couple Année/Mois `{year}-{month}` est invalide."
+
+#~ msgid "Unable to match ZS `{zs}`"
+#~ msgstr "Impossible de trouver la ZS `{zs}`"

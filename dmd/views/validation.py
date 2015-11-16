@@ -59,13 +59,13 @@ class ValidationForm(forms.Form):
             self.fields.update({
                 numerator_key: forms.FloatField(
                     min_value=0,
-                    label=_("Numérateur"),
+                    label=_("Numerator"),
                     initial=self.initial.get(numerator_key, record.numerator)),
             })
             self.fields.update({
                 denominator_key: forms.FloatField(
                     min_value=0,
-                    label=_("Dénominateur"),
+                    label=_("Denominator"),
                     initial=self.initial.get(denominator_key,
                                              record.denominator)),
             })

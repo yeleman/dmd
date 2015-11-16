@@ -135,7 +135,8 @@ def read_xls(filepath, partner):
         if year is None or month is None:
             logger.warning("No year or month for row #{}".format(row))
             add_error(row, error='incorrect_period',
-                      text=_("Missing year or month"))
+                      text=_("Missing year or month at row {row}")
+                      .format(row))
             continue
 
         try:
@@ -143,7 +144,8 @@ def read_xls(filepath, partner):
         except ValueError as e:
             logger.warning("Unable to retrieve period: {}".format(e))
             add_error(row, error='incorrect_period',
-                      text=_("Unable to retrieve period"))
+                      text=_("Unable to retrieve period for {y}/{m}")
+                      .format(y=year, m=month))
             continue
 
         for idx, cell in enumerate(ws.rows[2][4:]):
@@ -173,7 +175,8 @@ def read_xls(filepath, partner):
                 logger.warning("No indicator found at col #{}".format(column))
                 add_error(row, column=cell.column,
                           error='incorrect_indicator',
-                          text=_("Unable to match an Indicator"))
+                          text=_("Unable to match an Indicator at col {col}")
+                                .format(col=cell.column))
                 continue
 
             # check submission period for that Indicator
