@@ -21,6 +21,10 @@ td.center {
 	text-transform: uppercase;
 }
 
+.strong {
+	font-weight: bold;
+}
+
 /*----------------------------------------------
     COMMON  STYLES    
 ------------------------------------------------*/

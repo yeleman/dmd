@@ -108,6 +108,12 @@ class DataRecord(models.Model):
     def formatted(self):
         return self.indicator.format_number(self.value)
 
+    @property
+    def data_is_suspect(self):
+        if self.denominator:
+            return self.denominator < self.numerator
+        return False
+
     @classmethod
     def get_or_none(cls, indicator, period, entity, only_validated=False):
         qs = cls.objects.filter(indicator=indicator,
