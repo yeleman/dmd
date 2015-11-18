@@ -21,8 +21,35 @@
     	{% block indicator_loop %}
     	{% for indic_slug, trd in elements.items %}
     	<div class="panel panel-default">
-    		<div class="panel-heading">{{ trd.indicator.number }} : {{ trd.indicator.name }}</div>
-    		<div class="panel-body"><div id="graph-{{ indic_slug }}"></div></div>
+    		<div class="panel-heading">
+    			<a name="{{ trd.indicator.number }}"></a>{{ trd.indicator.number }} : {{ trd.indicator.name }} <button class="btn" data-clipboard-text="{{ baseurl }}#{{ trd.indicator.number }}"><i class="glyphicon glyphicon-link"></i></button></div>
+    		<div class="panel-body">
+    			<div id="graph-{{ indic_slug }}"></div>
+    			<table class="table">
+    				<thead>
+	    				<tr>
+	    					<th>Période</th>
+	    					<th>Valeur</th>
+	    					<th>Numérateur</th>
+	    					<th>Dénominateur</th>
+	    					<th>Détails</th>
+	    				</tr>
+	    			</thead>
+					{% for point in trd.points %}
+					<tr>
+						<th>{{ point.period }}</th>
+						{% if point.id %}
+						<td>{{ point.human }}</td>
+						<td>{{ point.numerator }}</td>
+						<td>{{ point.denominator }}</td>
+						<td><a href="{% url 'raw_data_record' record_id=point.id %}"><i class="fa fa-info-circle"></i></a></td>
+						{% else %}
+						<td colspan="4">-</td>
+						{% endif %}
+    				</tr>
+					{% endfor %}
+    			</table>
+			</div>
 		</div>
 		{% endfor %}
 		{% endblock %}
@@ -32,6 +59,7 @@
 {% endblock %}
 
 {% block onJQready %}
+new Clipboard('.btn');
 var baseURL = '{% url 'api_entities_get_children' blank_uuid %}'.split("/");
 baseURL.pop();
 baseURL = baseURL.join("/");
@@ -93,8 +121,8 @@ $('form').on('submit', function (e) {
             data: [
             	{% for point in trd.points %}
             		{
-            			y: {% if point = None %}null{% else %}{{ point.value|stringformat:".2f" }}{% endif %},
-            			{% if point %}
+            			y: {% if point.id = None %}null{% else %}{{ point.value|stringformat:".2f" }}{% endif %},
+            			{% if point.id %}
             			rid: '{{ point.id }}',
             			events: {
             				click: function (e) { window.location = "{% url 'raw_data_record' point.id %}"; }

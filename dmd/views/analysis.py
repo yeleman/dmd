@@ -49,6 +49,9 @@ def analysis(request, section_id='1',
                                           entity=context['entity'])
     })
 
+    # absolute URI for links
+    context.update({'baseurl': request.build_absolute_uri()})
+
     return render(request,
                   kwargs.get('template_name',
                              'analysis_section{}.html'.format(section_id)),

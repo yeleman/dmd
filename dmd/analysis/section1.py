@@ -17,16 +17,19 @@ def data_point_for(indicator, entity, period):
     dr = DataRecord.get_or_none(indicator=indicator,
                                 period=period, entity=entity,
                                 only_validated=True)
-    if dr is None:
-        return None
+    # if dr is None:
+    #     return None
 
     return {
-        'id': dr.id,
-        'numerator': dr.numerator,
-        'denominator': dr.denominator,
-        'value': dr.value,
-        'formatted': dr.formatted,
-        'human': dr.human()
+        'id': getattr(dr, 'id', None),
+        'indicator': indicator,
+        'entity': entity,
+        'period': period,
+        'numerator': getattr(dr, 'numerator', None),
+        'denominator': getattr(dr, 'denominator', None),
+        'value': getattr(dr, 'value', None),
+        'formatted': getattr(dr, 'formatted', None),
+        'human': getattr(dr, 'human', lambda: None)()
     }
 
 
