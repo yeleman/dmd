@@ -252,6 +252,14 @@ class Indicator(models.Model):
         except cls.DoesNotExist:
             return None
 
+    def to_dict(self):
+        return {
+            'slug': self.slug,
+            'origin': self.origin,
+            'number': self.number,
+            'name': self.name,
+        }
+
     def transmission_deadline(self, period):
         if self.transmission_delay:
             return period.end_on + datetime.timedelta(

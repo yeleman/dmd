@@ -91,7 +91,18 @@ class Entity(MPTTModel):
 
     @property
     def geojson(self):
-        return json.loads(self.geometry)
+        return {
+            "type": "Feature",
+            "properties": self.to_dict(),
+            "geometry": json.loads(self.geometry) if self.geometry else None
+        }
+
+    @property
+    def children_geojson(self):
+        return {
+            "type": "FeatureCollection",
+            "features": [child.geojson for child in self.get_children()]
+        }
 
     @property
     def lineage_data(self):

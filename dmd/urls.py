@@ -31,6 +31,28 @@ urlpatterns = [
         'dmd.views.api.get_entity_detail',
         name='api_entity_detail'),
 
+    url(r'^' + uprefix + 'api/geojson/children/'
+        '(?P<parent_uuid>[A-Za-z0-9\_\-]{36})/?$',
+        'dmd.views.api.children_geojson',
+        name='api_entity_children_geojson'),
+
+    url(r'^' + uprefix + 'api/geojson/single/'
+        '(?P<entity_uuid>[A-Za-z0-9\_\-]{36})/?$',
+        'dmd.views.api.single_geojson',
+        name='api_entity_geojson'),
+
+    url(r'^' + uprefix + 'api/indicators/'
+        '(?P<col_type>[A-Za-z]+)/?$',
+        'dmd.views.api.indicator_list',
+        name='api_indicators_list'),
+
+    url(r'^' + uprefix + 'api/data_record/'
+        '(?P<period_str>[0-9]{4}\-[0-9]{2})/'
+        '(?P<entity_uuid>[A-Za-z0-9\_\-]{36})/'
+        '(?P<indicator_slug>[A-Za-z0-9\-\_]+)/?$',
+        'dmd.views.api.data_record_for',
+        name='api_data_record_for'),
+
     # home
     url(r'^' + uprefix + '/?$', 'dmd.views.misc.home', name='home'),
 
@@ -76,6 +98,11 @@ urlpatterns = [
         'dmd.views.misc.serve_exported_files', name='exported_files'),
     url(r'^' + uprefix + 'export/?$', 'dmd.views.raw_data.data_export',
         name='export'),
+
+    # map
+    # validation
+    url(r'^' + uprefix + 'analysis/map/?$', 'dmd.views.analysis.map',
+        name='map'),
 
     # analysis
     url(r'^' + uprefix + 'analysis/section(?P<section_id>[0-9]+)'

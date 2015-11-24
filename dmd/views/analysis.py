@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from dmd.models.Periods import MonthPeriod
 from dmd.utils import import_path
 from dmd.analysis import SECTIONS
+from dmd.models.Entities import Entity
 from dmd.views.common import process_period_filter, process_entity_filter
 
 logger = logging.getLogger(__name__)
@@ -56,3 +57,17 @@ def analysis(request, section_id='1',
                   kwargs.get('template_name',
                              'analysis_section{}.html'.format(section_id)),
                   context)
+
+
+@login_required
+def map(request, *args, **kwargs):
+    context = {'page': 'map'}
+    drc = Entity.get_root()
+
+    context.update({
+        'root': drc,
+        'periods': MonthPeriod.all_till_now(),
+        'dps_list': drc.get_children()
+    })
+
+    return render(request, kwargs.get('template_name', 'map.html'), context)

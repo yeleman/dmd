@@ -10,7 +10,7 @@
     <link href="{% static "css/custom-styles.css" %}" rel="stylesheet" />
 </head>
 
-<body>
+<body class="{{ page }}">
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
@@ -63,8 +63,12 @@
                     <li><a {% if page = 'raw_data' %}class="active-menu" {%endif %}href="{% url 'raw_data' %}">
                     	<i class="fa fa-table"></i> Données brutes</a>
                     </li>
-                    <li><a {% if page = 'export' %}class="active-menu" {%endif %}href="{% url 'export' %}">
-                    	<i class="fa fa-file-excel-o"></i> Export brut</a>
+                    <li {% if 'map' in page %}class="active active-menu" {%endif %}><a href="{% url 'map' %}" {% if 'map' in page %}aria-expanded="true"{% endif %}><i class="fa fa-map"></i> Cartographie<i class="fa fa arrow"></i></a>
+                    	{% if 'map' in page %}
+                        <ul class="nav nav-second-level" style="color: white;" {% if 'map' in page %}aria-expanded="true"{% endif %}>
+                    		<li class="map-options-container" style="padding-left: .5em;"></li>
+                    	</ul>
+                    	{% endif %}
                     </li>
 					<li {% if 'analysis' in page %}class="active active-menu" {%endif %}>
 						<a href="#" {% if 'analysis' in page %}aria-expanded="true"{% endif %}><i class="fa fa-bar-chart-o"></i> Analyses<i class="fa fa arrow"></i></a>
@@ -73,6 +77,9 @@
                         	<li><a {% if section = section_id %}class="active-menu" {%endif %} href="{% url 'analysis' section_id %}">Section {{ section_id }} : {{ section_name }}</a></li>
                         	{% endfor %}
                         </ul>
+                    </li>
+                    <li><a {% if page = 'export' %}class="active-menu" {%endif %}href="{% url 'export' %}">
+                    	<i class="fa fa-file-excel-o"></i> Export brut</a>
                     </li>
                     {% if user.is_staff %}
                     <li class="divider"></li>
@@ -88,12 +95,14 @@
 
         <div id="page-wrapper">
             <div id="page-inner">
+            	{% if page != "map" %}
             	<div class="row">
 				    <div class="col-md-12">
 				        <h1 class="page-header">{% block title %}{% endblock %} <small>{% block subtitle %}{% endblock %}</small></h1>
 				    </div>
 				</div>
-
+				{% endif %}
+				
             	{% if messages %}
                 <div id="notifications">
                 {% for message in messages %}
@@ -103,7 +112,7 @@
                 {% endif %}
 	            {% block content %}
 	            {% endblock %}
-				<footer><p>&copy; MEASURE Evaluation & PNLP – 2015</p></footer>
+				<!-- <footer><p>&copy; MEASURE Evaluation & PNLP – 2015</p></footer> -->
             </div>
             <!-- /. PAGE INNER  -->
         </div>
@@ -117,6 +126,7 @@
     <script src="{% static "js/clipboard.min.js" %}"></script>
     <script src="{% static "js/entity_filter.js" %}"></script>
 </body>
+{% block assets %}{% endblock %}
 <script type="text/javascript">
 $(document).ready(function(){
 $('#main-menu').metisMenu({ toggle: false });

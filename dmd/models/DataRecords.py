@@ -227,16 +227,16 @@ class DataRecord(models.Model):
     def to_dict(self):
         return {
             'kind': 'data-record',
-            'indicator': self.indicator,
-            'period': self.period,
+            'indicator': self.indicator.slug,
+            'period': self.period.strid,
             'periods': None,
-            'entity': self.entity,
+            'entity': self.entity.uuids,
 
             'numerator': self.numerator,
             'denominator': self.denominator,
             'value': self.value,
             'formatted': self.formatted,
-            'human': self.human,
+            'human': self.human(),
         }
 
     @property
