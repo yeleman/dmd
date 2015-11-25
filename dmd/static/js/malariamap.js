@@ -314,7 +314,7 @@ function getMalariaMapManager(options) {
             if (dp === null || dp === undefined)
                 text = feature.properties.short_name;
             else
-                text = feature.properties.name + ' : ' + dp.human;
+                text = feature.properties.short_name + ' : ' + dp.human;
             this._div.innerHTML = '<strong>' + text + '</strong>';
         };
         this._addInfoBox();

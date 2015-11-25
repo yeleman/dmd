@@ -38,7 +38,7 @@ class Entity(MPTTModel):
         (PAYS, _("Country")),
         (PROVINCE, _("Division Provinciale de la Santé")),
         (ZONE, _("Zone de santé")),
-        (AIRE, _("Aire de Santé")),
+        # (AIRE, _("Aire de Santé")),
         # (CENTRE, _("Centre de Santé")),
     ])
 
