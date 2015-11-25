@@ -278,12 +278,6 @@ function getMalariaMapManager(options) {
                 labels.push('<span><i style="background-color:transparent"></i> </span>');
             }
 
-            // NOT EXPECTED
-            // labels.push(
-            //     '<span><i style="background-color:' + manager.color_not_expected +
-            //     '"></i> <abbr title="Aucun rapport attendu pour cet ' +
-            //     'indicateur">n/a</abbr></span>');
-
             // MISSING
             labels.push(
                 '<span><i style="background-color:' + manager.color_initial +
