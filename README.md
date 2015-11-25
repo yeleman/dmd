@@ -4,7 +4,7 @@ DRC Malaria Dashboard
 
 ## Linux dependencies
 
-`apt-get install python-dev libffi-dev libssl-dev`
+`apt-get install build-essential libssl-dev libffi-dev python-dev`
 
 ## Setup
 
