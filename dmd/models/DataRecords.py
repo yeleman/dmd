@@ -16,6 +16,27 @@ from dmd.models.Indicators import Indicator
 logger = logging.getLogger(__name__)
 
 
+class DRStatusQuerySet(models.QuerySet):
+
+    def valid(self):
+        return self.filter(validation_status__in=DataRecord.VALIDATED_STATUSES)
+
+    def validated(self):
+        return self.filter(validation_status=DataRecord.VALIDATED)
+
+    def not_validated(self):
+        return self.filter(validation_status=DataRecord.NOT_VALIDATED)
+
+    def rejected(self):
+        return self.filter(validation_status=DataRecord.REJECTED)
+
+    def autovalidated(self):
+        return self.filter(validation_status=DataRecord.AUTO_VALIDATED)
+
+    def modified(self):
+        return self.filter(validation_status=DataRecord.MODIFIED)
+
+
 class DataRecord(models.Model):
 
     UPLOAD = 'upload'
@@ -72,6 +93,10 @@ class DataRecord(models.Model):
                                      related_name='records_validated')
 
     sources = models.ManyToManyField('self', blank=True)
+
+    objects = DRStatusQuerySet.as_manager()
+    statuses = DRStatusQuerySet.as_manager()
+    django = models.Manager()
 
     def __str__(self):
         return self.__unicode__().encode('utf-8')

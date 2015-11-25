@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 def get_records():
-    return DataRecord.objects.all().order_by(
+    return DataRecord.objects.valid().order_by(
         'period__year',
         'period__month',
         'entity__level',
@@ -98,9 +98,8 @@ def get_csv_for(records_qs, save_to=None):
             'PERIOD': record.period.strid,
             'INDIC-NUM': record.indicator.number,
             'LOCATION': record.entity.uuids,
-            'DPS': getattr(record.entity.get_dps(), 'name', empty),
-            'ZS': getattr(record.entity.get_zs(), 'name', empty),
-            'AS': getattr(record.entity.get_as(), 'name', empty),
+            'DPS': getattr(record.entity.get_dps(), 'short_name', empty),
+            'ZS': getattr(record.entity.get_zs(), 'short_name', empty),
             'INDIC-SLUG': record.indicator.slug,
             'NUMERATOR': record.numerator,
             'DENOMINATOR': record.denominator,
