@@ -40,8 +40,8 @@ def get_csv_for(records_qs, save_to=None):
 
     csv_writer.writeheader()
 
-    for row, record in enumerate(records_qs):
-
+    row = 0
+    for record in records_qs.iterator():
         csv_writer.writerow({
             'PERIOD': record.period.strid,
             'INDIC-NUM': record.indicator.number,
@@ -55,8 +55,11 @@ def get_csv_for(records_qs, save_to=None):
             'DISPLAY-VALUE': record.human(),
             'INDIC-NAME': record.indicator.name
         })
+
         sys.stdout.write("Exporting row #: {}   \r".format(row))
         sys.stdout.flush()
+
+        row += 1
 
     stream.close()
 
