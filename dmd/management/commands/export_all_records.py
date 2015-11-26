@@ -8,7 +8,6 @@ import logging
 import StringIO
 import sys
 
-import xlwt
 from django.core.management.base import BaseCommand
 from django.conf import settings
 import unicodecsv as csv
@@ -25,57 +24,6 @@ def get_records():
         'entity__level',
         'entity__name',
         'indicator__number')
-
-
-def get_xls_for(records_qs, save_to=None):
-    wb = xlwt.Workbook()
-    sheet = wb.add_sheet("data-records")
-
-    headers = ["PERIOD", "INDIC-NUM", "LOCATION", "DPS", "ZS", "AS",
-               "INDIC-SLUG", "NUMERATOR", "DENOMINATOR", "VALUE",
-               "DISPLAY-VALUE", "INDIC-NAME"]
-    empty = ""
-
-    for col, item in enumerate(headers):
-        sheet.write(0, col, item)
-
-    for row, record in enumerate(records_qs):
-        sys.stdout.write("Exporting row #: {}   \r".format(row))
-        sys.stdout.flush()
-        col = 0
-        row += 1
-        sheet.write(row, col, record.period.strid)
-        col += 1
-        sheet.write(row, col, record.indicator.number)
-        col += 1
-        sheet.write(row, col, record.entity.uuids)
-        col += 1
-        sheet.write(row, col, getattr(record.entity.get_dps(), 'name', empty))
-        col += 1
-        sheet.write(row, col, getattr(record.entity.get_zs(), 'name', empty))
-        col += 1
-        sheet.write(row, col, getattr(record.entity.get_as(), 'name', empty))
-        col += 1
-        sheet.write(row, col, record.indicator.slug)
-        col += 1
-        sheet.write(row, col, record.numerator)
-        col += 1
-        sheet.write(row, col, record.denominator)
-        col += 1
-        sheet.write(row, col, record.value)
-        col += 1
-        sheet.write(row, col, record.human())
-        col += 1
-        sheet.write(row, col, record.indicator.name)
-
-    if save_to:
-        wb.save(save_to)
-        return
-
-    stream = StringIO.StringIO()
-    wb.save(stream)
-
-    return stream
 
 
 def get_csv_for(records_qs, save_to=None):
