@@ -30,9 +30,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('uuid', models.UUIDField(default=uuid.uuid4, serialize=False, editable=False, primary_key=True)),
                 ('code', models.CharField(max_length=16, unique=True, null=True, blank=True)),
-                ('name', models.CharField(max_length=256)),
+                ('name', models.CharField(max_length=255)),
                 ('short_name', models.CharField(max_length=128)),
-                ('display_name', models.CharField(max_length=256)),
+                ('display_name', models.CharField(max_length=255)),
                 ('dhis_level', models.PositiveIntegerField()),
                 ('dhis_id', models.CharField(unique=True, max_length=64)),
                 ('etype', models.CharField(max_length=64, choices=[('pays', 'Pays'), ('division_provinciale_sante', 'Division Provinciale de la Sant\xe9'), ('zone_sante', 'Zone de sant\xe9'), ('aire_sante', 'Aire de Sant\xe9')])),
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Indicator',
             fields=[
-                ('slug', models.SlugField(max_length=256, serialize=False, primary_key=True)),
+                ('slug', models.SlugField(max_length=255, serialize=False, primary_key=True)),
                 ('origin', models.CharField(max_length=64, choices=[('dhis', 'DHIS'), ('manual', 'Manuelle')])),
                 ('number', models.CharField(unique=True, max_length=8)),
                 ('name', models.CharField(max_length=512)),
@@ -82,7 +82,7 @@ class Migration(migrations.Migration):
             name='Organization',
             fields=[
                 ('slug', models.SlugField(max_length=96, serialize=False, primary_key=True)),
-                ('name', models.CharField(max_length=256)),
+                ('name', models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(

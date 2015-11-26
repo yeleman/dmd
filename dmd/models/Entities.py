@@ -49,9 +49,9 @@ class Entity(MPTTModel):
     code = models.CharField(max_length=16, unique=True, null=True, blank=True)
 
     # labels
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=255)
     short_name = models.CharField(max_length=128)
-    display_name = models.CharField(max_length=256)
+    display_name = models.CharField(max_length=255)
 
     # DHIS-only fields
     dhis_level = models.PositiveIntegerField()

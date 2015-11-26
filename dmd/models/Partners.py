@@ -19,7 +19,7 @@ class Organization(models.Model):
         app_label = 'dmd'
 
     slug = models.SlugField(max_length=96, primary_key=True)
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name

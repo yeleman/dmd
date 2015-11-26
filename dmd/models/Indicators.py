@@ -134,7 +134,7 @@ class Indicator(models.Model):
         ROUTINE: _("Routine"),
     }
 
-    slug = models.SlugField(max_length=256, primary_key=True)
+    slug = models.SlugField(max_length=255, primary_key=True)
     origin = models.CharField(max_length=64, choices=ORIGINS.items())
     number = models.CharField(max_length=8, unique=True)
     name = models.CharField(max_length=512)
