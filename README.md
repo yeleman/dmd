@@ -12,5 +12,5 @@ DRC Malaria Dashboard
 * Fixtures
 * Partners:
  * dhisbot
- * validation_bot
+ * validationbot
 * Import DHIS data

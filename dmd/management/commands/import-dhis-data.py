@@ -45,12 +45,7 @@ class Command(BaseCommand):
     def handle_record(self, jsdata, entity, period):
 
         missing = '0.0'
-        data = {
-            'meta': {
-                'period': period,
-                'entity': entity,
-            }
-        }
+        data = {}
 
         # loop on rows
         indic_data = {indic_id: val for indic_id, pid, val in jsdata['rows']}
@@ -68,7 +63,12 @@ class Command(BaseCommand):
                              .format(indicator.dhis_denominator_id, indicator))
                 continue
 
-            data.update({indicator.slug: {
+            ident = "{period}_{slug}".format(period=period.strid,
+                                             slug=indicator.slug)
+            data.update({ident: {
+                'slug': indicator.slug,
+                'period': period,
+                'entity': entity,
                 'numerator': numerator,
                 'denominator': denominator}})
 
