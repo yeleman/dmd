@@ -15,6 +15,7 @@ from dmd.models.Periods import MonthPeriod
 from dmd.models.Entities import Entity
 from dmd.models.Indicators import Indicator
 from dmd.xlsx import letter_to_column
+from dmd.utils import data_ident_for
 
 logger = logging.getLogger(__name__)
 
@@ -217,9 +218,7 @@ def read_xls(filepath, partner):
                                 .format(num=num, denom=denom))
                 continue
 
-            ident = "{period}_{slug}".format(period=period.strid,
-                                             slug=indicator.slug)
-            data.update({ident: {
+            data.update({data_ident_for(indicator, period, entity): {
                 'slug': indicator.slug,
                 'period': period,
                 'entity': entity,

@@ -17,6 +17,7 @@ from dmd.models.Periods import MonthPeriod
 from dmd.models.Indicators import Indicator
 from dmd.models.DataRecords import DataRecord
 from dmd.models.Partners import Partner
+from dmd.utils import data_ident_for
 
 DEBUG = True
 logger = logging.getLogger(__name__)
@@ -63,9 +64,7 @@ class Command(BaseCommand):
                              .format(indicator.dhis_denominator_id, indicator))
                 continue
 
-            ident = "{period}_{slug}".format(period=period.strid,
-                                             slug=indicator.slug)
-            data.update({ident: {
+            data.update({data_ident_for(indicator, period, entity): {
                 'slug': indicator.slug,
                 'period': period,
                 'entity': entity,

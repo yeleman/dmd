@@ -100,3 +100,9 @@ def import_path(name, failsafe=False):
         if failsafe:
             return None
         raise exp
+
+
+def data_ident_for(indicator, period, entity):
+    return "{period}_{entity}_{slug}".format(period=period.strid,
+                                             slug=indicator.slug,
+                                             entity=entity.uuids)
