@@ -17,6 +17,7 @@
     				<li><a href="{% url 'upload_guide_download' dps.uuid %}">{{ dps.std_name }}</a></li>
     				{% endfor %}
     			</ul>
+    			<p>Pour simplifier la saisie (au niveau national) des indicateurs pour tous les DPS, utilisez le fichier <a class="btn btn-default btn-xs" href="{% url 'upload_guide_download' root.uuid %}">R.D.C CENTRAL</a></p>
 		    </div>
 		</div>
     </div>

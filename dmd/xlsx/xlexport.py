@@ -49,10 +49,13 @@ def xl_set_row_height(sheet, row, cm):
     sheet.row_dimensions[row].height = xl_row_height(cm)
 
 
-dataentry_fname_for = lambda dps: "saisie-PNLP-{}.xlsx".format(dps.std_name)
+dataentry_fname_for = lambda dps: "saisie-PNLP-{}.xlsx".format(
+    dps.std_name if dps != Entity.get_root() else "DPS")
 
 
 def generate_dataentry_for(dps, save_to=None):
+
+    is_all_dps = dps == Entity.get_root()
 
     # colors
     black = 'FF000000'
@@ -219,7 +222,7 @@ def generate_dataentry_for(dps, save_to=None):
 
     # ZS of the selected DPS
     children = [child for child in dps.get_children()
-                if child.etype == Entity.ZONE]
+                if child.etype == Entity.ZONE or is_all_dps]
 
     def std_write(row, column, value, style=std_style):
         cell = ws.cell(row=row, column=column)
@@ -260,9 +263,13 @@ def generate_dataentry_for(dps, save_to=None):
             std_write(row, column + 1, "DÉNOM", std_style)
 
         row = dps_row + len(children)
+        nb_rows = row if is_all_dps else row + 1
+
+        # whether a row displays a ZS or not
+        row_is_zs = lambda row: False if is_all_dps else row > dps_row
 
         # row-specific styles
-        for r in range(1, row + 1):
+        for r in range(1, nb_rows):
             left = ws.cell(row=r, column=column)
             right = ws.cell(row=r, column=column + 1)
 
@@ -282,7 +289,7 @@ def generate_dataentry_for(dps, save_to=None):
                     ws.cell(row=r, column=column + 1).fill = odd_fill
 
                 # disable cell if data not expected at ZS
-                if r > dps_row and indicator.collection_level != Entity.ZONE:
+                if row_is_zs(r) and indicator.collection_level != Entity.ZONE:
                     left.fill = black_fill
                     left.protection = protected
                     right.fill = black_fill
@@ -310,10 +317,16 @@ def generate_dataentry_for(dps, save_to=None):
     dv.ranges.append('E4:{c}{r}'.format(c=last_letter, r=last_row))
 
     row = dps_row
+    initial_row = [] if is_all_dps else [None]
     # write names & periods
-    for zs in [None] + children:
-        zs_name = zs.std_name if zs else "-"
-        std_write(row, 1, dps.std_name, names_style)
+    for child in initial_row + children:
+        if is_all_dps:
+            dps_name = child.std_name
+            zs_name = "-"
+        else:
+            dps_name = dps.std_name
+            zs_name = child.std_name if child else "-"
+        std_write(row, 1, dps_name, names_style)
         std_write(row, 2, zs_name, names_style)
 
         # set default value for period

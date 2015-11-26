@@ -150,6 +150,7 @@ def upload_guide(request, *args, **kwargs):
     context = {'page': 'upload'}
 
     context.update({
+        'root': Entity.get_root(),
         'provinces': Entity.get_root().get_children(),
     })
     return render(request,
