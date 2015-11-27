@@ -289,6 +289,8 @@ class Indicator(models.Model):
         return None
 
     def format_number(self, value):
+        if value is None:
+            return None
         return self.number_format.format(value)
 
     def compute_value(self, numerator, denominator):
@@ -298,9 +300,14 @@ class Indicator(models.Model):
             coef = self.TYPES_COEFFICIENT.get(self.itype)
             if coef is None:
                 print(self.itype)
-            return (numerator * coef) / denominator
+            try:
+                return (numerator * coef) / denominator
+            except ZeroDivisionError:
+                raise
 
     def format_value(self, value, numerator, denominator):
+        if value is None:
+            return "n/a"
         fval = self.format_number(
             self.compute_value(numerator, denominator))
         numerator = self.format_number(numerator)
@@ -323,12 +330,17 @@ class Indicator(models.Model):
             drs = qs.filter(period__in=periods)
             num_sum = sum([dr.numerator for dr in drs])
             denom_sum = sum([dr.denominator for dr in drs])
-            value = self.compute_value(num_sum, denom_sum)
+            try:
+                value = self.compute_value(num_sum, denom_sum)
+            except ZeroDivisionError:
+                value = None
             return {
                 # meta-data
                 'kind': 'year-aggregate',
                 'indicator': self,
                 'period': None,
+                'has_data': qs.count() > 0,
+                'year': year,
                 'periods': periods,
                 'entity': entity,
 

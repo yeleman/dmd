@@ -38,11 +38,26 @@
 					{% for point in trd.points %}
 					<tr>
 						<th>{{ point.period }}</th>
-						{% if point.id %}
+						{% if point.has_data %}
 						<td>{{ point.human }}</td>
 						<td>{{ point.numerator }}</td>
 						<td>{{ point.denominator }}</td>
 						<td><a href="{% url 'raw_data_record' record_id=point.id %}"><i class="fa fa-info-circle"></i></a></td>
+						{% else %}
+						<td colspan="4">-</td>
+						{% endif %}
+    				</tr>
+					{% endfor %}
+
+					<tr><th colspan="5" class="text-center">Aggrégats annuels</th></tr>
+					{% for year_point in trd.year_elements %}
+					<tr>
+						<th>{{ year_point.year }}</th>
+						{% if year_point.has_data %}
+						<td>{{ year_point.human }}</td>
+						<td>{{ year_point.numerator }}</td>
+						<td>{{ year_point.denominator }}</td>
+						<td></td>
 						{% else %}
 						<td colspan="4">-</td>
 						{% endif %}

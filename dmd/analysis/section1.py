@@ -21,6 +21,7 @@ def data_point_for(indicator, entity, period):
     #     return None
 
     return {
+        'has_data': bool(getattr(dr, 'id', False)),
         'id': getattr(dr, 'id', None),
         'indicator': indicator,
         'entity': entity,
@@ -29,16 +30,18 @@ def data_point_for(indicator, entity, period):
         'denominator': getattr(dr, 'denominator', None),
         'value': getattr(dr, 'value', None),
         'formatted': getattr(dr, 'formatted', None),
-        'human': getattr(dr, 'human', lambda: None)()
+        'human': getattr(dr, 'human', lambda: None)(),
     }
 
 
 def get_timed_records(indicator, entity, periods):
+    years = sorted(set([period.year for period in periods]))
     return {
         'indicator': indicator,
         'periods': [period.to_tuple for period in periods],
         'points': [data_point_for(indicator, entity, period)
-                   for period in periods]
+                   for period in periods],
+        'year_elements': [indicator.data_for(entity, year) for year in years],
     }
 
 
