@@ -13,6 +13,7 @@ from django.conf import settings
 import unicodecsv as csv
 
 from dmd.models import DataRecord, Metadata
+from dmd.xlsx.xlexport import export_to_spreadsheet
 
 logger = logging.getLogger(__name__)
 
@@ -78,5 +79,10 @@ class Command(BaseCommand):
         qs = get_records()
         nb_records = qs.count()
         get_csv_for(qs, save_to=settings.ALL_EXPORT_PATH)
+
+        logger.info("Exporting all DataRecord (XLS 1sheet/indicator) to {}"
+                    .format(settings.ALL_EXPORT_XLSX_PATH))
+
+        export_to_spreadsheet(qs, save_to=settings.ALL_EXPORT_XLSX_PATH)
 
         Metadata.update('nb_records', nb_records)

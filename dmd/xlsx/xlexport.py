@@ -356,3 +356,147 @@ def generate_dataentry_for(dps, save_to=None):
     wb.save(stream)
 
     return stream
+
+
+def export_to_spreadsheet(qs, save_to=None):
+
+    # colors
+    black = 'FF000000'
+    dark_gray = 'FFA6A6A6'
+
+    # styles
+    header_font = Font(
+        name='Calibri',
+        size=12,
+        bold=True,
+        italic=False,
+        vertAlign=None,
+        underline='none',
+        strike=False,
+        color=black)
+
+    std_font = Font(
+        name='Calibri',
+        size=12,
+        bold=False,
+        italic=False,
+        vertAlign=None,
+        underline='none',
+        strike=False,
+        color=black)
+
+    header_fill = PatternFill(fill_type=FILL_SOLID, start_color=dark_gray)
+
+    thin_black_side = Side(style='thin', color='FF000000')
+
+    std_border = Border(
+        left=thin_black_side,
+        right=thin_black_side,
+        top=thin_black_side,
+        bottom=thin_black_side,
+    )
+
+    centered_alignment = Alignment(
+        horizontal='center',
+        vertical='center',
+        text_rotation=0,
+        wrap_text=False,
+        shrink_to_fit=False,
+        indent=0)
+
+    number_format = '# ### ### ##0'
+
+    header_style = {
+        'font': header_font,
+        'fill': header_fill,
+        'border': std_border,
+        'alignment': centered_alignment,
+    }
+
+    std_style = {
+        'font': std_font,
+        'border': std_border,
+        'alignment': centered_alignment,
+        'number_format': number_format,
+    }
+
+    empty = ""
+
+    col_year = 1
+    col_month = 2
+    col_entity = 3
+    col_dps = 4
+    col_zs = 5
+    col_numerator = 6
+    col_denominator = 7
+    col_value = 8
+    col_human = 9
+
+    def apply_style(target, style):
+        for key, value in style.items():
+            setattr(target, key, value)
+
+    wb = Workbook()
+    wb.remove_sheet(wb.active)
+
+    logger.info("exporting {} records".format(qs.count()))
+
+    # one sheet per indicator
+    for indicator in Indicator.objects.all():
+        ws = wb.create_sheet()
+        ws.title = "#{}".format(indicator.number)
+
+        def std_write(row, column, value, style=std_style):
+            cell = ws.cell(row=row, column=column)
+            cell.value = value
+            apply_style(cell, style)
+
+        row = 1
+
+        # write header
+        std_write(row, col_year, "Année", header_style)
+        std_write(row, col_month, "Mois", header_style)
+        std_write(row, col_entity, "Localité (UUID)", header_style)
+        xl_set_col_width(ws, col_entity, 7.4)
+        std_write(row, col_dps, "DPS", header_style)
+        xl_set_col_width(ws, col_dps, 7)
+        std_write(row, col_zs, "ZS", header_style)
+        xl_set_col_width(ws, col_zs, 7)
+        std_write(row, col_numerator, "Numérateur", header_style)
+        xl_set_col_width(ws, col_numerator, 3)
+        std_write(row, col_denominator, "Dénominateur", header_style)
+        xl_set_col_width(ws, col_denominator, 3)
+        std_write(row, col_value, "Valeur", header_style)
+        std_write(row, col_human, "Valeur (affich.)", header_style)
+        xl_set_col_width(ws, col_human, 3)
+
+        row += 1
+
+        for record in qs.filter(indicator=indicator).iterator():
+            logger.debug(record)
+
+            std_write(row, col_year, record.period.year, std_style)
+            std_write(row, col_month, record.period.month, std_style)
+            std_write(row, col_entity, record.entity.uuids, std_style)
+            std_write(row, col_dps,
+                      getattr(record.entity.get_dps(), 'short_name', empty),
+                      std_style)
+            std_write(row, col_zs,
+                      getattr(record.entity.get_zs(), 'short_name', empty),
+                      std_style)
+            std_write(row, col_numerator, record.numerator, std_style)
+            std_write(row, col_denominator, record.denominator, std_style)
+            std_write(row, col_value, record.value, std_style)
+            std_write(row, col_human, record.human(), std_style)
+
+            row += 1
+
+    if save_to:
+        logger.info("saving to {}".format(save_to))
+        wb.save(save_to)
+        return
+
+    stream = StringIO.StringIO()
+    wb.save(stream)
+
+    return stream

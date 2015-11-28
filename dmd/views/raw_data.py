@@ -68,6 +68,7 @@ def data_export(request, *args, **kwargs):
             'nb_records': int(export.value),
             'export_date': export.updated_on,
             'export_fname': settings.ALL_EXPORT_FNAME,
+            'export_xlsx_fname': settings.ALL_EXPORT_XLSX_FNAME,
         })
 
     return render(request,
