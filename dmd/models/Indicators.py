@@ -9,6 +9,7 @@ import datetime
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from babel.numbers import format_decimal
 
 from dmd.models.Entities import Entity
 from dmd.models.Periods import MonthPeriod
@@ -94,9 +95,9 @@ class Indicator(models.Model):
         PER_HUNDRED_THOUSAND: 100000,
     }
 
-    INTEGER_FORMAT = "{:.0f}"
-    FLOAT_2DEC_FORMAT = "{:.2f}"
-    FLOAT_1DEC_FORMAT = "{:.1f}"
+    INTEGER_FORMAT = "#,##0;-#"
+    FLOAT_2DEC_FORMAT = "#,##0.##;-#"
+    FLOAT_1DEC_FORMAT = "#,##0.#;-#"
 
     NUMBER_FORMATS = {
         INTEGER_FORMAT: _("Integer"),
@@ -291,7 +292,7 @@ class Indicator(models.Model):
     def format_number(self, value):
         if value is None:
             return None
-        return self.number_format.format(value)
+        return format_decimal(value, format=self.number_format)
 
     def compute_value(self, numerator, denominator):
         if self.itype == self.PROPORTION:
@@ -346,6 +347,8 @@ class Indicator(models.Model):
 
                 'numerator': num_sum,
                 'denominator': denom_sum,
+                'formatted_numerator': self.format_number(num_sum),
+                'formatted_denominator': self.format_number(denom_sum),
                 'value': value,
                 'formatted': self.format_number(value),
                 'human': self.format_value(value=value,

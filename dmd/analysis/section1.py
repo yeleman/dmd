@@ -30,6 +30,8 @@ def data_point_for(indicator, entity, period):
         'denominator': getattr(dr, 'denominator', None),
         'value': getattr(dr, 'value', None),
         'formatted': getattr(dr, 'formatted', None),
+        'formatted_numerator': getattr(dr, 'formatted_numerator', None),
+        'formatted_denominator': getattr(dr, 'formatted_denominator', None),
         'human': getattr(dr, 'human', lambda: None)(),
     }
 

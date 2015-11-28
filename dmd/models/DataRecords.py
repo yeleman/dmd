@@ -134,6 +134,14 @@ class DataRecord(models.Model):
         return self.indicator.format_number(self.value)
 
     @property
+    def formatted_numerator(self):
+        return self.indicator.format_number(self.numerator)
+
+    @property
+    def formatted_denominator(self):
+        return self.indicator.format_number(self.denominator)
+
+    @property
     def data_is_suspect(self):
         if self.denominator:
             return self.denominator < self.numerator

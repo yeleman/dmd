@@ -40,8 +40,8 @@
 						<th>{{ point.period }}</th>
 						{% if point.has_data %}
 						<td>{{ point.human }}</td>
-						<td>{{ point.numerator }}</td>
-						<td>{{ point.denominator }}</td>
+						<td>{{ point.formatted_numerator }}</td>
+						<td>{{ point.formatted_denominator }}</td>
 						<td><a href="{% url 'raw_data_record' record_id=point.id %}"><i class="fa fa-info-circle"></i></a></td>
 						{% else %}
 						<td colspan="4">-</td>
@@ -55,8 +55,8 @@
 						<th>{{ year_point.year }}</th>
 						{% if year_point.has_data %}
 						<td>{{ year_point.human }}</td>
-						<td>{{ year_point.numerator }}</td>
-						<td>{{ year_point.denominator }}</td>
+						<td>{{ year_point.formatted_numerator }}</td>
+						<td>{{ year_point.formatted_denominator }}</td>
 						<td></td>
 						{% else %}
 						<td colspan="4">-</td>
