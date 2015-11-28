@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 from dmd.models.Partners import Partner, User
 from dmd.models.Entities import Entity
+from dmd.models.Indicators import Indicator
 from dmd.utils import random_password
 
 logger = logging.getLogger(__name__)
@@ -37,7 +38,7 @@ class PartnerForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         instance = kwargs.get('instance')
-        _fields = ('first_name', 'last_name', 'username', 'email',)
+        _fields = ('first_name', 'last_name', 'username', 'email', 'is_staff')
         kwargs['initial'] = model_to_dict(instance.user, _fields) \
             if instance is not None else None
         super(PartnerForm, self).__init__(*args, **kwargs)
@@ -118,6 +119,7 @@ def user_add(request, *args, **kwargs):
                   context)
 
 
+@login_required
 @user_passes_test(lambda u: u.is_staff)
 def user_edit(request, username, *args, **kwargs):
     context = {'page': 'users'}
@@ -161,6 +163,7 @@ def user_edit(request, username, *args, **kwargs):
                   context)
 
 
+@login_required
 @user_passes_test(lambda u: u.is_staff)
 def user_passwd_reset(request, username, *args, **kwargs):
     partner = Partner.get_or_none(username)
@@ -173,3 +176,85 @@ def user_passwd_reset(request, username, *args, **kwargs):
                      .format(name=partner, username=partner.username,
                              password=passwd))
     return redirect('users')
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def indicators_list(request, *args, **kwargs):
+    context = {'page': 'indicators',
+               'indicators': Indicator.objects.all()}
+
+    return render(request,
+                  kwargs.get('template_name', 'indicators.html'),
+                  context)
+
+
+class IndicatorForm(forms.ModelForm):
+
+    class Meta:
+        model = Indicator
+        exclude = ('user',)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def indicator_add(request, *args, **kwargs):
+    context = {'page': 'indicators'}
+
+    if request.method == 'POST':
+        form = IndicatorForm(request.POST, instance=None)
+        if form.is_valid():
+            with transaction.atomic():
+                indicator = form.save()
+
+            messages.success(request,
+                             _("New Indicator “{name}” created with "
+                               "number `{number}`")
+                             .format(name=indicator.name,
+                                     number=indicator.number))
+            return redirect('indicators')
+        else:
+            # django form validation errors
+            logger.debug("django form errors")
+            pass
+    else:
+        form = IndicatorForm()
+
+    context.update({'form': form})
+
+    return render(request,
+                  kwargs.get('template_name', 'indicator_add.html'),
+                  context)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def indicator_edit(request, slug, *args, **kwargs):
+    context = {'page': 'indicators'}
+
+    indicator = Indicator.get_or_none(slug)
+
+    if request.method == 'POST':
+        form = IndicatorForm(request.POST, instance=indicator)
+        if form.is_valid():
+            with transaction.atomic():
+                form.save()
+
+            messages.success(request,
+                             _("Indicator “{name}” has been updated.")
+                             .format(name=indicator))
+            return redirect('indicators')
+        else:
+            # django form validation errors
+            logger.debug("django form errors")
+            pass
+    else:
+        form = IndicatorForm(instance=indicator)
+
+    context.update({
+        'form': form,
+        'indicator': indicator})
+
+    return render(request,
+                  kwargs.get('template_name', 'indicator_edit.html'),
+                  context)

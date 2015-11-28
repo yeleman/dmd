@@ -136,56 +136,89 @@ class Indicator(models.Model):
         ROUTINE: _("Routine"),
     }
 
-    slug = models.SlugField(max_length=255, primary_key=True)
-    origin = models.CharField(max_length=64, choices=ORIGINS.items())
-    number = models.CharField(max_length=8, unique=True)
-    name = models.CharField(max_length=512)
-    name_en = models.CharField(max_length=512, blank=True, null=True)
+    slug = models.SlugField(
+        max_length=255, primary_key=True,
+        verbose_name=_("Identifier"),
+        help_text=_("Lowercase english summary without spaces"))
+    origin = models.CharField(max_length=64, choices=ORIGINS.items(),
+                              verbose_name=_("origin"),
+                              help_text=_("Careful with DHIS indicators"))
+    number = models.CharField(max_length=8, unique=True,
+                              verbose_name=_("Indicator number"),
+                              help_text=_("Respect convention"))
+    name = models.CharField(max_length=512, verbose_name=_("French name"))
+    name_en = models.CharField(max_length=512, blank=True, null=True,
+                               verbose_name=_("English name"))
 
-    dhis_indicator_id = models.CharField(max_length=64, null=True, blank=True)
-    dhis_numerator_id = models.CharField(max_length=64, null=True, blank=True)
+    dhis_indicator_id = models.CharField(max_length=64, null=True, blank=True,
+                                         verbose_name=_("DHIS Indicator ID"),
+                                         help_text=_("For reference only"))
+    dhis_numerator_id = models.CharField(
+        max_length=64, null=True, blank=True,
+        verbose_name=_("DHIS Numerator ID"),
+        help_text=_("Mandatory for DHIS Indicator"))
     dhis_numerator_formula = models.CharField(
-        max_length=512, null=True, blank=True)
-    dhis_denominator_id = models.CharField(max_length=64,
-                                           null=True, blank=True)
+        max_length=512, null=True, blank=True,
+        verbose_name=_("DHIS Numerator Formula"),
+        help_text=_("For reference only"))
+    dhis_denominator_id = models.CharField(
+        max_length=64, null=True, blank=True,
+        verbose_name=_("DHIS Denominator ID"),
+        help_text=_("Mandatory for DHIS Indicator"))
     dhis_denominator_formula = models.CharField(
-        max_length=512, null=True, blank=True)
+        max_length=512, null=True, blank=True,
+        verbose_name=_("DHIS Denominator Formula"),
+        help_text=_("For reference only"))
 
     category = models.CharField(max_length=64, choices=CATEGORIES.items(),
-                                null=True, blank=True)
+                                null=True, blank=True,
+                                verbose_name=_("Category"))
     tech_area1 = models.CharField(max_length=64,
                                   choices=TECH_AREAS_1.items(),
-                                  null=True, blank=True)
+                                  null=True, blank=True,
+                                  verbose_name=_("Tech Area 1"))
     tech_area2 = models.CharField(max_length=64,
                                   choices=TECH_AREAS_2.items(),
-                                  null=True, blank=True)
-    itype = models.CharField(max_length=64, choices=TYPES.items())
+                                  null=True, blank=True,
+                                  verbose_name=_("Tech Area 2"))
+    itype = models.CharField(max_length=64, choices=TYPES.items(),
+                             verbose_name=_("Indicator Type"))
     number_format = models.CharField(max_length=32,
-                                     choices=NUMBER_FORMATS.items())
+                                     choices=NUMBER_FORMATS.items(),
+                                     verbose_name=_("Number Format"))
     value_format = models.CharField(max_length=64,
-                                    choices=VALUE_FORMATS.items())
-    organizations = models.ManyToManyField('Organization', blank=True,
-                                           related_name='indicators')
+                                    choices=VALUE_FORMATS.items(),
+                                    verbose_name=_("Value Format"))
+    organizations = models.ManyToManyField(
+        'Organization', blank=True, related_name='indicators',
+        verbose_name=_("Organizations"))
 
     collection_type = models.CharField(max_length=64,
-                                       choices=COLLECTION_TYPES.items())
+                                       choices=COLLECTION_TYPES.items(),
+                                       verbose_name=_("Collection Type"))
     # mostly DPS for Survey, ZS for Routine
     collection_level = models.CharField(max_length=64,
-                                        choices=Entity.TYPES.items())
+                                        choices=Entity.TYPES.items(),
+                                        verbose_name=_("Collection Level"))
     collection_period = models.PositiveIntegerField(
+        verbose_name=_("Collection Periodicity"),
         help_text=_("In months"))
 
     # mostly PNLP, default 45d
     transmission_organizations = models.ManyToManyField(
-        'Organization', blank=True, related_name='transmission_indicators')
+        'Organization', blank=True, related_name='transmission_indicators',
+        verbose_name=_("Transmitting Organizations"))
     transmission_delay = models.PositiveIntegerField(
-        blank=True, null=True, help_text=_("In days"))
+        blank=True, null=True, help_text=_("In days"),
+        verbose_name=_("Transmission Delay"))
 
     # mostly PNLP, default 10d
     validation_organizations = models.ManyToManyField(
-        'Organization', blank=True, related_name='validation_indicators')
+        'Organization', blank=True, related_name='validation_indicators',
+        verbose_name=_("Validating Organizations"))
     validation_delay = models.PositiveIntegerField(
-        blank=True, null=True, help_text=_("In days"))
+        blank=True, null=True, help_text=_("In days"),
+        verbose_name=_("Validation Delay"))
 
     def __str__(self):
         return self.__unicode__().encode('utf-8')

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+
+{% block title %}Ajout d'un indicateur{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">   	
+    	<div class="panel panel-default">
+    		<div class="panel-heading">Renseignez les informations de l'indicateur</div>
+    		<div class="panel-body">
+    		<form action="" method="POST">
+    		{% csrf_token %}
+    		{{ form|as_bootstrap }}
+    		<button class="btn btn-primary" action="submit">Créer l'indicateur</button>
+    		</form>
+		    </div>
+		</div>
+    </div>
+</div>
+{% endblock %}

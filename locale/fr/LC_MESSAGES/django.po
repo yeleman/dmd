@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dmd\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-16 14:57+0000\n"
-"PO-Revision-Date: 2015-11-16 15:03-0000\n"
+"POT-Creation-Date: 2015-11-28 18:56+0000\n"
+"PO-Revision-Date: 2015-11-28 19:02-0000\n"
 "Last-Translator: reg <rgaudin@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 1.6.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: dmd/models/DataRecords.py:37
+#: dmd/models/DataRecords.py:58
 msgid "Not Validated"
 msgstr "Non validé"
 
@@ -35,141 +35,262 @@ msgstr "Division Provinciale de la Santé"
 msgid "Zone de santé"
 msgstr "Zone de santé"
 
-#: dmd/models/Entities.py:41
-msgid "Aire de Santé"
-msgstr "Aire de Santé"
-
-#: dmd/models/Indicators.py:32
+#: dmd/models/Indicators.py:34
 msgid "Prevention Vector Control"
 msgstr "Prevention Vector Control"
 
-#: dmd/models/Indicators.py:33
+#: dmd/models/Indicators.py:35
 msgid "Case Management"
 msgstr "Case Management"
 
-#: dmd/models/Indicators.py:34
+#: dmd/models/Indicators.py:36
 msgid "Behavioral Chance Communication"
 msgstr "Behavioral Chance Communication"
 
-#: dmd/models/Indicators.py:35
+#: dmd/models/Indicators.py:37
 msgid "Surveillance and M&E"
 msgstr "Surveillance and M&E"
 
-#: dmd/models/Indicators.py:36
+#: dmd/models/Indicators.py:38
 msgid "Health System Strengthening"
 msgstr "Health System Strengthening"
 
-#: dmd/models/Indicators.py:52
+#: dmd/models/Indicators.py:54
 msgid "ITN/LLIN"
 msgstr "ITN/LLIN"
 
-#: dmd/models/Indicators.py:53
+#: dmd/models/Indicators.py:55
 msgid "PSM"
 msgstr "PSM"
 
-#: dmd/models/Indicators.py:54
+#: dmd/models/Indicators.py:56
 msgid "IPTp"
 msgstr "IPTp"
 
-#: dmd/models/Indicators.py:55
+#: dmd/models/Indicators.py:57
 msgid "IRS"
 msgstr "IRS"
 
-#: dmd/models/Indicators.py:56
+#: dmd/models/Indicators.py:58
 msgid "Diagnosis"
 msgstr "Diagnosis"
 
-#: dmd/models/Indicators.py:57
+#: dmd/models/Indicators.py:59
 msgid "Treatment"
 msgstr "Treatment"
 
-#: dmd/models/Indicators.py:58
+#: dmd/models/Indicators.py:60
 msgid "Capacity building"
 msgstr "Capacity building"
 
-#: dmd/models/Indicators.py:59
+#: dmd/models/Indicators.py:61
 msgid "Community Case Management"
 msgstr "Community Case Management"
 
-#: dmd/models/Indicators.py:60
+#: dmd/models/Indicators.py:62
 msgid "Knowledge"
 msgstr "Knowledge"
 
-#: dmd/models/Indicators.py:61
+#: dmd/models/Indicators.py:63
 msgid "Supervision"
 msgstr "Supervision"
 
-#: dmd/models/Indicators.py:62
+#: dmd/models/Indicators.py:64
 msgid "Enable environment"
 msgstr "Enable environment"
 
-#: dmd/models/Indicators.py:69
+#: dmd/models/Indicators.py:71
 msgid "Effect"
 msgstr "Effect"
 
-#: dmd/models/Indicators.py:70
+#: dmd/models/Indicators.py:72
 msgid "Process"
 msgstr "Process"
 
-#: dmd/models/Indicators.py:81
+#: dmd/models/Indicators.py:83
 msgid "Number"
 msgstr "Nombre"
 
-#: dmd/models/Indicators.py:82
+#: dmd/models/Indicators.py:84
 msgid "Percentage"
 msgstr "Pourcentage"
 
-#: dmd/models/Indicators.py:83
+#: dmd/models/Indicators.py:85
 msgid "Proportion"
 msgstr "Proportion"
 
-#: dmd/models/Indicators.py:84
+#: dmd/models/Indicators.py:86
 msgid "Per 1,000"
 msgstr "Pour 1 000"
 
-#: dmd/models/Indicators.py:85
+#: dmd/models/Indicators.py:87
 msgid "Per 10,000"
 msgstr "Pour 10 000"
 
-#: dmd/models/Indicators.py:86
+#: dmd/models/Indicators.py:88
 msgid "Per 100,000"
 msgstr "Pour 100 000"
 
-#: dmd/models/Indicators.py:102
+#: dmd/models/Indicators.py:104
 msgid "Integer"
 msgstr "Entier"
 
-#: dmd/models/Indicators.py:103
+#: dmd/models/Indicators.py:105
 msgid "Float, precision 1"
 msgstr "Réel, une décimale"
 
-#: dmd/models/Indicators.py:104
+#: dmd/models/Indicators.py:106
 msgid "Float, precision 2"
 msgstr "Réel, deux décimales"
 
-#: dmd/models/Indicators.py:125
+#: dmd/models/Indicators.py:127
 msgid "Manual"
 msgstr "Manuelle"
 
-#: dmd/models/Indicators.py:126
+#: dmd/models/Indicators.py:128
 msgid "DHIS"
 msgstr "DHIS"
 
-#: dmd/models/Indicators.py:133
+#: dmd/models/Indicators.py:135
 msgid "Survey"
 msgstr "Enquête"
 
-#: dmd/models/Indicators.py:134
+#: dmd/models/Indicators.py:136
 msgid "Routine"
 msgstr "Routine"
 
-#: dmd/models/Indicators.py:174
+#: dmd/models/Indicators.py:141
+msgid "Identifier"
+msgstr "Identifiant"
+
+#: dmd/models/Indicators.py:142
+msgid "Lowercase english summary without spaces"
+msgstr "Résumé en anglais, en minuscules, sans espaces"
+
+#: dmd/models/Indicators.py:144
+msgid "origin"
+msgstr "Origine"
+
+#: dmd/models/Indicators.py:145
+msgid "Careful with DHIS indicators"
+msgstr "Attention avec les indicateurs DHIS"
+
+#: dmd/models/Indicators.py:147
+msgid "Indicator number"
+msgstr "Numéro d'indicateur"
+
+#: dmd/models/Indicators.py:148
+msgid "Respect convention"
+msgstr "Respecter la convention"
+
+#: dmd/models/Indicators.py:149
+msgid "French name"
+msgstr "Nom en français"
+
+#: dmd/models/Indicators.py:151
+msgid "English name"
+msgstr "Nom en anglais"
+
+#: dmd/models/Indicators.py:154
+msgid "DHIS Indicator ID"
+msgstr "ID DHIS de l'indicateur"
+
+#: dmd/models/Indicators.py:155 dmd/models/Indicators.py:163
+#: dmd/models/Indicators.py:171
+msgid "For reference only"
+msgstr "Pour référence uniquement"
+
+#: dmd/models/Indicators.py:158
+#| msgid "Numerator"
+msgid "DHIS Numerator ID"
+msgstr "ID DHIS du numérateur"
+
+#: dmd/models/Indicators.py:159 dmd/models/Indicators.py:167
+msgid "Mandatory for DHIS Indicator"
+msgstr "Indispensable pour indicateur DHIS"
+
+#: dmd/models/Indicators.py:162
+msgid "DHIS Numerator Formula"
+msgstr "Formule DHIS de l'indicateur"
+
+#: dmd/models/Indicators.py:166
+#| msgid "Denominator"
+msgid "DHIS Denominator ID"
+msgstr "ID DHIS du dénominateur"
+
+#: dmd/models/Indicators.py:170
+#| msgid "Denominator"
+msgid "DHIS Denominator Formula"
+msgstr "Formule DHIS du dénominateur"
+
+#: dmd/models/Indicators.py:175
+msgid "Category"
+msgstr "Catégorie"
+
+#: dmd/models/Indicators.py:179
+msgid "Tech Area 1"
+msgstr "Tech Area 1"
+
+#: dmd/models/Indicators.py:183
+msgid "Tech Area 2"
+msgstr "Tech Area 2"
+
+#: dmd/models/Indicators.py:185
+msgid "Indicator Type"
+msgstr "Type d'indicateur"
+
+#: dmd/models/Indicators.py:188
+#| msgid "Number"
+msgid "Number Format"
+msgstr "Formattage des nombres"
+
+#: dmd/models/Indicators.py:191
+msgid "Value Format"
+msgstr "Formatage de la valeur"
+
+#: dmd/models/Indicators.py:194
+#| msgid "Organization"
+msgid "Organizations"
+msgstr "Organisations"
+
+#: dmd/models/Indicators.py:198
+msgid "Collection Type"
+msgstr "Type de collecte"
+
+#: dmd/models/Indicators.py:202
+msgid "Collection Level"
+msgstr "Niveau de la collecte"
+
+#: dmd/models/Indicators.py:204
+msgid "Collection Periodicity"
+msgstr "Périodicité de la collecte"
+
+#: dmd/models/Indicators.py:205
 msgid "In months"
 msgstr "En mois"
 
-#: dmd/models/Indicators.py:180 dmd/models/Indicators.py:186
+#: dmd/models/Indicators.py:210
+#| msgid "Organization"
+msgid "Transmitting Organizations"
+msgstr "Organisations qui transmettent"
+
+#: dmd/models/Indicators.py:212 dmd/models/Indicators.py:220
 msgid "In days"
 msgstr "En jours"
+
+#: dmd/models/Indicators.py:213
+msgid "Transmission Delay"
+msgstr "Délai de transmission"
+
+#: dmd/models/Indicators.py:218
+#| msgid "Validation location"
+msgid "Validating Organizations"
+msgstr "Organisations qui valident"
+
+#: dmd/models/Indicators.py:221
+#| msgid "Validation location"
+msgid "Validation Delay"
+msgstr "Délai de validation"
 
 #: dmd/models/Partners.py:46
 msgid "Organization"
@@ -191,12 +312,12 @@ msgstr "Peut valider des données ?"
 msgid "Validation location"
 msgstr "Localité de validation des données"
 
-#: dmd/views/admin.py:64
+#: dmd/views/admin.py:65
 #, python-brace-format
 msgid "Username `{username}` is already taken"
 msgstr "L'identifiant `{username}` est déjà utilisé"
 
-#: dmd/views/admin.py:103
+#: dmd/views/admin.py:104
 #, python-brace-format
 msgid ""
 "New User account “{name}” created with login `{username}` and password "
@@ -205,12 +326,12 @@ msgstr ""
 "Nouveau compte utilisateur «{name}» créé avec l'identifiant `{username}` et "
 "le mot de passe `{password}`"
 
-#: dmd/views/admin.py:145
+#: dmd/views/admin.py:147
 #, python-brace-format
 msgid "User account “{name}” has been updated."
 msgstr "Le compte utilisateur «{name}» a été mis à jour."
 
-#: dmd/views/admin.py:171
+#: dmd/views/admin.py:174
 #, python-brace-format
 msgid ""
 "Password for User account “{name}” (login `{username}`) has been reseted to "
@@ -219,10 +340,48 @@ msgstr ""
 "Le mot de passe du compte «{name}» (identifiant `{username}`) a été changé "
 "pour `{password}`"
 
-#: dmd/views/analysis.py:29
+#: dmd/views/admin.py:211
+#, python-brace-format
+#| msgid ""
+#| "New User account “{name}” created with login `{username}` and password "
+#| "`{password}`"
+msgid "New Indicator “{name}” created with number `{number}`"
+msgstr "Nouvel indicateur «{name}» créé avec numéro `{number}`"
+
+#: dmd/views/admin.py:244
+#, python-brace-format
+#| msgid "User account “{name}” has been updated."
+msgid "Indicator “{name}” has been updated."
+msgstr "L'indicateur «{name}» a été mis à jour."
+
+#: dmd/views/analysis.py:30
 #, python-brace-format
 msgid "Unknown section ID `{sid}`"
 msgstr "ID de section `{sid}` inconnu"
+
+#: dmd/views/api.py:66
+#, python-brace-format
+#| msgid "Unknown section ID `{sid}`"
+msgid "Unknown collection type `{ct}`"
+msgstr "Type de collecte `{ct}` inconnue"
+
+#: dmd/views/api.py:78
+#, python-brace-format
+#| msgid "Unknown section ID `{sid}`"
+msgid "Unknown entity UUID `{u}`"
+msgstr "UUID de localité `{u}` inconnu"
+
+#: dmd/views/api.py:82
+#, python-brace-format
+#| msgid "Unknown section ID `{sid}`"
+msgid "Unknown period `{p}`"
+msgstr "Période `{p}` inconnue"
+
+#: dmd/views/api.py:86
+#, python-brace-format
+#| msgid "Unknown section ID `{sid}`"
+msgid "Unknown indicator `{s}`"
+msgstr "Indicateur `{s}` inconnu"
 
 #: dmd/views/common.py:31
 #, python-brace-format
@@ -308,7 +467,7 @@ msgstr "Vous n'êtes pas autorisé à transmettre des données."
 msgid "Unexpected Error while reading XLS file"
 msgstr "Erreur inattendue lors de l'analyse du masque de saisie Excel"
 
-#: dmd/views/upload.py:164
+#: dmd/views/upload.py:165
 #, python-brace-format
 msgid "No Entity to match `{uuid}`"
 msgstr "Impossible de trouver la localité correspondant à `{uuid}`"
@@ -338,51 +497,53 @@ msgstr ""
 "Merci pour vos validations. {w} données ont été laissés telles quelles, {u} "
 "ont été mises à jour, {v} ont été validées et {r} ont été rejetées."
 
-#: dmd/xlsx/xlimport.py:41
+#: dmd/xlsx/xlimport.py:42
 #, python-brace-format
 msgid "{user} is not allowed to submit data"
 msgstr "{user} n'est pas autorisé à transmettre des données"
 
-#: dmd/xlsx/xlimport.py:47 dmd/xlsx/xlimport.py:162
+#: dmd/xlsx/xlimport.py:48 dmd/xlsx/xlimport.py:163
 msgid "Not a proper XLSX Template."
 msgstr "Ce fichier n'est pas un masque de saisie Excel valide"
 
-#: dmd/xlsx/xlimport.py:111
+#: dmd/xlsx/xlimport.py:112
 #, python-brace-format
 msgid "You can't submit data for that location ({entity})"
 msgstr ""
 "Vous ne pouvez pas transmettre de données pour cette localité ({entity})"
 
-#: dmd/xlsx/xlimport.py:138
+#: dmd/xlsx/xlimport.py:139
 #, python-brace-format
 msgid "Missing year or month at row {row}"
 msgstr "Année ou mois manquant pour la ligne {row}"
 
-#: dmd/xlsx/xlimport.py:147
+#: dmd/xlsx/xlimport.py:148
 #, python-brace-format
-#| msgid "Unable to match period with `{period}`"
 msgid "Unable to retrieve period for {y}/{m}"
 msgstr "Impossible de trouver la période pour {m}/{y}"
 
-#: dmd/xlsx/xlimport.py:178
+#: dmd/xlsx/xlimport.py:179
 #, python-brace-format
 msgid "Unable to match an Indicator at col {col}"
 msgstr "Aucun indicateur trouvé pour la colonne {col}"
 
-#: dmd/xlsx/xlimport.py:191
+#: dmd/xlsx/xlimport.py:192
 #, python-brace-format
 msgid "{on} is outside submission period for Indicator #{ind} at {period}"
 msgstr ""
 "{on} est hors de la période de transmission pour l'Indicateur #{ind} {period}"
 
-#: dmd/xlsx/xlimport.py:202
+#: dmd/xlsx/xlimport.py:203
 msgid "Missing denominator on non-number Indicator"
 msgstr "Dénominateur manquant pour Indicateur non-nombre"
 
-#: dmd/xlsx/xlimport.py:215
+#: dmd/xlsx/xlimport.py:216
 #, python-brace-format
 msgid "Incorrect value for numerator or denominator `{num} / {denom}`"
 msgstr "Numérateur ou dénominateur incorrect `{num} / {denom}`"
+
+#~ msgid "Aire de Santé"
+#~ msgstr "Aire de Santé"
 
 #~ msgid "Invalid Entity `{uuid}`"
 #~ msgstr "Entité invalide `{uuid}`"

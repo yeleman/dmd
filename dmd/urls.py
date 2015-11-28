@@ -126,4 +126,12 @@ urlpatterns = [
     url(r'^' + uprefix + 'users/?$', 'dmd.views.admin.users_list',
         name='users'),
 
+    # indicators
+    url(r'^' + uprefix + 'indicators/add/?$',
+        'dmd.views.admin.indicator_add', name='indicator_add'),
+    url(r'^' + uprefix + 'indicators/(?P<slug>[a-zA-Z0-9\-\_]+)/?$',
+        'dmd.views.admin.indicator_edit', name='indicator_edit'),
+    url(r'^' + uprefix + 'indicators/?$',
+        'dmd.views.admin.indicators_list', name='indicators'),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
