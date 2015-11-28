@@ -49,20 +49,36 @@
     				</tr>
 					{% endfor %}
 
-					<tr><th colspan="5" class="text-center">Aggrégats annuels</th></tr>
+					<tr><th colspan="5" class="text-center">Aggrégats annuels (sommes)</th></tr>
 					{% for year_point in trd.year_elements %}
 					<tr>
 						<th>{{ year_point.year }}</th>
 						{% if year_point.has_data %}
 						<td>{{ year_point.human }}</td>
-						<td>{{ year_point.formatted_numerator }}</td>
-						<td>{{ year_point.formatted_denominator }}</td>
+						<td>{{ year_point.numerator_sum_fmt }}</td>
+						<td>{{ year_point.denominator_sum_fmt }}</td>
 						<td></td>
 						{% else %}
 						<td colspan="4">-</td>
 						{% endif %}
     				</tr>
 					{% endfor %}
+
+					<tr><th colspan="5" class="text-center">Aggrégats annuels (moyennes)</th></tr>
+					{% for year_point in trd.year_elements %}
+					<tr>
+						<th>{{ year_point.year }}</th>
+						{% if year_point.has_data %}
+						<td>{{ year_point.human }}</td>
+						<td>{{ year_point.numerator_avg_fmt }}</td>
+						<td>{{ year_point.denominator_avg_fmt }}</td>
+						<td></td>
+						{% else %}
+						<td colspan="4">-</td>
+						{% endif %}
+    				</tr>
+					{% endfor %}
+
     			</table>
 			</div>
 		</div>

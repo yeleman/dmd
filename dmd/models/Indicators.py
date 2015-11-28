@@ -7,6 +7,7 @@ from __future__ import (unicode_literals, absolute_import,
 import logging
 import datetime
 
+import numpy
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from babel.numbers import format_decimal
@@ -329,8 +330,12 @@ class Indicator(models.Model):
                 MonthPeriod.get_or_create(year, 1),
                 MonthPeriod.get_or_create(year, 12))
             drs = qs.filter(period__in=periods)
-            num_sum = sum([dr.numerator for dr in drs])
-            denom_sum = sum([dr.denominator for dr in drs])
+            numerators = [dr.numerator for dr in drs]
+            num_sum = sum(numerators)
+            num_avg = numpy.mean(numerators) if numerators else 0
+            denominators = [dr.denominator for dr in drs]
+            denom_sum = sum(denominators)
+            denom_avg = numpy.mean(denominators) if denominators else 0
             try:
                 value = self.compute_value(num_sum, denom_sum)
             except ZeroDivisionError:
@@ -345,10 +350,16 @@ class Indicator(models.Model):
                 'periods': periods,
                 'entity': entity,
 
-                'numerator': num_sum,
-                'denominator': denom_sum,
-                'formatted_numerator': self.format_number(num_sum),
-                'formatted_denominator': self.format_number(denom_sum),
+                'numerator_sum': num_sum,
+                'denominator_sum': denom_sum,
+                'numerator_avg': num_avg,
+                'denominator_avg': denom_avg,
+
+                'numerator_sum_fmt': self.format_number(num_sum),
+                'denominator_sum_fmt': self.format_number(denom_sum),
+                'numerator_avg_fmt': self.format_number(num_avg),
+                'denominator_avg_fmt': self.format_number(denom_avg),
+
                 'value': value,
                 'formatted': self.format_number(value),
                 'human': self.format_value(value=value,
