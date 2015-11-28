@@ -79,6 +79,13 @@ body.map #page-inner {
 	/*padding-left: 15px;*/
 }
 
+body.home .jumbotron {
+	background-image: url('../logo-bold.png');
+    background-repeat: no-repeat;
+    background-position: bottom 1em right 1em;
+    background-size: 10em;
+}
+
 /*----------------------------------------------
     COMMON  STYLES    
 ------------------------------------------------*/
@@ -95,7 +102,7 @@ body {
 
 #page-wrapper {
     padding: 15px 15px;
-    min-height: 600px;
+    /*min-height: 600px;*/
     background:#E5EBF2;
    
 }
@@ -104,7 +111,10 @@ body {
     margin:10px 20px 10px 0px;
     background-color:transparent;
     padding:10px;
-    min-height:1200px;
+    /*min-height:600px;*/
+    background-image: url('../mosquito.png');
+    background-repeat: no-repeat;
+    background-position: top right;
 }
 
 .text-center {
@@ -479,10 +489,9 @@ line-height: 1.428571429;
  
  @media(min-width:768px) {
      #page-wrapper{
-               margin: 0 0 0 260px;
+        margin: 0 0 0 260px;
         padding: 15px 30px;
-        min-height: 1200px;
-		
+        /*min-height: 600px;*/
     }
 	
 	

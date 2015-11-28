@@ -152,6 +152,16 @@ $('#main-menu').metisMenu({ toggle: false });
 	    } else {
 	        $('div.sidebar-collapse').removeClass('collapse')
 	    }
+	    var windowHeight = $(window).height();
+	    var topBarHeight = $('.top-navbar').height();
+	    var padding = 30; // $('#page-wrapper').css('paddingTop'); // 15px
+		var availHeight = windowHeight - topBarHeight - padding;
+	    var wrapperHeight = $('#page-wrapper').height();
+	    console.log("innerHeight: "+innerHeight);
+	    console.log("wrapperHeight: "+wrapperHeight);
+	    if (wrapperHeight < availHeight) {
+			$('#page-wrapper').height(availHeight);
+		}
 	});
 {% block onJQready %}{% endblock %}
 });</script>
