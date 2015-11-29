@@ -47,6 +47,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         </li>
+                        <li><a href="{% url 'user_profile' username=user.username %}"><i class="fa fa-user"></i> {% include "parts/user.html" with partner=user.partner %}</a>
                         <!-- <li class="divider"></li> -->
                         <li><a href="{% url 'user_change_password' %}"><i class="fa fa-key"></i> Changement mot de passe</a>
                         </li>

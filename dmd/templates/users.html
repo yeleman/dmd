@@ -23,7 +23,7 @@
                 	{% for partner in partners %}
                     <tr class="odd gradeX" data-username="{{ partner.username }}">
                         <td><a href="{% url 'user_edit' partner.username %}">{{ partner.username }}</a></td>
-                        <td>{{ partner }}</td>
+                        <td>{% include "parts/user.html" with partner=partner %}</td>
                         <td>{{ partner.organization }}</td>
                         <td>{{ partner.user.email }}</td>
                     </tr>

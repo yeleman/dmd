@@ -75,6 +75,10 @@ class Partner(models.Model):
         return self.__str__()
 
     @property
+    def is_active(self):
+        return self.user.is_active
+
+    @property
     def username(self):
         return self.user.username
 

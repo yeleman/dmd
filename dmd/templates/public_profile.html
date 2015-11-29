@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ partner }}{% endblock %}
+{% block title %}{% include "parts/user.html" with partner=partner %}{% endblock %}
 
 {% block content %}
 <div class="row">

@@ -1,0 +1,1 @@
+{% if as_link %}<a href="{% url 'user_profile' partner.username %}">{% endif %}{% if not partner.is_active %}<s>{% endif %}{{ partner }}{% if not partner.is_active %}</s>{% endif %}{% if as_link %}</a>{% endif %}

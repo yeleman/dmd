@@ -38,7 +38,8 @@ class PartnerForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         instance = kwargs.get('instance')
-        _fields = ('first_name', 'last_name', 'username', 'email', 'is_staff')
+        _fields = ('first_name', 'last_name', 'username', 'email',
+                   'is_staff', 'is_active')
         kwargs['initial'] = model_to_dict(instance.user, _fields) \
             if instance is not None else None
         super(PartnerForm, self).__init__(*args, **kwargs)
@@ -85,7 +86,8 @@ def user_add(request, *args, **kwargs):
                     username=form.cleaned_data.get('username'),
                     first_name=form.cleaned_data.get('first_name'),
                     last_name=form.cleaned_data.get('last_name'),
-                    email=form.cleaned_data.get('email'))
+                    email=form.cleaned_data.get('email'),
+                    is_active=form.cleaned_data.get('is_active'))
                 passwd = random_password(True)
                 user.set_password(passwd)
                 user.save()
@@ -132,6 +134,7 @@ def user_edit(request, username, *args, **kwargs):
                 partner.user.first_name = form.cleaned_data.get('first_name')
                 partner.user.last_name = form.cleaned_data.get('last_name')
                 partner.user.email = form.cleaned_data.get('email')
+                partner.user.is_active = form.cleaned_data.get('is_active')
                 partner.user.save()
 
                 partner.organization = form.cleaned_data.get('organization')

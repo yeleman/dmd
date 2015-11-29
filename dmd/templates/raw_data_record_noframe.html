@@ -19,12 +19,12 @@
 	<tr>
 		<th>Source</th>
 		<td>{{ record.source_verbose }}</td>
-		<td colspan="2">Transmis le {{ record.created_on }} par {{ record.created_by }}</td>
+		<td colspan="2">Transmis le {{ record.created_on }} par {% include "parts/user.html" with as_link=True partner=record.created_by %}</td>
 	</tr>
 	<tr>
 		<th>Modification</th>
 		{% if record.updated_by %}
-		<td colspan="3">Modifié le {{ record.updated_on }} par {{ record.updated_by }}</td>
+		<td colspan="3">Modifié le {{ record.updated_on }} par {% include "parts/user.html" with as_link=True partner=record.updated_by %}</td>
 		{% else %}
 		<td colspan="3">Non modifié</td>
 		{% endif %}
@@ -33,7 +33,7 @@
 		<th>Validation</th>
 		<td{% if not record.validated_by %} colspan="3"{% endif %}>{{ record.validation_status_verbose }}</td>
 		{% if record.validated_by %}
-		<td colspan="2">Validé le {{ record.validated_on }} par {{ record.validated_by }}</td>
+		<td colspan="2">Validé le {{ record.validated_on }} par {% include "parts/user.html" with as_link=True partner=record.validated_by %}</td>
 		{% endif %}
 	</tr>
 	{% if record.aggregate %}
