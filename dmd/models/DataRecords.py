@@ -230,6 +230,9 @@ class DataRecord(models.Model):
         self.validated_by = by
         self.save()
 
+    def remove_validation(self):
+        self.record_validation(status=self.NOT_VALIDATED, on=None, by=None)
+
     def validate(self, on, by):
         self.record_validation(status=self.VALIDATED, on=on, by=by)
 
@@ -240,9 +243,11 @@ class DataRecord(models.Model):
         self.record_validation(status=self.AUTO_VALIDATED, on=on,
                                by=Partner.validation_bot())
 
-    def record_update(self, partner):
+    def record_update(self, partner, keep_validation=False):
         self.updated_on = timezone.now()
         self.updated_by = partner
+        if not keep_validation:
+            self.remove_validation()
         self.save()
 
     def edit(self, on, by, numerator, denominator):
