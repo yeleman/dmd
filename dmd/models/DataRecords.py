@@ -44,9 +44,9 @@ class DataRecord(models.Model):
     AGGREGATION = 'aggregation'
 
     SOURCES = {
-        UPLOAD: "Directe",
-        DHIS: "DHIS",
-        AGGREGATION: "Aggregation",
+        UPLOAD: _("Direct"),
+        DHIS: _("DHIS"),
+        AGGREGATION: _("Aggregation"),
     }
 
     NOT_VALIDATED = 'not_validated'
@@ -56,10 +56,10 @@ class DataRecord(models.Model):
     MODIFIED = 'modified'
     VALIDATION_STATUSES = {
         NOT_VALIDATED: _("Not Validated"),
-        VALIDATED: ("Validated"),
-        AUTO_VALIDATED: ("Auto Validated"),
-        REJECTED: ("Rejected"),
-        MODIFIED: ("Modified"),
+        VALIDATED: _("Validated"),
+        AUTO_VALIDATED: _("Auto Validated"),
+        REJECTED: _("Rejected"),
+        MODIFIED: _("Modified"),
     }
 
     VALIDATED_STATUSES = [VALIDATED, AUTO_VALIDATED, MODIFIED]

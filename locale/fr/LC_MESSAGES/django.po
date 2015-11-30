@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dmd\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-28 18:56+0000\n"
-"PO-Revision-Date: 2015-11-28 19:02-0000\n"
+"POT-Creation-Date: 2015-11-30 12:44+0000\n"
+"PO-Revision-Date: 2015-11-30 12:45-0000\n"
 "Last-Translator: reg <rgaudin@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -19,9 +19,40 @@ msgstr ""
 "X-Generator: Poedit 1.6.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
+#: dmd/models/DataRecords.py:47
+msgid "Direct"
+msgstr "Directe"
+
+#: dmd/models/DataRecords.py:48 dmd/models/Indicators.py:128
+msgid "DHIS"
+msgstr "DHIS"
+
+#: dmd/models/DataRecords.py:49
+#| msgid "Organization"
+msgid "Aggregation"
+msgstr "Agrégation"
+
 #: dmd/models/DataRecords.py:58
 msgid "Not Validated"
 msgstr "Non validé"
+
+#: dmd/models/DataRecords.py:59
+#| msgid "Not Validated"
+msgid "Validated"
+msgstr "Validé"
+
+#: dmd/models/DataRecords.py:60
+#| msgid "Not Validated"
+msgid "Auto Validated"
+msgstr "Auto-validé"
+
+#: dmd/models/DataRecords.py:61
+msgid "Rejected"
+msgstr "Rejeté"
+
+#: dmd/models/DataRecords.py:62
+msgid "Modified"
+msgstr "Modifié"
 
 #: dmd/models/Entities.py:38
 msgid "Country"
@@ -147,10 +178,6 @@ msgstr "Réel, deux décimales"
 msgid "Manual"
 msgstr "Manuelle"
 
-#: dmd/models/Indicators.py:128
-msgid "DHIS"
-msgstr "DHIS"
-
 #: dmd/models/Indicators.py:135
 msgid "Survey"
 msgstr "Enquête"
@@ -201,7 +228,6 @@ msgid "For reference only"
 msgstr "Pour référence uniquement"
 
 #: dmd/models/Indicators.py:158
-#| msgid "Numerator"
 msgid "DHIS Numerator ID"
 msgstr "ID DHIS du numérateur"
 
@@ -214,12 +240,10 @@ msgid "DHIS Numerator Formula"
 msgstr "Formule DHIS de l'indicateur"
 
 #: dmd/models/Indicators.py:166
-#| msgid "Denominator"
 msgid "DHIS Denominator ID"
 msgstr "ID DHIS du dénominateur"
 
 #: dmd/models/Indicators.py:170
-#| msgid "Denominator"
 msgid "DHIS Denominator Formula"
 msgstr "Formule DHIS du dénominateur"
 
@@ -240,7 +264,6 @@ msgid "Indicator Type"
 msgstr "Type d'indicateur"
 
 #: dmd/models/Indicators.py:188
-#| msgid "Number"
 msgid "Number Format"
 msgstr "Formattage des nombres"
 
@@ -249,7 +272,6 @@ msgid "Value Format"
 msgstr "Formatage de la valeur"
 
 #: dmd/models/Indicators.py:194
-#| msgid "Organization"
 msgid "Organizations"
 msgstr "Organisations"
 
@@ -270,7 +292,6 @@ msgid "In months"
 msgstr "En mois"
 
 #: dmd/models/Indicators.py:210
-#| msgid "Organization"
 msgid "Transmitting Organizations"
 msgstr "Organisations qui transmettent"
 
@@ -283,12 +304,10 @@ msgid "Transmission Delay"
 msgstr "Délai de transmission"
 
 #: dmd/models/Indicators.py:218
-#| msgid "Validation location"
 msgid "Validating Organizations"
 msgstr "Organisations qui valident"
 
 #: dmd/models/Indicators.py:221
-#| msgid "Validation location"
 msgid "Validation Delay"
 msgstr "Délai de validation"
 
@@ -312,12 +331,12 @@ msgstr "Peut valider des données ?"
 msgid "Validation location"
 msgstr "Localité de validation des données"
 
-#: dmd/views/admin.py:65
+#: dmd/views/admin.py:66
 #, python-brace-format
 msgid "Username `{username}` is already taken"
 msgstr "L'identifiant `{username}` est déjà utilisé"
 
-#: dmd/views/admin.py:104
+#: dmd/views/admin.py:106
 #, python-brace-format
 msgid ""
 "New User account “{name}” created with login `{username}` and password "
@@ -326,12 +345,12 @@ msgstr ""
 "Nouveau compte utilisateur «{name}» créé avec l'identifiant `{username}` et "
 "le mot de passe `{password}`"
 
-#: dmd/views/admin.py:147
+#: dmd/views/admin.py:150
 #, python-brace-format
 msgid "User account “{name}” has been updated."
 msgstr "Le compte utilisateur «{name}» a été mis à jour."
 
-#: dmd/views/admin.py:174
+#: dmd/views/admin.py:177
 #, python-brace-format
 msgid ""
 "Password for User account “{name}” (login `{username}`) has been reseted to "
@@ -340,17 +359,13 @@ msgstr ""
 "Le mot de passe du compte «{name}» (identifiant `{username}`) a été changé "
 "pour `{password}`"
 
-#: dmd/views/admin.py:211
+#: dmd/views/admin.py:214
 #, python-brace-format
-#| msgid ""
-#| "New User account “{name}” created with login `{username}` and password "
-#| "`{password}`"
 msgid "New Indicator “{name}” created with number `{number}`"
 msgstr "Nouvel indicateur «{name}» créé avec numéro `{number}`"
 
-#: dmd/views/admin.py:244
+#: dmd/views/admin.py:247
 #, python-brace-format
-#| msgid "User account “{name}” has been updated."
 msgid "Indicator “{name}” has been updated."
 msgstr "L'indicateur «{name}» a été mis à jour."
 
@@ -361,25 +376,21 @@ msgstr "ID de section `{sid}` inconnu"
 
 #: dmd/views/api.py:66
 #, python-brace-format
-#| msgid "Unknown section ID `{sid}`"
 msgid "Unknown collection type `{ct}`"
 msgstr "Type de collecte `{ct}` inconnue"
 
 #: dmd/views/api.py:78
 #, python-brace-format
-#| msgid "Unknown section ID `{sid}`"
 msgid "Unknown entity UUID `{u}`"
 msgstr "UUID de localité `{u}` inconnu"
 
 #: dmd/views/api.py:82
 #, python-brace-format
-#| msgid "Unknown section ID `{sid}`"
 msgid "Unknown period `{p}`"
 msgstr "Période `{p}` inconnue"
 
 #: dmd/views/api.py:86
 #, python-brace-format
-#| msgid "Unknown section ID `{sid}`"
 msgid "Unknown indicator `{s}`"
 msgstr "Indicateur `{s}` inconnu"
 
