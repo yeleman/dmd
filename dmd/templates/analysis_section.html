@@ -130,10 +130,14 @@ $('form').on('submit', function (e) {
 });
 
 {% block indicator_script_loop %}
+var perioda_str = $('select#filter_perioda').val();
+var periodb_str = $('select#filter_periodb').val();
 {% for indic_slug, trd in elements.items %}
+	var fname = "palu-ind{{ tdr.indicator.number }}_" + perioda_str + "_" + periodb_str;
+	var title = "{{ trd.indicator.number }} : {{ trd.indicator.name }} entre " + perioda_str + " et " + periodb_str;
 	$('#graph-{{ indic_slug}}').highcharts({
         chart: { type: 'line' },
-        title: null,
+        title: { text: title },
         xAxis: { categories: [{% for period in trd.periods %}"{{ period.1.name }}",{% endfor %}] },
         plotOptions: {
             line: { dataLabels: { enabled: true }, enableMouseTracking: true },
@@ -163,7 +167,7 @@ $('form').on('submit', function (e) {
         		{% endfor %}
         	],
         }],
-        exporting: { enabled: true, },
+        exporting: { enabled: true, filename: fname},
 	    credits: { enabled: false, }
     });
 {% endfor %}
