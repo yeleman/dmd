@@ -87,7 +87,9 @@ def user_add(request, *args, **kwargs):
                     first_name=form.cleaned_data.get('first_name'),
                     last_name=form.cleaned_data.get('last_name'),
                     email=form.cleaned_data.get('email'),
-                    is_active=form.cleaned_data.get('is_active'))
+                    is_active=form.cleaned_data.get('is_active'),
+                    is_staff=form.cleaned_data.get('is_staff'),
+                    is_admin=form.cleaned_data.get('is_staff'))
                 passwd = random_password(True)
                 user.set_password(passwd)
                 user.save()
@@ -135,6 +137,8 @@ def user_edit(request, username, *args, **kwargs):
                 partner.user.last_name = form.cleaned_data.get('last_name')
                 partner.user.email = form.cleaned_data.get('email')
                 partner.user.is_active = form.cleaned_data.get('is_active')
+                partner.user.is_staff = form.cleaned_data.get('is_staff')
+                partner.user.is_admin = form.cleaned_data.get('is_admin')
                 partner.user.save()
 
                 partner.organization = form.cleaned_data.get('organization')
