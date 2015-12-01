@@ -71,7 +71,9 @@ class Command(BaseCommand):
                 'numerator': numerator,
                 'denominator': denominator}})
 
-        d = DataRecord.batch_create(data, dhisbot, auto_validate=True)
+        d = DataRecord.batch_create(data, dhisbot,
+                                    source=DataRecord.DHIS,
+                                    auto_validate=True)
         if self.debug:
             pp(d)
         return d

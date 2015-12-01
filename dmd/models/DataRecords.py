@@ -166,7 +166,8 @@ class DataRecord(models.Model):
             return None
 
     @classmethod
-    def batch_create(cls, data, partner, auto_validate=False):
+    def batch_create(cls, data, partner,
+                     source=UPLOAD, auto_validate=False):
 
         # make sure we can rollback if something goes wrong
         with transaction.atomic():
@@ -208,7 +209,7 @@ class DataRecord(models.Model):
                         entity=entity,
                         numerator=num,
                         denominator=denum,
-                        source=cls.UPLOAD,
+                        source=source,
                         created_by=partner)
 
                     if auto_validate:
