@@ -9,10 +9,10 @@
 <div class="alert alert-info">
 <p>Les données suivantes sont en attete de validation. Pour chaque données, vous devez choisir l'un des quatre état suivants :</p>
 <ul>
-	<li><strong>Validée</strong> : la donnée est acceptée telle quelle.</li>
-	<li><strong>Refusée</strong> : la donnée est refusée.</li>
-	<li><strong>Modifier</strong> : Vous pourrez indiquer une nouvelle valeur qui sera automatiquement validée (intégration d'une correction).</li>
-	<li><strong>Attendre</strong> : ne rien faire pour le môment. La donnée restera dans la liste jusqu'à ce que vous changiez son état ou que la date de validation automatique arrive.</li>
+	<li><strong>{{ form.STATUSES.values.1 }}</strong> : la donnée est acceptée telle quelle.</li>
+	<li><strong>{{ form.STATUSES.values.2 }}</strong> : la donnée est refusée.</li>
+	<li><strong>{{ form.STATUSES.values.3 }}</strong> : Vous pourrez indiquer une nouvelle valeur qui sera automatiquement validée (intégration d'une correction).</li>
+	<li><strong>{{ form.STATUSES.values.0 }}</strong> : ne rien faire pour le môment. La donnée restera dans la liste jusqu'à ce que vous changiez son état ou que la date de validation automatique arrive.</li>
 </ul>
 <p><strong>Attention !</strong> Le changement est pris en compte uniquement après soumission du formulaire.</p>
 </div>

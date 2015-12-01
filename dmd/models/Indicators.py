@@ -239,6 +239,10 @@ class Indicator(models.Model):
         return self.COLLECTION_TYPES.get(self.collection_type)
 
     @property
+    def verbose_origin(self):
+        return self.ORIGINS.get(self.origin)
+
+    @property
     def verbose_tech_area1(self):
         return self.TECH_AREAS_1.get(self.tech_area1)
 
