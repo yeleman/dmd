@@ -15,7 +15,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 
-from dmd.models.Partners import Partner, User
+from dmd.models.Partners import Partner, User, Organization
 from dmd.models.Entities import Entity
 from dmd.models.Indicators import Indicator
 from dmd.utils import random_password
@@ -265,4 +265,86 @@ def indicator_edit(request, slug, *args, **kwargs):
 
     return render(request,
                   kwargs.get('template_name', 'indicator_edit.html'),
+                  context)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def organizations_list(request, *args, **kwargs):
+    context = {'page': 'organizations',
+               'organizations': Organization.objects.all()}
+
+    return render(request,
+                  kwargs.get('template_name', 'organizations.html'),
+                  context)
+
+
+class OrganizationForm(forms.ModelForm):
+
+    class Meta:
+        model = Organization
+        exclude = ('user',)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def organization_add(request, *args, **kwargs):
+    context = {'page': 'organizations'}
+
+    if request.method == 'POST':
+        form = OrganizationForm(request.POST, instance=None)
+        if form.is_valid():
+            with transaction.atomic():
+                organization = form.save()
+
+            messages.success(request,
+                             _("New organization “{name}” created with "
+                               "slug `{slug}`")
+                             .format(name=organization.name,
+                                     slug=organization.slug))
+            return redirect('organizations')
+        else:
+            # django form validation errors
+            logger.debug("django form errors")
+            pass
+    else:
+        form = OrganizationForm()
+
+    context.update({'form': form})
+
+    return render(request,
+                  kwargs.get('template_name', 'organization_add.html'),
+                  context)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def organization_edit(request, slug, *args, **kwargs):
+    context = {'page': 'organizations'}
+
+    organization = Organization.get_or_none(slug)
+
+    if request.method == 'POST':
+        form = OrganizationForm(request.POST, instance=organization)
+        if form.is_valid():
+            with transaction.atomic():
+                form.save()
+
+            messages.success(request,
+                             _("Organization “{name}” has been updated.")
+                             .format(name=organization))
+            return redirect('organizations')
+        else:
+            # django form validation errors
+            logger.debug("django form errors")
+            pass
+    else:
+        form = OrganizationForm(instance=organization)
+
+    context.update({
+        'form': form,
+        'organization': organization})
+
+    return render(request,
+                  kwargs.get('template_name', 'organization_edit.html'),
                   context)
