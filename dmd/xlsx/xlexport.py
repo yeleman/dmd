@@ -424,13 +424,12 @@ def export_to_spreadsheet(qs, save_to=None):
 
     col_year = 1
     col_month = 2
-    col_entity = 3
-    col_dps = 4
-    col_zs = 5
-    col_numerator = 6
-    col_denominator = 7
-    col_value = 8
-    col_human = 9
+    col_dps = 3
+    col_zs = 4
+    col_numerator = 5
+    col_denominator = 6
+    col_value = 7
+    col_human = 8
 
     def apply_style(target, style):
         for key, value in style.items():
@@ -456,8 +455,6 @@ def export_to_spreadsheet(qs, save_to=None):
         # write header
         std_write(row, col_year, "Année", header_style)
         std_write(row, col_month, "Mois", header_style)
-        std_write(row, col_entity, "Localité (UUID)", header_style)
-        xl_set_col_width(ws, col_entity, 7.4)
         std_write(row, col_dps, "DPS", header_style)
         xl_set_col_width(ws, col_dps, 7)
         std_write(row, col_zs, "ZS", header_style)
@@ -477,7 +474,6 @@ def export_to_spreadsheet(qs, save_to=None):
 
             std_write(row, col_year, record.period.year, std_style)
             std_write(row, col_month, record.period.month, std_style)
-            std_write(row, col_entity, record.entity.uuids, std_style)
             std_write(row, col_dps,
                       getattr(record.entity.get_dps(), 'short_name', empty),
                       std_style)
