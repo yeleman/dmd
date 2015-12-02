@@ -1,7 +1,7 @@
 {% load static %}
-<script src='//api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
-<link href='//api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
-<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<link href="{% static "css/mapbox.css" %}" rel='stylesheet' />
+<script type='text/javascript' src="{% static "js/mapbox.js" %}"></script>
+<script type='text/javascript' src="{% static "js/d3.v3.min.js" %}" charset="utf-8"></script>
 <script type='text/javascript'>
 // https://github.com/makinacorpus/Leaflet.Spin/blob/master/leaflet.spin.js
 L.SpinMapMixin = {
@@ -46,7 +46,7 @@ this.on('layerremove', function (e) {
 }, this);
 });
 </script>
-<script type='text/javascript' src="//fgnass.github.io/spin.js/spin.min.js"></script>
+<script type='text/javascript' src="{% static "js/spin.min.js" %}"></script>
 <script type="text/javascript">L.mapbox.accessToken = 'pk.eyJ1IjoicmdhdWRpbiIsImEiOiJkUWF0TUZjIn0.ZWJWSo1vmDOKR8DPPwTEhA';</script>
 <style type="text/css">
 	#map {
