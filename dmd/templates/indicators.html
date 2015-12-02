@@ -3,7 +3,7 @@
 {% block title %}Gestion des indicateurs{% endblock %}
 
 {% block content %}
-{% if user.is_staff %}<p><a class="btn btn-default" href="{% url 'indicator_add' %}"><i class="fa fa-plus"></i> Ajouter un indicateur</a></p>{% endif %}
+<p>{% if user.is_staff %}<a class="btn btn-default" href="{% url 'indicator_add' %}"><i class="fa fa-plus"></i> Ajouter un indicateur</a> {% endif %}<a class="btn btn-default" href="{% url 'indicators_xlsx' %}"><i class="fa fa-file-excel-o"></i> Télécharger la liste</a></p>
 <div class="row">
     <div class="col-md-12">   	
     	<div class="panel panel-default">

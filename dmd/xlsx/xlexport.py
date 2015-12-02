@@ -502,3 +502,128 @@ def export_to_spreadsheet(qs, save_to=None):
     wb.save(stream)
 
     return stream
+
+
+def indicators_list_to_spreadsheet(qs, save_to=None):
+
+    # colors
+    black = 'FF000000'
+    dark_gray = 'FFA6A6A6'
+
+    # styles
+    header_font = Font(
+        name='Calibri',
+        size=12,
+        bold=True,
+        italic=False,
+        vertAlign=None,
+        underline='none',
+        strike=False,
+        color=black)
+
+    std_font = Font(
+        name='Calibri',
+        size=12,
+        bold=False,
+        italic=False,
+        vertAlign=None,
+        underline='none',
+        strike=False,
+        color=black)
+
+    header_fill = PatternFill(fill_type=FILL_SOLID, start_color=dark_gray)
+
+    thin_black_side = Side(style='thin', color='FF000000')
+
+    std_border = Border(
+        left=thin_black_side,
+        right=thin_black_side,
+        top=thin_black_side,
+        bottom=thin_black_side,
+    )
+
+    centered_alignment = Alignment(
+        horizontal='center',
+        vertical='center',
+        text_rotation=0,
+        wrap_text=False,
+        shrink_to_fit=False,
+        indent=0)
+
+    left_alignment = Alignment(
+        horizontal='left',
+        vertical='center')
+
+    number_format = '# ### ### ##0'
+
+    header_style = {
+        'font': header_font,
+        'fill': header_fill,
+        'border': std_border,
+        'alignment': centered_alignment,
+    }
+
+    std_style = {
+        'font': std_font,
+        'border': std_border,
+        'alignment': centered_alignment,
+        'number_format': number_format,
+    }
+
+    name_style = {
+        'font': std_font,
+        'border': std_border,
+        'alignment': left_alignment,
+        'number_format': number_format,
+    }
+
+    col_number = 1
+    col_name = 2
+    col_type = 3
+    col_origin = 4
+
+    def apply_style(target, style):
+        for key, value in style.items():
+            setattr(target, key, value)
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Indicateurs"
+
+    logger.info("exporting {} records".format(qs.count()))
+
+    def std_write(row, column, value, style=std_style):
+        cell = ws.cell(row=row, column=column)
+        cell.value = value
+        apply_style(cell, style)
+
+    # write header
+    row = 1
+    std_write(row, col_number, "#", header_style)
+    xl_set_col_width(ws, col_number, 1.6)
+    std_write(row, col_name, "Indicateur", header_style)
+    xl_set_col_width(ws, col_name, 37.3)
+    std_write(row, col_type, "Type", header_style)
+    std_write(row, col_origin, "Origine", header_style)
+
+    # one sheet per indicator
+    for indicator in Indicator.objects.all():
+
+        row += 1
+
+        std_write(row, col_number, indicator.number, std_style)
+        std_write(row, col_name, indicator.name, name_style)
+        std_write(row, col_type,
+                  indicator.verbose_collection_type.encode('utf-8'), std_style)
+        std_write(row, col_origin,
+                  indicator.verbose_origin.encode('utf-8'), std_style)
+
+    if save_to:
+        logger.info("saving to {}".format(save_to))
+        wb.save(save_to)
+        return
+
+    stream = StringIO.StringIO()
+    wb.save(stream)
+
+    return stream

@@ -127,6 +127,8 @@ urlpatterns = [
         name='users'),
 
     # indicators
+    url(r'^' + uprefix + 'indicators/download/?$',
+        'dmd.views.misc.indicators_list_as_excel', name='indicators_xlsx'),
     url(r'^' + uprefix + 'indicators/add/?$',
         'dmd.views.admin.indicator_add', name='indicator_add'),
     url(r'^' + uprefix + 'indicators/(?P<slug>[a-zA-Z0-9\-\_]+)/?$',

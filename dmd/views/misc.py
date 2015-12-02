@@ -19,6 +19,7 @@ from django.views.static import serve
 
 from dmd.models.Partners import Partner
 from dmd.models.Indicators import Indicator
+from dmd.xlsx.xlexport import indicators_list_to_spreadsheet
 
 logger = logging.getLogger(__name__)
 
@@ -108,6 +109,23 @@ def indicators_list(request, *args, **kwargs):
     return render(request,
                   kwargs.get('template_name', 'indicators.html'),
                   context)
+
+
+@login_required
+def indicators_list_as_excel(request):
+
+    file_name = "Indicateurs-BDD-PNLP.xlsx"
+    file_content = indicators_list_to_spreadsheet(Indicator.objects.all())
+    file_content = file_content.getvalue()
+
+    response = HttpResponse(
+        file_content,
+        content_type='application/vnd.openxmlformats-officedocument.'
+                     'spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename="%s"' % file_name
+    response['Content-Length'] = len(file_content)
+
+    return response
 
 
 @login_required
