@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Gestion des organisations{% endblock %}
+
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'organization_add' %}"><i class="fa fa-plus"></i> Ajouter une organisation</a></p>
+<div class="row">
+    <div class="col-md-12">   	
+    	<div class="panel panel-default">
+    		<div class="panel-heading">Toutes les organisations</div>
+    		<div class="panel-body">
+
+    		<table class="table table-striped table-bordered table-hover organizations-list clickable-rows">
+                <thead>
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	{% for organization in organizations %}
+                    <tr class="odd gradeX" data-slug="{{ organization.slug }}">
+                        <td>{{ organization.slug }}</td>
+                        <td><a href="{% url 'organization_edit' organization.slug %}">{{ organization.name }}</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="2">Aucune organisation enregistrée. Problème ?</td></tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+
+		    </div>
+		</div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block onJQready %}
+var url = "{% url 'organization_edit' 'aaaa' %}";
+$('table.organizations-list tbody tr').on('click', function (e) {
+	var slug = $(this).data('slug');
+	window.location = url.replace('aaaa', slug);
+});
+{% endblock %}
