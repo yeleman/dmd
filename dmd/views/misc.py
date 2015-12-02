@@ -18,6 +18,7 @@ from django.conf import settings
 from django.views.static import serve
 
 from dmd.models.Partners import Partner
+from dmd.models.Indicators import Indicator
 
 logger = logging.getLogger(__name__)
 
@@ -96,6 +97,16 @@ def user_change_password(request, *args, **kwargs):
 
     return render(request,
                   kwargs.get('template_name', 'user_change_password.html'),
+                  context)
+
+
+@login_required
+def indicators_list(request, *args, **kwargs):
+    context = {'page': 'indicators',
+               'indicators': Indicator.objects.all()}
+
+    return render(request,
+                  kwargs.get('template_name', 'indicators.html'),
                   context)
 
 

@@ -132,7 +132,7 @@ urlpatterns = [
     url(r'^' + uprefix + 'indicators/(?P<slug>[a-zA-Z0-9\-\_]+)/?$',
         'dmd.views.admin.indicator_edit', name='indicator_edit'),
     url(r'^' + uprefix + 'indicators/?$',
-        'dmd.views.admin.indicators_list', name='indicators'),
+        'dmd.views.misc.indicators_list', name='indicators'),
 
     # organizations
     url(r'^' + uprefix + 'organizations/add/?$',

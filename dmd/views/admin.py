@@ -186,17 +186,6 @@ def user_passwd_reset(request, username, *args, **kwargs):
     return redirect('users')
 
 
-@login_required
-@user_passes_test(lambda u: u.is_staff)
-def indicators_list(request, *args, **kwargs):
-    context = {'page': 'indicators',
-               'indicators': Indicator.objects.all()}
-
-    return render(request,
-                  kwargs.get('template_name', 'indicators.html'),
-                  context)
-
-
 class IndicatorForm(forms.ModelForm):
 
     class Meta:

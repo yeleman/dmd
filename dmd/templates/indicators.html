@@ -3,14 +3,14 @@
 {% block title %}Gestion des indicateurs{% endblock %}
 
 {% block content %}
-<p><a class="btn btn-default" href="{% url 'indicator_add' %}"><i class="fa fa-plus"></i> Ajouter un indicateur</a></p>
+{% if user.is_staff %}<p><a class="btn btn-default" href="{% url 'indicator_add' %}"><i class="fa fa-plus"></i> Ajouter un indicateur</a></p>{% endif %}
 <div class="row">
     <div class="col-md-12">   	
     	<div class="panel panel-default">
     		<div class="panel-heading">Tous les indicateurs</div>
     		<div class="panel-body">
 
-    		<table class="table table-striped table-bordered table-hover indicators-list clickable-rows">
+    		<table class="table table-striped table-bordered table-hover indicators-list {% if user.is_staff %} clickable-rows{% endif %}">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -23,7 +23,7 @@
                 	{% for indicator in indicators %}
                     <tr class="odd gradeX" data-slug="{{ indicator.slug }}">
                         <td>{{ indicator.number }}</td>
-                        <td><a href="{% url 'indicator_edit' indicator.slug %}">{{ indicator.name }}</a></td>
+                        <td>{% if user.is_staff %}<a href="{% url 'indicator_edit' indicator.slug %}">{{ indicator.name }}</a>{% else %}{{ indicator.name }}{% endif %}</td>
                         <td>{{ indicator.verbose_collection_type }}</td>
                         <td>{{ indicator.verbose_origin }}</td>
                     </tr>
@@ -41,9 +41,11 @@
 
 
 {% block onJQready %}
+{% if user.is_staff %}
 var url = "{% url 'indicator_edit' 'aaaa' %}";
 $('table.indicators-list tbody tr').on('click', function (e) {
 	var slug = $(this).data('slug');
 	window.location = url.replace('aaaa', slug);
 });
+{% endif %}
 {% endblock %}
