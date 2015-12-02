@@ -65,7 +65,7 @@ class MonthPeriod(models.Model):
     @property
     def end_on(self):
         nbd = calendar.monthrange(self.iyear, self.imonth)[1]
-        return self.start_on + datetime.timedelta(days=nbd, seconds=86399)
+        return self.start_on + datetime.timedelta(days=nbd - 1, seconds=86399)
 
     @classmethod
     def get_or_none(cls, period_str):
