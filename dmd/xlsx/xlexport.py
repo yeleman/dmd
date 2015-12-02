@@ -294,6 +294,12 @@ def generate_dataentry_for(dps, save_to=None):
                     left.protection = protected
                     right.fill = black_fill
                     right.protection = protected
+                elif not row_is_zs(r) \
+                        and indicator.collection_type == indicator.ROUTINE:
+                    left.fill = black_fill
+                    left.protection = protected
+                    right.fill = black_fill
+                    right.protection = protected
                 else:
                     left.protection = unprotected
                     right.protection = unprotected
