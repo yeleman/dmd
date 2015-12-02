@@ -17,6 +17,8 @@ Array.prototype.getUnique = function(){
    return a;
 };
 
+var OPACITY = 1;
+
 function QuantizeIndicatorScale() {
 
     QuantizeIndicatorScale.prototype.setup = function (manager) {
@@ -214,8 +216,10 @@ function getMalariaMapManager(options) {
             scrollWheelZoom: false,
             doubleClickZoom: false,
             boxZoom: false,
-            zoomControl: false,
-            attributionControl: false
+            zoomControl: true,
+            attributionControl: false,
+            minZoom: 4,
+            maxZoom: 10,
         };
 
         this.map = L.mapbox.map(this.mapID, this.mapboxID, options);
@@ -267,7 +271,7 @@ function getMalariaMapManager(options) {
                     if (index !== 0) { from += 0.1; }
 
                     labels.push(
-                        '<span><i style="background-color:' + color + '"></i> ' +
+                        '<span><i style="background-color:' + color + '; opacity:' + OPACITY + ';"></i> ' +
                         cleanNum(from) + ' – ' +
                         cleanNum(to) + '</span>');
                 }
@@ -281,7 +285,7 @@ function getMalariaMapManager(options) {
             // MISSING
             labels.push(
                 '<span><i style="background-color:' + manager.color_initial +
-                '"></i> <abbr title="Rapport manquant pour calculer cet ' +
+                '; opacity:' + OPACITY + ';"></i> <abbr title="Rapport manquant pour calculer cet ' +
                 'indicateur">manquant</abbr></span>');
 
             this.div.innerHTML = labels.join('<br />');
@@ -573,7 +577,8 @@ function getMalariaMapManager(options) {
     		manager.currentLayer().eachLayer(function (layer) {
     			if (layer.feature.properties.uuid in data_record) {
     				var datapoint = data_record[layer.feature.properties.uuid];
-    				layer.setStyle({fillColor: manager.getColorFor(datapoint)});
+    				layer.setStyle({fillColor: manager.getColorFor(datapoint),
+    							    fillOpacity: OPACITY});
     			}
 
     			layer.on('mouseover', function(event) {
@@ -864,7 +869,7 @@ function getMalariaMapManager(options) {
     	var options = {
     		fill: true,
     		fillColor: this.color_initial,
-    		fillOpacity: 1,
+    		fillOpacity: OPACITY,
     		stroke: true,
     		color: "#ffffff",
     		weight: 2,
@@ -878,7 +883,7 @@ function getMalariaMapManager(options) {
     	var options = {
     		fill: true,
     		fillColor: this.color_initial,
-    		fillOpacity: 1,
+    		fillOpacity: OPACITY,
     		stroke: true,
     		color: "#ffffff",
     		weight: 2,
@@ -950,7 +955,7 @@ function getMalariaMapManager(options) {
         return {
             fillColor: "#6f9bd1",
             weight: 2,
-            opacity: 1,
+            opacity: OPACITY,
             color: 'white',
             fillOpacity: 1};
     };
