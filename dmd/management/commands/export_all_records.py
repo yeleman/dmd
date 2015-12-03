@@ -28,7 +28,7 @@ def get_records():
 
 
 def get_csv_for(records_qs, save_to=None):
-    headers = ["PERIOD", "INDIC-NUM", "LOCATION", "DPS", "ZS", "AS",
+    headers = ["PERIOD", "INDIC-NUM", "LOCATION", "DPS", "ZS",
                "INDIC-SLUG", "NUMERATOR", "DENOMINATOR", "VALUE",
                "DISPLAY-VALUE", "INDIC-NAME"]
     empty = ""
