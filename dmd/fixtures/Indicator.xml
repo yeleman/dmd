@@ -450,7 +450,7 @@
         <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"><object pk="pnlp"></object></field>
         <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
     </object>
-    <object pk="pc_chw_trained_malaria_care_zone_sante" model="dmd.indicator">
+    <object pk="pc_chw_trained_malaria_care_aire_sante" model="dmd.indicator">
         <field type="CharField" name="origin">manual</field>
         <field type="CharField" name="number">31</field>
         <field type="CharField" name="name">Proportion des relais communautaire forme dans la lutte contre le paludisme par AS</field>
@@ -1316,6 +1316,81 @@
         <field type="CharField" name="itype">per_hundred_thousand</field>
         <field type="CharField" name="number_format">{:.1f}</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="consultation_all_causes" model="dmd.indicator">
+        <field type="CharField" name="origin">dhis</field>
+        <field type="CharField" name="number">65</field>
+        <field type="CharField" name="name">Consultation nouveau au CS</field>
+        <field type="CharField" name="name_en">New consultation at HC</field>
+        <field type="CharField" name="dhis_indicator_id"><None></None></field>
+        <field type="CharField" name="dhis_numerator_id">MV3tpzTtGFz</field>
+        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
+        <field type="CharField" name="dhis_denominator_id"><None></None></field>
+        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1"><None></None></field>
+        <field type="CharField" name="tech_area2"><None></None></field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="hospitalization_all_causes" model="dmd.indicator">
+        <field type="CharField" name="origin">dhis</field>
+        <field type="CharField" name="number">66</field>
+        <field type="CharField" name="name">Production de service hospitalisation</field>
+        <field type="CharField" name="name_en">Hospitalization Service Provided</field>
+        <field type="CharField" name="dhis_indicator_id"><None></None></field>
+        <field type="CharField" name="dhis_numerator_id">X5NaXSWwIgN</field>
+        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
+        <field type="CharField" name="dhis_denominator_id"><None></None></field>
+        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1"><None></None></field>
+        <field type="CharField" name="tech_area2"><None></None></field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}</field>
+        <field type="CharField" name="collection_type">routine</field>
+        <field type="CharField" name="collection_level">zone_sante</field>
+        <field type="PositiveIntegerField" name="collection_period">1</field>
+        <field type="PositiveIntegerField" name="transmission_delay"><None></None></field>
+        <field type="PositiveIntegerField" name="validation_delay"><None></None></field>
+        <field to="dmd.organization" name="organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="transmission_organizations" rel="ManyToManyRel"></field>
+        <field to="dmd.organization" name="validation_organizations" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="community_deaths" model="dmd.indicator">
+        <field type="CharField" name="origin">dhis</field>
+        <field type="CharField" name="number">67</field>
+        <field type="CharField" name="name">Communauté décès</field>
+        <field type="CharField" name="name_en">Community deaths</field>
+        <field type="CharField" name="dhis_indicator_id"><None></None></field>
+        <field type="CharField" name="dhis_numerator_id">f8tTqBZCuV7</field>
+        <field type="CharField" name="dhis_numerator_formula"><None></None></field>
+        <field type="CharField" name="dhis_denominator_id"><None></None></field>
+        <field type="CharField" name="dhis_denominator_formula"><None></None></field>
+        <field type="CharField" name="category"><None></None></field>
+        <field type="CharField" name="tech_area1"><None></None></field>
+        <field type="CharField" name="tech_area2"><None></None></field>
+        <field type="CharField" name="itype">number</field>
+        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
         <field type="PositiveIntegerField" name="collection_period">1</field>
