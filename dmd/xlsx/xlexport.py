@@ -582,6 +582,8 @@ def indicators_list_to_spreadsheet(qs, save_to=None):
     col_name = 2
     col_type = 3
     col_origin = 4
+    col_trans_delay = 5
+    col_valid_delay = 6
 
     def apply_style(target, style):
         for key, value in style.items():
@@ -606,6 +608,8 @@ def indicators_list_to_spreadsheet(qs, save_to=None):
     xl_set_col_width(ws, col_name, 37.3)
     std_write(row, col_type, "Type", header_style)
     std_write(row, col_origin, "Origine", header_style)
+    std_write(row, col_trans_delay, "Délai trans.", header_style)
+    std_write(row, col_valid_delay, "Délai valid.", header_style)
 
     # one sheet per indicator
     for indicator in Indicator.objects.all():
@@ -618,6 +622,9 @@ def indicators_list_to_spreadsheet(qs, save_to=None):
                   indicator.verbose_collection_type.encode('utf-8'), std_style)
         std_write(row, col_origin,
                   indicator.verbose_origin.encode('utf-8'), std_style)
+        std_write(row, col_trans_delay,
+                  indicator.transmission_delay, std_style)
+        std_write(row, col_valid_delay, indicator.validation_delay, std_style)
 
     if save_to:
         logger.info("saving to {}".format(save_to))
