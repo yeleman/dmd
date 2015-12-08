@@ -14,7 +14,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -39,7 +39,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -64,7 +64,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -89,7 +89,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_hundred_thousand</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -114,7 +114,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_thousand</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}/1 000</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -139,7 +139,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_hundred_thousand</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -164,7 +164,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_thousand</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}/1 000</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -189,7 +189,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -214,7 +214,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -239,7 +239,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -264,7 +264,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">community_case_management</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -289,7 +289,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">capacity_building</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -314,7 +314,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -339,7 +339,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -364,7 +364,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -389,7 +389,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -414,7 +414,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -439,7 +439,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -464,7 +464,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -489,7 +489,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -514,7 +514,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">treatment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -539,7 +539,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">iptp</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -564,7 +564,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">psm</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -589,7 +589,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -614,7 +614,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">community_case_management</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -639,7 +639,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">community_case_management</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -664,7 +664,7 @@
         <field type="CharField" name="tech_area1">hss</field>
         <field type="CharField" name="tech_area2">enable_environment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -689,7 +689,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">irs</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -714,7 +714,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -739,7 +739,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -764,7 +764,7 @@
         <field type="CharField" name="tech_area1">hss</field>
         <field type="CharField" name="tech_area2">capacity_building</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -789,7 +789,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -814,7 +814,7 @@
         <field type="CharField" name="tech_area1">bcc</field>
         <field type="CharField" name="tech_area2">knowledge</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -839,7 +839,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -864,7 +864,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -889,7 +889,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">iptp</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -914,7 +914,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">iptp</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -939,7 +939,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -964,7 +964,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">treatment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -989,7 +989,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">treatment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1014,7 +1014,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1039,7 +1039,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">treatment</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1064,7 +1064,7 @@
         <field type="CharField" name="tech_area1">pvc</field>
         <field type="CharField" name="tech_area2">itn/llin</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -1089,7 +1089,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -1114,7 +1114,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -1139,7 +1139,7 @@
         <field type="CharField" name="tech_area1">cm</field>
         <field type="CharField" name="tech_area2">diagnosis</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1164,7 +1164,7 @@
         <field type="CharField" name="tech_area1">sme</field>
         <field type="CharField" name="tech_area2">supervision</field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">survey</field>
         <field type="CharField" name="collection_level">division_provinciale_sante</field>
@@ -1189,7 +1189,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1214,7 +1214,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1239,7 +1239,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1264,7 +1264,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1289,7 +1289,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">percentage</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}%</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1314,7 +1314,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">per_hundred_thousand</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}/100 000</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1339,7 +1339,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1364,7 +1364,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
@@ -1389,7 +1389,7 @@
         <field type="CharField" name="tech_area1"><None></None></field>
         <field type="CharField" name="tech_area2"><None></None></field>
         <field type="CharField" name="itype">number</field>
-        <field type="CharField" name="number_format">{:.1f}</field>
+        <field type="CharField" name="number_format">#,##0.#;-#</field>
         <field type="CharField" name="value_format">{value}</field>
         <field type="CharField" name="collection_type">routine</field>
         <field type="CharField" name="collection_level">zone_sante</field>
