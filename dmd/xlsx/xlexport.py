@@ -232,7 +232,7 @@ def generate_dataentry_for(dps, save_to=None):
 
     # write indicator headers
     column = indicator_column
-    for indicator in Indicator.get_all_manual():
+    for indicator in Indicator.get_all():
 
         # write top header with indic name
         row = 1

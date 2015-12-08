@@ -251,21 +251,25 @@ class Indicator(models.Model):
         return self.TECH_AREAS_2.get(self.tech_area2)
 
     @classmethod
+    def get_all(cls):
+        return cls.objects.all()
+
+    @classmethod
     def get_all_dhis(cls):
-        return cls.objects.filter(origin=cls.DHIS) \
+        return cls.get_all().filter(origin=cls.DHIS) \
             .exclude(dhis_denominator_id__isnull=True)
 
     @classmethod
     def get_all_manual(cls):
-        return cls.objects.filter(origin=cls.MANUAL)
+        return cls.get_all().filter(origin=cls.MANUAL)
 
     @classmethod
     def get_all_surveys(cls):
-        return cls.objects.filter(collection_type=cls.SURVEY)
+        return cls.get_all().filter(collection_type=cls.SURVEY)
 
     @classmethod
     def get_all_routine(cls, with_dhis=True):
-        qs = cls.objects.filter(collection_type=cls.ROUTINE)
+        qs = cls.get_all().filter(collection_type=cls.ROUTINE)
         if with_dhis:
             return qs
         return qs.filter(dhis_denominator_id__isnull=True)

@@ -191,12 +191,20 @@ class DataRecord(models.Model):
                 denum = dp['denominator']
 
                 if dr and (dr.numerator != num or dr.denominator != denum):
+
+                    # do not manualy update DHIS data
+                    if dr.source == dr.DHIS and source == dr.UPLOAD:
+                        continue
+
                     old_values = {'numerator': dr.numerator,
                                   'denominator': dr.denominator}
                     action = 'updated'
 
                     dr.numerator = num
                     dr.denominator = denum
+                    dr.record_update(partner)
+                elif dr and dr.source == dr.UPLOAD and source == dr.DHIS:
+                    # mark data as updated by DHIS even though it's identical
                     dr.record_update(partner)
 
                 elif dr is None:
