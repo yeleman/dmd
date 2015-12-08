@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dmd\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-30 12:44+0000\n"
-"PO-Revision-Date: 2015-11-30 12:45-0000\n"
+"POT-Creation-Date: 2015-12-08 17:44+0100\n"
+"PO-Revision-Date: 2015-12-08 16:46-0000\n"
 "Last-Translator: reg <rgaudin@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -28,7 +28,6 @@ msgid "DHIS"
 msgstr "DHIS"
 
 #: dmd/models/DataRecords.py:49
-#| msgid "Organization"
 msgid "Aggregation"
 msgstr "Agrégation"
 
@@ -37,12 +36,10 @@ msgid "Not Validated"
 msgstr "Non validé"
 
 #: dmd/models/DataRecords.py:59
-#| msgid "Not Validated"
 msgid "Validated"
 msgstr "Validé"
 
 #: dmd/models/DataRecords.py:60
-#| msgid "Not Validated"
 msgid "Auto Validated"
 msgstr "Auto-validé"
 
@@ -336,7 +333,7 @@ msgstr "Localité de validation des données"
 msgid "Username `{username}` is already taken"
 msgstr "L'identifiant `{username}` est déjà utilisé"
 
-#: dmd/views/admin.py:106
+#: dmd/views/admin.py:108
 #, python-brace-format
 msgid ""
 "New User account “{name}” created with login `{username}` and password "
@@ -345,12 +342,12 @@ msgstr ""
 "Nouveau compte utilisateur «{name}» créé avec l'identifiant `{username}` et "
 "le mot de passe `{password}`"
 
-#: dmd/views/admin.py:150
+#: dmd/views/admin.py:155
 #, python-brace-format
 msgid "User account “{name}” has been updated."
 msgstr "Le compte utilisateur «{name}» a été mis à jour."
 
-#: dmd/views/admin.py:177
+#: dmd/views/admin.py:182
 #, python-brace-format
 msgid ""
 "Password for User account “{name}” (login `{username}`) has been reseted to "
@@ -359,15 +356,27 @@ msgstr ""
 "Le mot de passe du compte «{name}» (identifiant `{username}`) a été changé "
 "pour `{password}`"
 
-#: dmd/views/admin.py:214
+#: dmd/views/admin.py:208
 #, python-brace-format
 msgid "New Indicator “{name}” created with number `{number}`"
 msgstr "Nouvel indicateur «{name}» créé avec numéro `{number}`"
 
-#: dmd/views/admin.py:247
+#: dmd/views/admin.py:241
 #, python-brace-format
 msgid "Indicator “{name}” has been updated."
 msgstr "L'indicateur «{name}» a été mis à jour."
+
+#: dmd/views/admin.py:290
+#, python-brace-format
+#| msgid "New Indicator “{name}” created with number `{number}`"
+msgid "New organization “{name}” created with slug `{slug}`"
+msgstr "Nouvelle organisation «{name}» créée avec identifiant `{slug}`"
+
+#: dmd/views/admin.py:323
+#, python-brace-format
+#| msgid "Indicator “{name}” has been updated."
+msgid "Organization “{name}” has been updated."
+msgstr "L'organisation «{name}» a été mise à jour."
 
 #: dmd/views/analysis.py:30
 #, python-brace-format
@@ -404,25 +413,25 @@ msgstr "Impossible de trouver la période correspondant à `{period}`"
 msgid "Unable to match entity `{uuid}`"
 msgstr "Impossible de trouver l'entité correspondant à `{uuid}`"
 
-#: dmd/views/misc.py:38
+#: dmd/views/misc.py:40
 #, python-brace-format
 msgid "Unable to find Partner with username `{username}`"
 msgstr "Impossible de trouver le Partenaire avec l'identifiant `{username}`"
 
-#: dmd/views/misc.py:51
+#: dmd/views/misc.py:53
 msgid "Old Password"
 msgstr "Ancien mot de passe"
 
-#: dmd/views/misc.py:53
+#: dmd/views/misc.py:55
 msgid "New Password"
 msgstr "Nouveau mot de passe"
 
-#: dmd/views/misc.py:63
+#: dmd/views/misc.py:65
 #, python-brace-format
 msgid "Old password for `{partner}` is invalid"
 msgstr "L'ancien mot de passe pour `{partner}` est invalide"
 
-#: dmd/views/misc.py:84
+#: dmd/views/misc.py:86
 msgid "Your password has been updated."
 msgstr "Votre mot de passe a été mis à jour."
 
@@ -538,17 +547,25 @@ msgstr "Impossible de trouver la période pour {m}/{y}"
 msgid "Unable to match an Indicator at col {col}"
 msgstr "Aucun indicateur trouvé pour la colonne {col}"
 
-#: dmd/xlsx/xlimport.py:192
+#: dmd/xlsx/xlimport.py:191
+msgid "Survey indicator require DPS data"
+msgstr "Données pour indicateur d'enquête doivent provenir des DPS"
+
+#: dmd/xlsx/xlimport.py:201
+msgid "Routine indicator require ZS data"
+msgstr "Données pour indicateur de routine doivent provenir des ZS"
+
+#: dmd/xlsx/xlimport.py:213
 #, python-brace-format
 msgid "{on} is outside submission period for Indicator #{ind} at {period}"
 msgstr ""
 "{on} est hors de la période de transmission pour l'Indicateur #{ind} {period}"
 
-#: dmd/xlsx/xlimport.py:203
+#: dmd/xlsx/xlimport.py:224
 msgid "Missing denominator on non-number Indicator"
 msgstr "Dénominateur manquant pour Indicateur non-nombre"
 
-#: dmd/xlsx/xlimport.py:216
+#: dmd/xlsx/xlimport.py:237
 #, python-brace-format
 msgid "Incorrect value for numerator or denominator `{num} / {denom}`"
 msgstr "Numérateur ou dénominateur incorrect `{num} / {denom}`"

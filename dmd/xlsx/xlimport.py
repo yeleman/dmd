@@ -180,6 +180,27 @@ def read_xls(filepath, partner):
                                 .format(col=cell.column))
                 continue
 
+            # ensure level of data submitted depending on type
+            if indicator.collection_type == indicator.SURVEY:
+                # data must be DPS
+                if not entity.is_dps:
+                    logger.warning("Data for Survey Indic on non-DPS #{}"
+                                   .format(cell.coordinate))
+                    add_error(row, column=cell.column,
+                              error='incorect_level',
+                              text=_("Survey indicator require DPS data"))
+                    continue
+
+            elif indicator.collection_type == indicator.ROUTINE:
+                # data must be ZS
+                if not entity.is_zs:
+                    logger.warning("Data for Routine Indic on non-ZS #{}"
+                                   .format(cell.coordinate))
+                    add_error(row, column=cell.column,
+                              error='incorect_level',
+                              text=_("Routine indicator require ZS data"))
+                    continue
+
             # check submission period for that Indicator
             if not indicator.can_submit_on(on=submited_on, period=period):
                 logger.warning("{on} is not a valid submission time "

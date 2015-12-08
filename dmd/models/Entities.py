@@ -176,6 +176,22 @@ class Entity(MPTTModel):
 
         return descendants
 
+    @property
+    def is_country(self):
+        return self.etype == self.PAYS
+
+    @property
+    def is_dps(self):
+        return self.etype == self.PROVINCE
+
+    @property
+    def is_zs(self):
+        return self.etype == self.ZONE
+
+    @property
+    def is_as(self):
+        return self.etype == self.AIRE
+
     def get_dps(self):
         return self.get_ancestor_of(self.PROVINCE)
 
