@@ -86,6 +86,18 @@ body.home .jumbotron {
     background-size: 10em;
 }
 
+body.validation .popover {
+	max-width: none;
+}
+
+body.validation .popover-content {
+	padding: 0;
+}
+
+body.validation .popover-content table {
+	margin-bottom: 0;
+}
+
 /*----------------------------------------------
     COMMON  STYLES    
 ------------------------------------------------*/
