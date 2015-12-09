@@ -62,6 +62,15 @@ class DataRecord(models.Model):
         MODIFIED: _("Modified"),
     }
 
+    ARRIVED = 'arrived'
+    ARRIVED_ON_TIME = 'on_time'
+    ARRIVED_LATE = 'late'
+    ARRIVAL_STATUSES = {
+        ARRIVED: _("Arrived"),
+        ARRIVED_ON_TIME: _("Arrived On Time"),
+        ARRIVED_LATE: _("Arrived Late"),
+    }
+
     VALIDATED_STATUSES = [VALIDATED, AUTO_VALIDATED, MODIFIED]
 
     class Meta:
@@ -83,6 +92,11 @@ class DataRecord(models.Model):
     updated_on = models.DateTimeField(auto_now=True, null=True, blank=True)
     updated_by = models.ForeignKey('Partner', null=True, blank=True,
                                    related_name='records_updated')
+
+    arrival_status = models.CharField(
+        max_length=128,
+        choices=ARRIVAL_STATUSES.items(),
+        default=ARRIVED)
 
     validation_status = models.CharField(
         max_length=128,
@@ -107,6 +121,10 @@ class DataRecord(models.Model):
     @property
     def source_verbose(self):
         return self.SOURCES.get(self.source)
+
+    @property
+    def arrival_status_verbose(self):
+        return self.ARRIVAL_STATUSES.get(self.arrival_status)
 
     @property
     def validation_status_verbose(self):
@@ -167,7 +185,11 @@ class DataRecord(models.Model):
 
     @classmethod
     def batch_create(cls, data, partner,
-                     source=UPLOAD, auto_validate=False):
+                     source=UPLOAD,
+                     arrival_status=None,
+                     auto_validate=False):
+
+        now = timezone.now()
 
         # make sure we can rollback if something goes wrong
         with transaction.atomic():
@@ -211,6 +233,10 @@ class DataRecord(models.Model):
                     old_values = None
                     action = 'created'
 
+                    if arrival_status is None:
+                        arrival_status = indic.arrival_status_on(
+                            on=now, period=period)
+
                     dr = cls.objects.create(
                         indicator=indic,
                         period=period,
@@ -221,7 +247,7 @@ class DataRecord(models.Model):
                         created_by=partner)
 
                     if auto_validate:
-                        dr.auto_validate(on=timezone.now())
+                        dr.auto_validate(on=now)
                 else:
                     # new data are identical to datarecord
                     continue

@@ -19,7 +19,8 @@
 	<tr>
 		<th>Source</th>
 		<td>{{ record.source_verbose }}</td>
-		<td colspan="2">Transmis le {{ record.created_on }} par {% include "parts/user.html" with as_link=True partner=record.created_by %}</td>
+		<td>Transmis le {{ record.created_on }} par {% include "parts/user.html" with as_link=True partner=record.created_by %}</td>
+		<td>{{ record.arrival_status_verbose }}</td>
 	</tr>
 	<tr>
 		<th>Modification</th>

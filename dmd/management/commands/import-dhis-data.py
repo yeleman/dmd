@@ -91,6 +91,7 @@ class Command(BaseCommand):
 
         d = DataRecord.batch_create(data, dhisbot,
                                     source=DataRecord.DHIS,
+                                    arrival_status=DataRecord.ARRIVED,
                                     auto_validate=True)
         if self.debug:
             pp(d)

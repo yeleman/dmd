@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dmd\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-08 17:44+0100\n"
-"PO-Revision-Date: 2015-12-08 16:46-0000\n"
+"POT-Creation-Date: 2015-12-09 13:03+0100\n"
+"PO-Revision-Date: 2015-12-09 12:04-0000\n"
 "Last-Translator: reg <rgaudin@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -50,6 +50,20 @@ msgstr "Rejeté"
 #: dmd/models/DataRecords.py:62
 msgid "Modified"
 msgstr "Modifié"
+
+#: dmd/models/DataRecords.py:69
+msgid "Arrived"
+msgstr "Arrivé"
+
+#: dmd/models/DataRecords.py:70
+#| msgid "Arrived"
+msgid "Arrived On Time"
+msgstr "Arrivé prompt"
+
+#: dmd/models/DataRecords.py:71
+#| msgid "Arrived"
+msgid "Arrived Late"
+msgstr "Arrivé en retard"
 
 #: dmd/models/Entities.py:38
 msgid "Country"
@@ -292,19 +306,24 @@ msgstr "En mois"
 msgid "Transmitting Organizations"
 msgstr "Organisations qui transmettent"
 
-#: dmd/models/Indicators.py:212 dmd/models/Indicators.py:220
+#: dmd/models/Indicators.py:214 dmd/models/Indicators.py:218
+#: dmd/models/Indicators.py:226
 msgid "In days"
 msgstr "En jours"
 
-#: dmd/models/Indicators.py:213
+#: dmd/models/Indicators.py:215
+msgid "Prompt Transmission Delay"
+msgstr "Délai de transmission prompte"
+
+#: dmd/models/Indicators.py:219
 msgid "Transmission Delay"
 msgstr "Délai de transmission"
 
-#: dmd/models/Indicators.py:218
+#: dmd/models/Indicators.py:224
 msgid "Validating Organizations"
 msgstr "Organisations qui valident"
 
-#: dmd/models/Indicators.py:221
+#: dmd/models/Indicators.py:227
 msgid "Validation Delay"
 msgstr "Délai de validation"
 
@@ -368,13 +387,11 @@ msgstr "L'indicateur «{name}» a été mis à jour."
 
 #: dmd/views/admin.py:290
 #, python-brace-format
-#| msgid "New Indicator “{name}” created with number `{number}`"
 msgid "New organization “{name}” created with slug `{slug}`"
 msgstr "Nouvelle organisation «{name}» créée avec identifiant `{slug}`"
 
 #: dmd/views/admin.py:323
 #, python-brace-format
-#| msgid "Indicator “{name}” has been updated."
 msgid "Organization “{name}” has been updated."
 msgstr "L'organisation «{name}» a été mise à jour."
 
@@ -569,6 +586,12 @@ msgstr "Dénominateur manquant pour Indicateur non-nombre"
 #, python-brace-format
 msgid "Incorrect value for numerator or denominator `{num} / {denom}`"
 msgstr "Numérateur ou dénominateur incorrect `{num} / {denom}`"
+
+#~ msgid "On Time"
+#~ msgstr "Prompt"
+
+#~ msgid "Late"
+#~ msgstr "Retard"
 
 #~ msgid "Aire de Santé"
 #~ msgstr "Aire de Santé"

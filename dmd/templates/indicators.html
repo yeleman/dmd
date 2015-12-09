@@ -18,6 +18,7 @@
                         <th>Type</th>
                         <th>Origine</th>
                         <th title="en jours">Délai trans.</th>
+                        <th title="en jours">Délai prompt.</th>
                         <th title="en jours">Délai valid.</th>
                     </tr>
                 </thead>
@@ -28,6 +29,7 @@
                         <td>{% if user.is_staff %}<a href="{% url 'indicator_edit' indicator.slug %}">{{ indicator.name }}</a>{% else %}{{ indicator.name }}{% endif %}</td>
                         <td>{{ indicator.verbose_collection_type }}</td>
                         <td>{{ indicator.verbose_origin }}</td>
+                        <td class="text-center">{{ indicator.prompt_transmission_delay|default_if_none:"-" }}</td>
                         <td class="text-center">{{ indicator.transmission_delay|default_if_none:"-" }}</td>
                         <td class="text-center">{{ indicator.validation_delay|default_if_none:"-" }}</td>
                     </tr>

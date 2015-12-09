@@ -204,10 +204,16 @@ class Indicator(models.Model):
         verbose_name=_("Collection Periodicity"),
         help_text=_("In months"))
 
-    # mostly PNLP, default 45d
+    # mostly PNLP, default 90d
     transmission_organizations = models.ManyToManyField(
         'Organization', blank=True, related_name='transmission_indicators',
         verbose_name=_("Transmitting Organizations"))
+
+    # mostly PNLP, default 45d
+    prompt_transmission_delay = models.PositiveIntegerField(
+        blank=True, null=True, help_text=_("In days"),
+        verbose_name=_("Prompt Transmission Delay"))
+
     transmission_delay = models.PositiveIntegerField(
         blank=True, null=True, help_text=_("In days"),
         verbose_name=_("Transmission Delay"))
@@ -320,6 +326,22 @@ class Indicator(models.Model):
         if deadline:
             return on < deadline
         return True
+
+    def prompt_transmission_deadline(self, period):
+        if self.prompt_transmission_delay:
+            return period.end_on + datetime.timedelta(
+                days=self.prompt_transmission_delay)
+        return None
+
+    def arrival_status_on(self, on, period):
+        from dmd.models.DataRecords import DataRecord
+        dl = self.prompt_transmission_deadline(period)
+
+        if dl is None:
+            return DataRecord.ARRIVED
+
+        return DataRecord.ARRIVED_ON_TIME \
+            if on < dl else DataRecord.ARRIVED_LATE
 
     def validation_deadline(self, period, created_on):
         if self.validation_delay:
