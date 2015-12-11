@@ -1,0 +1,7 @@
+{% if with_label %}<label for="filter_indicator">Indicateur</label>{% endif %}
+<select id="filter_indicator">
+    {% for indicator in indicators %}
+    	<option value="{{ indicator.slug }}" {% if selected_indicator.slug = indicator.slug %} selected="selected"{% endif %}>{{ indicator.name }}</option>
+    {% endfor %}
+    </optgroup>
+</select>
