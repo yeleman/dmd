@@ -45,7 +45,34 @@ function QuantizeIndicatorScale() {
     QuantizeIndicatorScale.prototype.available_colors = function () {
         return this.scale.range();
     };
+}
 
+function QuantileIndicatorScale() {
+
+    QuantileIndicatorScale.prototype.setup = function (manager) {
+
+    	var dataset = manager.currentDataSet();
+        var nb_breaks = manager.colors.length;
+        if (dataset.length < nb_breaks) {
+            nb_breaks = dataset.length;
+        }
+
+        this.scale = d3.scale.quantile()
+            .domain([d3.min(dataset), d3.max(dataset)])
+            .range(d3.range(nb_breaks).map(function(i) { return manager.colors[i]; }));
+    };
+
+    QuantileIndicatorScale.prototype.boundaries_for_color = function (color) {
+        return this.scale.invertExtent(color);
+    };
+
+    QuantileIndicatorScale.prototype.color_for_value = function (data) {
+        return this.scale(data);
+    };
+
+    QuantileIndicatorScale.prototype.available_colors = function () {
+        return this.scale.range();
+    };
 }
 
 function FixedBoundariesScale(options) {
@@ -162,7 +189,7 @@ function getMalariaMapManager(options) {
         this.initial_longitude = 25.422;
         this.initial_zoom = 5;
         this.mapID = options.mapID || "map";
-        this.mapboxID = options.mapboxID || "mapbox.light";
+        this.mapboxID = options.mapboxID || null; //"mapbox.light";
         this.indicator_api_url = options.indicator_api_url || "/api/malaria/indicators";
         this.geojson_api_url = options.geojson_api_url || "/api/malaria/geojson";
         this.data_api_url = options.data_api_url || "/api/data";
@@ -185,10 +212,10 @@ function getMalariaMapManager(options) {
         this.dps_layer = null;
         this.zs_layer = null;
 
-        this.indicator_scale = options.indicator_scale || new QuantizeIndicatorScale();
+        this.indicator_scale = options.indicator_scale || new QuantileIndicatorScale();
 
-        this.title = options.title || null;
-        this.subtitle = options.subtitle || null;
+        this.title = options.title || "Super titre";
+        this.subtitle = options.subtitle || "un sous titre";
 
         // DOM elements of UI parts.
         this.map_title_e = null; // html title on top of map
@@ -199,6 +226,11 @@ function getMalariaMapManager(options) {
         this.indicator_select = null;
         this.period_select = null;
         this.dps_select = null;
+        this.export_button = null;
+
+        // Export map marker
+        this.static_map = options.static_map || false;
+        this.exporter = null;
 
         this.getEmptyOption = function () {
             return $('<option value="-1">AUCUN</option>');
@@ -207,6 +239,59 @@ function getMalariaMapManager(options) {
         this.load(options.load, options.onload);
 
     }
+
+    // Export related members
+    MalariaMapManager.prototype.export_props = function() {
+        return {
+            indicator_slug: this.indicator_slug,
+			indicator_name: this.indicator_name,
+			indicator_type_slug: this.indicator_type_slug,
+			indicator_type_name: this.indicator_type_name,
+			period_slug: this.period_slug,
+			period_name: this.period_name,
+			dps_slug: this.dps_slug,
+			dps_name: this.dps_name,
+			dps_geojson: this.dps_geojson,
+			zs_geojson: this.zs_geojson,
+			records_data: this.records_data,
+			root_slug: this.root_slug,
+			root_name: this.root_name,
+			mapID: this.mapID,
+			map: this.map,
+			mapboxID: this.mapboxID,
+			title: this.title,
+			subtitle: this.subtitle,
+        };
+    };
+
+    MalariaMapManager.prototype.loadStaticMap = function(callback) {
+
+        // // add legend
+        // this._addLegend();
+        // if (this.isDistrict()) {
+        //     this._prepare_map_hc_legend();
+        //     this.map.addControl(this.hc_legend);
+        // }
+
+        // var indicator_data_hc = this.indicator_data_hc;
+
+        // // display the layers we have
+        // if (this.indicator_data) {
+        //     this.displayDistrictLayer(this.indicator_data);
+        // }
+
+        // // display HC layer
+        // if (this.isDistrict() && Object.keys(indicator_data_hc).length) {
+        //     this.displayHCLayer(indicator_data_hc);
+        // }
+
+        // // zoom to current feature
+        // this.updateZoom();
+
+        if (callback !== undefined) {
+            callback(this);
+        }
+    };
 
     MalariaMapManager.prototype._prepare_map = function() {
         // remove user interactions
@@ -221,6 +306,13 @@ function getMalariaMapManager(options) {
             minZoom: 4,
             maxZoom: 10,
         };
+
+        // remove UI features on export
+        if (this.static_map) {
+            options.fadeAnimation = false;
+            options.zoomAnimation = false;
+            options.markerZoomAnimation = false;
+        }
 
         this.map = L.mapbox.map(this.mapID, this.mapboxID, options);
 
@@ -238,8 +330,11 @@ function getMalariaMapManager(options) {
         this.map.setView([this.initial_latitude, this.initial_longitude],
                          this.initial_zoom);
 
-        this._prepare_map_legend();
-        this._prepare_map_infobox();
+        // not for export
+        if (!this.static_map) {
+        	this._prepare_map_legend();
+            this._prepare_map_infobox();
+        }
     };
 
     MalariaMapManager.prototype._prepare_map_legend = function () {
@@ -432,6 +527,13 @@ function getMalariaMapManager(options) {
         	manager.parametersChanged();
         });
 
+        // Export Button
+        this.export_button = $('<button id="export_map_btn" 	disabled="disabled" class="btn btn-default btn-primary">Exporter</button>');
+        // this.export_button.on('click', function (e) {
+        // 	e.preventDefault();
+        // 	console.log("exporting..");
+        // });
+
         // add elements to DOM
         var first_row = $('<form class="form-horizontal col-lg-6" />');
         
@@ -457,8 +559,16 @@ function getMalariaMapManager(options) {
         dps_group.append(createLabelFor('dps', "DPS"));
         dps_group.append(this.dps_select);
         second_row.append(dps_group);
-
         this.options_container.append(second_row);
+
+        var third_row = $('<form class="form-horizontal col-lg-12" />');
+        var export_group = $('<div class="form-group exportbuttons" />');
+        export_group.append(this.export_button);
+        third_row.append(export_group);
+        this.options_container.append(third_row);
+
+        // setup exporter
+        this.exporter = getMapExporter({mapManager: this, auto_click:true});
 
     };
 
@@ -581,23 +691,26 @@ function getMalariaMapManager(options) {
     							    fillOpacity: OPACITY});
     			}
 
-    			layer.on('mouseover', function(event) {
-                    var layer = event.target;
-                    manager.infobox.update(layer.feature);
-                });
+    			// interactivity (not for export)
+    			if (!manager.static_map) {
+	    			layer.on('mouseover', function(event) {
+	                    var layer = event.target;
+	                    manager.infobox.update(layer.feature);
+	                });
 
-                layer.on('mouseout', function(event) {
-                    manager.infobox.update();
-                });
+	                layer.on('mouseout', function(event) {
+	                    manager.infobox.update();
+	                });
 
-                
-                layer.on('click', function (event) {
-                	if (manager.entityIsDPS()) {
-                		return;
-                	}
-                	var layer = event.target;
-                	manager.changeSelectedDPS(layer.feature.properties.uuid);
-                });
+	                
+	                layer.on('click', function (event) {
+	                	if (manager.entityIsDPS()) {
+	                		return;
+	                	}
+	                	var layer = event.target;
+	                	manager.changeSelectedDPS(layer.feature.properties.uuid);
+	                });
+	            }
 
     		});
     		manager._addLegend();
@@ -606,6 +719,36 @@ function getMalariaMapManager(options) {
 
     MalariaMapManager.prototype.entityIsDPS = function() {
     	return (this.dps_slug !== null);
+    };
+
+    MalariaMapManager.prototype.downloadAllDPSGeoJSON = function(callback) {
+    	var manager = this;
+        this.startLoadingUI();
+        $.get(this.geoJSONUrlFor(this.root_slug), {})
+        .done(function (geojson) {
+            // saved geodata as it contains all our polygons & points
+            manager.dps_geojson = geojson;
+
+            manager.createDPSLayer();
+            manager.showDPSLayer();
+
+            // launch callback
+            if (callback !== undefined) {
+                callback(this);
+            }
+        })
+        .always(function () {
+         	manager.stopLoadingUI();
+        });
+    };
+
+    MalariaMapManager.prototype.retrieveAllDPSGeoJSON = function(callback) {
+    	if (!this.dps_geojson) {
+			this.downloadAllDPSGeoJSON(callback);
+		} else {
+			if (callback !== undefined)
+				callback();
+		}
     };
 
     MalariaMapManager.prototype.downloadGeoJSONFor = function(entity, callback) {
@@ -638,8 +781,6 @@ function getMalariaMapManager(options) {
 				callback();
 		}
     };
-
-    // MalariaMapManager.prototype. = function(callback) {
 
 	MalariaMapManager.prototype.isReady = function () {
         return this.dps_geojson !== null;
@@ -701,13 +842,13 @@ function getMalariaMapManager(options) {
     };
 
     MalariaMapManager.prototype.disableUI = function () {
-    	$(this.container_selector).find('select').each(function (idx, elem) {
+    	$(this.container_selector).find('select, button').each(function (idx, elem) {
     		$(elem).attr('disabled', 'disabled');
     	});
     };
 
     MalariaMapManager.prototype.enableUI = function () {
-    	$(this.container_selector).find('select').each(function (idx, elem) {
+    	$(this.container_selector).find('select, button').each(function (idx, elem) {
     		$(elem).removeAttr('disabled');
     	});
     };
@@ -781,7 +922,9 @@ function getMalariaMapManager(options) {
 
     MalariaMapManager.prototype.prepare = function() {
         this._prepare_map();
-        this._prepareUI();
+        if (!this.static_map) {
+        	this._prepareUI();
+        }
     };
 
     MalariaMapManager.prototype.geoJSONUrlFor = function(uuid) {
@@ -790,30 +933,16 @@ function getMalariaMapManager(options) {
     };
 
     MalariaMapManager.prototype.loadDPSGeoJSON = function(callback) {
-        var manager = this;
-        this.startLoadingUI();
-        $.get(this.geoJSONUrlFor(this.root_slug), {})
-        .done(function (geojson) {
-            // saved geodata as it contains all our polygons & points
-            manager.dps_geojson = geojson;
-
-            manager.createDPSLayer();
-            manager.showDPSLayer();
-
-            // launch callback
-            if (callback !== undefined) {
-                callback(this);
-            }
-        })
-        .always(function () {
-         	manager.stopLoadingUI();
-        });
+        this.retrieveAllDPSGeoJSON(callback);
     };
 
     MalariaMapManager.prototype.load = function(loadData, callback) {
         this.prepare();
         if (loadData === true) {
             this.loadDPSGeoJSON(callback);
+        }
+        if (this.static_map === true) {
+            this.loadStaticMap(callback);
         }
     };
 
@@ -961,4 +1090,330 @@ function getMalariaMapManager(options) {
     };
 
     return new MalariaMapManager(options);
+}
+
+function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+  if (typeof stroke == "undefined" ) {
+    stroke = true;
+  }
+  if (typeof radius === "undefined") {
+    radius = 5;
+  }
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + width - radius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+  ctx.lineTo(x + width, y + height - radius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  ctx.lineTo(x + radius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
+  if (stroke) {
+    ctx.stroke();
+  }
+  if (fill) {
+    ctx.fill();
+  }
+}
+
+
+function getMapExporter(options) {
+
+    function MapExporter (options) {
+        this.buttonID = options.buttonID || "export_map_btn";
+        this.button = $('#' + this.buttonID);
+        this.mapID = options.mapID || "exported_map";
+        this.mapManager = options.mapManager;
+        this.auto_click = options.auto_click || false;
+        this.exportedMapManager = null;
+        this.timer = null;
+
+        this.registerButton();
+    }
+
+    MapExporter.prototype.removeTimeout = function () {
+        clearTimeout(this.timer);
+    };
+
+    MapExporter.prototype.registerButton = function() {
+        var manager = this;
+        this.button.on('click', function (e) {
+            e.preventDefault();
+
+            if ($('html').is('.ie6, .ie7, .ie8, .ie9')) {
+                alert("ATTENTION!\nL'export de la cartographie n'est pas " +
+                      "possible avec Internet Explorer 9 et plus ancien.\n" +
+                      "Merci d'utiliser une version plus récente d'Internet " +
+                      "Explorer ou un autre navigateur tel Mozilla Firefox " +
+                      "ou Google Chrome.");
+                return;
+            }
+
+            // make sure we launch it only once until it finishes.
+            var state = $(this).attr('disabled');
+            // var timer;
+            var cancel = function() {
+                console.log("cancelled.");
+                manager.removeTimeout();
+                manager.resetButton();
+                manager.restoreButton();
+            };
+            if (state != 'disabled') {
+                try {
+                    manager.timer = setTimeout(cancel, 90000);
+                    manager.do_export();
+                } catch(exp) {
+                    console.log("Error while exporting.");
+                    console.log(exp.toString());
+                    cancel();
+                }
+            }
+        });
+        this.restoreButton();
+    };
+
+    MapExporter.prototype.makeButtonPending = function () {
+        this.button.html('<i class="fa fa-spinner faa-spin animated"></i> en cours…');
+        this.button.attr('disabled', 'disabled');
+    };
+
+    MapExporter.prototype.restoreButton = function () {
+        this.button.text('Exporter');
+        this.button.removeAttr('disabled');
+    };
+
+    MapExporter.prototype.resetButton = function () {
+        $('.exportbuttons .save-as-png').remove();
+        $('#' + this.mapID).remove();
+        $('#page-inner').append('<div id="exported_map" />');
+    };
+
+    MapExporter.prototype.do_export = function() {
+        console.log("Exporting map…");
+
+        // reset button state
+        this.resetButton();
+        this.makeButtonPending();
+
+        // prepare static map options
+        var options = this.mapManager.export_props();
+        options.static_map = true;
+        options.mapID = this.mapID;
+
+        var manager = this;
+        console.log("ready to doImage");
+        options.onload = function (mmap) {
+        	console.log("onload");
+
+            function cssvalue(elem, prop) {
+                return parseInt(elem.css(prop).replace('px', ''));
+            }
+
+            var map = mmap.map;
+            doImage = function (err, canvas) {
+
+            	console.log("inside doImage");
+                var titleSizePx = 22;
+                var titleHeight = titleSizePx + Math.round(titleSizePx * 0.25);
+                var subtitleSizePx = 16;
+                var subtitleHeight = subtitleSizePx + Math.round(subtitleSizePx * 0.25);
+                var subtitleHeightPosition = (titleHeight + (subtitleHeight - (titleSizePx / 2)));
+                var textHeight = titleHeight;
+                if (manager.mapManager.subtitle) {
+                    textHeight += subtitleHeight;
+                }
+
+                var new_can = $('#canvas')[0];
+                new_can.width = canvas.width;
+                new_can.height = canvas.height + textHeight;
+                var canvasWidth = new_can.width;
+                var canvasHeight = new_can.height;
+                var ctx = new_can.getContext("2d");
+                // fill with white
+                ctx.fillStyle = "rgb(255,255,255)";
+                ctx.fillRect(0, 0, new_can.width, new_can.height);
+                console.log(ctx);
+                console.log(canvas);
+                console.log(textHeight);
+                try {
+                	ctx.drawImage(canvas, 0, textHeight);
+                } catch (e) { console.error(e.toString()); }
+
+                // draw title
+                ctx.fillStyle = "black";
+                ctx.font = titleSizePx + "px 'Droid Sans',sans-serif";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+
+                // draw subtitle
+                ctx.fillText(manager.mapManager.title, new_can.width / 2 , (titleHeight - (titleSizePx / 2)));
+                if (manager.mapManager.subtitle !== null) {
+                    ctx.font = subtitleSizePx + "px 'Droid Sans',sans-serif";
+                    ctx.fillText(manager.mapManager.subtitle, new_can.width / 2 , subtitleHeightPosition);
+                }
+
+                // draw scale
+                var leafletScaleWidth = parseInt($('#'+ manager.mapID +' .leaflet-control-scale-line').css('width').replace('px', ''));
+                var scaleHeight = 16;
+                var scaleWidth = leafletScaleWidth; // 74
+                var scaleLeft = 10;
+                var scaleBottom = new_can.height - 10;
+                var scaleColor = "#333333";
+                // draw white .5 opacity rect
+                ctx.fillStyle = "rgba(255,255,255, 0.5)";
+                ctx.fillRect(scaleLeft, scaleBottom - scaleHeight,
+                             scaleWidth, scaleHeight);
+                // draw border
+                ctx.strokeStyle = scaleColor;
+                ctx.lineWidth = 2;
+                ctx.lineJoin = 'round';
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(scaleLeft, scaleBottom - scaleHeight);
+                ctx.lineTo(scaleLeft, scaleBottom);
+                ctx.lineTo(scaleLeft + scaleWidth, scaleBottom);
+                ctx.lineTo(scaleLeft + scaleWidth, scaleBottom - scaleHeight);
+                ctx.stroke();
+                // draw text
+                var scale_text = $('#'+ manager.mapID +' .leaflet-control-scale-line').text();
+                ctx.fillStyle = scaleColor;
+                ctx.font = "11px 'Droid Sans',sans-serif";
+                ctx.textAlign = "left";
+                ctx.textBaseline = "bottom";
+                ctx.fillText(scale_text, scaleLeft + 2, scaleBottom - 1);
+
+                // // draw legend
+                // var html_legend = $('#' + manager.mapID + ' .legend');
+                // if (html_legend.length) {
+                //     var legendWidth = cssvalue(html_legend, 'width');
+                //     var legendHeight = cssvalue(html_legend, 'height');
+                //     var legendMarginRight = cssvalue(html_legend, 'margin-right');
+                //     var legendMarginBottom = cssvalue(html_legend, 'margin-bottom');
+                //     var legendPaddingLeft = cssvalue(html_legend, 'padding-left');
+                //     var legendPaddingTop = cssvalue(html_legend, 'padding-top');
+                //     var legendX = canvasWidth - legendWidth - legendMarginRight;
+                //     var legendY = canvasHeight - legendHeight - legendMarginBottom;
+                //     ctx.fillStyle = "rgba(255,255,255, 0.8)";
+                //     ctx.strokeStyle = '#bbbbbb';
+                //     roundRect(ctx, legendX, legendY,
+                //               legendWidth, legendHeight, 5, true, true);
+                //     // draw legend text
+                //     ctx.shadowOffsetX = 0;
+                //     ctx.shadowOffsetY = 0;
+                //     ctx.shadowBlur = 0;
+                //     var legendTextX = legendX + legendPaddingLeft;
+                //     var legendTextY = legendY + legendPaddingTop;
+                //     var currentLegendTextY = legendTextY;
+                //     html_legend.children('span').each(function (index, spanElem) {
+                //         var span = $(spanElem);
+                //         var i = span.children('i');
+                //         var width = cssvalue(i, 'width');
+                //         var height = cssvalue(i, 'height');
+                //         var text = span.text();
+                //         ctx.fillStyle = i.css('background-color');
+                //         ctx.fillRect(legendTextX, currentLegendTextY,
+                //                       width, height);
+                //         // text
+                //         ctx.fillStyle = scaleColor;
+                //         ctx.font = "12px 'Droid Sans',sans-serif";
+                //         ctx.textAlign = "left";
+                //         ctx.textBaseline = "middle";
+                //         ctx.fillText(text,
+                //                      legendTextX + width,
+                //                      currentLegendTextY + height / 2);
+                //         currentLegendTextY += height;
+                //     });
+                // }
+
+                // // draw HC legend
+                // var html_hc_legend = $('#' + manager.mapID + ' .hc_legend');
+                // if (html_hc_legend.length) {
+                //     var hcLegendWidth = cssvalue(html_hc_legend, 'width');
+                //     var hcLegendHeight = cssvalue(html_hc_legend, 'height');
+                //     var hcLegendMarginLeft = cssvalue(html_hc_legend, 'margin-left');
+                //     var hcLegendMarginTop = cssvalue(html_hc_legend, 'margin-top');
+                //     var hcLegendPaddingLeft = cssvalue(html_hc_legend, 'padding-left');
+                //     var hcLegendPaddingTop = cssvalue(html_hc_legend, 'padding-top');
+                //     var hcLegendX = hcLegendMarginLeft;
+                //     var hcLegendY = hcLegendMarginTop + textHeight;
+                //     ctx.strokeStyle = '#bbbbbb';
+                //     ctx.fillStyle = "rgba(255,255,255, 0.8)";
+                //     ctx.shadowOffsetX = 0;
+                //     ctx.shadowOffsetY = 0;
+                //     ctx.shadowBlur = 0;
+                //     ctx.shadowColor = scaleColor;
+                //     roundRect(ctx, hcLegendX, hcLegendY,
+                //               hcLegendWidth, hcLegendHeight, 5, true, true);
+                //     var currentHcLegendTextY = hcLegendY + hcLegendPaddingTop;
+                //     var oddColor = "rgba(33,33,33, 0.1)";
+                //     var evenColor = "rgba(255,255,255, 0.8)";
+                //     $('.hc_line').each(function (index, spanElem) {
+                //         var span = $(spanElem);
+                //         var width = cssvalue(span, 'width');
+                //         var height = 10; //cssvalue(span, 'height');
+                //         height -= 1;
+                //         var text = span.text();
+                //         // text
+                //         ctx.fillStyle = (index % 2 === 0) ? null : oddColor;
+                //         if (index % 2 !== 0) {
+                //             ctx.fillRect(hcLegendX, currentHcLegendTextY,
+                //                           hcLegendWidth, height);
+                //         }
+                //         ctx.fillStyle = scaleColor;
+                //         ctx.font = "9px droid_sans_monoregular";
+                //         ctx.textAlign = "left";
+                //         ctx.textBaseline = "middle";
+                //         ctx.fillText(text,
+                //                      hcLegendX + hcLegendPaddingLeft,
+                //                      currentHcLegendTextY + height / 2);
+                //         currentHcLegendTextY += height;
+                //     });
+                // }
+
+                console.log("done doImage");
+
+                var url = new_can.toDataURL();
+                var link = $('<a />');
+                link.attr('href', url);
+                link.attr('download', 'exported_map.png');
+                link.attr('class', 'save-as-png btn btn-default');
+                link.html('<i class="fa fa-floppy-o"></i>');
+                link.attr('title', "Enregistrer l'image PNG");
+                $('.exportbuttons').append(link);
+
+                // remove map
+                $('#' + manager.mapID).remove();
+
+                // toggle back
+                manager.restoreButton();
+
+                // emulate a click on the created button to popup save dialog
+                if (manager.auto_click === true) {
+                    var e = document.createEvent("MouseEvents");
+                    e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0,
+                                     false, false, false, false, 0, null);
+                    link[0].dispatchEvent(e);
+                }
+
+                manager.removeTimeout();
+            };
+
+            // wait 2s between map creation and exporting to canvas
+            // to allow any animation to complete
+            var interval;
+            console.log("starting interval");
+            interval = setInterval(function (){
+                clearInterval(interval);
+                console.log("launching leafletImage");
+                leafletImage(map, doImage);
+            }, 2000);
+
+        };
+        this.exportedMapManager = getMalariaMapManager(options);
+
+    };
+    console.log("Registering getMapExporter");
+    return new MapExporter(options);
 }

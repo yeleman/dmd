@@ -21,10 +21,12 @@ logger = logging.getLogger(__name__)
 
 
 @login_required
-def analysis(request, section_id='1',
+def analysis(request, section_id,
              entity_uuid=None, perioda_str=None, periodb_str=None,
              *args, **kwargs):
-    context = {'page': 'analysis_section1'}
+    ''' Generic view for simple sections using an entity and periods '''
+
+    context = {'page': 'analysis_section{}'.format(section_id)}
 
     if section_id not in SECTIONS:
         raise Http404(_("Unknown section ID `{sid}`").format(sid=section_id))

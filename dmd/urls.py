@@ -50,7 +50,7 @@ urlpatterns = [
         '(?P<period_str>[0-9]{4}\-[0-9]{2})/'
         '(?P<entity_uuid>[A-Za-z0-9\_\-]{36})/'
         '(?P<indicator_slug>[A-Za-z0-9\-\_]+)/?$',
-        'dmd.views.api.data_record_for',
+        'dmd.views.api.json_data_record_for',
         name='api_data_record_for'),
 
     # home
@@ -100,11 +100,36 @@ urlpatterns = [
         name='export'),
 
     # map
-    # validation
+    url(r'^' + uprefix + 'analysis/map/png/'
+        r'(?P<period_str>[0-9]{4}\-[0-9]{2})_'
+        r'(?P<entity_uuid>[A-Za-z0-9\_\-]{36})_'
+        r'(?P<indicator_slug>[A-Za-z0-9\-\_]+).png$',
+        'dmd.views.api.png_map_for', name='png_map'),
     url(r'^' + uprefix + 'analysis/map/?$', 'dmd.views.analysis.map',
         name='map'),
 
-    # analysis
+    # section 1
+    url(r'^' + uprefix + 'analysis/section1'
+        r'/(?P<entity_uuid>[a-z\-0-9]{36})'
+        r'/(?P<perioda_str>[0-9]{4}\-[0-9]{2})'
+        r'/(?P<periodb_str>[0-9]{4}\-[0-9]{2})'
+        r'/(?P<indicator_slug>[A-Za-z0-9\-\_]+)/?$',
+        'dmd.analysis.section1.view', name='section1'),
+    url(r'^' + uprefix + 'analysis/section1'
+        r'/(?P<entity_uuid>[a-z\-0-9]{36})'
+        r'/(?P<perioda_str>[0-9]{4}\-[0-9]{2})'
+        r'/(?P<periodb_str>[0-9]{4}\-[0-9]{2})'
+        r'/?$',
+        'dmd.analysis.section1.view', name='section1'),
+    url(r'^' + uprefix + 'analysis/section1'
+        r'/(?P<entity_uuid>[a-z\-0-9]{36})'
+        r'/?$',
+        'dmd.analysis.section1.view', name='section1'),
+    url(r'^' + uprefix + 'analysis/section1'
+        r'/?$',
+        'dmd.analysis.section1.view', name='section1'),
+
+    # generic analysis
     url(r'^' + uprefix + 'analysis/section(?P<section_id>[0-9]+)'
         r'/(?P<entity_uuid>[a-z\-0-9]{36})'
         r'/(?P<perioda_str>[0-9]{4}\-[0-9]{2})'

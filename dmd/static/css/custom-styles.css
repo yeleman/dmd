@@ -30,12 +30,18 @@ body.map select {
 }
 
 body.map #map {
+	background-color: white;
 	border-bottom: 1px solid #999;
 	-moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     height: 500px;
 }
+
+/*body.map #map img {
+	width: 100%;
+	height: 100%;
+}*/
 
 body.map .info {
     padding: 6px 8px;
@@ -76,6 +82,11 @@ body.map #page-wrapper, body.map #page-inner {
 }
 
 body.map #page-inner {
+	margin: 0;
+}
+}
+
+body.map #page-inner {
 	/*padding-left: 15px;*/
 }
 
@@ -96,6 +107,10 @@ body.validation .popover-content {
 
 body.validation .popover-content table {
 	margin-bottom: 0;
+}
+
+body.analysis_section1 #filter_indicator {
+	max-width: 44em;
 }
 
 /*----------------------------------------------
@@ -537,4 +552,10 @@ table.clickable-rows tbody tr:hover {
 
 #id_data_file {
 	height: auto;
+}
+
+.nav-second-level li a.save-as-png {
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: 0.5em;
 }

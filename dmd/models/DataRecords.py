@@ -259,6 +259,17 @@ class DataRecord(models.Model):
 
         return data
 
+    @classmethod
+    def get_for(cls, period, entity, indicator):
+
+        return {
+            dr.entity.uuids: dr.to_dict()
+            for dr in cls.objects
+            .filter(indicator=indicator, period=period,
+                    entity__in=entity.get_children())
+            .filter(validation_status__in=cls.VALIDATED_STATUSES)
+            if dr is not None}
+
     def record_validation(self, status, on, by):
         self.validation_status = status
         self.validated_on = on

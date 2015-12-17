@@ -5,9 +5,24 @@
 from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import logging
+import os
+import re
+
+from dmd.utils import import_path
 
 logger = logging.getLogger(__name__)
 
-SECTIONS = {
-    '1': "Évolution",
-}
+
+def build_sections_list():
+    d = {}
+    for fname in os.listdir(os.path.join(*['dmd', 'analysis'])):
+        if not fname.endswith('.py') \
+                or not re.match(r'^section([0-9]+)\.py$', fname):
+            continue
+        mod = import_path('dmd.analysis.{}'.format(fname[:-3]), failsafe=True)
+        if mod is None:
+            continue
+        d.update({str(mod.SECTION_ID): mod.SECTION_NAME})
+    return d
+
+SECTIONS = build_sections_list()

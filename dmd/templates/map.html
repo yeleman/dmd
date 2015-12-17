@@ -2,16 +2,14 @@
 {% load static %}
 
 {% block assets %}
-{% include "assets/mapbox.html" %}
-<script src="{% static "js/malariamap.js" %}"></script>
+<script src="{% static "js/malariapngmap.js" %}"></script>
 {% endblock %}
 
 {% block title %}Cartographie{% endblock %}
 
 {% block content %}
 
-<div id="map"></div>
-
+<div id="map"><img /></div>
 </div>
 {% endblock %}
 
@@ -23,30 +21,31 @@ function maximizeMap() {
 	var sideHeight = $('.sidebar-collapse').height();
 	$('#page-wrapper').css('minHeight', sideHeight+'px');
 	$('#map').height(availHeight);
+	var availWidth = $('#map').width();
+	var imgSize = (availWidth > availHeight) ? availHeight : availWidth;
+	$('#map img').width(imgSize);
+	$('#map img').height(imgSize);
+	console.log("resized img to " + imgSize);
 }
 maximizeMap();
 $(window).resize(maximizeMap);
-var parts = "{% url 'api_entity_children_geojson' parent_uuid=root.uuids %}".rsplit("/");
-parts.pop();
-var geojson_url = parts.join("/");
 parts = "{% url 'api_indicators_list' col_type="survey" %}".rsplit("/");
 parts.pop();
 var indicators_url = parts.join("/");
 
-parts = "{% url 'api_data_record_for' period_str="2014-01" entity_uuid=root.uuids indicator_slug="aa" %}".rsplit("/");
+parts = "{% url 'png_map' period_str="2014-01" entity_uuid=root.uuids indicator_slug="aa" %}".rsplit("/");
 parts.pop();
-parts.pop();
-parts.pop();
-var data_url = parts.join("/");
-mapManager = getMalariaMapManager({
+//parts.pop();
+//parts.pop();
+var png_api_url = parts.join("/");
+mapManager = getPNGMalariaMapManager({
 	load: true,
 	indicator_api_url: indicators_url,
-    geojson_api_url: geojson_url,
     root_slug: "{{ root.uuids }}",
     period_list: [{% for period in periods reversed %}{value: "{{ period.strid }}", label: "{{ period.name }}"}, {% endfor %}],
     dps_list: [{% for dps in dps_list %}{value: "{{ dps.uuids }}", label: "{{ dps.short_name }}"}, {% endfor %}],
     root_name: "R.D.C",
-    data_api_url: data_url,
+    png_api_url: png_api_url,
 });
 
 
