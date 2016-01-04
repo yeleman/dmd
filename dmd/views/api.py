@@ -100,23 +100,36 @@ def png_map_for(request, period_str, entity_uuid, indicator_slug,
     if entity is None:
         raise Http404(_("Unknown entity UUID `{u}`").format(u=entity_uuid))
 
-    period = process_period_filter(request, period_str, 'period').get('period')
-    if period is None:
-        raise Http404(_("Unknown period `{p}`").format(p=period_str))
+    if period_str is None and indicator_slug is None:
+        period = None
+        indicator = None
+        with_title = False
+        fname = "initial.png"
+    else:
+        with_title = True
+        period = process_period_filter(
+            request, period_str, 'period').get('period')
+        if period is None:
+            raise Http404(_("Unknown period `{p}`").format(p=period_str))
 
-    indicator = Indicator.get_or_none(indicator_slug)
-    if indicator is None:
-        raise Http404(_("Unknown indicator `{s}`").format(s=indicator_slug))
+        indicator = Indicator.get_or_none(indicator_slug)
+        if indicator is None:
+            raise Http404(_("Unknown indicator `{s}`")
+                          .format(s=indicator_slug))
 
-    fname = fname_for(entity, period, indicator)
+        fname = fname_for(entity, period, indicator)
+
     fpath = os.path.join('png_map', fname)
     abspath = os.path.join(settings.EXPORT_REPOSITORY, fpath)
 
     logger.debug(abspath)
 
-    if not os.path.exists(abspath) or True:
+    if not os.path.exists(abspath):
         try:
-            gen_map_for(entity, period, indicator, save_as=abspath)
+            gen_map_for(entity, period, indicator,
+                        save_as=abspath,
+                        with_title=with_title,
+                        with_index=with_title)
         except IOError:
             logger.error("Missing map png folder in exports.")
             raise

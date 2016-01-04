@@ -90,6 +90,11 @@ class Entity(MPTTModel):
         return cud(cuz(cua(self.name))).upper()
 
     @property
+    def gps(self):
+        return (self.latitude, self.longitude) \
+            if self.latitude and self.longitude else None
+
+    @property
     def geojson(self):
         return {
             "type": "Feature",

@@ -100,6 +100,12 @@ urlpatterns = [
         name='export'),
 
     # map
+    url(r'^' + uprefix + 'analysis/map/png/initial.png$',
+        'dmd.views.api.png_map_for',
+        {'period_str': None,
+         'entity_uuid': '9616cf8b-5c47-49e2-8702-4f8179565a0c',
+         'indicator_slug': None},
+        name='png_map'),
     url(r'^' + uprefix + 'analysis/map/png/'
         r'(?P<period_str>[0-9]{4}\-[0-9]{2})_'
         r'(?P<entity_uuid>[A-Za-z0-9\_\-]{36})_'
