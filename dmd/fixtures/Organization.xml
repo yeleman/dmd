@@ -64,4 +64,8 @@
         <field type="SlugField" name="slug">eds</field>
         <field type="CharField" name="name">EDS</field>
     </object>
+    <object pk="19" model="dmd.organization">
+        <field type="SlugField" name="slug">measure</field>
+        <field type="CharField" name="name">MEASUREEvaluation</field>
+    </object>
 </django-objects>
