@@ -175,4 +175,8 @@ urlpatterns = [
     url(r'^' + uprefix + 'organizations/?$',
         'dmd.views.admin.organizations_list', name='organizations'),
 
+    # backups
+    url(r'^' + uprefix + 'backups/?$',
+        'dmd.views.admin.backups_list', name='backups'),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -6,7 +6,10 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import logging
 import copy
+import os
+import datetime
 
+from django.conf import settings
 from django.utils.translation import ugettext as _
 from django import forms
 from django.db import transaction
@@ -14,6 +17,7 @@ from django.forms.models import model_to_dict, fields_for_model
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
+from babel.numbers import format_decimal
 
 from dmd.models.Partners import Partner, User, Organization
 from dmd.models.Entities import Entity
@@ -336,4 +340,42 @@ def organization_edit(request, slug, *args, **kwargs):
 
     return render(request,
                   kwargs.get('template_name', 'organization_edit.html'),
+                  context)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def backups_list(request, *args, **kwargs):
+    context = {'page': 'backups'}
+
+    def dt4fn(fn):
+        try:
+            x = datetime.datetime(*[int(x)
+                                  for x in fn.rsplit('.7z', 1)[0]
+                                  .rsplit('_', 1)[1].split('-')])
+            return x
+        except:
+            return datetime.datetime.today()
+
+    def fsfor(fn):
+        fs = os.path.getsize(os.path.join(settings.BACKUPS_REPOSITORY, fn))
+        if fs // 1024:
+            suffix = 'K'
+            fs = fs / 1024
+        if fs // 1024:
+            suffix = 'M'
+            fs = fs / 1024
+        return "{size}{suffix}b".format(size=format_decimal(fs, "#,##0.#;-#"),
+                                        suffix=suffix)
+
+    context.update({'backups': sorted(
+        [{'fname': fname,
+          'hsize': fsfor(fname),
+          'fpath': os.path.join(settings.BACKUPS_DIR_NAME, fname)}
+         for fname in os.listdir(settings.BACKUPS_REPOSITORY)
+         if fname.endswith('.7z')],
+        key=dt4fn, reverse=True)})
+
+    return render(request,
+                  kwargs.get('template_name', 'backups.html'),
                   context)
