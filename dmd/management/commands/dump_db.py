@@ -34,7 +34,7 @@ class Command(BaseCommand):
 
         if dbconf.get('ENGINE').endswith('mysql'):
             # dump the MySQL DB to a file
-            dump_name = "{name}.sql".format(dbconf.get('NAME'))
+            dump_name = "{name}.sql".format(name=dbconf.get('NAME'))
             dump_path = os.path.join(settings.BACKUPS_REPOSITORY, dump_name)
             cmd = ['mysqldump',
                    '-h', dbconf.get('HOST'),
