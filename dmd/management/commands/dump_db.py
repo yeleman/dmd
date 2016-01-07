@@ -41,7 +41,7 @@ class Command(BaseCommand):
                    '-u', dbconf.get('USER'),
                    '-p', dbconf.get('PASSWORD'),
                    '-r', dump_path,
-                   '-d', dbconf.get('NAME')]
+                   dbconf.get('NAME')]
 
             # dump database
             subprocess.call(cmd, shell=True)
