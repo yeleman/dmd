@@ -1,0 +1,14 @@
+Bonjour {{ partner|safe }},
+
+{% if creator %}{{ creator.name|safe }}{% else %}L'on{% endif %} vient de créer un compte pour vous sur la base de données du PNLP.
+Vous y êtes désormais enregistré avec les informations suivantes:
+
+Identifiant:    {{ partner.username|safe }}
+Mot de passe:   {{ password|safe }}
+
+Vous pouvez acceder au système à l'adresse suivante: {{ url }}
+
+En cas de problème, contactez le PNLP.
+
+Cordialement,
+Le gestionnaire de la base de données.

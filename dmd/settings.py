@@ -95,6 +95,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.sites',
     'django_forms_bootstrap',
     'mptt',
     'dmd',
@@ -179,12 +180,19 @@ ALL_EXPORT_XLSX_FNAME = 'BDD-PNLP-tous.xlsx'
 ALL_EXPORT_PATH = os.path.join(EXPORT_REPOSITORY, ALL_EXPORT_FNAME)
 ALL_EXPORT_XLSX_PATH = os.path.join(EXPORT_REPOSITORY, ALL_EXPORT_XLSX_FNAME)
 
+SITE_ID = 1
+DOMAIN_USES_HTTPS = False
+
 STATIC_URL = '/static/'
 SUB_PATH = None
 
 DHIS_BASE_URL = 'https://snisrdc.com'
 DHIS_USER = 'Guest'
 DHIS_PASSWORD = 'Guest'
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_SENDER = 'dmd@pnlprdc.com'
 
 try:
     from dmd.settings_local import *

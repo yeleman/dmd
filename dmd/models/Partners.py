@@ -58,7 +58,8 @@ class Partner(models.Model):
         'Entity', null=True, blank=True, verbose_name=_("Validation location"),
         related_name='validation_partners')
 
-    def __str__(self):
+    @property
+    def name(self):
         username = self.username
         first_name = self.user.first_name.capitalize()
         last_name = self.user.last_name.upper()
@@ -71,6 +72,9 @@ class Partner(models.Model):
         else:
             return username
 
+    def __str__(self):
+        return self.name
+
     def __unicode__(self):
         return self.__str__()
 
@@ -81,6 +85,14 @@ class Partner(models.Model):
     @property
     def username(self):
         return self.user.username
+
+    @property
+    def email(self):
+        return self.user.email
+
+    @classmethod
+    def from_user(cls, user):
+        return cls.get_or_none(user.username)
 
     @classmethod
     def get_or_none(cls, username):

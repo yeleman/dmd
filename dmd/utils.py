@@ -8,6 +8,11 @@ import logging
 import re
 import random
 
+from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
+
+from dmd.emails import send_email
+
 PASSWORD_LENGTH = 8
 DUMB_PASSWORD_LENGTH = 4
 
@@ -106,3 +111,30 @@ def data_ident_for(indicator, period, entity):
     return "{period}_{entity}_{slug}".format(period=period.strid,
                                              slug=indicator.slug,
                                              entity=entity.uuids)
+
+
+def send_templated_email(tmpl, partner, password, creator=None):
+    return send_email(
+        recipients=partner.email,
+        context={'partner': partner,
+                 'creator': creator,
+                 'password': password,
+                 'url': get_full_url()},
+        template='emails/{tmpl}.txt'.format(tmpl=tmpl),
+        title_template='emails/title.{tmpl}.txt'.format(tmpl=tmpl))
+
+
+def send_new_account_email(partner, password, creator=None):
+    return send_templated_email('new_account', partner, password, creator)
+
+
+def send_reset_password_email(partner, password, creator=None):
+    return send_templated_email('reset_password', partner, password, creator)
+
+
+def get_full_url(request=None, path=''):
+    if path.startswith('/'):
+        path = path[1:]
+    return 'http{ssl}://{domain}/{path}'.format(
+        domain=get_current_site(request).domain,
+        path=path, ssl="s" if settings.DOMAIN_USES_HTTPS else '')

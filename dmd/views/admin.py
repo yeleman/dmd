@@ -11,6 +11,7 @@ import datetime
 
 from django.conf import settings
 from django.utils.translation import ugettext as _
+from django.utils.text import slugify
 from django import forms
 from django.db import transaction
 from django.forms.models import model_to_dict, fields_for_model
@@ -22,7 +23,8 @@ from babel.numbers import format_decimal
 from dmd.models.Partners import Partner, User, Organization
 from dmd.models.Entities import Entity
 from dmd.models.Indicators import Indicator
-from dmd.utils import random_password
+from dmd.utils import (random_password,
+                       send_new_account_email, send_reset_password_email)
 
 logger = logging.getLogger(__name__)
 
@@ -61,10 +63,13 @@ class PartnerForm(forms.ModelForm):
         if instance:
             self.fields['username'].widget.attrs['readonly'] = True
 
+        self.instanciated = instance is not None
+
     def clean_username(self):
         cu = self.cleaned_data.get('username')
-        if self.instance:
+        if self.instanciated:
             return cu
+        cu = slugify(cu)
         if User.objects.filter(username=cu).count():
             raise forms.ValidationError(
                 _("Username `{username}` is already taken")
@@ -113,6 +118,15 @@ def user_add(request, *args, **kwargs):
                                "login `{username}` and password `{password}`")
                              .format(name=partner, username=partner.username,
                                      password=passwd))
+
+            email_sent, x = send_new_account_email(
+                partner=partner, password=passwd,
+                creator=Partner.from_user(request.user))
+            if email_sent:
+                messages.info(request,
+                              _("The password has been sent to {email}")
+                              .format(email=partner.email))
+
             return redirect('users')
         else:
             # django form validation errors
@@ -187,6 +201,14 @@ def user_passwd_reset(request, username, *args, **kwargs):
                        "(login `{username}`) has been reseted to `{password}`")
                      .format(name=partner, username=partner.username,
                              password=passwd))
+    email_sent, x = send_reset_password_email(
+        partner=partner, password=passwd,
+        creator=Partner.from_user(request.user))
+    if email_sent:
+        messages.info(request,
+                      _("The password has been sent to {email}")
+                      .format(email=partner.email))
+
     return redirect('users')
 
 
