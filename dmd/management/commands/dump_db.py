@@ -6,7 +6,6 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import os
 import logging
-import tempfile
 import subprocess
 import shutil
 
@@ -39,12 +38,12 @@ class Command(BaseCommand):
             cmd = ['mysqldump',
                    '-h', dbconf.get('HOST'),
                    '-u', dbconf.get('USER'),
-                   '-p', dbconf.get('PASSWORD'),
+                   '-p{passwd}'.format(passwd=dbconf.get('PASSWORD')),
                    '-r', dump_path,
                    dbconf.get('NAME')]
 
             # dump database
-            subprocess.call(cmd, shell=True)
+            subprocess.call(cmd, shell=False)
         elif dbconf.get('ENGINE').endswith('sqlite3'):
             # copy sqlite DB to backup dir
             dump_name = os.path.basename(dbconf.get('NAME'))
