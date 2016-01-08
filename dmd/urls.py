@@ -121,6 +121,13 @@ urlpatterns = [
         r'/(?P<periodb_str>[0-9]{4}\-[0-9]{2})'
         r'/(?P<indicator_slug>[A-Za-z0-9\-\_]+)/?$',
         'dmd.analysis.section1.view', name='section1'),
+
+    # section 2
+    url(r'^' + uprefix + 'analysis/section2'
+        r'/(?P<entity_uuid>[a-z\-0-9]{36})'
+        r'/(?P<period_str>[0-9]{4}\-[0-9]{2})/?$',
+        'dmd.analysis.section2.view', name='section2'),
+
     url(r'^' + uprefix + 'analysis/section1'
         r'/(?P<entity_uuid>[a-z\-0-9]{36})'
         r'/(?P<perioda_str>[0-9]{4}\-[0-9]{2})'

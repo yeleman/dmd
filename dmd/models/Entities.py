@@ -212,6 +212,11 @@ class Entity(MPTTModel):
                 return ancestor
         return None
 
+    def get_descendants_of(self, etype):
+        return [descendant
+                for descendant in self.get_descendants(include_self=True)
+                if descendant.etype == etype]
+
     def fields(self):
         return ['uuid', 'code', 'name', 'short_name', 'display_name',
                 'dhis_level', 'dhis_id', 'etype', 'parent']
