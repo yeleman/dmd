@@ -157,7 +157,7 @@ def user_edit(request, username, *args, **kwargs):
                 partner.user.is_active = form.cleaned_data.get('is_active')
                 partner.user.is_staff = form.cleaned_data.get('is_staff')
                 partner.user.is_superuser = \
-                    form.cleaned_data.get('is_superuser')
+                    form.cleaned_data.get('is_superuser', False)
                 partner.user.save()
 
                 partner.organization = form.cleaned_data.get('organization')

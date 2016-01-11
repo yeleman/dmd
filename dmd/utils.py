@@ -113,23 +113,30 @@ def data_ident_for(indicator, period, entity):
                                              entity=entity.uuids)
 
 
-def send_templated_email(tmpl, partner, password, creator=None):
+def send_templated_email(tmpl, partner, context):
+    context.update({'partner': partner,
+                    'url': get_full_url()})
     return send_email(
         recipients=partner.email,
-        context={'partner': partner,
-                 'creator': creator,
-                 'password': password,
-                 'url': get_full_url()},
+        context=context,
         template='emails/{tmpl}.txt'.format(tmpl=tmpl),
         title_template='emails/title.{tmpl}.txt'.format(tmpl=tmpl))
 
 
 def send_new_account_email(partner, password, creator=None):
-    return send_templated_email('new_account', partner, password, creator)
+    return send_templated_email('new_account', partner,
+                                {'password': password,
+                                 'creator': creator})
 
 
 def send_reset_password_email(partner, password, creator=None):
-    return send_templated_email('reset_password', partner, password, creator)
+    return send_templated_email('reset_password', partner,
+                                {'password': password,
+                                 'creator': creator})
+
+
+def send_validation_feedback_email(partner, summary):
+    return send_templated_email('validation_feedback', partner, summary)
 
 
 def get_full_url(request=None, path=''):

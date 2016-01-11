@@ -98,6 +98,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django_forms_bootstrap',
     'mptt',
+    'babeldjango',
     'dmd',
 )
 

@@ -1,0 +1,15 @@
+{% load babel %}Bonjour {{ partner|safe }},
+
+Des données que vous avez transmises ({{ nb_validations }}) ont été revues à la date du {{ yesterday|datefmt:"short" }}.
+Ci-dessous, un résumé de ces modifications:
+{% for status, data in status.items %}
+{% if data.count %}** {{ data.name|upper }} ** ({{ data.count }} donnée{{data.count|pluralize}})
+{% for record in data.all %}  - {{ record.indicator.name }}/{{ record.entity.short_name }}/{{ record.period }}, modifié le {{ record.validated_on|datetimefmt }} par {{ record.validated_by }}{% endfor %}{% endif %}
+{% endfor %}
+
+Pour rappel, vous pouvez acceder au système à l'adresse suivante: {{ url }}
+
+En cas de problème, contactez le PNLP.
+
+Cordialement,
+Le gestionnaire de la base de données.
