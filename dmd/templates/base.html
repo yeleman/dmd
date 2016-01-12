@@ -65,6 +65,9 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 
+                	<li><a {% if page = 'dashboard' %}class="active-menu" {%endif %} href="{% url 'dashboard' %}">
+                    	<i class="fa fa-dashboard"></i> Tableau de bord</a>
+                    </li>
                     <li><a {% if page = 'home' %}class="active-menu" {%endif %} href="{% url 'home' %}">
                     	<i class="fa fa-info-circle"></i> À propos</a>
                     </li>

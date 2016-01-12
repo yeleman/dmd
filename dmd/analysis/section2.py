@@ -12,7 +12,7 @@ from django.shortcuts import render
 
 from dmd.views.common import process_period_filter, process_entity_filter
 from dmd.models.Indicators import Indicator
-from dmd.arrivals import agg_arrival_for_period
+from dmd.caching import get_cached_data
 
 logger = logging.getLogger(__name__)
 SECTION_ID = 2
@@ -34,9 +34,10 @@ def view(request, entity_uuid=None, period_str=None, periodb_str=None,
         'section': SECTION_ID,
         'section_name': SECTION_NAME,
         'arrivals': OrderedDict(
-            [(indicator, agg_arrival_for_period(indicator,
-                                                context['entity'],
-                                                context['period']))
+            [(indicator, get_cached_data('section2-arrivals',
+                                         entity=context['entity'],
+                                         period=context['period'],
+                                         indicator=indicator))
              for indicator in Indicator.objects.all()])
     })
 

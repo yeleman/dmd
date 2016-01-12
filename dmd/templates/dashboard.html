@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load dmd %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">   	
+		<div class="panel panel-default">
+    		<div class="panel-heading">Complétude &amp; promptitude moyennes par DPS ({% if indicator %}{{ indicator.name }}{% else %}tous indicateurs{% endif %}) pour {{ period }}</div>
+    		<div class="panel-body">
+	    		<form role="form" id="report_entity_filter" method="GET">
+					<div class="form-group inline-entity-container">
+						{% include "parts/period_filter_select.html" with periods=periods selected_period=period %} 
+						{% include "parts/indicator_filter_select.html" with indicators=indicators selected_indicator=indicator include_empty=True %}
+					</div>
+				    <button type="submit" class="btn btn-default btn-primary btn-xs">filtrer</button>
+				</form>
+
+	    		<table class="table">
+	    			<thead>
+	    				<tr><th>DPS</th><th>Complétude</th><th>Promptitude</th></tr>
+	    			</thead>
+	    			<tbody>
+	    				{% for dps, data in completeness.items %}<tr><th>{{ dps.short_name }}</th><td>{{ data.completeness|percent }}</td><td>{{ data.promptness|percent }}</td></tr>{% endfor %}
+	    			</tbody>
+	    		</table>
+    		</div>        
+    	</div>
+    </div>
+    <div class="col-md-6">  
+	    <div class="panel panel-default">
+	    	<div class="panel-heading">Évolution SP3</div>
+	    	<div class="panel-body"><div id="sp3-evolution"></div></div>
+	    </div>
+	</div>
+</div>
+{% endblock %}
+
+{% block onJQready %}
+var blank_uuid = "{{ blank_uuid }}";
+$('form').on('submit', function (e) {
+	e.preventDefault();
+	var zss = $('select[data-level="zone_sante"]');
+	var dpss = $('select[data-level="division_provinciale_sante"]');
+	var none = '-1';
+	var sel = '{{ root.uuid }}';
+
+	var period_str = $('select#filter_period').val();
+
+	if (zss.val() && zss.val() != none) {
+		sel = zss.val();
+	} else if (dpss.val() && dpss.val() != none) {
+		sel = dpss.val();
+	}
+
+	var indicator_slug = $('select#filter_indicator').val();
+
+	window.location = "{% url 'dashboard' '0000-00' 'aaaa' %}".replace('0000-00', period_str).replace('aaaa', indicator_slug);
+});
+
+var fname = "palu-evol-sp3-_{{ perioda_str }}_{{ periodb_str }}";
+var title = "{{ pwsp3.indicator.number }} : {{ pwsp3.indicator.name }} entre {{ perioda_str }} et {{ periodb_str }}";
+$('#sp3-evolution').highcharts({
+	chart: { type: 'line' },
+	title: { text: title },
+	xAxis: { categories: [{% for period in pwsp3.periods %}"{{ period.1.name }}",{% endfor %}] },
+	plotOptions: {
+	    line: { dataLabels: { enabled: true }, enableMouseTracking: true },
+	    {% if pwsp3.indicator.is_percent %}
+	    series: { dataLabels: { color: 'black', enabled: true,
+	    						formatter: function () {
+	        						return Highcharts.numberFormat(this.y) + '%';
+	        					}
+				}
+	    },
+	    {% endif %}
+	},
+	yAxis: { title: null, min:0 },
+	series: [{
+	    name: "{{ pwsp3.indicator.name }}",
+	    data: [
+	    	{% for point in pwsp3.points %}
+	    		{
+	    			y: {% if point.id = None %}null{% else %}{{ point.value|stringformat:".2f" }}{% endif %},
+	    			{% if point.id %}
+	    			rid: '{{ point.id }}',
+	    			events: {
+	    				click: function (e) { window.location = "{% url 'raw_data_record' point.id %}"; }
+	    			},
+	    			{% endif %}
+	    		},
+			{% endfor %}
+		],
+	}],
+	exporting: { enabled: true, filename: fname},
+	credits: { enabled: false, }
+	});
+{% endblock %}

@@ -33,9 +33,11 @@ def process_period_filter(request, period_str=None, name='period'):
     else:
         period = MonthPeriod.current().previous()
 
+    all_periods = MonthPeriod.all_till_now()
     return {
-        'periods': sorted([p.to_tuple() for p in MonthPeriod.all_till_now()],
+        'periods': sorted([p.to_tuple() for p in all_periods],
                           reverse=True),
+        'all_periods': all_periods,
         name: period,
     }
 

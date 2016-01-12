@@ -111,8 +111,6 @@ entities_browser = getEntitiesBrowser({
 var blank_uuid = "{{ blank_uuid }}";
 $('form').on('submit', function (e) {
 	e.preventDefault();
-	var ass = $('select[data-level="aire_sante"]');
-	console.log(ass);
 	var zss = $('select[data-level="zone_sante"]');
 	var dpss = $('select[data-level="division_provinciale_sante"]');
 	var none = '-1';
@@ -121,9 +119,7 @@ $('form').on('submit', function (e) {
 	var perioda_str = $('select#filter_perioda').val();
 	var periodb_str = $('select#filter_periodb').val();
 
-	if (ass.val() && ass.val() != none) {
-		sel = ass.val();
-	} else if (zss.val() && zss.val() != none) {
+	if (zss.val() && zss.val() != none) {
 		sel = zss.val();
 	} else if (dpss.val() && dpss.val() != none) {
 		sel = dpss.val();

@@ -113,6 +113,10 @@ body.analysis_section1 #filter_indicator {
 	max-width: 44em;
 }
 
+body.dashboard #filter_indicator {
+	max-width: 80%;
+}
+
 /*----------------------------------------------
     COMMON  STYLES    
 ------------------------------------------------*/

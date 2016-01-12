@@ -8,6 +8,7 @@ import logging
 
 from dmd.models.Periods import MonthPeriod
 from dmd.models.DataRecords import DataRecord
+from dmd.models.Indicators import Indicator
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +56,29 @@ def agg_arrival_for(indicator, entity, year, month):
         'nb_expected_reports': nb_expected_reports,
         'nb_arrived_reports': nb_arrived_reports,
         'nb_prompt_reports': nb_prompt_reports,
-        'completness': nb_arrived_reports / nb_expected_reports,
+        'completeness': nb_arrived_reports / nb_expected_reports,
         'promptness': nb_prompt_reports / nb_expected_reports
     }
+
+
+def avg_arrival_for_period(entity, period):
+    return avg_arrival_for(entity, period.year, period.month)
+
+
+def avg_arrival_for(entity, year, month):
+    keys = ['nb_expected_reports', 'nb_arrived_reports',
+            'nb_prompt_reports', 'nb_prompt_reports']
+
+    data = {key: 0 for key in keys}
+
+    for indicator in Indicator.objects.all():
+        idata = agg_arrival_for(indicator, entity, year, month)
+        data.update({key: data.get(key) + idata.get(key) for key in keys})
+
+    data.update({
+        'completeness': data['nb_arrived_reports']
+        / data['nb_expected_reports'],
+        'promptness': data['nb_prompt_reports'] / data['nb_expected_reports']
+        })
+
+    return data
