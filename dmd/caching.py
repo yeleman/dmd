@@ -6,11 +6,12 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import logging
 
-from django.core.cache import cache
+from django.core.cache import caches
 
 from dmd.arrivals import avg_arrival_for_period, agg_arrival_for_period
 
 logger = logging.getLogger(__name__)
+cache = caches['computations']
 
 
 def compute_completeness_for(dps, period, indicator=None):
@@ -18,6 +19,11 @@ def compute_completeness_for(dps, period, indicator=None):
         return agg_arrival_for_period(indicator, dps, period)
     else:
         return avg_arrival_for_period(dps, period)
+
+
+def cache_exists_for(key, **kwargs):
+    cache_key, _ = get_cache_details_for(key, **kwargs)
+    return cache.get(cache_key, None) is not None
 
 
 def get_cache_details_for(key, **kwargs):
@@ -56,4 +62,4 @@ def get_cached_data(key, no_retry=False, **params):
 
 def update_cached_data(key, **params):
     cache_key, computer = get_cache_details_for(key, **params)
-    cache.set(cache_key, computer(**params))
+    cache.set(cache_key, computer(**params), None)

@@ -149,9 +149,15 @@ DATABASES = {
 
 CACHES = {
     'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    },
+    'computations': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'django_cache',
+        'LOCATION': 'computations_cache',
         'TIMEOUT': None,
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000000
+        }
     }
 }
 

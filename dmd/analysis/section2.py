@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from dmd.views.common import process_period_filter, process_entity_filter
+from dmd.models.Entities import Entity
 from dmd.models.Indicators import Indicator
 from dmd.caching import get_cached_data
 
@@ -42,7 +43,9 @@ def view(request, entity_uuid=None, period_str=None, periodb_str=None,
     })
 
     # absolute URI for links
-    context.update({'baseurl': request.build_absolute_uri()})
+    context.update({
+        'baseurl': request.build_absolute_uri(),
+        'lineage': [Entity.PROVINCE]})
 
     return render(request,
                   kwargs.get('template_name',
