@@ -23,8 +23,10 @@ class Command(BaseCommand):
 
         logger.info("Updating cache for dashboard completeness...")
 
+        root = Entity.get_root()
         periods = MonthPeriod.all_till_now()
-        all_dps = Entity.get_root().get_children()
+        all_dps = root.get_children()
+        all_entities = all_dps + [root]
         indicators = Indicator.objects.all()
         all_indicators = list(indicators) + [None]
         nb_items = len(periods) * len(all_dps) * len(all_indicators)
@@ -62,14 +64,14 @@ class Command(BaseCommand):
         nb_items = len(periods) * len(all_dps) * len(indicators)
         nb_ran = 0
         for period in periods:
-            for dps in all_dps:
+            for entity in all_entities:
                 for indicator in all_indicators:
                     if period <= periods[-4]:
                         if cache_exists_for('completeness', **params):
                             continue
 
                         update_cached_data('section2-arrivals',
-                                           entity=dps,
+                                           entity=entity,
                                            period=period,
                                            indicator=indicator)
 
