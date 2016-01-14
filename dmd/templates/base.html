@@ -93,7 +93,7 @@
 						<a href="#" {% if 'analysis' in page %}aria-expanded="true"{% endif %}><i class="fa fa-bar-chart-o"></i> Analyses<i class="fa fa arrow"></i></a>
                         <ul class="nav nav-second-level" {% if 'analysis' in page %}aria-expanded="true"{% endif %}>
                         	{% for section_id, section_name in sections.items %}
-                        	<li><a {% if section = section_id %}class="active-menu" {%endif %} href="{% url 'analysis' section_id %}">Section {{ section_id }} : {{ section_name }}</a></li>
+                        	<li><a {% if section = section_id %}class="active-menu" {% endif %} href="{% url 'analysis' section_id %}">Section {{ section_id }} : {{ section_name }}</a></li>
                         	{% endfor %}
                         </ul>
                     </li>
@@ -148,7 +148,6 @@
     <script src="{% static "js/jquery.metisMenu.js" %}"></script>
     <script src="{% static "js/highcharts.js" %}"></script>
     <script src="{% static "js/exporting.js" %}"></script>
-    <script src="{% static "js/clipboard.min.js" %}"></script>
     <script src="{% static "js/entity_filter.js" %}"></script>
 </body>
 {% block assets %}{% endblock %}

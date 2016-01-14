@@ -25,7 +25,7 @@
     	{% for indic_slug, trd in elements.items %}
     	<div class="panel panel-default">
     		<div class="panel-heading">
-    			<a name="{{ trd.indicator.number }}"></a>{{ trd.indicator.number }} : {{ trd.indicator.name }} <button class="btn" data-clipboard-text="{{ baseurl }}#{{ trd.indicator.number }}"><i class="glyphicon glyphicon-link"></i></button></div>
+    			<a name="{{ trd.indicator.number }}"></a>{{ trd.indicator.number }} : {{ trd.indicator.name }}</div>
     		<div class="panel-body">
     			<div id="graph-{{ indic_slug }}"></div>
     			<table class="table">
@@ -93,7 +93,6 @@
 {% endblock %}
 
 {% block onJQready %}
-new Clipboard('.btn');
 var baseURL = '{% url 'api_entities_get_children' blank_uuid %}'.split("/");
 baseURL.pop();
 baseURL = baseURL.join("/");

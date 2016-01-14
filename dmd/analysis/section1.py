@@ -8,6 +8,7 @@ import logging
 from collections import OrderedDict
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from py3compat import text_type
 
 from dmd.views.common import process_period_filter, process_entity_filter
 from dmd.models.Periods import MonthPeriod
@@ -44,7 +45,7 @@ def view(request, entity_uuid=None, perioda_str=None, periodb_str=None,
         qs = indicator = None
 
     context.update({
-        'section': SECTION_ID,
+        'section': text_type(SECTION_ID),
         'section_name': SECTION_NAME,
         'elements': build_context(periods=periods,
                                   entity=context['entity'],

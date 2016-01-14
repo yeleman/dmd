@@ -8,6 +8,8 @@ import logging
 import os
 import re
 
+from py3compat import text_type
+
 from dmd.utils import import_path
 
 logger = logging.getLogger(__name__)
@@ -22,7 +24,7 @@ def build_sections_list():
         mod = import_path('dmd.analysis.{}'.format(fname[:-3]), failsafe=True)
         if mod is None:
             continue
-        d.update({str(mod.SECTION_ID): mod.SECTION_NAME})
+        d.update({text_type(mod.SECTION_ID): mod.SECTION_NAME})
     return d
 
 SECTIONS = build_sections_list()
