@@ -17,6 +17,7 @@ class Organization(models.Model):
 
     class Meta:
         app_label = 'dmd'
+        ordering = ['name']
 
     slug = models.SlugField(max_length=96, primary_key=True)
     name = models.CharField(max_length=255)
