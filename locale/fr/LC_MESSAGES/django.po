@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dmd\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-09 13:03+0100\n"
-"PO-Revision-Date: 2015-12-09 12:04-0000\n"
+"POT-Creation-Date: 2016-01-15 12:18+0100\n"
+"PO-Revision-Date: 2016-01-15 11:22+0000\n"
 "Last-Translator: reg <rgaudin@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -16,8 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+#: dmd/emails.py:49
+msgid "No Recipients for that message"
+msgstr "Pas de destinataires pour ce message"
+
+#: dmd/emails.py:53
+msgid "Unable to send empty email messages"
+msgstr "Impossible d’envoyer des messages vide"
+
+#: dmd/emails.py:64
+#, python-brace-format
+msgid "Message from {site}"
+msgstr "Message de {site}"
 
 #: dmd/models/DataRecords.py:47
 msgid "Direct"
@@ -56,12 +69,10 @@ msgid "Arrived"
 msgstr "Arrivé"
 
 #: dmd/models/DataRecords.py:70
-#| msgid "Arrived"
 msgid "Arrived On Time"
 msgstr "Arrivé prompt"
 
 #: dmd/models/DataRecords.py:71
-#| msgid "Arrived"
 msgid "Arrived Late"
 msgstr "Arrivé en retard"
 
@@ -347,12 +358,12 @@ msgstr "Peut valider des données ?"
 msgid "Validation location"
 msgstr "Localité de validation des données"
 
-#: dmd/views/admin.py:66
+#: dmd/views/admin.py:75
 #, python-brace-format
 msgid "Username `{username}` is already taken"
 msgstr "L'identifiant `{username}` est déjà utilisé"
 
-#: dmd/views/admin.py:108
+#: dmd/views/admin.py:117
 #, python-brace-format
 msgid ""
 "New User account “{name}” created with login `{username}` and password "
@@ -361,12 +372,17 @@ msgstr ""
 "Nouveau compte utilisateur «{name}» créé avec l'identifiant `{username}` et "
 "le mot de passe `{password}`"
 
-#: dmd/views/admin.py:155
+#: dmd/views/admin.py:127 dmd/views/admin.py:209
+#, python-brace-format
+msgid "The password has been sent to {email}"
+msgstr "Le mot de passe a été envoyé à {email}"
+
+#: dmd/views/admin.py:173
 #, python-brace-format
 msgid "User account “{name}” has been updated."
 msgstr "Le compte utilisateur «{name}» a été mis à jour."
 
-#: dmd/views/admin.py:182
+#: dmd/views/admin.py:200
 #, python-brace-format
 msgid ""
 "Password for User account “{name}” (login `{username}`) has been reseted to "
@@ -375,47 +391,47 @@ msgstr ""
 "Le mot de passe du compte «{name}» (identifiant `{username}`) a été changé "
 "pour `{password}`"
 
-#: dmd/views/admin.py:208
+#: dmd/views/admin.py:234
 #, python-brace-format
 msgid "New Indicator “{name}” created with number `{number}`"
 msgstr "Nouvel indicateur «{name}» créé avec numéro `{number}`"
 
-#: dmd/views/admin.py:241
+#: dmd/views/admin.py:267
 #, python-brace-format
 msgid "Indicator “{name}” has been updated."
 msgstr "L'indicateur «{name}» a été mis à jour."
 
-#: dmd/views/admin.py:290
+#: dmd/views/admin.py:316
 #, python-brace-format
 msgid "New organization “{name}” created with slug `{slug}`"
 msgstr "Nouvelle organisation «{name}» créée avec identifiant `{slug}`"
 
-#: dmd/views/admin.py:323
+#: dmd/views/admin.py:349
 #, python-brace-format
 msgid "Organization “{name}” has been updated."
 msgstr "L'organisation «{name}» a été mise à jour."
 
-#: dmd/views/analysis.py:30
+#: dmd/views/analysis.py:37
 #, python-brace-format
 msgid "Unknown section ID `{sid}`"
 msgstr "ID de section `{sid}` inconnu"
 
-#: dmd/views/api.py:66
+#: dmd/views/api.py:70
 #, python-brace-format
 msgid "Unknown collection type `{ct}`"
 msgstr "Type de collecte `{ct}` inconnue"
 
-#: dmd/views/api.py:78
+#: dmd/views/api.py:82 dmd/views/api.py:101
 #, python-brace-format
 msgid "Unknown entity UUID `{u}`"
 msgstr "UUID de localité `{u}` inconnu"
 
-#: dmd/views/api.py:82
+#: dmd/views/api.py:86 dmd/views/api.py:113
 #, python-brace-format
 msgid "Unknown period `{p}`"
 msgstr "Période `{p}` inconnue"
 
-#: dmd/views/api.py:86
+#: dmd/views/api.py:90 dmd/views/api.py:117
 #, python-brace-format
 msgid "Unknown indicator `{s}`"
 msgstr "Indicateur `{s}` inconnu"
@@ -425,7 +441,7 @@ msgstr "Indicateur `{s}` inconnu"
 msgid "Unable to match period with `{period}`"
 msgstr "Impossible de trouver la période correspondant à `{period}`"
 
-#: dmd/views/common.py:50
+#: dmd/views/common.py:52
 #, python-brace-format
 msgid "Unable to match entity `{uuid}`"
 msgstr "Impossible de trouver l'entité correspondant à `{uuid}`"
