@@ -30,7 +30,7 @@ class Command(BaseCommand):
         root = Entity.get_root()
         periods = MonthPeriod.all_till_now()
         all_dps = root.get_children()
-        all_entities = all_dps + [root]
+        all_entities = list(all_dps) + [root]
         indicators = Indicator.objects.all()
         all_indicators = list(indicators) + [None]
         nb_items = len(periods) * len(all_dps) * len(all_indicators)
