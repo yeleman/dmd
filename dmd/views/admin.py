@@ -381,6 +381,7 @@ def backups_list(request, *args, **kwargs):
 
     def fsfor(fn):
         fs = os.path.getsize(os.path.join(settings.BACKUPS_REPOSITORY, fn))
+        suffix = ''
         if fs // 1024:
             suffix = 'K'
             fs = fs / 1024
