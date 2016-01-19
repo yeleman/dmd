@@ -136,7 +136,7 @@ function getEntitiesBrowser (options) {
                     $.each(data, function (index, entity) {
                         var option = $('<option />');
                         option.val(entity.uuid);
-                        option.text(entity.name);
+                        option.text(entity.short_name);
                         selectElem.append(option);
                     });
 

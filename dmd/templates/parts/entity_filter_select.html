@@ -3,7 +3,7 @@
     {% if forloop.counter0 == 0 %}
     <option value="-1">AUCUN</option>
     {% for child in children %}
-        <option value="{{ child.uuid }}"{% if child.uuid == entity.uuid %} selected="selected"{% endif %}>{{ child.name }}</option>
+        <option value="{{ child.uuid }}"{% if child.uuid == entity.uuid %} selected="selected"{% endif %}>{{ child.short_name }}</option>
     {% endfor %}
     {% endif %}
 </select>
