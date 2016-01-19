@@ -11,12 +11,17 @@ import datetime
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
+from dmd.utils import chdir_dmd
+
 logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
+
+        # make sure we're at project root
+        chdir_dmd()
 
         # daily backups for last 7 days.
         # Monday backups for last 30 days.

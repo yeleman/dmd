@@ -14,6 +14,7 @@ import unicodecsv as csv
 
 from dmd.models import DataRecord, Metadata
 from dmd.xlsx.xlexport import export_to_spreadsheet
+from dmd.utils import chdir_dmd
 
 logger = logging.getLogger(__name__)
 
@@ -73,6 +74,9 @@ def get_csv_for(records_qs, save_to=None):
 class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
+
+        # make sure we're at project root
+        chdir_dmd()
 
         logger.info("Exporting all DataRecord to: {}"
                     .format(settings.ALL_EXPORT_PATH))

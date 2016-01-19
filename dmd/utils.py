@@ -4,6 +4,7 @@
 
 from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
+import os
 import logging
 import re
 import random
@@ -145,3 +146,7 @@ def get_full_url(request=None, path=''):
     return 'http{ssl}://{domain}/{path}'.format(
         domain=get_current_site(request).domain,
         path=path, ssl="s" if settings.DOMAIN_USES_HTTPS else '')
+
+
+def chdir_dmd():
+    os.chdir(settings.BASE_DIR)

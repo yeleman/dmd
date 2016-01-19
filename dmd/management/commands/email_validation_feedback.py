@@ -13,7 +13,7 @@ from py3compat import text_type
 
 from dmd.models.DataRecords import DataRecord
 from dmd.models.Partners import Partner
-from dmd.utils import send_validation_feedback_email
+from dmd.utils import send_validation_feedback_email, chdir_dmd
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +28,10 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
+
+        # make sure we're at project root
+        chdir_dmd()
+
         yesterday = datetime.date.today() - datetime.timedelta(days=1)
         logger.info("Sending validation feedback for {}".format(yesterday))
 

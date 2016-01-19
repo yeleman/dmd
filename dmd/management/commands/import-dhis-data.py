@@ -17,7 +17,7 @@ from dmd.models.Periods import MonthPeriod
 from dmd.models.Indicators import Indicator
 from dmd.models.DataRecords import DataRecord
 from dmd.models.Partners import Partner
-from dmd.utils import data_ident_for
+from dmd.utils import data_ident_for, chdir_dmd
 
 DEBUG = True
 NB_PREVIOUS_PERIODS = 3
@@ -51,6 +51,10 @@ class Command(BaseCommand):
     )
 
     def handle_record(self, jsdata, entity, periods):
+
+        # make sure we're at project root
+        chdir_dmd()
+
         logger.info(periods)
 
         missing = '0.0'

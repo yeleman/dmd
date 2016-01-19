@@ -12,6 +12,7 @@ from django.core.management.base import BaseCommand
 from optparse import make_option
 
 from dmd.models.Entities import Entity
+from dmd.utils import chdir_dmd
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +27,9 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
+
+        # make sure we're at project root
+        chdir_dmd()
 
         if not os.path.exists(options.get('file')):
             logger.error("GeoJSON file does not exit.")

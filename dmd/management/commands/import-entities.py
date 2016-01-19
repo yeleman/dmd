@@ -13,6 +13,7 @@ from optparse import make_option
 from path import Path as p
 
 from dmd.models.Entities import Entity
+from dmd.utils import chdir_dmd
 
 
 logger = logging.getLogger(__name__)
@@ -88,6 +89,9 @@ class Command(BaseCommand):
         return entity
 
     def handle(self, *args, **options):
+        # make sure we're at project root
+        chdir_dmd()
+
         self.json_folder = options.get('json_folder')
 
         logger.info("Importing Entities from JSON files from `{}`"

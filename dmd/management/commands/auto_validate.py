@@ -12,6 +12,7 @@ from optparse import make_option
 
 from dmd.models.Indicators import Indicator
 from dmd.models.DataRecords import DataRecord
+from dmd.utils import chdir_dmd
 
 DEBUG = False
 logger = logging.getLogger(__name__)
@@ -28,6 +29,9 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
+
+        # make sure we're at project root
+        chdir_dmd()
 
         logger.info("Auto-validation started...")
 

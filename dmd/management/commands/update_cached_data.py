@@ -13,6 +13,7 @@ from dmd.models.Periods import MonthPeriod
 from dmd.models.Entities import Entity
 from dmd.models.Indicators import Indicator
 from dmd.caching import cache_exists_for, update_cached_data
+from dmd.utils import chdir_dmd
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +21,9 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
+
+        # make sure we're at project root
+        chdir_dmd()
 
         logger.info("Updating cache for dashboard completeness...")
 

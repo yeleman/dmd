@@ -12,21 +12,17 @@ import shutil
 from django.utils import timezone
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from optparse import make_option
+
+from dmd.utils import chdir_dmd
 
 logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
 
-    option_list = BaseCommand.option_list + (
-        make_option('-f',
-                    help='GeoJSON file to import',
-                    action='store',
-                    dest='file'),
-    )
-
     def handle(self, *args, **options):
+        # make sure we're at project root
+        chdir_dmd()
 
         # django config of the DB
         dbconf = settings.DATABASES.get('default', {})
