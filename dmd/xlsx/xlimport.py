@@ -166,7 +166,7 @@ def read_xls(filepath, partner):
             denom = cd(row, column + 1)
 
             # skip if missing numerator
-            if not num:
+            if num is None:
                 logger.debug("No numerator for indic #{}".format(number))
                 continue
 
