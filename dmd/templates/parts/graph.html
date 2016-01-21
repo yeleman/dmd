@@ -1,0 +1,26 @@
+{% load dmd %}
+<div id="{{ id }}"></div>
+<script type="text/javascript">
+graphs.push({
+	chart: { type: 'line', renderTo: "#{{ id }}", defaultSeriesType: 'line' },
+	title: { text: "{{ title }}" },
+	xAxis: { categories: [{% for category in categories %}"{{ category }}",{% endfor %}]},
+	plotOptions: {
+	    line: { dataLabels: { enabled: true }, enableMouseTracking: true },
+	},
+	yAxis: { title: null, min:0 },
+	series: [
+		{% for serie in series %}
+		{
+	    	name: "{{ serie.name }}",
+	    	data: [{% for point in serie.data %}
+	    		{y: {% if point.id = None %}null{% else %}{{ point.value|stringformat:".2f" }},{% endif %}
+	    		{% if point.id %}rid: '{{ point.id }}', events: get_click_to_point_event("{% url 'raw_data_record' 1 %}"){% endif %}},
+    		{% endfor %}],
+		},
+		{% endfor %}
+	],
+	exporting: { enabled: true, filename: "{{ fname }}"},
+	credits: { enabled: false, }
+});
+</script>

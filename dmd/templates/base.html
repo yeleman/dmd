@@ -24,7 +24,7 @@
 	<meta name="msapplication-config" content="/static/browserconfig.xml">
 	<meta name="theme-color" content="#4aadce">
 </head>
-
+<script type="text/javascript" src="{% static "js/base.js" %}"></script>
 <body class="{{ page }}">
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -107,7 +107,7 @@
                     {% if user.is_staff %}
                     <li><a {% if page = 'users' %}class="active-menu" {%endif %}href="{% url 'users' %}"><i class="fa fa-users"></i> Utilisateurs</a></li>
 
-                    <li><a {% if page = 'organizations' %}class="active-menu" {%endif %}href="{% url 'organizations' %}"><i class="fa fa-building"></i> Organizations</a></li>
+                    <li><a {% if page = 'organizations' %}class="active-menu" {%endif %}href="{% url 'organizations' %}"><i class="fa fa-building"></i> Organisations</a></li>
 
                     <li><a {% if page = 'backups' %}class="active-menu" {%endif %}href="{% url 'backups' %}"><i class="fa fa-database"></i> Backups BDD</a></li>
                     {% endif %}
@@ -171,6 +171,9 @@ $('#main-menu').metisMenu({ toggle: false });
 			$('#page-wrapper').height(availHeight);
 		}
 	});
-{% block onJQready %}{% endblock %}
+	{% block onJQready %}{% endblock %}
+	$.each(graphs, function (idx, graph) {
+		$(graph.chart.renderTo).highcharts(graph);
+	});
 });</script>
 </html>

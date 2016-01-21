@@ -105,11 +105,23 @@ def dashboard(request, indicator_slug=None, period_str=None, *args, **kwargs):
     })
 
     # evolution of pw_anc_receiving_sp3
+    pwsp3 = get_timed_records(Indicator.get_by_number(59),
+                              drc, context['all_periods'])
+    perioda = context['all_periods'][0]
+    periodb = context['all_periods'][-1]
+
     context.update({
-        'pwsp3': get_timed_records(Indicator.get_by_number(59),
-                                   drc, context['all_periods']),
-        'perioda_str': context['all_periods'][0].strid,
-        'periodb_str': context['all_periods'][-1].strid,
+        'sp3_title': "{num} : {name} entre {pa} et {pb}"
+                     .format(num=pwsp3['indicator'].number,
+                             name=pwsp3['indicator'].name,
+                             pa=perioda.strid,
+                             pb=periodb.strid),
+        'sp3_fname': "palu-evol-sp3-_{pa}_{pb}"
+                     .format(pa=perioda.strid, pb=periodb.strid),
+        'sp3_categories': [p[1].name for p in pwsp3['periods']],
+        'sp3_series': [{'name': pwsp3['indicator'].name,
+                        'data': pwsp3['points']}
+                       ],
     })
 
     return render(request, kwargs.get('template_name', 'dashboard.html'),

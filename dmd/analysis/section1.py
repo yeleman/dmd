@@ -88,7 +88,7 @@ def get_timed_records(indicator, entity, periods):
     years = sorted(set([period.year for period in periods]))
     return {
         'indicator': indicator,
-        'periods': [period.to_tuple for period in periods],
+        'periods': [period.to_tuple() for period in periods],
         'points': [data_point_for(indicator, entity, period)
                    for period in periods],
         'year_elements': [indicator.data_for(entity, year) for year in years],

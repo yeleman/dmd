@@ -60,26 +60,5 @@ entities_browser = getEntitiesBrowser({
     default_option: {value: '-1', label: "AUCUN"}
 });
 
-var blank_uuid = "{{ blank_uuid }}";
-$('form').on('submit', function (e) {
-	e.preventDefault();
-	var ass = $('select[data-level="aire_sante"]');
-	console.log(ass);
-	var zss = $('select[data-level="zone_sante"]');
-	var dpss = $('select[data-level="division_provinciale_sante"]');
-	var none = '-1';
-	var sel = '{{ root.uuid }}';
-
-	var period_str = $('select#filter_period').val();
-
-	if (ass.val() && ass.val() != none) {
-		sel = ass.val();
-	} else if (zss.val() && zss.val() != none) {
-		sel = zss.val();
-	} else if (dpss.val() && dpss.val() != none) {
-		sel = dpss.val();
-	}
-
-	window.location = "{% url 'raw_data' blank_uuid '0000-00' %}".replace("{{ blank_uuid }}", sel).replace('0000-00', period_str);
-});
+register_form_for("{% url 'raw_data' blank_uuid '0000-00' %}", ['entity', 'period']);
 {% endblock %}

@@ -477,7 +477,6 @@ def export_to_spreadsheet(qs, save_to=None):
         row += 1
 
         for record in qs.filter(indicator=indicator).iterator():
-            logger.debug(record)
 
             std_write(row, col_year, record.period.year, std_style)
             std_write(row, col_month, record.period.month, std_style)

@@ -155,3 +155,51 @@ function getEntitiesBrowser (options) {
     return new EntitiesBrowser(options);
 }
 
+function navigate_for(url, elements) {
+	// elements: a list of items to fecth and place in URL (in order !)
+	// samples: ['entity', 'period', 'indicator']
+	// 			['entity', 'perioda', 'periodb']
+	return function (e) {
+		e.preventDefault();
+		var data = {'entity': "9616cf8b-5c47-49e2-8702-4f8179565a0c"};
+		var none = '-1';
+
+		if (elements.includes('entity')) {
+			data['zs'] = $('select[data-level="zone_sante"]').val();
+			data['dps'] = $('select[data-level="division_provinciale_sante"]').val();
+		}
+		if (elements.includes('period')) {
+			data['period'] = $('select#filter_period').val();
+		} 
+		if (elements.includes('perioda')) {
+			data['perioda'] = $('select#filter_perioda').val();
+		}
+		if (elements.includes('periodb')) {
+			data['periodb'] = $('select#filter_periodb').val();
+		}
+		if (elements.includes('indicator')) {
+			data['indicator'] = $('select#filter_indicator').val();
+		}
+		
+		if (data.zs && data.zs != none) {
+			data['entity'] = data['zs'];
+		} else if (data.dps && data.dps != none) {
+			data['entity'] = data['dps'];
+		}
+
+		var parts = [];
+		$.each(elements, function (idx, elem) {
+			parts.push(data[elem]);
+		});
+		
+		window.location = swapLastParts(url, parts);
+	}
+}
+
+
+function register_form_for(url, elements, form_name) {
+	if (form_name === undefined) {
+		form_name = 'form';
+	}
+	$(form_name).on('submit', navigate_for(url, elements));
+}

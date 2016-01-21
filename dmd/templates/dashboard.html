@@ -31,69 +31,14 @@
     <div class="col-md-6">  
 	    <div class="panel panel-default">
 	    	<div class="panel-heading">Évolution SP3</div>
-	    	<div class="panel-body"><div id="sp3-evolution"></div></div>
+	    	<div class="panel-body">
+	    		{% include "parts/graph.html" with title=sp3_title fname=sp3_fname id="sp3-evolution" categories=sp3_categories series=sp3_series %}
+    		</div>
 	    </div>
 	</div>
 </div>
 {% endblock %}
 
 {% block onJQready %}
-var blank_uuid = "{{ blank_uuid }}";
-$('form').on('submit', function (e) {
-	e.preventDefault();
-	var zss = $('select[data-level="zone_sante"]');
-	var dpss = $('select[data-level="division_provinciale_sante"]');
-	var none = '-1';
-	var sel = '{{ root.uuid }}';
-
-	var period_str = $('select#filter_period').val();
-
-	if (zss.val() && zss.val() != none) {
-		sel = zss.val();
-	} else if (dpss.val() && dpss.val() != none) {
-		sel = dpss.val();
-	}
-
-	var indicator_slug = $('select#filter_indicator').val();
-
-	window.location = "{% url 'dashboard' '0000-00' 'aaaa' %}".replace('0000-00', period_str).replace('aaaa', indicator_slug);
-});
-
-var fname = "palu-evol-sp3-_{{ perioda_str }}_{{ periodb_str }}";
-var title = "{{ pwsp3.indicator.number }} : {{ pwsp3.indicator.name }} entre {{ perioda_str }} et {{ periodb_str }}";
-$('#sp3-evolution').highcharts({
-	chart: { type: 'line' },
-	title: { text: title },
-	xAxis: { categories: [{% for period in pwsp3.periods %}"{{ period.1.name }}",{% endfor %}] },
-	plotOptions: {
-	    line: { dataLabels: { enabled: true }, enableMouseTracking: true },
-	    {% if pwsp3.indicator.is_percent %}
-	    series: { dataLabels: { color: 'black', enabled: true,
-	    						formatter: function () {
-	        						return Highcharts.numberFormat(this.y) + '%';
-	        					}
-				}
-	    },
-	    {% endif %}
-	},
-	yAxis: { title: null, min:0 },
-	series: [{
-	    name: "{{ pwsp3.indicator.name }}",
-	    data: [
-	    	{% for point in pwsp3.points %}
-	    		{
-	    			y: {% if point.id = None %}null{% else %}{{ point.value|stringformat:".2f" }}{% endif %},
-	    			{% if point.id %}
-	    			rid: '{{ point.id }}',
-	    			events: {
-	    				click: function (e) { window.location = "{% url 'raw_data_record' point.id %}"; }
-	    			},
-	    			{% endif %}
-	    		},
-			{% endfor %}
-		],
-	}],
-	exporting: { enabled: true, filename: fname},
-	credits: { enabled: false, }
-	});
+register_form_for("{% url 'dashboard' '0000-00' 'aaaa' %}", ['period', 'indicator']);
 {% endblock %}

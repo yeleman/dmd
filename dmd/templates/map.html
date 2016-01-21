@@ -37,8 +37,6 @@ var indicators_url = parts.join("/");
 
 parts = "{% url 'png_map' period_str="2014-01" entity_uuid=root.uuids indicator_slug="aa" %}".rsplit("/");
 parts.pop();
-//parts.pop();
-//parts.pop();
 var png_api_url = parts.join("/");
 mapManager = getPNGMalariaMapManager({
 	load: true,
