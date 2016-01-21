@@ -185,7 +185,8 @@ def generate_dataentry_for(dps, save_to=None):
     wb = Workbook()
     ws = wb.active
     ws.title = "Données"
-    ws.freeze_panes = ws['C5']
+    # sticky columns (DPS, ZS, YEAR, MONTH)
+    ws.freeze_panes = ws['E5']
 
     ws.add_data_validation(yv)
     ws.add_data_validation(mv)
