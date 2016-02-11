@@ -15,6 +15,7 @@ from django.conf import settings
 from dmd.views.common import process_period_filter
 from dmd.views.misc import serve_exported_files
 from dmd.models.Entities import Entity
+from dmd.models.Periods import MonthPeriod
 from dmd.models.Indicators import Indicator
 from dmd.models.DataRecords import DataRecord
 from dmd.gis import fname_for, gen_map_for
@@ -93,7 +94,8 @@ def json_data_record_for(request, period_str, entity_uuid, indicator_slug):
                         safe=False)
 
 
-def png_map_for(request, period_str, entity_name, indicator_number,
+def png_map_for(request, perioda_str, periodb_str,
+                entity_name, indicator_number,
                 with_title=True, with_legend=True):
 
     entity = Entity.get_by_short_name(entity_name)
@@ -101,33 +103,36 @@ def png_map_for(request, period_str, entity_name, indicator_number,
         raise Http404(_("Unknown entity with name `{u}`")
                       .format(u=entity_name))
 
-    if period_str is None and indicator_number is None:
-        period = None
+    if perioda_str is None and periodb_str is None \
+            and indicator_number is None:
+        periods = None
         indicator = None
         with_title = False
         fname = "initial.png"
     else:
         with_title = True
-        period = process_period_filter(
-            request, period_str, 'period').get('period')
-        if period is None:
-            raise Http404(_("Unknown period `{p}`").format(p=period_str))
+        perioda = process_period_filter(
+            request, perioda_str, 'perioda').get('perioda')
+        periodb = process_period_filter(
+            request, periodb_str, 'periodb').get('periodb')
+        periods = MonthPeriod.all_from(perioda, periodb)
+        if not len(periods):
+            raise Http404(_("Unknown period interval `{pa}` `{pb}`")
+                          .format(pa=perioda_str, pb=periodb_str))
 
         indicator = Indicator.get_by_number(indicator_number)
         if indicator is None:
             raise Http404(_("Unknown indicator `{s}`")
                           .format(s=indicator_number))
 
-        fname = fname_for(entity, period, indicator)
+        fname = fname_for(entity, periods, indicator)
 
     fpath = os.path.join('png_map', fname)
     abspath = os.path.join(settings.EXPORT_REPOSITORY, fpath)
 
-    logger.debug(abspath)
-
     if not os.path.exists(abspath):
         try:
-            gen_map_for(entity, period, indicator,
+            gen_map_for(entity, periods, indicator,
                         save_as=abspath,
                         with_title=with_title,
                         with_index=with_title)

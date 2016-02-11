@@ -21,8 +21,10 @@ function getPNGMalariaMapManager(options) {
     		{value: "routine", label: "Routine"}];
     	
     	// Currently selected period if any
-    	this.period_slug = null;
-    	this.period_name = null;
+    	this.perioda_slug = null;
+    	this.perioda_name = null;
+    	this.periodb_slug = null;
+    	this.periodb_name = null;
 
     	// List of all periods
     	this.period_list = options.period_list || null;
@@ -35,14 +37,14 @@ function getPNGMalariaMapManager(options) {
 
     	// root UUID (DRC)
     	this.root_slug = options.root_slug || "9616cf8b-5c47-49e2-8702-4f8179565a0c";
-    	this.root_name = options.root_name || "R.D.C";
+    	this.root_name = options.root_name || "RDC";
 
     	// Basic configuration
     	this.indicator_api_url = options.indicator_api_url || "/api/malaria/indicators";
         this.png_api_url = options.png_api_url || "/api/png";
 
-        this.title = options.title || "Super titre";
-        this.subtitle = options.subtitle || "un sous titre";
+        this.title = options.title || "Titre";
+        this.subtitle = options.subtitle || "Sous titre";
 
         // DOM elements of UI parts.
         this.map_title_e = null; // html title on top of map
@@ -153,9 +155,9 @@ function getPNGMalariaMapManager(options) {
         	manager.parametersChanged();
         });
 
-        // Period
-        this.period_select = $('<select class="form-control" id="period" />');
-        this.period_select.append(this.getEmptyOption());
+        // Period A
+        this.perioda_select = $('<select class="form-control" id="perioda" />');
+        this.perioda_select.append(this.getEmptyOption());
         var last_year = null;
         var optgroup = null;
         $.each(this.period_list, function (idx, elem) {
@@ -163,7 +165,7 @@ function getPNGMalariaMapManager(options) {
         	if (year != last_year) {
         		optgroup = $('<optgroup />');
         		optgroup.attr('label', year);
-        		manager.period_select.append(optgroup);
+        		manager.perioda_select.append(optgroup);
         	}
         	var option = $('<option />');
         	option.attr('label', elem.label);
@@ -173,8 +175,33 @@ function getPNGMalariaMapManager(options) {
         	last_year = year;
         });
 
-        this.period_select.on('change', function (e) {
-        	updateFromSelect('period', $(this));
+        this.perioda_select.on('change', function (e) {
+        	updateFromSelect('perioda', $(this));
+        	manager.parametersChanged();
+        });
+
+        // Period B
+        this.periodb_select = $('<select class="form-control" id="periodb" />');
+        this.periodb_select.append(this.getEmptyOption());
+        var last_year = null;
+        var optgroup = null;
+        $.each(this.period_list, function (idx, elem) {
+        	var year = elem.value.split("-")[0];
+        	if (year != last_year) {
+        		optgroup = $('<optgroup />');
+        		optgroup.attr('label', year);
+        		manager.periodb_select.append(optgroup);
+        	}
+        	var option = $('<option />');
+        	option.attr('label', elem.label);
+        	option.val(elem.value);
+        	option.text(elem.label);
+        	optgroup.append(option);
+        	last_year = year;
+        });
+
+        this.periodb_select.on('change', function (e) {
+        	updateFromSelect('periodb', $(this));
         	manager.parametersChanged();
         });
 
@@ -201,7 +228,7 @@ function getPNGMalariaMapManager(options) {
         });
 
         // add elements to DOM
-        var first_row = $('<form class="form-horizontal col-lg-6" />');
+        var first_row = $('<form class="form-horizontal first_row col-lg-6" />');
         
         var indicator_type_group = $('<div class="form-group" />');
         indicator_type_group.append(createLabelFor('indicator_type', "Type indic."));
@@ -214,24 +241,31 @@ function getPNGMalariaMapManager(options) {
         first_row.append(indicator_group);
         this.options_container.append(first_row);
 
-        var second_row = $('<form class="form-horizontal col-lg-6" />');
+        var second_row = $('<form class="form-horizontal second_row col-lg-6" />');
 
-        var period_group = $('<div class="form-group" />');
-        period_group.append(createLabelFor('period', "Période"));
-        period_group.append(this.period_select);
-        second_row.append(period_group);
+        var perioda_group = $('<div class="form-group" />');
+        perioda_group.append(createLabelFor('perioda', "Entre"));
+        perioda_group.append(this.perioda_select);
+        second_row.append(perioda_group);
 
+        var periodb_group = $('<div class="form-group" />');
+        periodb_group.append(createLabelFor('periodb', "Et"));
+        periodb_group.append(this.periodb_select);
+        second_row.append(periodb_group);
+        this.options_container.append(second_row);
+
+        var third_row = $('<form class="form-horizontal third_row col-lg-12" />');
         var dps_group = $('<div class="form-group" />');
         dps_group.append(createLabelFor('dps', "DPS"));
         dps_group.append(this.dps_select);
-        second_row.append(dps_group);
-        this.options_container.append(second_row);
+        third_row.append(dps_group);
+        this.options_container.append(third_row);
 
-        var third_row = $('<form class="form-horizontal col-lg-12" />');
+        var fourth_row = $('<form class="form-horizontal fourth_row col-lg-12" />');
         var export_group = $('<div class="form-group exportbuttons" />');
         export_group.append(this.export_button);
-        third_row.append(export_group);
-        this.options_container.append(third_row);
+        fourth_row.append(export_group);
+        this.options_container.append(fourth_row);
 
         // startup with blank image
         var sep = this.png_api_url.endsWith("/") ? '' : "/";
@@ -252,8 +286,25 @@ function getPNGMalariaMapManager(options) {
 		return (this.dps_slug !== null) ? {slug: this.dps_slug, name: this.dps_name} : {slug: this.root_slug, name: this.root_name};
 	};
 
+	PNGMalariaMapManager.prototype.hasPeriod = function() {
+		if (this.perioda_slug !== null || this.periodb_slug !== null) {
+			return this.periods_slug();
+		} else {
+			return null;
+		}
+	};
+
+	PNGMalariaMapManager.prototype.periods_slug = function() {
+		if (this.perioda_slug !== null && this.periodb_slug !== null) {
+			return this.perioda_slug + '_' + this.periodb_slug;
+		} else {
+			var pstr = (this.perioda_slug !== null) ? this.perioda_slug : this.periodb_slug;
+			return pstr + '_' + pstr;
+		}
+	};
+
     PNGMalariaMapManager.prototype.readyToLoad = function() {
-    	return (this.indicator_slug !== null && this.period_slug !== null && this.currentEntity().slug !== null);
+    	return (this.indicator_number !== null && this.hasPeriod() !== null && this.currentEntity().slug !== null);
     }
 
     PNGMalariaMapManager.prototype.PNGMapUrlFor = function(period, entity_name, indicator_number) {
@@ -268,7 +319,7 @@ function getPNGMalariaMapManager(options) {
 
         var entity = this.currentEntity().slug;
         var entity_name = this.currentEntity().name;
-    	var period = this.period_slug;
+    	var period = this.periods_slug();
     	var indicator_number = this.indicator_number;
 
     	var url = this.PNGMapUrlFor(period, entity_name, indicator_number);

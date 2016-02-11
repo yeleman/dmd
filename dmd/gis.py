@@ -215,10 +215,16 @@ def get_font(variant, size, mono=False):
                              mono="Mono" if mono else '')), size)
 
 
-def build_title_for(indicator, period, entity):
-    title = "{ind} pour {period} / {entity}".format(
+def build_title_for(indicator, periods, entity):
+    if len(periods) == 1:
+        title_fmt = "{ind} pour {period} / {entity}"
+    else:
+        title_fmt = "{ind} entre {perioda} et {periodb} / {entity}"
+    title = title_fmt.format(
         ind=indicator.name,
-        period=period.name,
+        perioda=periods[0].name,
+        periodb=periods[-1].name,
+        period=periods[-1].name,
         entity=entity.short_name)
     font = get_font('Medium', CANVAS_SIZE // 30)
     options = {
@@ -362,17 +368,21 @@ def build_legend_for(scale):
     return image
 
 
-def build_index_for(indicator, period, children):
+def build_index_for(indicator, periods, children):
 
-    def value_text_for(indicator, period, child):
-        dr = DataRecord.get_or_none(
-            indicator=indicator,
-            period=period,
-            entity=child,
-            only_validated=True)
-        if dr is None:
-            return "-"
-        return dr.human()
+    def value_text_for(indicator, periods, child):
+        if len(periods) == 1:
+            dr = DataRecord.get_or_none(
+                indicator=indicator,
+                period=periods[-1],
+                entity=child,
+                only_validated=True)
+            if dr is None:
+                return "-"
+            return dr.human()
+        else:
+            dr = indicator.data_for(periods=periods, entity=child)
+            return dr['human']
 
     font = get_font('Regular', CANVAS_SIZE // 75, mono=True)
 
@@ -398,7 +408,7 @@ def build_index_for(indicator, period, children):
 
     for index, child in enumerate(children):
         name = "{}. {}".format(letter_for(index), child.short_name)
-        value = value_text_for(indicator, period, child)
+        value = value_text_for(indicator, periods, child)
         child_text = text_fmt.format(name=name, sp=sp, value=value)
         itext_width = max([itext_width, text_width(child_text)])
         labels.append((child_text, name, value))
@@ -432,21 +442,24 @@ def build_index_for(indicator, period, children):
     return image
 
 
-def fname_for(entity, period, indicator):
-    return "{period}_{entity}_indic{indicator}.png".format(
+def fname_for(entity, periods, indicator):
+    return "{perioda}_{periodb}_{entity}_indic{indicator}.png".format(
         entity=entity.short_name,
-        period=period.strid,
+        perioda=periods[0].strid,
+        periodb=periods[-1].strid,
         indicator=indicator.number)
 
 
-def gen_map_for(entity, period, indicator, save_as=None,
+def gen_map_for(entity, periods, indicator, save_as=None,
                 with_title=True, with_legend=True,
                 with_index=True, with_scale=True):
 
     children = sorted(entity.get_children(), key=lambda x: x.short_name)
     bbox = children_bounds(entity)
 
-    data = DataRecord.get_for(period, entity, indicator)
+    # data = indicator.data_for(periods=periods, entity=entity)
+    data = DataRecord.get_for(periods[-1], entity, indicator)
+    # from pprint import pprint as pp ; pp(data.values())
     scale = QuantileScale(values=[x['value'] for x in data.values()],
                           colors=MAP_COLORS)
 
@@ -510,7 +523,7 @@ def gen_map_for(entity, period, indicator, save_as=None,
                     mask=legend)
 
     if with_title:
-        title = build_title_for(indicator, period, entity)
+        title = build_title_for(indicator, periods, entity)
         export_width = image.size[0] + title.size[1]
         export_height = CANVAS_SIZE + title.size[1]
         export_image = get_image(export_width, export_height)
@@ -521,7 +534,7 @@ def gen_map_for(entity, period, indicator, save_as=None,
         image = export_image
 
     if with_index:
-        index = build_index_for(indicator, period, children)
+        index = build_index_for(indicator, periods, children)
         ileft_coords = (INDEX_PADDING, title.size[1] + INDEX_PADDING)
         iright_coords = (image.size[0] - index.size[0] - INDEX_PADDING,
                          title.size[1] + INDEX_PADDING)

@@ -121,12 +121,14 @@ urlpatterns = [
     # map
     url(r'^' + uprefix + 'analysis/map/png/initial.png$',
         api_views.png_map_for,
-        {'period_str': None,
-         'entity_uuid': '9616cf8b-5c47-49e2-8702-4f8179565a0c',
-         'indicator_slug': None},
+        {'perioda_str': None,
+         'periodb_str': None,
+         'entity_name': 'RDC',
+         'indicator_number': None},
         name='png_map'),
     url(r'^' + uprefix + 'analysis/map/png/'
-        r'(?P<period_str>[0-9]{4}\-[0-9]{2})_'
+        r'(?P<perioda_str>[0-9]{4}\-[0-9]{2})_'
+        r'(?P<periodb_str>[0-9]{4}\-[0-9]{2})_'
         r'(?P<entity_name>[A-Za-z0-9\.\s\-]+)_'
         r'indic(?P<indicator_number>[0-9]+).png$',
         api_views.png_map_for, name='png_map'),

@@ -381,17 +381,23 @@ class Indicator(models.Model):
                                         numerator=numerator,
                                         denominator=denominator)
 
-    def data_for(self, entity, year, month=None):
-        qs = self.data_records.filter(entity=entity)
+    def year_data_for(self, entity, year, month=None):
         if month is not None:
-            period = MonthPeriod.get_or_create(year, month)
-            dr = qs.get(period=period)
-            return dr.to_dict()
+            periods = [MonthPeriod.get_or_create(year, month)]
         else:
-            # calculate yearly aggregate
             periods = MonthPeriod.all_from(
                 MonthPeriod.get_or_create(year, 1),
                 MonthPeriod.get_or_create(year, 12))
+        return self.data_for(entity, periods)
+
+    def data_for(self, entity, periods):
+        from dmd.models.DataRecords import DataRecord
+        qs = self.data_records.filter(entity=entity) \
+            .filter(validation_status__in=DataRecord.VALIDATED_STATUSES)
+        if len(periods) == 1:
+            dr = qs.get(period=periods[-1])
+            return dr.to_dict()
+        else:
             drs = qs.filter(period__in=periods)
             numerators = [dr.numerator for dr in drs]
             num_sum = sum(numerators)
@@ -409,7 +415,7 @@ class Indicator(models.Model):
                 'indicator': self,
                 'period': None,
                 'has_data': qs.count() > 0,
-                'year': year,
+                # 'year': year,
                 'periods': periods,
                 'entity': entity,
 

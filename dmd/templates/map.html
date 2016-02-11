@@ -35,7 +35,7 @@ parts = "{% url 'api_indicators_list' col_type="survey" %}".rsplit("/");
 parts.pop();
 var indicators_url = parts.join("/");
 
-parts = "{% url 'png_map' period_str="2014-01" entity_name=root.short_name indicator_number="50" %}".rsplit("/");
+parts = "{% url 'png_map' perioda_str="2014-01" periodb_str="2014-01" entity_name=root.short_name indicator_number="50" %}".rsplit("/");
 parts.pop();
 var png_api_url = parts.join("/");
 mapManager = getPNGMalariaMapManager({
