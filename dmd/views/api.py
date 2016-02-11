@@ -93,14 +93,15 @@ def json_data_record_for(request, period_str, entity_uuid, indicator_slug):
                         safe=False)
 
 
-def png_map_for(request, period_str, entity_uuid, indicator_slug,
+def png_map_for(request, period_str, entity_name, indicator_number,
                 with_title=True, with_legend=True):
 
-    entity = Entity.get_or_none(entity_uuid)
+    entity = Entity.get_by_short_name(entity_name)
     if entity is None:
-        raise Http404(_("Unknown entity UUID `{u}`").format(u=entity_uuid))
+        raise Http404(_("Unknown entity with name `{u}`")
+                      .format(u=entity_name))
 
-    if period_str is None and indicator_slug is None:
+    if period_str is None and indicator_number is None:
         period = None
         indicator = None
         with_title = False
@@ -112,10 +113,10 @@ def png_map_for(request, period_str, entity_uuid, indicator_slug,
         if period is None:
             raise Http404(_("Unknown period `{p}`").format(p=period_str))
 
-        indicator = Indicator.get_or_none(indicator_slug)
+        indicator = Indicator.get_by_number(indicator_number)
         if indicator is None:
             raise Http404(_("Unknown indicator `{s}`")
-                          .format(s=indicator_slug))
+                          .format(s=indicator_number))
 
         fname = fname_for(entity, period, indicator)
 

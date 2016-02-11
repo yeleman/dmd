@@ -134,6 +134,13 @@ class Entity(MPTTModel):
             return None
 
     @classmethod
+    def get_by_short_name(cls, name):
+        try:
+            return cls.objects.get(short_name=name)
+        except (cls.DoesNotExist, ValueError):
+            return None
+
+    @classmethod
     def find_with_type(cls, etype, name, parent=None):
         qs = cls.objects.filter(etype=etype, name__iexact=name)
         if parent is not None:

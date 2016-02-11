@@ -433,10 +433,10 @@ def build_index_for(indicator, period, children):
 
 
 def fname_for(entity, period, indicator):
-    return "{period}_{entity}_{indicator}.png".format(
-        entity=entity.uuids,
+    return "{period}_{entity}_indic{indicator}.png".format(
+        entity=entity.short_name,
         period=period.strid,
-        indicator=indicator.slug)
+        indicator=indicator.number)
 
 
 def gen_map_for(entity, period, indicator, save_as=None,

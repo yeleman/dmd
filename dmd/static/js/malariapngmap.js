@@ -6,6 +6,7 @@ function getPNGMalariaMapManager(options) {
     	// Currently selected Indicator
     	this.indicator_slug = null;
     	this.indicator_name = null;
+    	this.indicator_number = null;
 
     	// List of all indicators for selected indicator_type
     	this.indicator_list = null;
@@ -148,6 +149,7 @@ function getPNGMalariaMapManager(options) {
         // other options to be filled on section change
         this.indicator_select.on('change', function (e) {
         	updateFromSelect('indicator', $(this));
+        	manager['indicator_number'] = manager.indicator_name.split(" ", 1)[0].split("#")[1];
         	manager.parametersChanged();
         });
 
@@ -254,9 +256,9 @@ function getPNGMalariaMapManager(options) {
     	return (this.indicator_slug !== null && this.period_slug !== null && this.currentEntity().slug !== null);
     }
 
-    PNGMalariaMapManager.prototype.PNGMapUrlFor = function(period, entity, indicator) {
+    PNGMalariaMapManager.prototype.PNGMapUrlFor = function(period, entity_name, indicator_number) {
     	var sep = this.png_api_url.endsWith("/") ? '' : "/";
-        return this.png_api_url + sep + period + "_" + entity + "_" + indicator + ".png";
+        return this.png_api_url + sep + period + "_" + entity_name + "_indic" + indicator_number + ".png";
     };
 
     PNGMalariaMapManager.prototype.parametersChanged = function() {
@@ -265,10 +267,11 @@ function getPNGMalariaMapManager(options) {
         }
 
         var entity = this.currentEntity().slug;
+        var entity_name = this.currentEntity().name;
     	var period = this.period_slug;
-    	var indicator = this.indicator_slug;
+    	var indicator_number = this.indicator_number;
 
-    	var url = this.PNGMapUrlFor(period, entity, indicator);
+    	var url = this.PNGMapUrlFor(period, entity_name, indicator_number);
 
   		this.changePNGSource(url);
     };

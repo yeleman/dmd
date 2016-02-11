@@ -35,7 +35,7 @@ parts = "{% url 'api_indicators_list' col_type="survey" %}".rsplit("/");
 parts.pop();
 var indicators_url = parts.join("/");
 
-parts = "{% url 'png_map' period_str="2014-01" entity_uuid=root.uuids indicator_slug="aa" %}".rsplit("/");
+parts = "{% url 'png_map' period_str="2014-01" entity_name=root.short_name indicator_number="50" %}".rsplit("/");
 parts.pop();
 var png_api_url = parts.join("/");
 mapManager = getPNGMalariaMapManager({
@@ -44,7 +44,7 @@ mapManager = getPNGMalariaMapManager({
     root_slug: "{{ root.uuids }}",
     period_list: [{% for period in periods reversed %}{value: "{{ period.strid }}", label: "{{ period.name }}"}, {% endfor %}],
     dps_list: [{% for dps in dps_list %}{value: "{{ dps.uuids }}", label: "{{ dps.short_name }}"}, {% endfor %}],
-    root_name: "R.D.C",
+    root_name: "{{ root.short_name }}",
     png_api_url: png_api_url,
 });
 

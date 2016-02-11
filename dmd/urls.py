@@ -127,8 +127,8 @@ urlpatterns = [
         name='png_map'),
     url(r'^' + uprefix + 'analysis/map/png/'
         r'(?P<period_str>[0-9]{4}\-[0-9]{2})_'
-        r'(?P<entity_uuid>[A-Za-z0-9\_\-]{36})_'
-        r'(?P<indicator_slug>[A-Za-z0-9\-\_]+).png$',
+        r'(?P<entity_name>[A-Za-z0-9\.\s\-]+)_'
+        r'indic(?P<indicator_number>[0-9]+).png$',
         api_views.png_map_for, name='png_map'),
     url(r'^' + uprefix + 'analysis/map/?$', analysis_views.map,
         name='map'),
