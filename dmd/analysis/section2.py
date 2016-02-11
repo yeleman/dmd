@@ -40,7 +40,7 @@ def view(request, entity_uuid=None, period_str=None, periodb_str=None,
                                          entity=context['entity'],
                                          period=context['period'],
                                          indicator=indicator))
-             for indicator in Indicator.objects.all()])
+             for indicator in Indicator.get_all_routine()])
     })
 
     # absolute URI for links

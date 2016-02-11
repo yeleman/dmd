@@ -89,7 +89,7 @@ def dashboard(request, indicator_slug=None, period_str=None, *args, **kwargs):
     if context['period'] is None:
         context['period'] = MonthPeriod.current().previous()
 
-    all_indicators = Indicator.objects.all()
+    all_indicators = Indicator.get_all_routine()
     indicator = Indicator.get_or_none(indicator_slug)
 
     context.update({
