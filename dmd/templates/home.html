@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}À propos de la base de données{% endblock %}
 
@@ -14,6 +15,7 @@
 	    		<li><strong>MEASURE Evaluation</strong> : <a href="mailto:Olivier.Kakesa@icfi.com">Dr Olivier KAKESA</a></li>
 	    		<li><strong>Division SNIS</strong> : <a href="mailto:katanga.erick@gmail.com">Eric KATANGA</a></li>
 	    	</ul>
+	    	<p><a class="btn btn-default" href="{% static "Guide utilisateur BDD PNLP - dmd.pdf" %}"><i class="fa fa-download"></i> Télécharger le guide utilisateur</a></p>
 		</div>
     </div>
 </div>
