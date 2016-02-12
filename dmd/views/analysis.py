@@ -7,6 +7,7 @@ from __future__ import (unicode_literals, absolute_import,
 import logging
 from collections import OrderedDict
 
+import numpy
 from django.http import Http404
 from django.utils.translation import ugettext as _
 from django.shortcuts import render
@@ -81,9 +82,13 @@ def map(request, *args, **kwargs):
 
 
 @login_required
-def dashboard(request, indicator_slug=None, period_str=None, *args, **kwargs):
+def dashboard(request, entity_uuid=None, indicator_slug=None,
+              period_str=None, *args, **kwargs):
     context = {'page': 'dashboard'}
-    drc = Entity.get_root()
+
+    # entity
+    context.update(process_entity_filter(request, entity_uuid))
+    root = context['entity'] if context['entity'] else Entity.get_root()
 
     context.update(process_period_filter(request, period_str, 'period'))
     if context['period'] is None:
@@ -93,20 +98,29 @@ def dashboard(request, indicator_slug=None, period_str=None, *args, **kwargs):
     indicator = Indicator.get_or_none(indicator_slug)
 
     context.update({
-        'root': drc,
+        'root': root,
         'completeness': OrderedDict([
-            (dps, get_cached_data('completeness',
-                                  dps=dps, period=context['period'],
-                                  indicator=indicator))
-            for dps in drc.get_children()
+            (child, get_cached_data('completeness',
+                                    dps=child, period=context['period'],
+                                    indicator=indicator))
+            for child in root.get_children()
         ]),
         'indicators': all_indicators,
         'indicator': indicator,
+        'lineage': [Entity.PROVINCE]
+    })
+
+    # totals
+    context.update({
+        'mean_completeness': numpy.mean(
+            [e['completeness'] for e in context['completeness'].values()]),
+        'mean_promptness': numpy.mean(
+            [e['promptness'] for e in context['completeness'].values()]),
     })
 
     # evolution of pw_anc_receiving_sp3
     pwsp3 = get_timed_records(Indicator.get_by_number(59),
-                              drc, context['all_periods'])
+                              root, context['all_periods'])
     perioda = context['all_periods'][0]
     periodb = context['all_periods'][-1]
 

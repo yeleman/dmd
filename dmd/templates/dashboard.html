@@ -12,6 +12,7 @@
 	    		<form role="form" id="report_entity_filter" method="GET">
 					<div class="form-group inline-entity-container">
 						{% include "parts/period_filter_select.html" with periods=periods selected_period=period %} 
+						{% include "parts/entity_filter_select.html" with root=root lineage=lineage children=children %}
 						{% include "parts/indicator_filter_select.html" with indicators=indicators selected_indicator=indicator include_empty=True %}
 					</div>
 				    <button type="submit" class="btn btn-default btn-primary btn-xs">filtrer</button>
@@ -23,6 +24,7 @@
 	    			</thead>
 	    			<tbody>
 	    				{% for dps, data in completeness.items %}<tr><th>{{ dps.short_name }}</th><td>{{ data.completeness|percent }}</td><td>{{ data.promptness|percent }}</td></tr>{% endfor %}
+	    				<tr><th>MOYENNE</th><td>{{ mean_completeness|percent }}</td><td>{{ mean_promptness|percent }}</td></tr>
 	    			</tbody>
 	    		</table>
     		</div>        
@@ -30,7 +32,7 @@
     </div>
     <div class="col-md-6">  
 	    <div class="panel panel-default">
-	    	<div class="panel-heading">Évolution SP3</div>
+	    	<div class="panel-heading">Évolution SP3 pour {{ root }}</div>
 	    	<div class="panel-body">
 	    		{% include "parts/graph.html" with title=sp3_title fname=sp3_fname id="sp3-evolution" categories=sp3_categories series=sp3_series %}
     		</div>
@@ -40,5 +42,5 @@
 {% endblock %}
 
 {% block onJQready %}
-register_form_for("{% url 'dashboard' '0000-00' 'aaaa' %}", ['period', 'indicator']);
+register_form_for("{% url 'dashboard' '0000-00' 'aaaa' blank_uuid %}", ['period', 'indicator', 'entity']);
 {% endblock %}

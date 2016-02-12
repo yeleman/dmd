@@ -69,7 +69,8 @@ urlpatterns = [
 
     url(r'^' + uprefix + 'dashboard'
         r'/(?P<period_str>[0-9]{4}\-[0-9]{2})'
-        r'/(?P<indicator_slug>[A-Za-z0-9\-\_]+)/?$',
+        r'/(?P<indicator_slug>[A-Za-z0-9\-\_]+)'
+        r'/(?P<entity_uuid>[A-Za-z0-9\_\-]{36})/?$',
         analysis_views.dashboard,
         name='dashboard'),
     url(r'^' + uprefix + 'dashboard', analysis_views.dashboard,
