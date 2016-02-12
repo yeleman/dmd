@@ -91,7 +91,8 @@ def get_timed_records(indicator, entity, periods):
         'periods': [period.to_tuple() for period in periods],
         'points': [data_point_for(indicator, entity, period)
                    for period in periods],
-        'year_elements': [indicator.year_data_for(entity, year) for year in years],
+        'year_elements': [indicator.year_data_for(entity, year)
+                          for year in years],
     }
 
 

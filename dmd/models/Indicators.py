@@ -363,8 +363,6 @@ class Indicator(models.Model):
             return numerator / denominator
         else:
             coef = self.TYPES_COEFFICIENT.get(self.itype)
-            if coef is None:
-                print(self.itype)
             try:
                 return (numerator * coef) / denominator
             except ZeroDivisionError:

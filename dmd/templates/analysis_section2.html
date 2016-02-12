@@ -10,7 +10,9 @@
 		<label for="entity_filter_division_provinciale_sante">R.D.C</label>
 		{% include "parts/entity_filter_select.html" with root=root lineage=lineage children=children %}
 		<label for="filter_perioda">De</label>
-		{% include "parts/period_filter_select.html" with periods=periods selected_period=period  %}
+		{% include "parts/period_filter_select.html" with periods=periods selected_period=perioda period_suffix="a" %}
+		<label for="filter_periodb">À</label>
+		{% include "parts/period_filter_select.html" with periods=periods selected_period=periodb period_suffix="b" %}
 	</div>
     <button type="submit" class="btn btn-default btn-primary btn-xs">sélectionner</button>
 </form>
@@ -23,22 +25,31 @@
     			<table class="table">
     				<thead>
 	    				<tr>
-	    					<th>#</th>
-	    					<th>Indicateur</th>
+	    					<th rowspan="2">#</th>
+	    					<th rowspan="2">Indicateur</th>
+	    					{% for period in selected_periods %}
+	    					<th colspan="2">{{ period }}</th>
+	    					{% endfor %}
+	    				</tr>
+	    				<tr>
+	    					{% for period in selected_periods %}
 	    					<th>Complétude</th>
 	    					<th>Promptitude</th>
+	    					{% endfor %}
 	    				</tr>
 	    			</thead>
 					{% for indicator, data in arrivals.items %}
 					<tr>
 						<th>{{ indicator.number }}</th>
 						<th>{{ indicator }}</th>
-						<td>{{ data.completeness|percent }}</td>
-						<td>{{ data.promptness|percent }}</td>
+						{% for pdata in data %}
+						<td>{{ pdata.completeness|percent }}</td>
+						<td>{{ pdata.promptness|percent }}</td>
+						{% endfor %}
     				</tr>
 					{% endfor %}
-
     			</table>
+    			{% include "parts/graph.html" with title=cp_title fname=cp_fname id="cp-evolution" categories=cp_categories series=cp_series %}
 			</div>
 		</div>
 		{% endblock %}
@@ -47,5 +58,5 @@
 {% endblock %}
 
 {% block onJQready %}
-register_form_for("{% url 'section2' blank_uuid '0000-00' %}", ['entity', 'period']);
+register_form_for("{% url 'section2' blank_uuid '0000-00' '0000-00' %}", ['entity', 'perioda', 'periodb']);
 {% endblock %}

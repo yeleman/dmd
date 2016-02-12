@@ -71,7 +71,7 @@ class Command(BaseCommand):
             for entity in all_entities:
                 for indicator in all_indicators:
                     if period <= periods[-4]:
-                        if cache_exists_for('completeness', **params):
+                        if cache_exists_for('section2-arrivals', **params):
                             continue
 
                         update_cached_data('section2-arrivals',
@@ -83,5 +83,24 @@ class Command(BaseCommand):
                                          .format(nb_ran, nb_items,
                                                  int(nb_ran / nb_items * 100)))
                         sys.stdout.flush()
+
+        logger.info("Updating cache for section2/points")
+
+        nb_items = len(periods) * len(all_dps)
+        nb_ran = 0
+        for period in periods:
+            for entity in all_entities:
+                if period <= periods[-4]:
+                    if cache_exists_for('section2-points', **params):
+                        continue
+
+                    update_cached_data('section2-points',
+                                       entity=entity,
+                                       period=period)
+
+                    sys.stdout.write("{}/{} - {}%\r"
+                                     .format(nb_ran, nb_items,
+                                             int(nb_ran / nb_items * 100)))
+                    sys.stdout.flush()
 
         logger.info("done.")
