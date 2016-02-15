@@ -635,3 +635,174 @@ def indicators_list_to_spreadsheet(qs, save_to=None):
     wb.save(stream)
 
     return stream
+
+
+validation_tallysheet_fname_for = lambda dps, period: \
+    "pointage-PNLP-{d}_{p}.xlsx".format(
+        d=dps.std_name if dps != Entity.get_root() else "DPS",
+        p=period.strid)
+
+
+def generate_validation_tally_for(entity, period, save_to=None):
+
+    from dmd.models.DataRecords import DataRecord
+
+    # colors
+    black = 'FF000000'
+    dark_gray = 'FFA6A6A6'
+    light_gray = 'FFDEDEDE'
+
+    # styles
+    header_font = Font(
+        name='Calibri',
+        size=12,
+        bold=True,
+        italic=False,
+        vertAlign=None,
+        underline='none',
+        strike=False,
+        color=black)
+
+    std_font = Font(
+        name='Calibri',
+        size=12,
+        bold=False,
+        italic=False,
+        vertAlign=None,
+        underline='none',
+        strike=False,
+        color=black)
+
+    header_fill = PatternFill(fill_type=FILL_SOLID, start_color=dark_gray)
+
+    thin_black_side = Side(style='thin', color='FF000000')
+
+    std_border = Border(
+        left=thin_black_side,
+        right=thin_black_side,
+        top=thin_black_side,
+        bottom=thin_black_side,
+    )
+
+    centered_alignment = Alignment(
+        horizontal='center',
+        vertical='center',
+        text_rotation=0,
+        wrap_text=False,
+        shrink_to_fit=False,
+        indent=0)
+
+    left_alignment = Alignment(
+        horizontal='left',
+        vertical='center')
+
+    number_format = '# ### ### ##0'
+
+    header_style = {
+        'font': header_font,
+        'fill': header_fill,
+        'border': std_border,
+        'alignment': centered_alignment,
+    }
+
+    std_style = {
+        'font': std_font,
+        'border': std_border,
+        'alignment': centered_alignment,
+        'number_format': number_format,
+    }
+
+    name_style = {
+        'font': std_font,
+        'border': std_border,
+        'alignment': left_alignment,
+        'number_format': number_format,
+    }
+
+    odd_fill = PatternFill(fill_type=FILL_SOLID, start_color=light_gray)
+
+    col_number = 1
+    col_indicator = 2
+    col_numerator = 3
+    col_denominator = 4
+    col_human = 5
+    col_valid = 6
+    col_new_numerator = 7
+    col_new_denominator = 8
+    last_col = col_new_denominator
+
+    def apply_style(target, style):
+        for key, value in style.items():
+            setattr(target, key, value)
+
+    title = "Validation {dps} {period}".format(
+        dps=entity.short_name, period=period.strid)
+
+    logger.info(title)
+
+    wb = Workbook()
+    wb.remove_sheet(wb.active)
+
+    # write a sheet for each ZS
+    for zs in entity.get_children():
+        ws = wb.create_sheet()
+        ws.title = zs.short_name
+
+        def std_write(row, column, value, style=std_style):
+            cell = ws.cell(row=row, column=column)
+            cell.value = value
+            apply_style(cell, style)
+
+        # write header
+        row = 1
+        std_write(row, col_number, "#", header_style)
+        xl_set_col_width(ws, col_number, 1.6)
+        std_write(row, col_indicator, "Indicateur", header_style)
+        xl_set_col_width(ws, col_indicator, 37.3)
+        std_write(row, col_numerator, "Numérateur", header_style)
+        xl_set_col_width(ws, col_numerator, 2.8)
+        std_write(row, col_denominator, "Dénominateur", header_style)
+        xl_set_col_width(ws, col_denominator, 3)
+        std_write(row, col_human, "Valeur.", header_style)
+        std_write(row, col_valid, "OK ?.", header_style)
+        std_write(row, col_new_numerator, "Numérateur.", header_style)
+        xl_set_col_width(ws, col_new_numerator, 2.8)
+        std_write(row, col_new_denominator, "Dénominateur", header_style)
+        xl_set_col_width(ws, col_new_denominator, 3)
+        row += 1
+
+        # one row per indicator
+        for indicator in Indicator.objects.all():
+            dr = DataRecord.get_or_none(
+                period=period,
+                entity=zs,
+                indicator=indicator,
+                only_validated=False)
+            std_write(row, col_number, indicator.number, std_style)
+            std_write(row, col_indicator, indicator.name, name_style)
+            std_write(row, col_numerator,
+                      "" if dr is None else dr.numerator, std_style)
+            std_write(row, col_denominator,
+                      "" if dr is None else dr.denominator, std_style)
+            std_write(row, col_human,
+                      "" if dr is None else dr.human(), std_style)
+            std_write(row, col_valid, "", std_style)
+            std_write(row, col_new_numerator, "", std_style)
+            std_write(row, col_new_denominator, "", std_style)
+            row += 1
+
+        # apply even/odd style
+        for r in range(1, row):
+            if r % 2 == 0:
+                for c in range(1, last_col + 1):
+                    ws.cell(row=r, column=c).fill = odd_fill
+
+    if save_to:
+        logger.info("saving to {}".format(save_to))
+        wb.save(save_to)
+        return
+
+    stream = StringIO.StringIO()
+    wb.save(stream)
+
+    return stream

@@ -16,6 +16,14 @@
 </ul>
 <p><strong>Attention !</strong> Le changement est pris en compte uniquement après soumission du formulaire.</p>
 </div>
+
+{% if user.partner.validation_location.etype  == 'division_provinciale_sante' %}
+<div class="row"><div class="col-md-12 "><div class="alert alert-warning">
+	<p>Pour faciliter le travail de validation, vous pouvez télécharger un fichier de pointage manuel à utiliser avec chaque ZS :</p>
+	<p>{% for period in recent_periods %}<a class="btn btn-default" href="{% url 'validation_pointage' period_str=period.strid %}"><i class="fa fa-file-excel-o"></i> Pointage {{ period }}</a> {% endfor %}</p>
+</div></div></div>
+{% endif %}
+
 <div class="row">
     <div class="col-md-12">
     	<div class="panel panel-default">

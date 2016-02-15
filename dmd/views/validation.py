@@ -8,6 +8,7 @@ import logging
 import collections
 
 from django import forms
+from django.http import HttpResponse
 from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -16,6 +17,10 @@ from django.utils.translation import ugettext as _
 
 from dmd.models.DataRecords import DataRecord
 from dmd.models.Entities import Entity
+from dmd.models.Periods import MonthPeriod
+from dmd.xlsx.xlexport import (generate_validation_tally_for,
+                               validation_tallysheet_fname_for)
+from dmd.views.common import process_period_filter
 
 MAX_RESULTS = 50
 MAX_MONTHS = 4
@@ -80,6 +85,12 @@ def validation(request, template_name='validation.html'):
 
     context = {'page': 'validation'}
 
+    # recent periods for tally suggestion
+    recent_periods = [MonthPeriod.current().previous()]
+    for _ in range(2):
+        recent_periods.append(recent_periods[-1].previous())
+    context.update({'recent_periods': recent_periods})
+
     now = timezone.now()
     rdc = Entity.get_root()
     validation_location = request.user.partner.validation_location
@@ -88,7 +99,7 @@ def validation(request, template_name='validation.html'):
         .filter(validation_status=DataRecord.NOT_VALIDATED)
 
     if validation_location != rdc:
-        other_dps = rdc.get_children()
+        other_dps = list(rdc.get_children())
         other_dps.remove(validation_location)
         records = records.exclude(entity__in=other_dps) \
                          .exclude(entity__parent__in=other_dps)
@@ -161,3 +172,22 @@ def validation(request, template_name='validation.html'):
     })
 
     return render(request, template_name, context)
+
+
+def validation_tallysheet_download(request, period_str=None, *args, **kwargs):
+    context = {}
+    dps = request.user.partner.validation_location
+    context.update(process_period_filter(request, period_str))
+    period = context.get('period') or MonthPeriod.current().previous()
+
+    file_name = validation_tallysheet_fname_for(dps, period)
+    file_content = generate_validation_tally_for(dps, period).getvalue()
+
+    response = HttpResponse(file_content,
+                            content_type='application/'
+                                         'vnd.openxmlformats-officedocument'
+                                         '.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename="%s"' % file_name
+    response['Content-Length'] = len(file_content)
+
+    return response

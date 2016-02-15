@@ -94,6 +94,13 @@ urlpatterns = [
         name='upload'),
 
     # validation
+    url(r'^' + uprefix + 'validation/pointage'
+        r'/(?P<period_str>[0-9]{4}\-[0-9]{2})/?$',
+        validation_views.validation_tallysheet_download,
+        name='validation_pointage'),
+    url(r'^' + uprefix + 'validation/pointage/?$',
+        validation_views.validation_tallysheet_download,
+        name='validation_pointage'),
     url(r'^' + uprefix + 'validation/?$', validation_views.validation,
         name='validation'),
 
