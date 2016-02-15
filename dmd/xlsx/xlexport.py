@@ -231,6 +231,26 @@ def generate_dataentry_for(dps, save_to=None):
         cell.value = value
         apply_style(cell, style)
 
+    def auto_calc_for(indicator, column, row):
+        calculation = ""
+        data = {
+            'num': "${l}{r}".format(l=column_to_letter(column - 2), r=row),
+            'denom': "${l}{r}".format(l=column_to_letter(column - 1), r=row),
+            'coef': indicator.TYPES_COEFFICIENT.get(indicator.itype),
+            'suffix': indicator.value_format.replace('{value}', '')}
+
+        if indicator.itype == indicator.PROPORTION:
+            calculation += "{num}/{denom}"
+        else:
+            try:
+                calculation += "({num}*{coef})/{denom}"
+            except ZeroDivisionError:
+                raise
+        formula = '=IF({num}<>"",IF({denom}<>"",' \
+                  'CONCATENATE(ROUND(' + calculation + ',2),"{suffix}")' \
+                  ',"?"),"?")'
+        return formula.format(**data)
+
     # write indicator headers
     column = indicator_column
     for indicator in Indicator.get_all():
@@ -238,7 +258,7 @@ def generate_dataentry_for(dps, save_to=None):
         # write top header with indic name
         row = 1
         ws.merge_cells(start_row=row, end_row=row + 1,
-                       start_column=column, end_column=column + 1)
+                       start_column=column, end_column=column + 2)
         std_write(row, column, indicator.name, vheader_style)
 
         # write header with indic number
@@ -246,7 +266,7 @@ def generate_dataentry_for(dps, save_to=None):
         num_str = "{n} - {t}".format(n=indicator.number,
                                      t=indicator.verbose_collection_type)
         ws.merge_cells(start_row=row, end_row=row,
-                       start_column=column, end_column=column + 1)
+                       start_column=column, end_column=column + 2)
         std_write(row, column, num_str, header_style)
         apply_style(ws.cell(row=row, column=column + 1), header_style)
 
@@ -254,15 +274,16 @@ def generate_dataentry_for(dps, save_to=None):
         row = 4
         if indicator.itype == Indicator.NUMBER:
             ws.merge_cells(start_row=row, end_row=row,
-                           start_column=column, end_column=column + 1)
+                           start_column=column, end_column=column + 2)
             std_write(row, column, "NOMBRE", std_style)
 
             for r in range(row, row + len(children) + 2):  # DPS + children
                 ws.merge_cells(start_row=r, end_row=r,
-                               start_column=column, end_column=column + 1)
+                               start_column=column, end_column=column + 2)
         else:
             std_write(row, column, "NUMERAT", std_style)
             std_write(row, column + 1, "DÉNOM", std_style)
+            std_write(row, column + 2, "CALC", std_style)
 
         row = dps_row + len(children)
         nb_rows = row if is_all_dps else row + 1
@@ -274,13 +295,23 @@ def generate_dataentry_for(dps, save_to=None):
         for r in range(1, nb_rows):
             left = ws.cell(row=r, column=column)
             right = ws.cell(row=r, column=column + 1)
+            calc = ws.cell(row=r, column=column + 2)
 
             # apply default style
             if r >= dps_row:
                 apply_style(left, std_style)
                 apply_style(right, std_style)
+                apply_style(calc, std_style)
                 left.number_format = number_format
                 right.number_format = number_format
+                calc.number_format = number_format
+
+                # write formula for auto third calc
+                calc.set_explicit_value(
+                    value=auto_calc_for(indicator=indicator,
+                                        column=column + 2,
+                                        row=r),
+                    data_type=calc.TYPE_FORMULA)
 
                 # apply even/odd style
                 if r % 2 == 0:
@@ -289,6 +320,7 @@ def generate_dataentry_for(dps, save_to=None):
                             ws.cell(row=r, column=c).fill = odd_fill
                     ws.cell(row=r, column=column).fill = odd_fill
                     ws.cell(row=r, column=column + 1).fill = odd_fill
+                    ws.cell(row=r, column=column + 2).fill = odd_fill
 
                 # disable cell if data not expected at ZS
                 if row_is_zs(r) and indicator.collection_level != Entity.ZONE:
@@ -296,22 +328,27 @@ def generate_dataentry_for(dps, save_to=None):
                     left.protection = protected
                     right.fill = black_fill
                     right.protection = protected
+                    calc.fill = black_fill
                 elif not row_is_zs(r) \
                         and indicator.collection_type == indicator.ROUTINE:
                     left.fill = black_fill
                     left.protection = protected
                     right.fill = black_fill
                     right.protection = protected
+                    calc.fill = black_fill
                 else:
                     left.protection = unprotected
                     right.protection = unprotected
+                # calc cell is always protected
+                calc.protection = protected
 
             # apply thick borders
             left.border = thick_left_border
-            right.border = thick_right_border
+            # right.border = thick_right_border
+            calc.border = thick_right_border
 
         # iterate over indicator
-        column += 2
+        column += 3
 
     last_row = dps_row + len(children)
 

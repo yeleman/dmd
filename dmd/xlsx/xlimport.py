@@ -150,7 +150,7 @@ def read_xls(filepath, partner):
             continue
 
         for idx, cell in enumerate(ws.rows[2][4:]):
-            if idx % 2 != 0:
+            if idx % 3 != 0:
                 continue  # skip empty merged cols
 
             column = letter_to_column(cell.column)
@@ -167,7 +167,7 @@ def read_xls(filepath, partner):
 
             # skip if missing numerator
             if num is None:
-                logger.debug("No numerator for indic #{}".format(number))
+                # logger.debug("No numerator for indic #{}".format(number))
                 continue
 
             indicator = Indicator.get_by_number(number)
