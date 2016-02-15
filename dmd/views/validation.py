@@ -87,7 +87,7 @@ def validation(request, template_name='validation.html'):
 
     # recent periods for tally suggestion
     recent_periods = [MonthPeriod.current().previous()]
-    for _ in range(2):
+    for __ in range(2):
         recent_periods.append(recent_periods[-1].previous())
     context.update({'recent_periods': recent_periods})
 
