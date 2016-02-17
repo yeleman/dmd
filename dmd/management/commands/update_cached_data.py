@@ -70,6 +70,11 @@ class Command(BaseCommand):
         for period in periods:
             for entity in all_entities:
                 for indicator in indicators:
+                    params = {
+                        'entity': entity,
+                        'period': period,
+                        'indicator': indicator
+                    }
                     if period <= periods[-4]:
                         if cache_exists_for('section2-arrivals', **params):
                             continue
