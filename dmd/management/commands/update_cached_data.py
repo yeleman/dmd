@@ -69,7 +69,7 @@ class Command(BaseCommand):
         nb_ran = 0
         for period in periods:
             for entity in all_entities:
-                for indicator in all_indicators:
+                for indicator in indicators:
                     if period <= periods[-4]:
                         if cache_exists_for('section2-arrivals', **params):
                             continue
