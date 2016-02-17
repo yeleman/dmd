@@ -9,7 +9,7 @@ import logging
 from django.core.cache import caches
 
 from dmd.arrivals import (avg_arrival_for_period, agg_arrival_for_period,
-                          agg_arrival_for_periods, completeness_point_for)
+                          completeness_point_for)
 
 logger = logging.getLogger(__name__)
 cache = caches['computations']
@@ -40,14 +40,12 @@ def get_cache_details_for(key, **kwargs):
         computer = compute_completeness_for
 
     elif key == 'section2-arrivals':
-        cache_key = 'json:section2-arrivals/{entity}/{perioda}_{periodb}' \
-                    '/{indicator}' \
+        cache_key = 'json:section2-arrivals/{entity}/{period}/{indicator}' \
             .format(entity=kwargs.get('entity').uuid
                     if kwargs.get('entity') else '-',
-                    perioda=kwargs.get('periods')[0].strid,
-                    periodb=kwargs.get('periods')[-1].strid,
+                    period=kwargs.get('period').strid,
                     indicator=kwargs.get('indicator').slug)
-        computer = agg_arrival_for_periods
+        computer = agg_arrival_for_period
 
     elif key == 'section2-points':
         cache_key = 'json:section2-points/{entity}/{period}' \

@@ -40,14 +40,19 @@ def view(request, entity_uuid=None, perioda_str=None, periodb_str=None,
     periods = MonthPeriod.all_from(context['perioda'], context['periodb'])
     context.update({'selected_periods': periods})
 
+    def cached_data_list(entity, periods, indicator):
+        return [get_cached_data('section2-arrivals',
+                                entity=entity,
+                                period=period,
+                                indicator=indicator)
+                for period in periods]
+
     context.update({
         'section': text_type(SECTION_ID),
         'section_name': SECTION_NAME,
         'arrivals': OrderedDict(
-            [(indicator, get_cached_data('section2-arrivals',
-                                         entity=context['entity'],
-                                         periods=periods,
-                                         indicator=indicator))
+            [(indicator, cached_data_list(context['entity'],
+                                          periods, indicator))
              for indicator in Indicator.get_all_routine()])
     })
 
