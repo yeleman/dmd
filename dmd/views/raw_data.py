@@ -14,6 +14,8 @@ from django.conf import settings
 
 from dmd.models import Metadata
 from dmd.models.DataRecords import DataRecord
+from dmd.models.Entities import Entity
+from dmd.models.Indicators import Indicator
 
 from dmd.views.common import process_period_filter, process_entity_filter
 
@@ -73,4 +75,13 @@ def data_export(request, *args, **kwargs):
 
     return render(request,
                   kwargs.get('template_name', 'export.html'),
+                  context)
+
+
+@login_required
+def pivot_table(request, *args, **kwargs):
+    context = {'page': 'pivot_table'}
+
+    return render(request,
+                  kwargs.get('template_name', 'pivot_table.html'),
                   context)

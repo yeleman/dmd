@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>D.R.C Malaria Dashboard</title>
+    <title>Base de données PNLP</title>
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet" type="text/css" />
     <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet" type="text/css" />
     <link href="{% static "css/open-sans.css" %}" rel="stylesheet" type="text/css" />
@@ -99,6 +99,9 @@
                     </li>
                     <li><a {% if page = 'export' %}class="active-menu" {%endif %}href="{% url 'export' %}"><i class="fa fa-file-excel-o"></i> Export brut</a>
                     </li>
+
+					<li><a {% if page = 'pivot_table' %}class="active-menu" {%endif %}href="{% url 'pivot_table' %}"><i class="fa fa-bar-chart-o"></i> Tableau croisé dynamique</a>
+                    </li>                    
 
                     {% if user.is_staff %}<li class="divider"></li>{% endif %}
 

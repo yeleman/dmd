@@ -29,6 +29,14 @@ body.map select {
 	max-width: 95%;
 }
 
+body.pivot_table select {
+	max-width: 40em;
+}
+
+body.pivot_table #page-wrapper {
+	margin: 0;
+}
+
 body.map #map {
 	background-color: white;
 	border-bottom: 1px solid #999;

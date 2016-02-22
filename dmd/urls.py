@@ -126,6 +126,10 @@ urlpatterns = [
     url(r'^' + uprefix + 'export/?$', raw_data_views.data_export,
         name='export'),
 
+    # pivot table
+    url(r'^' + uprefix + 'pivot_table/?$', raw_data_views.pivot_table,
+        name='pivot_table'),
+
     # map
     url(r'^' + uprefix + 'analysis/map/png/initial.png$',
         api_views.png_map_for,
