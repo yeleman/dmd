@@ -1,0 +1,75 @@
+{% extends "minimal.html" %}
+
+{% block title %}Tableau croisé dynamique{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">   	
+    	<div class="panel panel-default">
+    		<div class="panel-body">    	
+				<div class="instructions">
+					<p>Vous devez utiliser un <a href="{% url 'export' %}">export CSV</a> de la base de données pour utiliser le tableau croisé dynamique.</p>
+					<p><label for="csv_file">Fichier d'export</label><input type="file" id="csv_file" name="csv_file" /></p>
+					<p><button id="filter" type="submit" class="btn btn-default btn-primary btn-xs">charger le tableau</button></p>
+				</div>
+				 <div id="output"></div>
+			</div>
+		</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block onJQready %}
+function load_local() {
+	$('.row').spin(true);
+    var reader = new FileReader();
+	reader.onload = function(theFile) { 
+	    try {
+	        var input = $.csv.toArrays(theFile.target.result);
+
+	    }
+	    catch(e) { 
+	        alert("Impossible de lire le fichier fourni.\nVous devez utiliser un export CSV de la base de données.");
+	        $('.row').spin(false);
+	        return; 
+	    }
+
+	    load_pivot(input);
+	    $('.row').spin(false);
+	};
+	reader.readAsText($("#csv_file")[0].files[0]);
+}
+
+function load_pivot(input, callback) {
+	var yearDeriver = $.pivotUtilities.derivers.dateFormat("PERIOD", "%y");
+
+	var derivers = $.pivotUtilities.derivers;
+
+	var renderers = $.extend(
+        $.pivotUtilities.renderers, 
+        $.pivotUtilities.c3_renderers, 
+        $.pivotUtilities.d3_renderers,
+        $.pivotUtilities.export_renderers
+    );
+
+	$("#output").pivotUI(input, 
+        {
+        	rows: ["DPS"],
+        	cols: ["ANNEE"],
+        	derivedAttributes: {"ANNEE": yearDeriver},
+        	renderers: renderers,
+        	rendererName: "Heatmap",
+        	derivers: derivers,
+        }, 
+        false, "fr"
+	);
+}
+
+$("#filter").on('click', function () {
+	if ($("#csv_file").val()) {
+		load_local();
+		$('.instructions').hide(false);
+	}
+});
+{% endblock %}
