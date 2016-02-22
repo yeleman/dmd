@@ -29,9 +29,9 @@ def get_records():
 
 
 def get_csv_for(records_qs, save_to=None):
-    headers = ["PERIOD", "INDIC-NUM", "LOCATION", "DPS", "ZS",
-               "INDIC-SLUG", "NUMERATOR", "DENOMINATOR", "VALUE",
-               "DISPLAY-VALUE", "INDIC-NAME"]
+    headers = ["PERIOD", "INDICATOR", "DPS", "ZS",
+               "NUMERATOR", "DENOMINATOR", "VALUE",
+               "DISPLAY-VALUE"]
     empty = ""
 
     if save_to:
@@ -46,16 +46,16 @@ def get_csv_for(records_qs, save_to=None):
     for record in records_qs.iterator():
         csv_writer.writerow({
             'PERIOD': record.period.strid,
-            'INDIC-NUM': record.indicator.number,
-            'LOCATION': record.entity.uuids,
+            'INDICATOR': record.indicator.number,
+            # 'LOCATION': record.entity.uuids,
             'DPS': getattr(record.entity.get_dps(), 'short_name', empty),
             'ZS': getattr(record.entity.get_zs(), 'short_name', empty),
-            'INDIC-SLUG': record.indicator.slug,
+            # 'INDIC-SLUG': record.indicator.slug,
             'NUMERATOR': record.numerator,
             'DENOMINATOR': record.denominator,
             'VALUE': record.value,
             'DISPLAY-VALUE': record.human(),
-            'INDIC-NAME': record.indicator.name
+            # 'INDIC-NAME': record.indicator.name
         })
 
         sys.stdout.write("Exporting row #: {}   \r".format(row))
@@ -90,3 +90,5 @@ class Command(BaseCommand):
         export_to_spreadsheet(qs, save_to=settings.ALL_EXPORT_XLSX_PATH)
 
         Metadata.update('nb_records', nb_records)
+
+        logger.info("All done")
