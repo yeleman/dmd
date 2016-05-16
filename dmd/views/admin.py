@@ -397,7 +397,7 @@ def backups_list(request, *args, **kwargs):
           'fpath': os.path.join(settings.BACKUPS_DIR_NAME, fname)}
          for fname in os.listdir(settings.BACKUPS_REPOSITORY)
          if fname.endswith('.7z')],
-        key=dt4fn, reverse=True)})
+        key=lambda x: dt4fn(x['fname']), reverse=True)})
 
     return render(request,
                   kwargs.get('template_name', 'backups.html'),
