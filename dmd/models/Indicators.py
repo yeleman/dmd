@@ -310,6 +310,8 @@ class Indicator(models.Model):
         }
 
     def transmission_deadline(self, period):
+        # TODO: temporary bypass deadline check to catch up backlog
+        return None
         if self.transmission_delay:
             return period.end_on + datetime.timedelta(
                 days=self.transmission_delay)
