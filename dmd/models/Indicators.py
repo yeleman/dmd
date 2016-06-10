@@ -368,6 +368,8 @@ class Indicator(models.Model):
             try:
                 return (numerator * coef) / denominator
             except ZeroDivisionError:
+                # TODO: check what to do here
+                return 0
                 raise
 
     def format_value(self, value, numerator, denominator):
