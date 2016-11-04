@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 
 CANVAS_SIZE = 2048
 OUTLINE_COLOR = "#FFFFFF"
+OUTLINE_WIDTH = 4
 MAP_COLORS = ["#fef0d9", "#fdcc8a", "#fc8d59", "#d7301f"]
 # MAP_COLORS = ["rgb(254,240,217)", "rgb(253,204,138)",
 #               "rgb(242,141,89)", "rgb(215,48,31)"]
@@ -328,7 +329,7 @@ def build_legend_for(scale):
         upper_bound = scale.boundaries_for_color(color)
         color_text = "{lb} – {ub}".format(
             lb=format_decimal(lower_bound, format=LEGEND_FORMAT),
-            ub=format_decimal(upper_bound, format=LEGEND_FORMAT))
+            ub=format_decimal(upper_bound - .1, format=LEGEND_FORMAT))
         ltext_width = max([ltext_width, text_width(color_text)])
         lower_bound = upper_bound
         labels.append(color_text)
@@ -458,7 +459,8 @@ def gen_map_for(entity, periods, indicator, save_as=None,
     bbox = children_bounds(entity)
 
     # data = indicator.data_for(periods=periods, entity=entity)
-    data = DataRecord.get_for(periods[-1], entity, indicator)
+    data = DataRecord.get_for(periods[-1] if periods else None,
+                              entity, indicator)
     # from pprint import pprint as pp ; pp(data.values())
     scale = QuantileScale(values=[x['value'] for x in data.values()],
                           colors=MAP_COLORS)
@@ -501,10 +503,21 @@ def gen_map_for(entity, periods, indicator, save_as=None,
                   for feature_coord in coordinates
                   for x, y in feature_coord[0]]
 
+        # draw polygon
         feature_draw = ImageDraw.Draw(image)
         feature_draw.polygon(pixels,
                              outline=OUTLINE_COLOR,
                              fill=color_for(child))
+
+        # draw thicker boundaries
+        feature_draw.line(pixels, fill=OUTLINE_COLOR, width=OUTLINE_WIDTH)
+        for pixel in pixels:
+            feature_draw.ellipse(
+                (pixel[0] - OUTLINE_WIDTH // 2,
+                 pixel[1] - OUTLINE_WIDTH // 2,
+                 pixel[0] + OUTLINE_WIDTH // 2,
+                 pixel[1] + OUTLINE_WIDTH // 2),
+                fill=OUTLINE_COLOR)
 
         # draw a letter
         if with_index and child.gps:

@@ -261,6 +261,10 @@ class Indicator(models.Model):
         return cls.objects.all()
 
     @classmethod
+    def get_all_sorted(cls):
+        return cls.objects.all().order_by('collection_type', 'number')
+
+    @classmethod
     def get_all_dhis(cls):
         return cls.get_all().filter(origin=cls.DHIS) \
             .exclude(dhis_denominator_id__isnull=True)

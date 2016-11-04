@@ -94,7 +94,7 @@ def dashboard(request, entity_uuid=None, indicator_slug=None,
     if context['period'] is None:
         context['period'] = MonthPeriod.current().previous()
 
-    all_indicators = Indicator.get_all_routine()
+    all_indicators = Indicator.get_all_sorted()  # Indicator.get_all_routine()
     indicator = Indicator.get_or_none(indicator_slug)
 
     context.update({
