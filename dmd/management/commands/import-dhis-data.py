@@ -52,9 +52,6 @@ class Command(BaseCommand):
 
     def handle_record(self, jsdata, entity, periods):
 
-        # make sure we're at project root
-        chdir_dmd()
-
         logger.info(periods)
 
         missing = '0.0'
@@ -106,6 +103,10 @@ class Command(BaseCommand):
                                          period=period).count() == 0
 
     def handle(self, *args, **options):
+
+        # make sure we're at project root
+        chdir_dmd()
+
         # options parsing
         self.debug = options.get('debug')
         update = options.get('update')
